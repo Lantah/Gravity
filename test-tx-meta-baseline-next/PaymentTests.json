@@ -889,8 +889,8 @@
 	"payment|protocol version 10|pay, merge, create, pay, 3 accounts" : [ "hCcUSmkrzmg=", "12ojMDukd9Y=", "KSTzIep9kJ0=", "ZdjOBetjzeM=" ],
 	"payment|protocol version 10|pay, merge, create, pay, self" : [ "hCcUSmkrzmg=", "1xYgwTStEM0=", "o8eHJQKdaHg=" ],
 	"payment|protocol version 10|rescue account (was below reserve)" : [ "/J8iGd0Hlhc=", "Xh6gAscZdJs=", "hb0znJOdm+4=", "7x0+qIuSa/E=" ],
-	"payment|protocol version 10|send XLM to a new account (no destination)" : [ "ruPxFaUx7lE=" ],
-	"payment|protocol version 10|send XLM to an existing account" : [ "RQcfU0yHP7k=" ],
+	"payment|protocol version 10|send GRAM to a new account (no destination)" : [ "ruPxFaUx7lE=" ],
+	"payment|protocol version 10|send GRAM to an existing account" : [ "RQcfU0yHP7k=" ],
 	"payment|protocol version 10|send to self" : 
 	[
 		"qGQU6AOuEa0=",
@@ -1259,8 +1259,8 @@
 	"payment|protocol version 11|pay, merge, create, pay, 3 accounts" : [ "hCcUSmkrzmg=", "12ojMDukd9Y=", "KSTzIep9kJ0=", "ZdjOBetjzeM=" ],
 	"payment|protocol version 11|pay, merge, create, pay, self" : [ "hCcUSmkrzmg=", "1xYgwTStEM0=", "o8eHJQKdaHg=" ],
 	"payment|protocol version 11|rescue account (was below reserve)" : [ "/J8iGd0Hlhc=", "Xh6gAscZdJs=", "hb0znJOdm+4=", "7x0+qIuSa/E=" ],
-	"payment|protocol version 11|send XLM to a new account (no destination)" : [ "ruPxFaUx7lE=" ],
-	"payment|protocol version 11|send XLM to an existing account" : [ "RQcfU0yHP7k=" ],
+	"payment|protocol version 11|send GRAM to a new account (no destination)" : [ "ruPxFaUx7lE=" ],
+	"payment|protocol version 11|send GRAM to an existing account" : [ "RQcfU0yHP7k=" ],
 	"payment|protocol version 11|send to self" : 
 	[
 		"qGQU6AOuEa0=",
@@ -1629,8 +1629,8 @@
 	"payment|protocol version 12|pay, merge, create, pay, 3 accounts" : [ "hCcUSmkrzmg=", "12ojMDukd9Y=", "KSTzIep9kJ0=", "ZdjOBetjzeM=" ],
 	"payment|protocol version 12|pay, merge, create, pay, self" : [ "hCcUSmkrzmg=", "1xYgwTStEM0=", "o8eHJQKdaHg=" ],
 	"payment|protocol version 12|rescue account (was below reserve)" : [ "/J8iGd0Hlhc=", "Xh6gAscZdJs=", "hb0znJOdm+4=", "7x0+qIuSa/E=" ],
-	"payment|protocol version 12|send XLM to a new account (no destination)" : [ "ruPxFaUx7lE=" ],
-	"payment|protocol version 12|send XLM to an existing account" : [ "RQcfU0yHP7k=" ],
+	"payment|protocol version 12|send GRAM to a new account (no destination)" : [ "ruPxFaUx7lE=" ],
+	"payment|protocol version 12|send GRAM to an existing account" : [ "RQcfU0yHP7k=" ],
 	"payment|protocol version 12|send to self" : 
 	[
 		"qGQU6AOuEa0=",
@@ -1999,8 +1999,8 @@
 	"payment|protocol version 13|pay, merge, create, pay, 3 accounts" : [ "hCcUSmkrzmg=", "12ojMDukd9Y=", "KSTzIep9kJ0=", "ZdjOBetjzeM=" ],
 	"payment|protocol version 13|pay, merge, create, pay, self" : [ "hCcUSmkrzmg=", "1xYgwTStEM0=", "o8eHJQKdaHg=" ],
 	"payment|protocol version 13|rescue account (was below reserve)" : [ "/J8iGd0Hlhc=", "Xh6gAscZdJs=", "hb0znJOdm+4=", "7x0+qIuSa/E=" ],
-	"payment|protocol version 13|send XLM to a new account (no destination)" : [ "ruPxFaUx7lE=" ],
-	"payment|protocol version 13|send XLM to an existing account" : [ "RQcfU0yHP7k=" ],
+	"payment|protocol version 13|send GRAM to a new account (no destination)" : [ "ruPxFaUx7lE=" ],
+	"payment|protocol version 13|send GRAM to an existing account" : [ "RQcfU0yHP7k=" ],
 	"payment|protocol version 13|send to self" : 
 	[
 		"qGQU6AOuEa0=",
@@ -2369,8 +2369,8 @@
 	"payment|protocol version 14|pay, merge, create, pay, 3 accounts" : [ "hCcUSmkrzmg=", "12ojMDukd9Y=", "KSTzIep9kJ0=", "ZdjOBetjzeM=" ],
 	"payment|protocol version 14|pay, merge, create, pay, self" : [ "hCcUSmkrzmg=", "1xYgwTStEM0=", "o8eHJQKdaHg=" ],
 	"payment|protocol version 14|rescue account (was below reserve)" : [ "/J8iGd0Hlhc=", "Xh6gAscZdJs=", "hb0znJOdm+4=", "7x0+qIuSa/E=" ],
-	"payment|protocol version 14|send XLM to a new account (no destination)" : [ "ruPxFaUx7lE=" ],
-	"payment|protocol version 14|send XLM to an existing account" : [ "RQcfU0yHP7k=" ],
+	"payment|protocol version 14|send GRAM to a new account (no destination)" : [ "ruPxFaUx7lE=" ],
+	"payment|protocol version 14|send GRAM to an existing account" : [ "RQcfU0yHP7k=" ],
 	"payment|protocol version 14|send to self" : 
 	[
 		"qGQU6AOuEa0=",
@@ -2739,8 +2739,8 @@
 	"payment|protocol version 15|pay, merge, create, pay, 3 accounts" : [ "hCcUSmkrzmg=", "12ojMDukd9Y=", "KSTzIep9kJ0=", "ZdjOBetjzeM=" ],
 	"payment|protocol version 15|pay, merge, create, pay, self" : [ "hCcUSmkrzmg=", "1xYgwTStEM0=", "o8eHJQKdaHg=" ],
 	"payment|protocol version 15|rescue account (was below reserve)" : [ "/J8iGd0Hlhc=", "Xh6gAscZdJs=", "hb0znJOdm+4=", "7x0+qIuSa/E=" ],
-	"payment|protocol version 15|send XLM to a new account (no destination)" : [ "ruPxFaUx7lE=" ],
-	"payment|protocol version 15|send XLM to an existing account" : [ "RQcfU0yHP7k=" ],
+	"payment|protocol version 15|send GRAM to a new account (no destination)" : [ "ruPxFaUx7lE=" ],
+	"payment|protocol version 15|send GRAM to an existing account" : [ "RQcfU0yHP7k=" ],
 	"payment|protocol version 15|send to self" : 
 	[
 		"qGQU6AOuEa0=",
@@ -3109,8 +3109,8 @@
 	"payment|protocol version 16|pay, merge, create, pay, 3 accounts" : [ "hCcUSmkrzmg=", "12ojMDukd9Y=", "KSTzIep9kJ0=", "ZdjOBetjzeM=" ],
 	"payment|protocol version 16|pay, merge, create, pay, self" : [ "hCcUSmkrzmg=", "1xYgwTStEM0=", "o8eHJQKdaHg=" ],
 	"payment|protocol version 16|rescue account (was below reserve)" : [ "/J8iGd0Hlhc=", "Xh6gAscZdJs=", "hb0znJOdm+4=", "7x0+qIuSa/E=" ],
-	"payment|protocol version 16|send XLM to a new account (no destination)" : [ "ruPxFaUx7lE=" ],
-	"payment|protocol version 16|send XLM to an existing account" : [ "RQcfU0yHP7k=" ],
+	"payment|protocol version 16|send GRAM to a new account (no destination)" : [ "ruPxFaUx7lE=" ],
+	"payment|protocol version 16|send GRAM to an existing account" : [ "RQcfU0yHP7k=" ],
 	"payment|protocol version 16|send to self" : 
 	[
 		"qGQU6AOuEa0=",
@@ -3491,8 +3491,8 @@
 	"payment|protocol version 17|pay, merge, create, pay, 3 accounts" : [ "hCcUSmkrzmg=", "12ojMDukd9Y=", "KSTzIep9kJ0=", "ZdjOBetjzeM=" ],
 	"payment|protocol version 17|pay, merge, create, pay, self" : [ "hCcUSmkrzmg=", "1xYgwTStEM0=", "o8eHJQKdaHg=" ],
 	"payment|protocol version 17|rescue account (was below reserve)" : [ "/J8iGd0Hlhc=", "Xh6gAscZdJs=", "hb0znJOdm+4=", "7x0+qIuSa/E=" ],
-	"payment|protocol version 17|send XLM to a new account (no destination)" : [ "ruPxFaUx7lE=" ],
-	"payment|protocol version 17|send XLM to an existing account" : [ "RQcfU0yHP7k=" ],
+	"payment|protocol version 17|send GRAM to a new account (no destination)" : [ "ruPxFaUx7lE=" ],
+	"payment|protocol version 17|send GRAM to an existing account" : [ "RQcfU0yHP7k=" ],
 	"payment|protocol version 17|send to self" : 
 	[
 		"qGQU6AOuEa0=",
@@ -3873,8 +3873,8 @@
 	"payment|protocol version 18|pay, merge, create, pay, 3 accounts" : [ "hCcUSmkrzmg=", "12ojMDukd9Y=", "KSTzIep9kJ0=", "ZdjOBetjzeM=" ],
 	"payment|protocol version 18|pay, merge, create, pay, self" : [ "hCcUSmkrzmg=", "1xYgwTStEM0=", "o8eHJQKdaHg=" ],
 	"payment|protocol version 18|rescue account (was below reserve)" : [ "/J8iGd0Hlhc=", "Xh6gAscZdJs=", "hb0znJOdm+4=", "7x0+qIuSa/E=" ],
-	"payment|protocol version 18|send XLM to a new account (no destination)" : [ "ruPxFaUx7lE=" ],
-	"payment|protocol version 18|send XLM to an existing account" : [ "RQcfU0yHP7k=" ],
+	"payment|protocol version 18|send GRAM to a new account (no destination)" : [ "ruPxFaUx7lE=" ],
+	"payment|protocol version 18|send GRAM to an existing account" : [ "RQcfU0yHP7k=" ],
 	"payment|protocol version 18|send to self" : 
 	[
 		"qGQU6AOuEa0=",
@@ -4255,8 +4255,8 @@
 	"payment|protocol version 19|pay, merge, create, pay, 3 accounts" : [ "5H0jpJ3I5ZE=", "y7eIfKMw2Ak=", "QA7h4Bfjx2U=", "HRN9VqshohI=" ],
 	"payment|protocol version 19|pay, merge, create, pay, self" : [ "5H0jpJ3I5ZE=", "Kj5WfM/aEBA=", "srXYyit1oYc=" ],
 	"payment|protocol version 19|rescue account (was below reserve)" : [ "gImuwEDx7sA=", "OdjQVS6HZms=", "mKbsBghSyZ4=", "1oL8wYu8CDk=" ],
-	"payment|protocol version 19|send XLM to a new account (no destination)" : [ "q02uKuKv3WY=" ],
-	"payment|protocol version 19|send XLM to an existing account" : [ "WRR3hwhty2s=" ],
+	"payment|protocol version 19|send GRAM to a new account (no destination)" : [ "q02uKuKv3WY=" ],
+	"payment|protocol version 19|send GRAM to an existing account" : [ "WRR3hwhty2s=" ],
 	"payment|protocol version 19|send to self" : 
 	[
 		"hVEyWYWULx0=",
@@ -4444,8 +4444,8 @@
 	"payment|protocol version 1|pay, merge, create, pay, 3 accounts" : [ "HRGCodA7j/g=", "QQI/BCkhfPw=", "yPVJj9156JA=", "OBPu5uw3TlE=" ],
 	"payment|protocol version 1|pay, merge, create, pay, self" : [ "HRGCodA7j/g=", "RAypWQQnHp8=", "yfRQ7B1TfwE=" ],
 	"payment|protocol version 1|rescue account (was below reserve)" : [ "pyPqTd+ByY0=", "/lfj8xIFS8I=", "oplHUhuvbjQ=", "Z9p0KB8UdxI=" ],
-	"payment|protocol version 1|send XLM to a new account (no destination)" : [ "/lfj8xIFS8I=" ],
-	"payment|protocol version 1|send XLM to an existing account" : [ "Lx9ckWKr0S4=" ],
+	"payment|protocol version 1|send GRAM to a new account (no destination)" : [ "/lfj8xIFS8I=" ],
+	"payment|protocol version 1|send GRAM to an existing account" : [ "Lx9ckWKr0S4=" ],
 	"payment|protocol version 1|send to self" : 
 	[
 		"8vz51UGSTgI=",
@@ -5000,8 +5000,8 @@
 	"payment|protocol version 20|pay, merge, create, pay, 3 accounts" : [ "SrFayk/vubc=", "vW7bDOzYOM0=", "0l/JbIw9/RY=", "OwIeATD91w8=" ],
 	"payment|protocol version 20|pay, merge, create, pay, self" : [ "SrFayk/vubc=", "y+mO9bv2Wi0=", "HkdmTMD8hPw=" ],
 	"payment|protocol version 20|rescue account (was below reserve)" : [ "5/fCC5X1AwI=", "mfRk/WoQjGQ=", "FN4JDc1l22M=", "lJGozndqY9E=" ],
-	"payment|protocol version 20|send XLM to a new account (no destination)" : [ "jOJv93YP134=" ],
-	"payment|protocol version 20|send XLM to an existing account" : [ "Vh4fdl5jRS4=" ],
+	"payment|protocol version 20|send GRAM to a new account (no destination)" : [ "jOJv93YP134=" ],
+	"payment|protocol version 20|send GRAM to an existing account" : [ "Vh4fdl5jRS4=" ],
 	"payment|protocol version 20|send to self" : 
 	[
 		"MwqWGVNizjs=",
@@ -5189,8 +5189,8 @@
 	"payment|protocol version 2|pay, merge, create, pay, 3 accounts" : [ "HRGCodA7j/g=", "QQI/BCkhfPw=", "yPVJj9156JA=", "OBPu5uw3TlE=" ],
 	"payment|protocol version 2|pay, merge, create, pay, self" : [ "HRGCodA7j/g=", "RAypWQQnHp8=", "yfRQ7B1TfwE=" ],
 	"payment|protocol version 2|rescue account (was below reserve)" : [ "pyPqTd+ByY0=", "/lfj8xIFS8I=", "oplHUhuvbjQ=", "Z9p0KB8UdxI=" ],
-	"payment|protocol version 2|send XLM to a new account (no destination)" : [ "/lfj8xIFS8I=" ],
-	"payment|protocol version 2|send XLM to an existing account" : [ "Lx9ckWKr0S4=" ],
+	"payment|protocol version 2|send GRAM to a new account (no destination)" : [ "/lfj8xIFS8I=" ],
+	"payment|protocol version 2|send GRAM to an existing account" : [ "Lx9ckWKr0S4=" ],
 	"payment|protocol version 2|send to self" : 
 	[
 		"8vz51UGSTgI=",
@@ -5552,8 +5552,8 @@
 	"payment|protocol version 3|pay, merge, create, pay, 3 accounts" : [ "HRGCodA7j/g=", "QQI/BCkhfPw=", "yPVJj9156JA=", "OBPu5uw3TlE=" ],
 	"payment|protocol version 3|pay, merge, create, pay, self" : [ "HRGCodA7j/g=", "RAypWQQnHp8=", "yfRQ7B1TfwE=" ],
 	"payment|protocol version 3|rescue account (was below reserve)" : [ "pyPqTd+ByY0=", "/lfj8xIFS8I=", "oplHUhuvbjQ=", "Z9p0KB8UdxI=" ],
-	"payment|protocol version 3|send XLM to a new account (no destination)" : [ "/lfj8xIFS8I=" ],
-	"payment|protocol version 3|send XLM to an existing account" : [ "Lx9ckWKr0S4=" ],
+	"payment|protocol version 3|send GRAM to a new account (no destination)" : [ "/lfj8xIFS8I=" ],
+	"payment|protocol version 3|send GRAM to an existing account" : [ "Lx9ckWKr0S4=" ],
 	"payment|protocol version 3|send to self" : 
 	[
 		"8vz51UGSTgI=",
@@ -5915,8 +5915,8 @@
 	"payment|protocol version 4|pay, merge, create, pay, 3 accounts" : [ "HRGCodA7j/g=", "QQI/BCkhfPw=", "yPVJj9156JA=", "OBPu5uw3TlE=" ],
 	"payment|protocol version 4|pay, merge, create, pay, self" : [ "HRGCodA7j/g=", "RAypWQQnHp8=", "yfRQ7B1TfwE=" ],
 	"payment|protocol version 4|rescue account (was below reserve)" : [ "pyPqTd+ByY0=", "/lfj8xIFS8I=", "oplHUhuvbjQ=", "Z9p0KB8UdxI=" ],
-	"payment|protocol version 4|send XLM to a new account (no destination)" : [ "/lfj8xIFS8I=" ],
-	"payment|protocol version 4|send XLM to an existing account" : [ "Lx9ckWKr0S4=" ],
+	"payment|protocol version 4|send GRAM to a new account (no destination)" : [ "/lfj8xIFS8I=" ],
+	"payment|protocol version 4|send GRAM to an existing account" : [ "Lx9ckWKr0S4=" ],
 	"payment|protocol version 4|send to self" : 
 	[
 		"8vz51UGSTgI=",
@@ -6278,8 +6278,8 @@
 	"payment|protocol version 5|pay, merge, create, pay, 3 accounts" : [ "HRGCodA7j/g=", "QQI/BCkhfPw=", "yPVJj9156JA=", "OBPu5uw3TlE=" ],
 	"payment|protocol version 5|pay, merge, create, pay, self" : [ "HRGCodA7j/g=", "RAypWQQnHp8=", "yfRQ7B1TfwE=" ],
 	"payment|protocol version 5|rescue account (was below reserve)" : [ "pyPqTd+ByY0=", "/lfj8xIFS8I=", "oplHUhuvbjQ=", "Z9p0KB8UdxI=" ],
-	"payment|protocol version 5|send XLM to a new account (no destination)" : [ "/lfj8xIFS8I=" ],
-	"payment|protocol version 5|send XLM to an existing account" : [ "Lx9ckWKr0S4=" ],
+	"payment|protocol version 5|send GRAM to a new account (no destination)" : [ "/lfj8xIFS8I=" ],
+	"payment|protocol version 5|send GRAM to an existing account" : [ "Lx9ckWKr0S4=" ],
 	"payment|protocol version 5|send to self" : 
 	[
 		"8vz51UGSTgI=",
@@ -6641,8 +6641,8 @@
 	"payment|protocol version 6|pay, merge, create, pay, 3 accounts" : [ "HRGCodA7j/g=", "QQI/BCkhfPw=", "yPVJj9156JA=", "OBPu5uw3TlE=" ],
 	"payment|protocol version 6|pay, merge, create, pay, self" : [ "HRGCodA7j/g=", "RAypWQQnHp8=", "yfRQ7B1TfwE=" ],
 	"payment|protocol version 6|rescue account (was below reserve)" : [ "pyPqTd+ByY0=", "/lfj8xIFS8I=", "oplHUhuvbjQ=", "Z9p0KB8UdxI=" ],
-	"payment|protocol version 6|send XLM to a new account (no destination)" : [ "/lfj8xIFS8I=" ],
-	"payment|protocol version 6|send XLM to an existing account" : [ "Lx9ckWKr0S4=" ],
+	"payment|protocol version 6|send GRAM to a new account (no destination)" : [ "/lfj8xIFS8I=" ],
+	"payment|protocol version 6|send GRAM to an existing account" : [ "Lx9ckWKr0S4=" ],
 	"payment|protocol version 6|send to self" : 
 	[
 		"8vz51UGSTgI=",
@@ -7004,8 +7004,8 @@
 	"payment|protocol version 7|pay, merge, create, pay, 3 accounts" : [ "HRGCodA7j/g=", "QQI/BCkhfPw=", "yPVJj9156JA=", "OBPu5uw3TlE=" ],
 	"payment|protocol version 7|pay, merge, create, pay, self" : [ "HRGCodA7j/g=", "RAypWQQnHp8=", "yfRQ7B1TfwE=" ],
 	"payment|protocol version 7|rescue account (was below reserve)" : [ "pyPqTd+ByY0=", "/lfj8xIFS8I=", "oplHUhuvbjQ=", "Z9p0KB8UdxI=" ],
-	"payment|protocol version 7|send XLM to a new account (no destination)" : [ "/lfj8xIFS8I=" ],
-	"payment|protocol version 7|send XLM to an existing account" : [ "Lx9ckWKr0S4=" ],
+	"payment|protocol version 7|send GRAM to a new account (no destination)" : [ "/lfj8xIFS8I=" ],
+	"payment|protocol version 7|send GRAM to an existing account" : [ "Lx9ckWKr0S4=" ],
 	"payment|protocol version 7|send to self" : 
 	[
 		"8vz51UGSTgI=",
@@ -7367,8 +7367,8 @@
 	"payment|protocol version 8|pay, merge, create, pay, 3 accounts" : [ "HRGCodA7j/g=", "QQI/BCkhfPw=", "yPVJj9156JA=", "Y91Ev2QqyL4=" ],
 	"payment|protocol version 8|pay, merge, create, pay, self" : [ "HRGCodA7j/g=", "RAypWQQnHp8=", "yfRQ7B1TfwE=" ],
 	"payment|protocol version 8|rescue account (was below reserve)" : [ "pyPqTd+ByY0=", "/lfj8xIFS8I=", "oplHUhuvbjQ=", "Z9p0KB8UdxI=" ],
-	"payment|protocol version 8|send XLM to a new account (no destination)" : [ "/lfj8xIFS8I=" ],
-	"payment|protocol version 8|send XLM to an existing account" : [ "Lx9ckWKr0S4=" ],
+	"payment|protocol version 8|send GRAM to a new account (no destination)" : [ "/lfj8xIFS8I=" ],
+	"payment|protocol version 8|send GRAM to an existing account" : [ "Lx9ckWKr0S4=" ],
 	"payment|protocol version 8|send to self" : 
 	[
 		"8vz51UGSTgI=",
@@ -7730,8 +7730,8 @@
 	"payment|protocol version 9|pay, merge, create, pay, 3 accounts" : [ "HRGCodA7j/g=", "QQI/BCkhfPw=", "yPVJj9156JA=", "Y91Ev2QqyL4=" ],
 	"payment|protocol version 9|pay, merge, create, pay, self" : [ "HRGCodA7j/g=", "RAypWQQnHp8=", "yfRQ7B1TfwE=" ],
 	"payment|protocol version 9|rescue account (was below reserve)" : [ "pyPqTd+ByY0=", "/lfj8xIFS8I=", "oplHUhuvbjQ=", "Z9p0KB8UdxI=" ],
-	"payment|protocol version 9|send XLM to a new account (no destination)" : [ "/lfj8xIFS8I=" ],
-	"payment|protocol version 9|send XLM to an existing account" : [ "Lx9ckWKr0S4=" ],
+	"payment|protocol version 9|send GRAM to a new account (no destination)" : [ "/lfj8xIFS8I=" ],
+	"payment|protocol version 9|send GRAM to an existing account" : [ "Lx9ckWKr0S4=" ],
 	"payment|protocol version 9|send to self" : 
 	[
 		"8vz51UGSTgI=",

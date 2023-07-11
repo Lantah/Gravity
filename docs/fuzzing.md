@@ -3,7 +3,7 @@ title: Fuzzing
 ---
 
 This is a little howto on using the [AFL][0] (["American Fuzzy Lop"][1])
-fuzzer with stellar-core. Support for this is still preliminary but it has
+fuzzer with gramr. Support for this is still preliminary but it has
 already shaken a couple bugs out and will no doubt find more the further down
 this road we go, so you're encouraged to give this a try.
 
@@ -34,9 +34,9 @@ in binary form and (c) be guided toward interesting edge cases just enough. We
 currently have two fuzz modes, `tx` and `overlay`, and they **do not** perform the
 above equally well. For starters, we have enabled [llvm_mode][9]'s persistent mode
 for a modest 10x-100x improvement in execution/sec for *both* fuzz modes. Thus both
-perform well in area (a) and with simple modifications we made to stellar-core, (b)
+perform well in area (a) and with simple modifications we made to gramr, (b)
 too. However, we've spent more energy with (c) for the `tx` fuzz mode, modifying
-stellar-core such that it is more deterministic -- caches are cleared and randomness
+gramr such that it is more deterministic -- caches are cleared and randomness
 seeded -- and it skips wasteful and inconsequential processes -- anything related to
 signatures. For both modes, there is still much room for improvement in regards to
 (a) and (c), one example being an isolation of the subsystem.
@@ -69,7 +69,7 @@ For example, this makes clang-12 the default:
 sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-12   81 --slave /usr/bin/clang++ clang++ /usr/bin/clang++-12    --slave /usr/share/man/man1/clang.1.gz clang.1.gz /usr/share/man/man1/clang-12.1.gz --slave /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-12  --slave /usr/bin/clang-format clang-format /usr/bin/clang-format-12 --slave /usr/bin/llvm-config llvm-config /usr/bin/llvm-config-12
 ```
 
-## Building an instrumented stellar-core
+## Building an instrumented gramr
 
 Start with a clean workspace, `make clean` or cleaner; then just do
 
@@ -93,15 +93,15 @@ The simplest way is to set the environment variable `FUZZER_MODE` to `tx` or
 to `overlay` and then `make fuzz`; this will do the following:
 
   - Create a directory `fuzz-testcases` for storing the initial corpus input
-  - Run `stellar-core gen-fuzz fuzz-testcases/fuzz$i.xdr` ten thousand times
+  - Run `gramr gen-fuzz fuzz-testcases/fuzz$i.xdr` ten thousand times
     to produce some basic seed input for the corpus
   - Run `afl-cmin` on the generated `fuzz-testcases`, minimizing the corpus
     to a unique, interesting subset, which will be put into a directory named
     `min-testcases`
   - Create a directory `fuzz-findings` for storing crash-producing inputs
-  - Run `afl-fuzz` on `stellar-core fuzz`, using those corpus directories
+  - Run `afl-fuzz` on `gramr fuzz`, using those corpus directories
 
-If `stellar-core fuzz` (or `afl-fuzz`) produces output such as 'Warning: AFL++
+If `gramr fuzz` (or `afl-fuzz`) produces output such as 'Warning: AFL++
 tools will need to set AFL_MAP_SIZE to 757616 to be able to run this
 instrumented program!', then you can set this environment variable to something
 sufficient, such as `export AFL_MAP_SIZE=786432`.
@@ -126,12 +126,12 @@ undesirable)
 
 While it runs, it will write new crashes to files in `fuzz-findings`; before
 pouncing on these as definite evidence of a flaw, you should confirm the crash
-by feeding it to an instance of `stellar-core fuzz` run by hand, elsewhere (in
+by feeding it to an instance of `gramr fuzz` run by hand, elsewhere (in
 particular, not fighting for control over tmpdirs with the fuzzer's
-`stellar-core` instances). Often a fuzzer "crash" is just the subprocess hitting
+`gramr` instances). Often a fuzzer "crash" is just the subprocess hitting
 a ulimit; by default we use an 250mb virtual-address ulimit, thus it is
 possible to exceed this. It is also useful to keep a separate build of
-`stellar-core` in a different directory with `--enable-asan`, or valgrind, in
+`gramr` in a different directory with `--enable-asan`, or valgrind, in
 order to diagnose crashes. For more information on the [output][4] or [triaging
 crashes][5] click the hyperlinks. 
 
@@ -153,7 +153,7 @@ of - you need to make sure to run the same testcases against master and the PR. 
 
 What should be done instead is first create the `min-testcases` directory using `make fuzz` or 
 `make fuzz-testcases` (the former will create the tests and run afl, while the latter will just create
-the tests). Then you can run `afl-fuzz -m 500 -M main -t 250 -i min-testcases -o fuzz-findings ./stellar-core fuzz --ll ERROR --process-id 0 --mode=${FUZZER_MODE} @@` 
+the tests). Then you can run `afl-fuzz -m 500 -M main -t 250 -i min-testcases -o fuzz-findings ./gramr fuzz --ll ERROR --process-id 0 --mode=${FUZZER_MODE} @@` 
 with multiple versions of core, which will use the `min-testcases` directory previously created. If 
 you are using two directories to test master vs a PR, then you'll need to copy `min-testcases` to the other directory.
 
@@ -166,7 +166,7 @@ part of staging-tests", here are some directions I think we should take fuzzing:
 
   - Try AFL_NO_VAR_CHECK and see if it speeds things up.
 
-  - Try limiting the instrumentation to `stellar-core` itself, not libsodium,
+  - Try limiting the instrumentation to `gramr` itself, not libsodium,
     soci, sqlite, medida, and so forth.
 
   - Measure and shave-down the startup path for fuzzing so it's as fast as

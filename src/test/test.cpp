@@ -16,7 +16,7 @@
 #include "ledger/LedgerTxn.h"
 #include "ledger/LedgerTxnHeader.h"
 #include "main/Config.h"
-#include "main/StellarCoreVersion.h"
+#include "main/GramrVersion.h"
 #include "main/dumpxdr.h"
 #include "test.h"
 #include "test/TestUtils.h"
@@ -211,7 +211,7 @@ getTestConfig(int instanceNumber, Config::TestDbMode mode)
         if (gTestRoots.empty())
         {
             gTestRoots.emplace_back(
-                fmt::format("stellar-core-test-{}", gBaseInstance));
+                fmt::format("gramr-test-{}", gBaseInstance));
         }
         auto const& testBase = gTestRoots[0].getName();
         gTestRoots.emplace_back(
@@ -352,7 +352,7 @@ runTest(CommandLineArgs const& args)
         "test specific version(s)");
     parser |= Catch::clara::Opt(gBaseInstance, "offset")["--base-instance"](
         "instance number offset so multiple instances of "
-        "stellar-core can run tests concurrently");
+        "gramr can run tests concurrently");
     parser |=
         Catch::clara::Opt(recordTestTxMeta, "DIRNAME")["--record-test-tx-meta"](
             "record baseline TxMeta from all tests");
@@ -425,17 +425,17 @@ runTest(CommandLineArgs const& args)
     }
 
     // Note: Have to setLogLevel twice here to ensure --list-test-names-only is
-    // not mixed with stellar-core logging.
+    // not mixed with gramr logging.
     Logging::setFmt("<test>");
     Logging::setLogLevel(logLevel, nullptr);
     // use base instance for logging as we're guaranteed to not have conflicting
-    // instances of stellar-core running at the same time with the same base
+    // instances of gramr running at the same time with the same base
     // instance
     auto logFile = fmt::format("stellar{}.log", gBaseInstance);
     Logging::setLoggingToFile(logFile);
     Logging::setLogLevel(logLevel, nullptr);
 
-    LOG_INFO(DEFAULT_LOG, "Testing stellar-core {}", STELLAR_CORE_VERSION);
+    LOG_INFO(DEFAULT_LOG, "Testing gramr {}", GRAMR_VERSION);
     LOG_INFO(DEFAULT_LOG, "Logging to {}", logFile);
 
     auto r = session.run();

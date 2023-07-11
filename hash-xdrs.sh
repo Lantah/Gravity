@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # This file generates a C++ file which contains (filename, hash) pairs for XDR
-# files included in the build. These are included in the stellar-core build to
+# files included in the build. These are included in the gramr build to
 # be checked against similar hashes produced by xdrgen when it is compiling XDR
 # definitions for Rust code.
 #

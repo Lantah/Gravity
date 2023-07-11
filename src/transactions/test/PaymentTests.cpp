@@ -28,11 +28,11 @@
 using namespace stellar;
 using namespace stellar::txtest;
 
-// *XLM Payment
+// *GRAM Payment
 // *Credit Payment
-// XLM -> Credit Payment
-// Credit -> XLM Payment
-// Credit -> XLM -> Credit Payment
+// GRAM -> Credit Payment
+// Credit -> GRAM Payment
+// Credit -> GRAM -> Credit Payment
 // Credit -> Credit -> Credit -> Credit Payment
 // path payment where there isn't enough in the path
 // path payment with a transfer rate
@@ -45,7 +45,7 @@ TEST_CASE_VERSIONS("payment", "[tx][payment]")
     // set up world
     auto root = TestAccount::createRoot(*app);
 
-    Asset xlm;
+    Asset gram;
 
     int64_t txfee = app->getLedgerManager().getLastTxFee();
 
@@ -179,7 +179,7 @@ TEST_CASE_VERSIONS("payment", "[tx][payment]")
         });
     }
 
-    SECTION("send XLM to an existing account")
+    SECTION("send GRAM to an existing account")
     {
         for_all_versions(*app, [&] {
             root.pay(a1, morePayment);
@@ -199,7 +199,7 @@ TEST_CASE_VERSIONS("payment", "[tx][payment]")
         });
     }
 
-    SECTION("send XLM to a new account (no destination)")
+    SECTION("send GRAM to a new account (no destination)")
     {
         for_all_versions(*app, [&] {
             REQUIRE_THROWS_AS(
@@ -880,8 +880,8 @@ TEST_CASE_VERSIONS("payment", "[tx][payment]")
             auto tx = sourceAccount.tx({
                 createSource.op(
                     createAccount(createDestination, create1Amount)),
-                createDestination.op(pathPayment(payDestination, xlm, payAmount,
-                                                 xlm, payAmount, {})),
+                createDestination.op(pathPayment(payDestination, gram, payAmount,
+                                                 gram, payAmount, {})),
                 payDestination.op(accountMerge(createSource)),
                 createSource.op(createAccount(payDestination, create2Amount)),
             });
@@ -1849,7 +1849,7 @@ TEST_CASE_VERSIONS("payment", "[tx][payment]")
             auto setup = [&]() {
                 TestMarket market(*app);
                 auto offer = market.requireChangesWithOffer({}, [&] {
-                    return market.addOffer(a1, {idr, xlm, Price{1, 1}, 50});
+                    return market.addOffer(a1, {idr, gram, Price{1, 1}, 50});
                 });
             };
             for_versions_to(9, *app, [&] {
@@ -1871,7 +1871,7 @@ TEST_CASE_VERSIONS("payment", "[tx][payment]")
             auto setup = [&]() {
                 TestMarket market(*app);
                 auto offer = market.requireChangesWithOffer({}, [&] {
-                    return market.addOffer(a1, {xlm, idr, Price{1, 1}, 50});
+                    return market.addOffer(a1, {gram, idr, Price{1, 1}, 50});
                 });
             };
             for_versions_to(9, *app, [&] {
@@ -1891,12 +1891,12 @@ TEST_CASE_VERSIONS("payment", "[tx][payment]")
     {
         for_versions_to(10, *app, [&] {
             REQUIRE_THROWS_AS(
-                root.pay(a1, xlm, std::numeric_limits<int64_t>::max()),
+                root.pay(a1, gram, std::numeric_limits<int64_t>::max()),
                 ex_txINTERNAL_ERROR);
         });
         for_versions_from(11, *app, [&] {
             REQUIRE_THROWS_AS(
-                root.pay(a1, xlm, std::numeric_limits<int64_t>::max()),
+                root.pay(a1, gram, std::numeric_limits<int64_t>::max()),
                 ex_PAYMENT_LINE_FULL);
         });
     }

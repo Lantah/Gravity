@@ -2344,7 +2344,7 @@ TEST_CASE_VERSIONS("upgrade base reserve", "[upgrades]")
                 {
                     // SponsoringAcc is now sponsoring all 12 of sponsoredAcc's
                     // offers. SponsoredAcc has 4 subentries. It also has enough
-                    // lumens to cover 12 more subentries after the sponsorship
+                    // grams to cover 12 more subentries after the sponsorship
                     // update. After the upgrade to double the baseReserve, this
                     // account will need to cover the 4 subEntries, so we only
                     // need 4 extra baseReserves before the upgrade. Pay out the

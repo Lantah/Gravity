@@ -10,12 +10,12 @@ if [[ -z "$TEMP_POSTGRES" ]]; then
     TEMP_POSTGRES=1
 fi
 
-STELLAR_CORE_DEFAULT_TEST_PARAMS="--ll fatal -w NoTests -a -r simple"
+GRAMR_DEFAULT_TEST_PARAMS="--ll fatal -w NoTests -a -r simple"
 if [[ "$ALL_VERSIONS" != "" ]]; then
-    STELLAR_CORE_DEFAULT_TEST_PARAMS="$STELLAR_CORE_DEFAULT_TEST_PARAMS --all-versions"
+    GRAMR_DEFAULT_TEST_PARAMS="$GRAMR_DEFAULT_TEST_PARAMS --all-versions"
 fi
 
-: ${STELLAR_CORE_TEST_PARAMS=$STELLAR_CORE_DEFAULT_TEST_PARAMS}
+: ${GRAMR_TEST_PARAMS=$GRAMR_DEFAULT_TEST_PARAMS}
 
 PGDIRS=$(exec 2>/dev/null; cd /usr/lib/postgresql && ls -1d */bin | sort -rn | xargs realpath)
 
@@ -106,11 +106,11 @@ else
     echo "PostgreSQL enabled for tests using existing database cluster"
 fi
 
-./stellar-core test $STELLAR_CORE_TEST_PARAMS --base-instance $BASE_INSTANCE "$TESTS" 2> /dev/null
+./gramr test $GRAMR_TEST_PARAMS --base-instance $BASE_INSTANCE "$TESTS" 2> /dev/null
 R=$?
 if [[ $R -ne 0 ]] ; then
     echo "Test failed, rerunning with debugger"
-    echo ./stellar-core test $STELLAR_CORE_TEST_PARAMS --base-instance $BASE_INSTANCE "$TESTS"
-    lldb -o 'r'  -o 'bt' -o 'exit' -- ./stellar-core test $STELLAR_CORE_TEST_PARAMS --base-instance $BASE_INSTANCE "$TESTS"
+    echo ./gramr test $GRAMR_TEST_PARAMS --base-instance $BASE_INSTANCE "$TESTS"
+    lldb -o 'r'  -o 'bt' -o 'exit' -- ./gramr test $GRAMR_TEST_PARAMS --base-instance $BASE_INSTANCE "$TESTS"
 fi
 exit $R

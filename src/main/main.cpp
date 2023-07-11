@@ -8,7 +8,7 @@
 #include "main/ApplicationUtils.h"
 #include "main/CommandLine.h"
 #include "main/Config.h"
-#include "main/StellarCoreVersion.h"
+#include "main/GramrVersion.h"
 #include <regex>
 #include <stdexcept>
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
@@ -215,25 +215,25 @@ checkXDRFileIdentity()
 }
 
 void
-checkStellarCoreMajorVersionProtocolIdentity()
+checkGramrMajorVersionProtocolIdentity()
 {
     auto vers =
-        stellar::getStellarCoreMajorReleaseVersion(STELLAR_CORE_VERSION);
+        stellar::getGramrMajorReleaseVersion(GRAMR_VERSION);
     if (vers)
     {
         if (*vers != stellar::Config::CURRENT_LEDGER_PROTOCOL_VERSION)
         {
             throw std::runtime_error(
-                fmt::format("stellar-core version {} has major version {} but "
+                fmt::format("gramr version {} has major version {} but "
                             "CURRENT_LEDGER_PROTOCOL_VERSION is {}",
-                            STELLAR_CORE_VERSION, *vers,
+                            GRAMR_VERSION, *vers,
                             stellar::Config::CURRENT_LEDGER_PROTOCOL_VERSION));
         }
     }
     else
     {
         std::cerr << "Warning: running non-release version "
-                  << STELLAR_CORE_VERSION << " of stellar-core" << std::endl;
+                  << GRAMR_VERSION << " of gramr" << std::endl;
     }
 }
 #endif
@@ -260,7 +260,7 @@ main(int argc, char* const* argv)
     randHash::initialize();
     xdr::marshaling_stack_limit = 1000;
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
-    checkStellarCoreMajorVersionProtocolIdentity();
+    checkGramrMajorVersionProtocolIdentity();
     rust_bridge::check_lockfile_has_expected_dep_trees(
         Config::CURRENT_LEDGER_PROTOCOL_VERSION);
     checkXDRFileIdentity();

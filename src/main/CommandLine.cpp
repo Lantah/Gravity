@@ -17,7 +17,7 @@
 #include "main/Diagnostics.h"
 #include "main/ErrorMessages.h"
 #include "main/PersistentState.h"
-#include "main/StellarCoreVersion.h"
+#include "main/GramrVersion.h"
 #include "main/dumpxdr.h"
 #include "overlay/OverlayManager.h"
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
@@ -290,7 +290,7 @@ configurationParser(CommandLine::ConfigOption& configOption)
            clara::Opt{configOption.mConfigFile,
                       "FILE-NAME"}["--conf"](fmt::format(
                FMT_STRING("specify a config file ('{}' for STDIN, default "
-                          "'stellar-core.cfg')"),
+                          "'gramr.cfg')"),
                Config::STDIN_SPECIAL_NAME));
 }
 
@@ -556,7 +556,7 @@ CommandLine::ConfigOption::getConfig(bool logToFile) const
 {
     Config config;
     auto configFile =
-        mConfigFile.empty() ? std::string{"stellar-core.cfg"} : mConfigFile;
+        mConfigFile.empty() ? std::string{"gramr.cfg"} : mConfigFile;
 
     // yes you really have to do this 3 times
     Logging::setLogLevel(mLogLevel, nullptr);
@@ -1055,7 +1055,7 @@ runForceSCP(CommandLineArgs const& args)
     auto reset = false;
 
     auto resetOption = clara::Opt{reset}["--reset"](
-        "reset force SCP flag, so next time stellar-core "
+        "reset force SCP flag, so next time gramr "
         "is run it will wait to hear from the network "
         "rather than starting with the local ledger");
 
@@ -1312,7 +1312,7 @@ run(CommandLineArgs const& args)
                 {
                     if (!cfg.NODE_IS_VALIDATOR)
                     {
-                        LOG_ERROR(DEFAULT_LOG, "Starting stellar-core in "
+                        LOG_ERROR(DEFAULT_LOG, "Starting gramr in "
                                                "MANUAL_CLOSE mode requires "
                                                "NODE_IS_VALIDATOR to be set");
                         return 1;
@@ -1401,7 +1401,7 @@ runSignTransaction(CommandLineArgs const& args)
 int
 runVersion(CommandLineArgs const&)
 {
-    std::cout << STELLAR_CORE_VERSION << std::endl;
+    std::cout << GRAMR_VERSION << std::endl;
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
     std::cout << "rust version: " << rust_bridge::get_rustc_version().c_str()
               << std::endl;
@@ -1839,7 +1839,7 @@ handleCommandLine(int argc, char* const* argv)
          {"force-scp", "deprecated, use --wait-for-consensus option instead",
           runForceSCP},
          {"gen-seed", "generate and print a random node seed", runGenSeed},
-         {"http-command", "send a command to local stellar-core",
+         {"http-command", "send a command to local gramr",
           runHttpCommand},
          {"self-check", "performs diagnostic checks", runSelfCheck},
          {"merge-bucketlist", "writes diagnostic merged bucket list",
@@ -1862,7 +1862,7 @@ handleCommandLine(int argc, char* const* argv)
           "report information about last checkpoint available in "
           "history archives",
           runReportLastHistoryCheckpoint},
-         {"run", "run stellar-core node", run},
+         {"run", "run gramr node", run},
          {"sec-to-pub", "print the public key corresponding to a secret key",
           runSecToPub},
          {"sign-transaction",
@@ -1894,7 +1894,7 @@ handleCommandLine(int argc, char* const* argv)
     auto command = commandLine.selectCommand(adjustedCommandLine.first);
     bool didDefaultToHelp = command->name() != adjustedCommandLine.first;
 
-    auto exeName = "stellar-core";
+    auto exeName = "gramr";
     auto commandName =
         fmt::format(FMT_STRING("{0} {1}"), exeName, command->name());
     auto args = CommandLineArgs{exeName, commandName, command->description(),

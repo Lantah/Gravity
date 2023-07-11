@@ -29,7 +29,7 @@ validateTrustLineKey(uint32_t ledgerVersion, LedgerKey const& key)
     }
     else if (asset.type() == ASSET_TYPE_NATIVE)
     {
-        throw NonSociRelatedException("XLM TrustLine?");
+        throw NonSociRelatedException("GRAM TrustLine?");
     }
     else if (isIssuer(key.trustLine().accountID, asset))
     {

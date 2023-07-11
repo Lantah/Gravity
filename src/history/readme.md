@@ -9,7 +9,7 @@ History archives are defined by the user by adding sections of the form
 logging prefix, and to permit more than one history archive in a single config
 file.
 
-The `get` and `put` commands define subprocesses that `stellar-core` will
+The `get` and `put` commands define subprocesses that `gramr` will
 execute in order to deposit historical records and retrieve them when catching
 up. The form of each `get` or `put` command specified in the config file is a
 string template defining a command to execute, with template parameters `{0}`
@@ -24,7 +24,7 @@ get="curl http://history.stellar.org/{0} -o {1}"
 put="aws s3 cp {0} s3://history.stellar.org/{1}"
 ~~~~
 
-In this example, `stellar-core` will use the `curl` command to fetch history and
+In this example, `gramr` will use the `curl` command to fetch history and
 the `aws` utility to publish history.
 
 Records are generally XDR files ([RFC 4506](https://tools.ietf.org/html/rfc4506))

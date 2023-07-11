@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 
 AUTOMAKE_OPTIONS = serial-tests
-bin_PROGRAMS = stellar-core
+bin_PROGRAMS = gramr
 
 include $(top_srcdir)/common.mk
 include $(srcdir)/src.mk
@@ -9,9 +9,9 @@ include $(srcdir)/src.mk
 noinst_HEADERS = $(SRC_H_FILES)
 
 if BUILD_TESTS
-stellar_core_SOURCES = main/StellarCoreVersion.cpp main/XDRFilesSha256.cpp $(SRC_CXX_FILES) $(SRC_TEST_CXX_FILES)
+gramr_SOURCES = main/GramrVersion.cpp main/XDRFilesSha256.cpp $(SRC_CXX_FILES) $(SRC_TEST_CXX_FILES)
 else # !BUILD_TESTS
-stellar_core_SOURCES = main/StellarCoreVersion.cpp main/XDRFilesSha256.cpp $(SRC_CXX_FILES)
+gramr_SOURCES = main/GramrVersion.cpp main/XDRFilesSha256.cpp $(SRC_CXX_FILES)
 endif # !BUILD_TESTS
 
 if ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
@@ -28,18 +28,18 @@ else
 CARGO_FEATURES =
 endif
 
-stellar_core_LDADD = $(soci_LIBS) $(libmedida_LIBS)		\
+gramr_LDADD = $(soci_LIBS) $(libmedida_LIBS)		\
 	$(top_builddir)/lib/lib3rdparty.a $(sqlite3_LIBS)	\
 	$(libpq_LIBS) $(xdrpp_LIBS) $(libsodium_LIBS) $(libunwind_LIBS)
 
 TESTDATA_DIR = testdata
-TEST_FILES = $(TESTDATA_DIR)/stellar-core_example.cfg $(TESTDATA_DIR)/stellar-core_standalone.cfg \
-             $(TESTDATA_DIR)/stellar-core_testnet.cfg $(TESTDATA_DIR)/stellar-core_testnet_legacy.cfg \
+TEST_FILES = $(TESTDATA_DIR)/gramr_example.cfg $(TESTDATA_DIR)/gramr_standalone.cfg \
+             $(TESTDATA_DIR)/gramr_testnet.cfg $(TESTDATA_DIR)/gramr_testnet_legacy.cfg \
              $(TESTDATA_DIR)/stellar-history.testnet.6714239.json $(TESTDATA_DIR)/stellar-history.livenet.15686975.json \
-             $(TESTDATA_DIR)/stellar-core_testnet_validator.cfg $(TESTDATA_DIR)/stellar-core_example_validators.cfg \
+             $(TESTDATA_DIR)/gramr_testnet_validator.cfg $(TESTDATA_DIR)/gramr_example_validators.cfg \
              $(TESTDATA_DIR)/stellar-history.testnet.6714239.networkPassphrase.json
 
-BUILT_SOURCES = $(SRC_X_FILES:.x=.h) main/StellarCoreVersion.cpp main/XDRFilesSha256.cpp $(TEST_FILES)
+BUILT_SOURCES = $(SRC_X_FILES:.x=.h) main/GramrVersion.cpp main/XDRFilesSha256.cpp $(TEST_FILES)
 
 $(SRC_X_FILES:.x=.h): $(XDRC)
 SUFFIXES = .x .h .rs
@@ -59,7 +59,7 @@ util/xdrquery/XDRQueryParser.h: util/xdrquery/XDRQueryParser.cpp
 	touch $@
 
 BUILT_SOURCES += util/xdrquery/XDRQueryScanner.cpp util/xdrquery/XDRQueryParser.h util/xdrquery/XDRQueryParser.cpp
-stellar_core_SOURCES += util/xdrquery/XDRQueryScanner.cpp util/xdrquery/XDRQueryParser.h util/xdrquery/XDRQueryParser.cpp
+gramr_SOURCES += util/xdrquery/XDRQueryScanner.cpp util/xdrquery/XDRQueryParser.h util/xdrquery/XDRQueryParser.cpp
 
 # Old automakes have buggy dependency tracking for conditional generated
 # sources. We work around this here by making rust/RustBridge.{cpp,h} generated
@@ -69,7 +69,7 @@ stellar_core_SOURCES += util/xdrquery/XDRQueryScanner.cpp util/xdrquery/XDRQuery
 # SOURCES addition we're doing here, have to list unadorned paths.
 
 BUILT_SOURCES += rust/RustBridge.h rust/RustBridge.cpp
-stellar_core_SOURCES += rust/RustBridge.h rust/RustBridge.cpp
+gramr_SOURCES += rust/RustBridge.h rust/RustBridge.cpp
 
 if ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
 RUST_BUILD_DIR=$(top_builddir)/src/rust
@@ -78,8 +78,8 @@ RUST_TARGET_DIR=$(RUST_BUILD_DIR)/target
 RUST_CXXBRIDGE=$(RUST_BIN_DIR)/cxxbridge
 RUST_PROFILE=release
 RUST_HOST_DEPFILES=rust/Cargo.toml $(top_srcdir)/Cargo.lock rust/src/host-dep-tree-curr.txt rust/src/host-dep-tree-prev.txt
-LIBRUST_STELLAR_CORE=$(RUST_TARGET_DIR)/$(RUST_PROFILE)/librust_stellar_core.a
-stellar_core_LDADD += $(LIBRUST_STELLAR_CORE) -ldl
+LIBRUST_GRAMR=$(RUST_TARGET_DIR)/$(RUST_PROFILE)/librust_gramr.a
+gramr_LDADD += $(LIBRUST_GRAMR) -ldl
 
 $(RUST_CXXBRIDGE):
 	mkdir -p $(RUST_BIN_DIR)
@@ -93,7 +93,7 @@ rust/RustBridge.cpp: rust/src/lib.rs $(SRC_RUST_FILES) Makefile $(RUST_CXXBRIDGE
 	$(RUST_CXXBRIDGE) $< --output $@.tmp
 	if cmp -s $@.tmp $@; then rm -v $@.tmp; else mv -v $@.tmp $@; fi
 
-$(LIBRUST_STELLAR_CORE): $(RUST_HOST_DEPFILES) $(SRC_RUST_FILES) Makefile
+$(LIBRUST_GRAMR): $(RUST_HOST_DEPFILES) $(SRC_RUST_FILES) Makefile
 	cd $(RUST_BUILD_DIR) && cargo build --$(RUST_PROFILE) --target-dir $(abspath $(RUST_TARGET_DIR)) $(CARGO_FEATURES)
 	ranlib $@
 else
@@ -121,12 +121,12 @@ always:
 	@:
 
 # Always rebuild because .git/HEAD is a symbolic ref one can't depend on
-main/StellarCoreVersion.cpp: always
+main/GramrVersion.cpp: always
 	@vers=$$(cd "$(srcdir)" \
 		&& git describe --always --dirty --tags 2>/dev/null \
 		|| echo "$(PACKAGE) $(VERSION)"); \
 		sed -e "s@%%VERSION%%@$$vers@" \
-			< "$(srcdir)/main/StellarCoreVersion.cpp.in" > $@~
+			< "$(srcdir)/main/GramrVersion.cpp.in" > $@~
 	@if cmp -s $@~ $@; then rm -f $@~; else \
 	    mv -f $@~ $@ && printf "echo '%s' > $@\n" "$$(cat $@)"; fi
 
@@ -145,23 +145,23 @@ endif # USE_CLANG_FORMAT
 if USE_AFL_FUZZ
 FUZZER_MODE ?= overlay
 
-fuzz-testcases: stellar-core
+fuzz-testcases: gramr
 	mkdir -p fuzz-testcases
 	for i in `seq 1 10000`; do \
-	    ./stellar-core gen-fuzz --mode=${FUZZER_MODE} fuzz-testcases/fuzz$$i.xdr ; \
+	    ./gramr gen-fuzz --mode=${FUZZER_MODE} fuzz-testcases/fuzz$$i.xdr ; \
 	done
 	mkdir -p min-testcases
-	afl-cmin -i fuzz-testcases -o min-testcases -m 500 -t 250 ./stellar-core fuzz --ll ERROR --mode=${FUZZER_MODE} @@
+	afl-cmin -i fuzz-testcases -o min-testcases -m 500 -t 250 ./gramr fuzz --ll ERROR --mode=${FUZZER_MODE} @@
 	rm -Rf fuzz-testcases
 
 # when running in parallel,
 # run the same command than below replacing `-M main` with `-S worker_N`
 # and `--process-id 0` with `--process-id N`
 
-fuzz: fuzz-testcases stellar-core
+fuzz: fuzz-testcases gramr
 	mkdir -p fuzz-findings
 	afl-fuzz -m 500 -M main -t 250 -i min-testcases -o fuzz-findings \
-	    ./stellar-core fuzz --ll ERROR --process-id 0 --mode=${FUZZER_MODE} @@
+	    ./gramr fuzz --ll ERROR --process-id 0 --mode=${FUZZER_MODE} @@
 
 fuzz-clean: always
 	rm -Rf fuzz-testcases fuzz-findings

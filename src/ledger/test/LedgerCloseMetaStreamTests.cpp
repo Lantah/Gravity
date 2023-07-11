@@ -480,7 +480,7 @@ TEST_CASE_VERSIONS("meta stream contains reasonable meta", "[ledgerclosemeta]")
 
         // Ledger #6 uses closeLedger so emits interesting meta.
         std::vector<TransactionFrameBasePtr> txs = {
-            // First tx pays 1000 XLM from root to acc1
+            // First tx pays 1000 GRAM from root to acc1
             root.tx({payment(acc1.getPublicKey(), 1000)}),
             // Second tx pays acc1 50 cur1 units twice from issuer.
             issuer.tx({payment(acc1, cur1, 50), payment(acc1, cur1, 50)})};

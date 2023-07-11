@@ -6,7 +6,7 @@
 # of this distribution or at http://www.apache.org/licenses/LICENSE-2.0
 
 AC_PREREQ([2.68])
-AC_INIT([stellar-core],[0.1],[],[],[http://www.stellar.org])
+AC_INIT([gramr],[0.1],[],[],[http://www.stellar.org])
 # tar-ustar is required for long file names when libsodium is bundled
 AM_INIT_AUTOMAKE([-Wall -Wextra -Wconversion subdir-objects tar-ustar silent-rules])
 AC_CONFIG_SRCDIR([configure.ac])
@@ -213,14 +213,14 @@ AS_IF([test "x$enable_afl" = "xyes"], [
                      CC="afl-clang-fast"
                      # below we hard code -std=c++17 since updates to AX_CXX_COMPILE_STDCXX append it to
                      # CXX, not to CXXFLAGS and thus when setting CXX we override this. For a more detailed explanation
-                     # see: https://github.com/stellar/docker-stellar-core/pull/66#issuecomment-521886881
+                     # see: https://github.com/stellar/docker-gramr/pull/66#issuecomment-521886881
                      CXX="afl-clang-fast++ -std=c++17 -DAFL_LLVM_MODE=1"],
           [gcc*],   [AC_CHECK_PROGS([AFL_GCC], [afl-gcc])
                      AC_CHECK_PROGS([AFL_GPP], [afl-g++])
                      CC="afl-gcc"
                      # below we hard code -std=c++17 since updates to AX_CXX_COMPILE_STDCXX append it to
                      # CXX, not to CXXFLAGS and thus when setting CXX we override this. For a more detailed explanation
-                     # see: https://github.com/stellar/docker-stellar-core/pull/66#issuecomment-521886881
+                     # see: https://github.com/stellar/docker-gramr/pull/66#issuecomment-521886881
                      CXX="afl-g++ -std=c++17"],
           [AC_MSG_ERROR([Don't know how to instrument CC=$CC with AFL])])
 ])
@@ -411,7 +411,7 @@ if test x"$enable_libunwind" != xno; then
             # differently when ELF-interposed with one another, in the same binary.
             #
             # Haven't been able to make a reduced testcase that works. You can check
-            # that this is still a problem by running the stellar-core Catch2-based
+            # that this is still a problem by running the gramr Catch2-based
             # unit test suite: many of the tests do REQUIRE_THROWS_AS(...) and
             # that crashes with libunwind+clang.  Haven't been able to figure out a
             # workaround either.

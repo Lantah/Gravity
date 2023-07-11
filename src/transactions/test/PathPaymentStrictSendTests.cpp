@@ -199,7 +199,7 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
     auto gateway = root.create("gate1", minBalance5);
     auto gateway2 = root.create("gate2", minBalance5);
 
-    auto xlm = makeNativeAsset();
+    auto gram = makeNativeAsset();
     auto idr = makeAsset(gateway, "IDR");
     auto cur1 = makeAsset(gateway, "CUR1");
     auto cur2 = makeAsset(gateway, "CUR2");
@@ -211,7 +211,7 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
     {
         for_versions_to(11, *app, [&] {
             REQUIRE_THROWS_AS(
-                root.pathPaymentStrictSend(root, xlm, 1, xlm, 1, {}),
+                root.pathPaymentStrictSend(root, gram, 1, gram, 1, {}),
                 ex_opNOT_SUPPORTED);
         });
     }
@@ -226,12 +226,12 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
             for (int64_t amount : std::vector<int64_t>({0, -1}))
             {
                 REQUIRE_THROWS_AS(source.pathPaymentStrictSend(
-                                      destination, xlm, amount, xlm, 1, {}),
+                                      destination, gram, amount, gram, 1, {}),
                                   ex_PATH_PAYMENT_STRICT_SEND_MALFORMED);
                 // clang-format off
                 market.requireBalances(
-                    {{source, {{xlm, minBalance1 - (++i) * txfee}}},
-                     {destination, {{xlm, minBalance}}}});
+                    {{source, {{gram, minBalance1 - (++i) * txfee}}},
+                     {destination, {{gram, minBalance}}}});
                 // clang-format on
             }
         });
@@ -247,12 +247,12 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
             for (int64_t amount : std::vector<int64_t>({0, -1}))
             {
                 REQUIRE_THROWS_AS(source.pathPaymentStrictSend(
-                                      destination, xlm, 1, xlm, amount, {}),
+                                      destination, gram, 1, gram, amount, {}),
                                   ex_PATH_PAYMENT_STRICT_SEND_MALFORMED);
                 // clang-format off
                 market.requireBalances(
-                    {{source, {{xlm, minBalance1 - (++i) * txfee}}},
-                     {destination, {{xlm, minBalance}}}});
+                    {{source, {{gram, minBalance1 - (++i) * txfee}}},
+                     {destination, {{gram, minBalance}}}});
                 // clang-format on
             }
         });
@@ -266,32 +266,32 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
         for_versions_from(12, *app, [&] {
             REQUIRE_THROWS_AS(source.pathPaymentStrictSend(destination,
                                                            makeInvalidAsset(),
-                                                           10, xlm, 10, {}),
+                                                           10, gram, 10, {}),
                               ex_PATH_PAYMENT_STRICT_SEND_MALFORMED);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - txfee}}},
-                 {destination, {{xlm, minBalance}}}});
+                {{source, {{gram, minBalance1 - txfee}}},
+                 {destination, {{gram, minBalance}}}});
             // clang-format on
 
-            REQUIRE_THROWS_AS(source.pathPaymentStrictSend(destination, xlm, 10,
+            REQUIRE_THROWS_AS(source.pathPaymentStrictSend(destination, gram, 10,
                                                            makeInvalidAsset(),
                                                            10, {}),
                               ex_PATH_PAYMENT_STRICT_SEND_MALFORMED);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - 2 * txfee}}},
-                 {destination, {{xlm, minBalance}}}});
+                {{source, {{gram, minBalance1 - 2 * txfee}}},
+                 {destination, {{gram, minBalance}}}});
             // clang-format on
 
             REQUIRE_THROWS_AS(
-                source.pathPaymentStrictSend(destination, xlm, 10, xlm, 10,
+                source.pathPaymentStrictSend(destination, gram, 10, gram, 10,
                                              {makeInvalidAsset()}),
                 ex_PATH_PAYMENT_STRICT_SEND_MALFORMED);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - 3 * txfee}}},
-                 {destination, {{xlm, minBalance}}}});
+                {{source, {{gram, minBalance1 - 3 * txfee}}},
+                 {destination, {{gram, minBalance}}}});
             // clang-format on
         });
     }
@@ -307,20 +307,20 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
 
         for_versions_from(12, *app, [&] {
             REQUIRE_THROWS_AS(a.pathPaymentStrictSend(
-                                  dest, xlm, minBalance1 + 1, xlm, 20, {}),
+                                  dest, gram, minBalance1 + 1, gram, 20, {}),
                               ex_PATH_PAYMENT_STRICT_SEND_UNDERFUNDED);
             // clang-format off
             market.requireBalances(
-                {{a, {{xlm, minBalance1 - 2 * txfee}, {idr, 10}}},
-                 {dest, {{xlm, minBalance1 - txfee}, {idr, 0}}}});
+                {{a, {{gram, minBalance1 - 2 * txfee}, {idr, 10}}},
+                 {dest, {{gram, minBalance1 - txfee}, {idr, 0}}}});
             // clang-format on
             REQUIRE_THROWS_AS(
                 a.pathPaymentStrictSend(gateway, idr, 11, idr, 20, {}),
                 ex_PATH_PAYMENT_STRICT_SEND_UNDERFUNDED);
             // clang-format off
             market.requireBalances(
-                {{a, {{xlm, minBalance1 - 3 * txfee}, {idr, 10}}},
-                 {dest, {{xlm, minBalance1 - txfee}, {idr, 0}}}});
+                {{a, {{gram, minBalance1 - 3 * txfee}, {idr, 10}}},
+                 {dest, {{gram, minBalance1 - txfee}, {idr, 0}}}});
             // clang-format on
         });
     }
@@ -337,16 +337,16 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
                               ex_PATH_PAYMENT_STRICT_SEND_SRC_NO_TRUST);
             // clang-format off
             market.requireBalances(
-                {{noSourceTrust, {{xlm, minBalance - txfee}, {idr, 0}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {idr, 0}}}});
+                {{noSourceTrust, {{gram, minBalance - txfee}, {idr, 0}}},
+                 {destination, {{gram, minBalance1 - txfee}, {idr, 0}}}});
             // clang-format on
             REQUIRE_THROWS_AS(noSourceTrust.pathPaymentStrictSend(
                                   destination, idr, 1, idr, 1, {}),
                               ex_PATH_PAYMENT_STRICT_SEND_SRC_NO_TRUST);
             // clang-format off
             market.requireBalances(
-                {{noSourceTrust, {{xlm, minBalance - 2 * txfee}, {idr, 0}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {idr, 0}}}});
+                {{noSourceTrust, {{gram, minBalance - 2 * txfee}, {idr, 0}}},
+                 {destination, {{gram, minBalance1 - txfee}, {idr, 0}}}});
             // clang-format on
         });
     }
@@ -369,16 +369,16 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
                               ex_PATH_PAYMENT_STRICT_SEND_SRC_NOT_AUTHORIZED);
             // clang-format off
             market.requireBalances(
-                {{noAuthorizedSourceTrust, {{xlm, minBalance1 - 2 * txfee}, {idr, 10}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {idr, 0}}}});
+                {{noAuthorizedSourceTrust, {{gram, minBalance1 - 2 * txfee}, {idr, 10}}},
+                 {destination, {{gram, minBalance1 - txfee}, {idr, 0}}}});
             // clang-format on
             REQUIRE_THROWS_AS(noAuthorizedSourceTrust.pathPaymentStrictSend(
                                   destination, idr, 10, idr, 10, {}),
                               ex_PATH_PAYMENT_STRICT_SEND_SRC_NOT_AUTHORIZED);
             // clang-format off
             market.requireBalances(
-                {{noAuthorizedSourceTrust, {{xlm, minBalance1 - 3 * txfee}, {idr, 10}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {idr, 0}}}});
+                {{noAuthorizedSourceTrust, {{gram, minBalance1 - 3 * txfee}, {idr, 10}}},
+                 {destination, {{gram, minBalance1 - txfee}, {idr, 0}}}});
             // clang-format on
         });
     }
@@ -397,7 +397,7 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
                 ex_PATH_PAYMENT_STRICT_SEND_NO_DESTINATION);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - 2 * txfee}, {idr, 10}}}});
+                {{source, {{gram, minBalance1 - 2 * txfee}, {idr, 10}}}});
             // clang-format on
         });
     }
@@ -416,7 +416,7 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
             REQUIRE(offers.success().offers == expected);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - 2 * txfee}, {idr, 0}}}});
+                {{source, {{gram, minBalance1 - 2 * txfee}, {idr, 0}}}});
             // clang-format on
         });
     }
@@ -434,7 +434,7 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
                 ex_PATH_PAYMENT_STRICT_SEND_NO_DESTINATION);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - 2 * txfee}, {idr, 10}, {usd, 0}}}});
+                {{source, {{gram, minBalance1 - 2 * txfee}, {idr, 10}, {usd, 0}}}});
             // clang-format on
         });
     }
@@ -453,16 +453,16 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
                               ex_PATH_PAYMENT_STRICT_SEND_NO_TRUST);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - txfee}, {idr, 10}}},
-                 {noDestinationTrust, {{xlm, minBalance}, {idr, 0}}}});
+                {{source, {{gram, minBalance1 - txfee}, {idr, 10}}},
+                 {noDestinationTrust, {{gram, minBalance}, {idr, 0}}}});
             // clang-format on
             REQUIRE_THROWS_AS(source.pathPaymentStrictSend(noDestinationTrust,
                                                            idr, 1, idr, 1, {}),
                               ex_PATH_PAYMENT_STRICT_SEND_NO_TRUST);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - 2 * txfee}, {idr, 10}}},
-                 {noDestinationTrust, {{xlm, minBalance}, {idr, 0}}}});
+                {{source, {{gram, minBalance1 - 2 * txfee}, {idr, 10}}},
+                 {noDestinationTrust, {{gram, minBalance}, {idr, 0}}}});
             // clang-format on
         });
     }
@@ -486,8 +486,8 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
                 ex_PATH_PAYMENT_STRICT_SEND_NOT_AUTHORIZED);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - txfee}, {idr, 10}, {usd, 0}}},
-                 {noAuthorizedDestinationTrust, {{xlm, minBalance1 - txfee}, {idr, 0}}}});
+                {{source, {{gram, minBalance1 - txfee}, {idr, 10}, {usd, 0}}},
+                 {noAuthorizedDestinationTrust, {{gram, minBalance1 - txfee}, {idr, 0}}}});
             // clang-format on
             REQUIRE_THROWS_AS(
                 source.pathPaymentStrictSend(noAuthorizedDestinationTrust, idr,
@@ -495,8 +495,8 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
                 ex_PATH_PAYMENT_STRICT_SEND_NOT_AUTHORIZED);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - 2 * txfee}, {idr, 10}, {usd, 0}}},
-                 {noAuthorizedDestinationTrust, {{xlm, minBalance1 - txfee}, {idr, 0}}}});
+                {{source, {{gram, minBalance1 - 2 * txfee}, {idr, 10}, {usd, 0}}},
+                 {noAuthorizedDestinationTrust, {{gram, minBalance1 - txfee}, {idr, 0}}}});
             // clang-format on
         });
     }
@@ -517,16 +517,16 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
                               ex_PATH_PAYMENT_STRICT_SEND_LINE_FULL);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - txfee}, {idr, 11}, {usd, 0}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {idr, 10}, {usd, 0}}}});
+                {{source, {{gram, minBalance1 - txfee}, {idr, 11}, {usd, 0}}},
+                 {destination, {{gram, minBalance1 - txfee}, {idr, 10}, {usd, 0}}}});
             // clang-format on
             REQUIRE_THROWS_AS(
                 source.pathPaymentStrictSend(destination, idr, 11, idr, 11, {}),
                 ex_PATH_PAYMENT_STRICT_SEND_LINE_FULL);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - 2 * txfee}, {idr, 11}, {usd, 0}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {idr, 10}, {usd, 0}}}});
+                {{source, {{gram, minBalance1 - 2 * txfee}, {idr, 11}, {usd, 0}}},
+                 {destination, {{gram, minBalance1 - txfee}, {idr, 10}, {usd, 0}}}});
             // clang-format on
         });
     }
@@ -546,16 +546,16 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
                               ex_PATH_PAYMENT_STRICT_SEND_LINE_FULL);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - txfee}, {idr, 11}, {usd, 0}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {idr, INT64_MAX - 10}, {usd, 0}}}});
+                {{source, {{gram, minBalance1 - txfee}, {idr, 11}, {usd, 0}}},
+                 {destination, {{gram, minBalance1 - txfee}, {idr, INT64_MAX - 10}, {usd, 0}}}});
             // clang-format on
             REQUIRE_THROWS_AS(
                 source.pathPaymentStrictSend(destination, idr, 11, idr, 11, {}),
                 ex_PATH_PAYMENT_STRICT_SEND_LINE_FULL);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - 2 * txfee}, {idr, 11}, {usd, 0}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {idr, INT64_MAX - 10}, {usd, 0}}}});
+                {{source, {{gram, minBalance1 - 2 * txfee}, {idr, 11}, {usd, 0}}},
+                 {destination, {{gram, minBalance1 - txfee}, {idr, INT64_MAX - 10}, {usd, 0}}}});
             // clang-format on
         });
     }
@@ -618,8 +618,8 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
 
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - 2 * txfee}, {idr, 10}, {usd, 0}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {idr, 0}, {usd, 0}}}});
+                {{source, {{gram, minBalance1 - 2 * txfee}, {idr, 10}, {usd, 0}}},
+                 {destination, {{gram, minBalance1 - txfee}, {idr, 0}, {usd, 0}}}});
             // clang-format on
         });
     }
@@ -668,11 +668,11 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
                 ex_PATH_PAYMENT_STRICT_SEND_TOO_FEW_OFFERS);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - 2 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm12, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
-                 {mm23, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
-                 {mm34, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}}});
+                {{source, {{gram, minBalance1 - 2 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm12, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
+                 {mm23, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
+                 {mm34, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}},
+                 {destination, {{gram, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}}});
             // clang-format on
         });
     }
@@ -721,11 +721,11 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
                 ex_PATH_PAYMENT_STRICT_SEND_TOO_FEW_OFFERS);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - 2 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm12, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
-                 {mm23, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
-                 {mm34, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}}});
+                {{source, {{gram, minBalance1 - 2 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm12, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
+                 {mm23, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
+                 {mm34, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}},
+                 {destination, {{gram, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}}});
             // clang-format on
         });
     }
@@ -774,11 +774,11 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
                 ex_PATH_PAYMENT_STRICT_SEND_TOO_FEW_OFFERS);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - 2 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm12, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
-                 {mm23, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
-                 {mm34, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}}});
+                {{source, {{gram, minBalance1 - 2 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm12, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
+                 {mm23, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
+                 {mm34, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}},
+                 {destination, {{gram, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}}});
             // clang-format on
         });
     }
@@ -825,10 +825,10 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
                 ex_PATH_PAYMENT_STRICT_SEND_OFFER_CROSS_SELF);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance3 - 4 * txfee}, {cur1, 10}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
-                 {mm23, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
-                 {mm34, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}}});
+                {{source, {{gram, minBalance3 - 4 * txfee}, {cur1, 10}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
+                 {mm23, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
+                 {mm34, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}},
+                 {destination, {{gram, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}}});
             // clang-format on
         });
     }
@@ -876,10 +876,10 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
                 ex_PATH_PAYMENT_STRICT_SEND_OFFER_CROSS_SELF);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance4 - 5 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
-                 {mm12, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
-                 {mm34, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}}});
+                {{source, {{gram, minBalance4 - 5 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
+                 {mm12, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
+                 {mm34, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}},
+                 {destination, {{gram, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}}});
             // clang-format on
         });
     }
@@ -927,10 +927,10 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
                 ex_PATH_PAYMENT_STRICT_SEND_OFFER_CROSS_SELF);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance4 - 5 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 0}, {cur4, 10}}},
-                 {mm12, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
-                 {mm23, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}}});
+                {{source, {{gram, minBalance4 - 5 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 0}, {cur4, 10}}},
+                 {mm12, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
+                 {mm23, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
+                 {destination, {{gram, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}}});
             // clang-format on
         });
     }
@@ -993,11 +993,11 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
             checkClaimedOffers(actual, expected, 10, 10);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance3 - 4 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
-                 {mm12, {{xlm, minBalance3 - 3 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm23, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
-                 {mm34, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}}});
+                {{source, {{gram, minBalance3 - 4 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
+                 {mm12, {{gram, minBalance3 - 3 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm23, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
+                 {mm34, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
+                 {destination, {{gram, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}}});
             // clang-format on
         });
     }
@@ -1061,11 +1061,11 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
             checkClaimedOffers(actual, expected, 10, 10);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance4 - 5 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
-                 {mm12, {{xlm, minBalance3 - 3 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm23, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
-                 {mm34, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}}});
+                {{source, {{gram, minBalance4 - 5 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
+                 {mm12, {{gram, minBalance3 - 3 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm23, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
+                 {mm34, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
+                 {destination, {{gram, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}}});
             // clang-format on
         });
     }
@@ -1128,27 +1128,27 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
             checkClaimedOffers(actual, expected, 10, 10);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance4 - 5 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}},
-                 {mm12, {{xlm, minBalance3 - 3 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm23, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
-                 {mm34, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}}});
+                {{source, {{gram, minBalance4 - 5 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}},
+                 {mm12, {{gram, minBalance3 - 3 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm23, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
+                 {mm34, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
+                 {destination, {{gram, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}}});
             // clang-format on
         });
     }
 
-    SECTION("under destination minimum XLM")
+    SECTION("under destination minimum GRAM")
     {
         auto market = TestMarket{*app};
         auto source = root.create("source", minBalance);
         auto destination = root.create("destination", minBalance);
         for_versions_from(12, *app, [&] {
             REQUIRE_THROWS_AS(
-                source.pathPaymentStrictSend(destination, xlm, 10, xlm, 11, {}),
+                source.pathPaymentStrictSend(destination, gram, 10, gram, 11, {}),
                 ex_PATH_PAYMENT_STRICT_SEND_UNDER_DESTMIN);
             market.requireBalances(
-                {{source, {{xlm, minBalance - txfee}, {idr, 0}, {usd, 0}}},
-                 {destination, {{xlm, minBalance}, {idr, 0}, {usd, 0}}}});
+                {{source, {{gram, minBalance - txfee}, {idr, 0}, {usd, 0}}},
+                 {destination, {{gram, minBalance}, {idr, 0}, {usd, 0}}}});
         });
     }
 
@@ -1167,8 +1167,8 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
                 ex_PATH_PAYMENT_STRICT_SEND_UNDER_DESTMIN);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - 2 * txfee}, {idr, 10}, {usd, 0}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {idr, 0}, {usd, 0}}}});
+                {{source, {{gram, minBalance1 - 2 * txfee}, {idr, 10}, {usd, 0}}},
+                 {destination, {{gram, minBalance1 - txfee}, {idr, 0}, {usd, 0}}}});
             // clang-format on
         });
     }
@@ -1217,23 +1217,23 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
                 ex_PATH_PAYMENT_STRICT_SEND_UNDER_DESTMIN);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance4 - 2 * txfee}, {cur1, 80}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm12, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 40}, {cur3, 0}, {cur4, 0}}},
-                 {mm23, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 20}, {cur4, 0}}},
-                 {mm34, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}}});
+                {{source, {{gram, minBalance4 - 2 * txfee}, {cur1, 80}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm12, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 40}, {cur3, 0}, {cur4, 0}}},
+                 {mm23, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 20}, {cur4, 0}}},
+                 {mm34, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}},
+                 {destination, {{gram, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}}});
             // clang-format on
         });
     }
 
-    SECTION("to self XLM")
+    SECTION("to self GRAM")
     {
         auto market = TestMarket{*app};
         auto account = root.create("account", minBalance + txfee + 20);
 
         for_versions_from(12, *app, [&] {
-            account.pathPaymentStrictSend(account, xlm, 20, xlm, 20, {});
-            market.requireBalances({{account, {{xlm, minBalance + 20}}}});
+            account.pathPaymentStrictSend(account, gram, 20, gram, 20, {});
+            market.requireBalances({{account, {{gram, minBalance + 20}}}});
         });
     }
 
@@ -1318,10 +1318,10 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
             checkClaimedOffers(actual, expected, 10, 10);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - 2 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm23, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
-                 {mm34, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
-                 {destination, {{xlm, minBalance4 - 4 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 0}, {cur4, 10}}}});
+                {{source, {{gram, minBalance1 - 2 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm23, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
+                 {mm34, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
+                 {destination, {{gram, minBalance4 - 4 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 0}, {cur4, 10}}}});
             // clang-format on
         });
     }
@@ -1377,10 +1377,10 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
             checkClaimedOffers(actual, expected, 10, 10);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - 2 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm12, {{xlm, minBalance3 - 3 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm34, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
-                 {destination, {{xlm, minBalance4 - 4 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 10}}}});
+                {{source, {{gram, minBalance1 - 2 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm12, {{gram, minBalance3 - 3 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm34, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 0}}},
+                 {destination, {{gram, minBalance4 - 4 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 10}}}});
             // clang-format on
         });
     }
@@ -1435,10 +1435,10 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
             checkClaimedOffers(actual, expected, 10, 10);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance1 - 2 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm12, {{xlm, minBalance3 - 3 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm23, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
-                 {destination, {{xlm, minBalance4 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 10}}}});
+                {{source, {{gram, minBalance1 - 2 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm12, {{gram, minBalance3 - 3 * txfee}, {cur1, 10}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm23, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
+                 {destination, {{gram, minBalance4 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 10}, {cur4, 10}}}});
             // clang-format on
         });
     }
@@ -1503,12 +1503,12 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
             checkClaimedOffers(actual, expected, 80, 10);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance4 - 2 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm12a, {{xlm, minBalance3 - 3 * txfee}, {cur1, 20}, {cur2, 30}, {cur3, 0}, {cur4, 0}}},
-                 {mm12b, {{xlm, minBalance3 - 3 * txfee}, {cur1, 60}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
-                 {mm23, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 40}, {cur3, 0}, {cur4, 0}}},
-                 {mm34, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 20}, {cur4, 0}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}}});
+                {{source, {{gram, minBalance4 - 2 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm12a, {{gram, minBalance3 - 3 * txfee}, {cur1, 20}, {cur2, 30}, {cur3, 0}, {cur4, 0}}},
+                 {mm12b, {{gram, minBalance3 - 3 * txfee}, {cur1, 60}, {cur2, 10}, {cur3, 0}, {cur4, 0}}},
+                 {mm23, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 40}, {cur3, 0}, {cur4, 0}}},
+                 {mm34, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 20}, {cur4, 0}}},
+                 {destination, {{gram, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}}});
             // clang-format on
         });
     }
@@ -1573,12 +1573,12 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
             checkClaimedOffers(actual, expected, 80, 10);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance4 - 2 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm12, {{xlm, minBalance3 - 3 * txfee}, {cur1, 80}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm23a, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 30}, {cur3, 5}, {cur4, 0}}},
-                 {mm23a, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 30}, {cur3, 5}, {cur4, 0}}},
-                 {mm34, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 20}, {cur4, 0}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}}});
+                {{source, {{gram, minBalance4 - 2 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm12, {{gram, minBalance3 - 3 * txfee}, {cur1, 80}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm23a, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 30}, {cur3, 5}, {cur4, 0}}},
+                 {mm23a, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 30}, {cur3, 5}, {cur4, 0}}},
+                 {mm34, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 20}, {cur4, 0}}},
+                 {destination, {{gram, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}}});
             // clang-format on
         });
     }
@@ -1643,12 +1643,12 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
             checkClaimedOffers(actual, expected, 80, 10);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance4 - 2 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm12, {{xlm, minBalance3 - 3 * txfee}, {cur1, 80}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm23, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 40}, {cur3, 0}, {cur4, 0}}},
-                 {mm34a, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 4}, {cur4, 8}}},
-                 {mm34b, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 16}, {cur4, 2}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}}});
+                {{source, {{gram, minBalance4 - 2 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm12, {{gram, minBalance3 - 3 * txfee}, {cur1, 80}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm23, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 40}, {cur3, 0}, {cur4, 0}}},
+                 {mm34a, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 4}, {cur4, 8}}},
+                 {mm34b, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 16}, {cur4, 2}}},
+                 {destination, {{gram, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}}});
             // clang-format on
         });
     }
@@ -1705,11 +1705,11 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
             checkClaimedOffers(actual, expected, 80, 10);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance4 - 2 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm12, {{xlm, minBalance3 - 3 * txfee}, {cur1, 80}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm23, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 40}, {cur3, 0}, {cur4, 0}}},
-                 {mm34, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 20}, {cur4, 0}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}}});
+                {{source, {{gram, minBalance4 - 2 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm12, {{gram, minBalance3 - 3 * txfee}, {cur1, 80}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm23, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 40}, {cur3, 0}, {cur4, 0}}},
+                 {mm34, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 20}, {cur4, 0}}},
+                 {destination, {{gram, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}}});
             // clang-format on
         });
     }
@@ -1794,11 +1794,11 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
             checkClaimedOffers(actual, expected, 59, 16);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance4 - 2 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm12, {{xlm, minBalance5 - 5 * txfee}, {cur1, 59}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm23, {{xlm, minBalance5 - 5 * txfee}, {cur1, 0}, {cur2, 35}, {cur3, 0}, {cur4, 0}}},
-                 {mm34, {{xlm, minBalance5 - 5 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 23}, {cur4, 0}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 16}}}});
+                {{source, {{gram, minBalance4 - 2 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm12, {{gram, minBalance5 - 5 * txfee}, {cur1, 59}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm23, {{gram, minBalance5 - 5 * txfee}, {cur1, 0}, {cur2, 35}, {cur3, 0}, {cur4, 0}}},
+                 {mm34, {{gram, minBalance5 - 5 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 23}, {cur4, 0}}},
+                 {destination, {{gram, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 16}}}});
             // clang-format on
         });
     }
@@ -1883,11 +1883,11 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
             checkClaimedOffers(actual, expected, 55, 15);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance4 - 2 * txfee}, {cur1, 3}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm12, {{xlm, minBalance5 - 5 * txfee}, {cur1, 55}, {cur2, 2}, {cur3, 0}, {cur4, 0}}},
-                 {mm23, {{xlm, minBalance5 - 5 * txfee}, {cur1, 0}, {cur2, 33}, {cur3, 1}, {cur4, 0}}},
-                 {mm34, {{xlm, minBalance5 - 5 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 22}, {cur4, 1}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 15}}}});
+                {{source, {{gram, minBalance4 - 2 * txfee}, {cur1, 3}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm12, {{gram, minBalance5 - 5 * txfee}, {cur1, 55}, {cur2, 2}, {cur3, 0}, {cur4, 0}}},
+                 {mm23, {{gram, minBalance5 - 5 * txfee}, {cur1, 0}, {cur2, 33}, {cur3, 1}, {cur4, 0}}},
+                 {mm34, {{gram, minBalance5 - 5 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 22}, {cur4, 1}}},
+                 {destination, {{gram, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 15}}}});
             // clang-format on
         });
     }
@@ -1977,12 +1977,12 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
             checkClaimedOffers(actual, expected, 55, 15);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance4 - 2 * txfee}, {cur1, 3}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                 {mm12, {{xlm, minBalance5 - 5 * txfee}, {cur1, 55}, {cur2, 2}, {cur3, 0}, {cur4, 0}}},
-                 {mm23, {{xlm, minBalance5 - 5 * txfee}, {cur1, 0}, {cur2, 33}, {cur3, 1}, {cur4, 0}}},
-                 {mm34, {{xlm, minBalance5 - 4 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 21}, {cur4, 1}}},
-                 {mm34b, {{xlm, minBalance5 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 1}, {cur4, 1}}},
-                 {destination, {{xlm, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 15}}}});
+                {{source, {{gram, minBalance4 - 2 * txfee}, {cur1, 3}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                 {mm12, {{gram, minBalance5 - 5 * txfee}, {cur1, 55}, {cur2, 2}, {cur3, 0}, {cur4, 0}}},
+                 {mm23, {{gram, minBalance5 - 5 * txfee}, {cur1, 0}, {cur2, 33}, {cur3, 1}, {cur4, 0}}},
+                 {mm34, {{gram, minBalance5 - 4 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 21}, {cur4, 1}}},
+                 {mm34b, {{gram, minBalance5 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 1}, {cur4, 1}}},
+                 {destination, {{gram, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 15}}}});
             // clang-format on
         });
     }
@@ -2002,19 +2002,19 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
         issuer.pay(seller, cny, 1700000000);
         auto price = Price{2000, 29};
         auto sellerOffer = market.requireChangesWithOffer({}, [&] {
-            return market.addOffer(seller, {cny, xlm, price, 145000000});
+            return market.addOffer(seller, {cny, gram, price, 145000000});
         });
 
         auto path = std::vector<Asset>{};
         for_versions_from(12, *app, [&] {
             auto sellerOfferRemaining =
-                OfferState{cny, xlm, price, 145000000 - 20039999};
+                OfferState{cny, gram, price, 145000000 - 20039999};
             std::vector<ClaimAtom> actual;
             market.requireChanges(
                 {{sellerOffer.key, sellerOfferRemaining}}, [&] {
                     actual =
                         source
-                            .pathPaymentStrictSend(destination, xlm, 1382068965,
+                            .pathPaymentStrictSend(destination, gram, 1382068965,
                                                    cny, 20039999, path, nullptr)
                             .success()
                             .offers;
@@ -2024,7 +2024,7 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
                 {exchanged(sellerOffer, 20039999, 1382068965)});
             checkClaimedOffers(actual, expected, 1382068965, 20039999);
             market.requireBalances(
-                {{source, {{xlm, 1989999000 - 100 - 1382068965}}},
+                {{source, {{gram, 1989999000 - 100 - 1382068965}}},
                  {seller, {{cny, 1700000000 - 20039999}}},
                  {destination, {{cny, 20039999}}}});
         });
@@ -2035,21 +2035,21 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
         for_versions_from(12, *app, [&] {
             // Create 3 different cycles.
             // First cycle involves 3 transaction in which buying price is
-            // always half - so sender buys 8 times as much XLM as he/she
+            // always half - so sender buys 8 times as much GRAM as he/she
             // sells (arbitrage).
             // Second cycle involves 3 transaction in which buying price is
-            // always two - so sender buys 8 times as much XLM as he/she
+            // always two - so sender buys 8 times as much GRAM as he/she
             // sells (anti-arbitrage). Thanks to send max option this
             // transaction is rejected.
             // Third cycle is similar to second, but send max is set to a high
             // value, so transaction proceeds even if it makes sender lose a
-            // lot of XLM.
+            // lot of GRAM.
 
             // Each cycle is created in 3 variants (to check if behavior does
             // not depend of nativeness of asset):
-            // * XLM -> USD -> IDR -> XLM
-            // * USD -> IDR -> XLM -> USD
-            // * IDR -> XLM -> USD -> IDR
+            // * GRAM -> USD -> IDR -> GRAM
+            // * USD -> IDR -> GRAM -> USD
+            // * IDR -> GRAM -> USD -> IDR
             // To create variants, rotateRight() function is used on accounts,
             // offers and assets - it greatly simplified index calculation in
             // the code.
@@ -2065,7 +2065,7 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
             auto initialBalance = 2 * offerAmount;
             auto txFee = app->getLedgerManager().getLastTxFee();
 
-            auto assets = std::deque<Asset>{xlm, usd, idr};
+            auto assets = std::deque<Asset>{gram, usd, idr};
             int pathSize = (int)assets.size();
             auto accounts = std::deque<TestAccount>{};
 
@@ -2353,7 +2353,7 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
             gateway.pay(mm12, cur2, 100);
 
             auto offer = market.requireChangesWithOffer({}, [&] {
-                return market.addOffer(source, {cur1, xlm, Price{1, 1}, 50});
+                return market.addOffer(source, {cur1, gram, Price{1, 1}, 50});
             });
             auto o2 = market.requireChangesWithOffer({}, [&] {
                 return market.addOffer(mm12, {cur2, cur1, Price{1, 1}, 100});
@@ -2388,7 +2388,7 @@ TEST_CASE_VERSIONS("pathpayment strict send", "[tx][pathpayment]")
 
             auto offer = market.requireChangesWithOffer({}, [&] {
                 return market.addOffer(destination,
-                                       {xlm, cur2, Price{1, 1}, 50});
+                                       {gram, cur2, Price{1, 1}, 50});
             });
             auto o2 = market.requireChangesWithOffer({}, [&] {
                 return market.addOffer(mm12, {cur2, cur1, Price{1, 1}, 100});
@@ -2439,7 +2439,7 @@ TEST_CASE_VERSIONS("pathpayment strict send uses all offers in a loop",
             auto mm23 = root.create("mm23", minBalance3);
             auto mm34 = root.create("mm34", minBalance3);
             auto mm41 = root.create("mm41", minBalance3);
-            auto xlm = makeNativeAsset();
+            auto gram = makeNativeAsset();
             auto cur1 = makeAsset(gateway, "CUR1");
             auto cur2 = makeAsset(gateway, "CUR2");
             auto cur3 = makeAsset(gateway2, "CUR3");
@@ -2509,12 +2509,12 @@ TEST_CASE_VERSIONS("pathpayment strict send uses all offers in a loop",
             checkClaimedOffers(actual, expected, 1280, 10);
             // clang-format off
             market.requireBalances(
-                {{source, {{xlm, minBalance4 - 2 * txfee}, {cur1, 6720}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
-                {mm12, {{xlm, minBalance3 - 3 * txfee}, {cur1, 1360}, {cur2, 7320}, {cur3, 0}, {cur4, 0}}},
-                {mm23, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 680}, {cur3, 7660}, {cur4, 0}}},
-                {mm34, {{xlm, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 340}, {cur4, 7830}}},
-                {mm41, {{xlm, minBalance3 - 3 * txfee}, {cur1, 7920}, {cur2, 0}, {cur3, 0}, {cur4, 160}}},
-                {destination, {{xlm, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}}});
+                {{source, {{gram, minBalance4 - 2 * txfee}, {cur1, 6720}, {cur2, 0}, {cur3, 0}, {cur4, 0}}},
+                {mm12, {{gram, minBalance3 - 3 * txfee}, {cur1, 1360}, {cur2, 7320}, {cur3, 0}, {cur4, 0}}},
+                {mm23, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 680}, {cur3, 7660}, {cur4, 0}}},
+                {mm34, {{gram, minBalance3 - 3 * txfee}, {cur1, 0}, {cur2, 0}, {cur3, 340}, {cur4, 7830}}},
+                {mm41, {{gram, minBalance3 - 3 * txfee}, {cur1, 7920}, {cur2, 0}, {cur3, 0}, {cur4, 160}}},
+                {destination, {{gram, minBalance1 - txfee}, {cur1, 0}, {cur2, 0}, {cur3, 0}, {cur4, 10}}}});
             // clang-format on
         });
     };

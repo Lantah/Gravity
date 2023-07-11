@@ -22,7 +22,7 @@ which contains all the base types used through the implementation
 (such as the hash type, or the `NodeID` type, used to represent a node's identity).
 
 
-The `stellar-core` program has a single subclass of SCPDriver called
+The `gramr` program has a single subclass of SCPDriver called
 [Herder](../herder), which gives a specific interpretation to "slot" and
 "value", and connects SCP up with a specific broadcast communication medium
 ([Overlay](../overlay)) and specific replicated state machine

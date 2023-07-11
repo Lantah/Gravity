@@ -15,7 +15,7 @@
 namespace stellar
 {
 /**
- * This is one Node in the stellar network
+ * This is one Node in the lantah network
  */
 class LocalNode
 {

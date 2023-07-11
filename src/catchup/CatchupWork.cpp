@@ -202,7 +202,7 @@ CatchupWork::downloadApplyBuckets()
 {
     ZoneScoped;
 
-    // If stellar-core aborts while applying buckets, it can leave state in
+    // If gramr aborts while applying buckets, it can leave state in
     // the database. This guarantees that we clear that state the next time
     // the application starts.
     auto& ps = mApp.getPersistentState();
@@ -382,7 +382,7 @@ CatchupWork::getAndMaybeSetHistoryArchiveState()
         {
             CLOG_INFO(
                 History,
-                "* If you really want to catchup to {} run stellar-core new-db",
+                "* If you really want to catchup to {} run gramr new-db",
                 mCatchupConfiguration.toLedger());
         }
 

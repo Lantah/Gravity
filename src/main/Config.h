@@ -123,7 +123,7 @@ class Config : public std::enable_shared_from_this<Config>
 
     // application config
 
-    // The default way stellar-core starts is to load the state from disk and
+    // The default way gramr starts is to load the state from disk and
     // start a consensus round (if node is validating), then maybe trigger
     // catchup. If you need different behavior you need to use new-db or
     // --wait-for-consensus option which sets the following flag to false:
@@ -201,11 +201,11 @@ class Config : public std::enable_shared_from_this<Config>
     bool ARTIFICIALLY_REPLAY_WITH_NEWEST_BUCKET_LOGIC_FOR_TESTING;
 
     // A config parameter that forces a delay in state rebuild via buckets in
-    // captive core. This is useful for testing how stellar-core buffers ledgers
+    // captive core. This is useful for testing how gramr buffers ledgers
     // during captive core fast restart.
     std::chrono::seconds ARTIFICIALLY_DELAY_BUCKET_APPLICATION_FOR_TESTING;
 
-    // A config parameter that forces stellar-core to sleep every time a task is
+    // A config parameter that forces gramr to sleep every time a task is
     // picked up from the scheduler. This is useful to imitate a "slow" node.
     // This config should only be enabled when testing.
     std::chrono::microseconds ARTIFICIALLY_SLEEP_MAIN_THREAD_FOR_TESTING;
@@ -332,7 +332,7 @@ class Config : public std::enable_shared_from_this<Config>
     // This is the number of failures you want to be able to tolerate.
     // You will need at least 3f+1 nodes in your quorum set.
     // If you don't have enough in your quorum set to tolerate the level you
-    //  set here stellar-core won't run.
+    //  set here gramr won't run.
     int32_t FAILURE_SAFETY;
 
     // If set to true allows you to specify an unsafe quorum set.

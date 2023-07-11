@@ -55,7 +55,7 @@ class Application;
 void validateNetworkPassphrase(std::shared_ptr<Application> app);
 
 /*
- * State of a single instance of the stellar-core application.
+ * State of a single instance of the gramr application.
  *
  * Multiple instances may exist in the same process, eg. for the sake of testing
  * by simulating a network of Applications.

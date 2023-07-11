@@ -56,7 +56,7 @@ GetHistoryArchiveStateWork::doWork()
                 CLOG_ERROR(History, "OR");
                 CLOG_ERROR(History, "{}", POSSIBLY_CORRUPTED_HISTORY);
                 CLOG_ERROR(History, "OR");
-                CLOG_ERROR(History, "{}", UPGRADE_STELLAR_CORE);
+                CLOG_ERROR(History, "{}", UPGRADE_GRAMR);
                 return State::WORK_FAILURE;
             }
         }

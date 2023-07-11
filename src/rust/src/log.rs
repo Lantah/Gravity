@@ -9,7 +9,7 @@ use std::sync::atomic::{AtomicBool, Ordering};
 use crate::rust_bridge::{shim_isLogLevelAtLeast, shim_logAtPartitionAndLevel, LogLevel};
 
 // This is a simple implementation of Rust's standard logging API that routes
-// log messages over to the stellar-core logging system, which uses spdlog.
+// log messages over to the gramr logging system, which uses spdlog.
 struct StellarLogger;
 
 static LOGGER: StellarLogger = StellarLogger;

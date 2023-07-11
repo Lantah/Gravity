@@ -8,8 +8,8 @@ RUN apt-get update && \
                        clang-12 libc++abi-12-dev libc++-12-dev \
                        postgresql curl
 
-COPY . stellar-core/
-WORKDIR stellar-core
+COPY . gramr/
+WORKDIR gramr
 RUN git clean -dXf
 RUN git submodule foreach --recursive git clean -dXf
 
@@ -32,7 +32,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get -y install libunwind8 postgresql curl sqlite iproute2 libc++abi1-12 libc++1-12
 
-COPY --from=buildstage /usr/local/bin/stellar-core /usr/local/bin/stellar-core
+COPY --from=buildstage /usr/local/bin/gramr /usr/local/bin/gramr
 EXPOSE 11625
 EXPOSE 11626
-CMD stellar-core
+CMD gramr

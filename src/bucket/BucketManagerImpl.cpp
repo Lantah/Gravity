@@ -77,7 +77,7 @@ BucketManagerImpl::initialize()
     {
         throw std::runtime_error(fmt::format(
             FMT_STRING("{}. This can be caused by access rights issues or "
-                       "another stellar-core process already running"),
+                       "another gramr process already running"),
             e.what()));
     }
 
@@ -129,7 +129,7 @@ BucketManagerImpl::BucketManagerImpl(Application& app)
 {
 }
 
-const std::string BucketManagerImpl::kLockFilename = "stellar-core.lock";
+const std::string BucketManagerImpl::kLockFilename = "gramr.lock";
 
 namespace
 {
@@ -240,7 +240,7 @@ BucketManagerImpl::deleteTmpDirAndUnlockBucketDir()
     // (which also contains files from other subsystems, like history)
     mTmpDirManager.reset();
 
-    // Then delete the lockfile $BUCKET_DIR_PATH/stellar-core.lock
+    // Then delete the lockfile $BUCKET_DIR_PATH/gramr.lock
     if (mLockedBucketDir)
     {
         std::string d = mApp.getConfig().BUCKET_DIR_PATH;

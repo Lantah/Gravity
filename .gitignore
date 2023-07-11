@@ -41,7 +41,7 @@ compile_commands.json
 /INSTALL
 
 /src/archtmp-*
-/src/main/StellarCoreVersion.cpp
+/src/main/GramrVersion.cpp
 /src/main/XDRFilesSha256.cpp
 /src/testdata
 /src/protocol-curr/xdr/*.h
@@ -51,7 +51,7 @@ compile_commands.json
 /aclocal.m4
 /autom4te.cache
 /build
-/src/stellar-core
+/src/gramr
 /buckets
 /compile
 /config.h
@@ -82,7 +82,7 @@ compile_commands.json
 /scripts/*.json
 
 # test output
-stellar-core-test-*
+gramr-test-*
 test-partitions.*
 fuzz-findings/
 min-testcases/

@@ -302,7 +302,7 @@ Database::getDBSchemaVersion()
     if (vers == 0)
     {
         throw std::runtime_error(
-            "No DB schema version found, try stellar-core new-db");
+            "No DB schema version found, try gramr new-db");
     }
     return vers;
 }

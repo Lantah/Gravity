@@ -344,7 +344,7 @@
 // go as fast as possible. For this, we use graph and set representations that
 // minimize allocation, hashing, indirection and so forth: vectors of dense
 // bitsets and bitwise operations. These are not the same representations used
-// elsewhere in stellar-core so there's a little work up front converting
+// elsewhere in gramr so there's a little work up front converting
 // representations.
 //
 // Remaining details of the implementation are noted as we go, but the above

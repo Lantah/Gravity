@@ -54,7 +54,7 @@ rand_element(std::vector<T>& v)
 }
 
 #ifdef BUILD_TESTS
-// This function should be called any time you need to reset stellar-core's
+// This function should be called any time you need to reset gramr's
 // global state based on a seed value, such as before each fuzz run or each unit
 // test. It's declared here because most cases that want to call it are already
 // including Math.h in order to use gRandomEngine. It's not present in

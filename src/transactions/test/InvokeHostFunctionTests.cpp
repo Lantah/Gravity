@@ -1094,19 +1094,19 @@ TEST_CASE("complex contract", "[tx][soroban]")
     }
 }
 
-TEST_CASE("Stellar asset contract XLM transfer", "[tx][soroban]")
+TEST_CASE("Stellar asset contract GRAM transfer", "[tx][soroban]")
 {
     VirtualClock clock;
     auto app = createTestApplication(clock, getTestConfig());
     auto root = TestAccount::createRoot(*app);
-    auto xlm = txtest::makeNativeAsset();
+    auto gram = txtest::makeNativeAsset();
 
-    // Create XLM contract
+    // Create GRAM contract
     HashIDPreimage preImage;
     preImage.type(ENVELOPE_TYPE_CONTRACT_ID);
     preImage.contractID().contractIDPreimage.type(
         CONTRACT_ID_PREIMAGE_FROM_ASSET);
-    preImage.contractID().contractIDPreimage.fromAsset() = xlm;
+    preImage.contractID().contractIDPreimage.fromAsset() = gram;
     preImage.contractID().networkID = app->getNetworkID();
     auto contractID = makeContractAddress(xdrSha256(preImage));
 
@@ -1119,7 +1119,7 @@ TEST_CASE("Stellar asset contract XLM transfer", "[tx][soroban]")
     ContractExecutable exec;
     exec.type(CONTRACT_EXECUTABLE_TOKEN);
     createContractArgs.contractIDPreimage.type(CONTRACT_ID_PREIMAGE_FROM_ASSET);
-    createContractArgs.contractIDPreimage.fromAsset() = xlm;
+    createContractArgs.contractIDPreimage.fromAsset() = gram;
     createContractArgs.executable = exec;
 
     SorobanResources createResources;
@@ -1168,7 +1168,7 @@ TEST_CASE("Stellar asset contract XLM transfer", "[tx][soroban]")
         ltx.commit();
     }
 
-    // transfer 10 XLM from root to contractID
+    // transfer 10 GRAM from root to contractID
     SCAddress fromAccount(SC_ADDRESS_TYPE_ACCOUNT);
     fromAccount.accountId() = root.getPublicKey();
     SCVal from(SCV_ADDRESS);

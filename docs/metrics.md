@@ -1,8 +1,8 @@
 ---
-title: List of metrics exposed by stellar-core
+title: List of metrics exposed by gramr
 ---
 
-stellar-core uses libmedida for computing metrics, a detailed description can
+gramr uses libmedida for computing metrics, a detailed description can
 be found at http://dln.github.io/medida/
 
 ### Counters (`NewCounter`)

@@ -38,10 +38,10 @@
 
 INSTALL
 
-src/stellar-core
+src/gramr
 
 src/archtmp-*
-src/main/StellarCoreVersion.cpp
+src/main/GramrVersion.cpp
 src/testdata
 src/xdr/*.h
 Makefile
@@ -49,7 +49,7 @@ Makefile.in
 aclocal.m4
 autom4te.cache
 build
-src/stellar-core
+src/gramr
 buckets
 compile
 config.h
@@ -83,7 +83,7 @@ scripts/*.json
 **/*.res
 **/*.trs
 **/*.exp
-stellar-core-test-*
+gramr-test-*
 test-partitions.*
 fuzz-findings
 min-testcases

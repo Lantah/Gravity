@@ -294,7 +294,7 @@
 		"plvH7hFexBw=",
 		"+PvmDcMgVBQ="
 	],
-	"create offer|protocol version 0|create offer errors|create offer without XLM to make for reserve" : [ "XuDATGliI38=", "oSNMkC0ZXHY=", "X9zjM51ddHQ=", "XyEOZZvpI+U=" ],
+	"create offer|protocol version 0|create offer errors|create offer without GRAM to make for reserve" : [ "XuDATGliI38=", "oSNMkC0ZXHY=", "X9zjM51ddHQ=", "XyEOZZvpI+U=" ],
 	"create offer|protocol version 0|create offer errors|create offer without having any amount of asset" : [ "XuDATGliI38=", "oSNMkC0ZXHY=" ],
 	"create offer|protocol version 0|create offer errors|create offer without issuer for buying" : [ "XuDATGliI38=", "oSNMkC0ZXHY=", "Oso2f1XK11s=", "Szs75Y4rQHY=" ],
 	"create offer|protocol version 0|create offer errors|create offer without issuer for selling" : [ "XuDATGliI38=", "oSNMkC0ZXHY=", "qBT2qx3KxDU=", "Szs75Y4rQHY=" ],
@@ -885,9 +885,9 @@
 		"YZzIrmDjGSM=",
 		"YPceEMMJ6PM="
 	],
-	"create offer|protocol version 0|create offer|xlm -> idr|crossing + create" : [ "TsEUGePjm/s=", "TsEUGePjm/s=" ],
-	"create offer|protocol version 0|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : [ "K0662h8Q4fs=", "JG/XQ+lZfU4=" ],
-	"create offer|protocol version 0|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "DILVHDisA7w=", "WW2DihdWZkQ=" ],
+	"create offer|protocol version 0|create offer|gram -> idr|crossing + create" : [ "TsEUGePjm/s=", "TsEUGePjm/s=" ],
+	"create offer|protocol version 0|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : [ "K0662h8Q4fs=", "JG/XQ+lZfU4=" ],
+	"create offer|protocol version 0|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "DILVHDisA7w=", "WW2DihdWZkQ=" ],
 	"create offer|protocol version 0|crossing offers with rounding" : 
 	[
 		"4uUdxWG77QI=",
@@ -1602,7 +1602,7 @@
 		"U2Nb/8XNbjc=",
 		"Aej+m1BajA8="
 	],
-	"create offer|protocol version 10|create offer errors|create offer without XLM to make for reserve" : 
+	"create offer|protocol version 10|create offer errors|create offer without GRAM to make for reserve" : 
 	[
 		"4UVWMQpo4BI=",
 		"6zLk3iiYywQ=",
@@ -1630,7 +1630,7 @@
 	],
 	"create offer|protocol version 10|create offer errors|create offer without trustline for buying" : [ "4UVWMQpo4BI=", "6zLk3iiYywQ=", "ZJDbyZDJSgY=", "T1tfLsxVvSc=" ],
 	"create offer|protocol version 10|create offer errors|create offer without trustline for selling" : [ "4UVWMQpo4BI=", "zC9gaUiV5S4=" ],
-	"create offer|protocol version 10|create offer|idr -> xlm" : [ "x6RiDzBD2sY=" ],
+	"create offer|protocol version 10|create offer|idr -> gram" : [ "x6RiDzBD2sY=" ],
 	"create offer|protocol version 10|create offer|issuer offers" : [ "lX02oYoXCEg=", "lX02oYoXCEg=" ],
 	"create offer|protocol version 10|create offer|issuer offers|issuer claims an offer from somebody else" : [ "ae3uehEsAWA=" ],
 	"create offer|protocol version 10|create offer|issuer offers|issuer creates an offer, claimed by somebody else" : [ "2Cl2x2MB51c=", "R5QWhwqKoTk=", "dME0yzYQZJI=" ],
@@ -2279,9 +2279,9 @@
 		"obcaqXLLtHo=",
 		"X2PBhSnb+mc="
 	],
-	"create offer|protocol version 10|create offer|xlm -> idr|create" : [ "aEjUuUqlUs4=" ],
-	"create offer|protocol version 10|create offer|xlm -> idr|crossing + create" : [ "AXLoOe/luqc=", "AXLoOe/luqc=" ],
-	"create offer|protocol version 10|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : 
+	"create offer|protocol version 10|create offer|gram -> idr|create" : [ "aEjUuUqlUs4=" ],
+	"create offer|protocol version 10|create offer|gram -> idr|crossing + create" : [ "AXLoOe/luqc=", "AXLoOe/luqc=" ],
+	"create offer|protocol version 10|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : 
 	[
 		"mB/jdrDvVuk=",
 		"R13sDRjJNHM=",
@@ -2289,7 +2289,7 @@
 		"HAIl3ivd8wo=",
 		"rI/vfSSYHr8="
 	],
-	"create offer|protocol version 10|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "KPOSVvbGiVA=", "P4S+cWr01og=", "YPCbPkznb1c=" ],
+	"create offer|protocol version 10|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "KPOSVvbGiVA=", "P4S+cWr01og=", "YPCbPkznb1c=" ],
 	"create offer|protocol version 10|crossing offers with rounding" : 
 	[
 		"Y4N6D8KwMbA=",
@@ -3399,7 +3399,7 @@
 		"U2Nb/8XNbjc=",
 		"Aej+m1BajA8="
 	],
-	"create offer|protocol version 11|create offer errors|create offer without XLM to make for reserve" : 
+	"create offer|protocol version 11|create offer errors|create offer without GRAM to make for reserve" : 
 	[
 		"4UVWMQpo4BI=",
 		"6zLk3iiYywQ=",
@@ -3427,7 +3427,7 @@
 	],
 	"create offer|protocol version 11|create offer errors|create offer without trustline for buying" : [ "4UVWMQpo4BI=", "6zLk3iiYywQ=", "ZJDbyZDJSgY=", "T1tfLsxVvSc=" ],
 	"create offer|protocol version 11|create offer errors|create offer without trustline for selling" : [ "4UVWMQpo4BI=", "zC9gaUiV5S4=" ],
-	"create offer|protocol version 11|create offer|idr -> xlm" : [ "x6RiDzBD2sY=" ],
+	"create offer|protocol version 11|create offer|idr -> gram" : [ "x6RiDzBD2sY=" ],
 	"create offer|protocol version 11|create offer|issuer offers" : [ "lX02oYoXCEg=", "lX02oYoXCEg=" ],
 	"create offer|protocol version 11|create offer|issuer offers|issuer claims an offer from somebody else" : [ "ae3uehEsAWA=" ],
 	"create offer|protocol version 11|create offer|issuer offers|issuer creates an offer, claimed by somebody else" : [ "2Cl2x2MB51c=", "R5QWhwqKoTk=", "dME0yzYQZJI=" ],
@@ -4076,9 +4076,9 @@
 		"obcaqXLLtHo=",
 		"X2PBhSnb+mc="
 	],
-	"create offer|protocol version 11|create offer|xlm -> idr|create" : [ "aEjUuUqlUs4=" ],
-	"create offer|protocol version 11|create offer|xlm -> idr|crossing + create" : [ "AXLoOe/luqc=", "AXLoOe/luqc=" ],
-	"create offer|protocol version 11|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : 
+	"create offer|protocol version 11|create offer|gram -> idr|create" : [ "aEjUuUqlUs4=" ],
+	"create offer|protocol version 11|create offer|gram -> idr|crossing + create" : [ "AXLoOe/luqc=", "AXLoOe/luqc=" ],
+	"create offer|protocol version 11|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : 
 	[
 		"mB/jdrDvVuk=",
 		"R13sDRjJNHM=",
@@ -4086,7 +4086,7 @@
 		"HAIl3ivd8wo=",
 		"rI/vfSSYHr8="
 	],
-	"create offer|protocol version 11|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "KPOSVvbGiVA=", "P4S+cWr01og=", "YPCbPkznb1c=" ],
+	"create offer|protocol version 11|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "KPOSVvbGiVA=", "P4S+cWr01og=", "YPCbPkznb1c=" ],
 	"create offer|protocol version 11|crossing offers with rounding" : 
 	[
 		"Y4N6D8KwMbA=",
@@ -5196,7 +5196,7 @@
 		"U2Nb/8XNbjc=",
 		"Aej+m1BajA8="
 	],
-	"create offer|protocol version 12|create offer errors|create offer without XLM to make for reserve" : 
+	"create offer|protocol version 12|create offer errors|create offer without GRAM to make for reserve" : 
 	[
 		"4UVWMQpo4BI=",
 		"6zLk3iiYywQ=",
@@ -5224,7 +5224,7 @@
 	],
 	"create offer|protocol version 12|create offer errors|create offer without trustline for buying" : [ "4UVWMQpo4BI=", "6zLk3iiYywQ=", "ZJDbyZDJSgY=", "T1tfLsxVvSc=" ],
 	"create offer|protocol version 12|create offer errors|create offer without trustline for selling" : [ "4UVWMQpo4BI=", "zC9gaUiV5S4=" ],
-	"create offer|protocol version 12|create offer|idr -> xlm" : [ "x6RiDzBD2sY=" ],
+	"create offer|protocol version 12|create offer|idr -> gram" : [ "x6RiDzBD2sY=" ],
 	"create offer|protocol version 12|create offer|issuer offers" : [ "lX02oYoXCEg=", "lX02oYoXCEg=" ],
 	"create offer|protocol version 12|create offer|issuer offers|issuer claims an offer from somebody else" : [ "ae3uehEsAWA=" ],
 	"create offer|protocol version 12|create offer|issuer offers|issuer creates an offer, claimed by somebody else" : [ "2Cl2x2MB51c=", "R5QWhwqKoTk=", "dME0yzYQZJI=" ],
@@ -5873,9 +5873,9 @@
 		"obcaqXLLtHo=",
 		"X2PBhSnb+mc="
 	],
-	"create offer|protocol version 12|create offer|xlm -> idr|create" : [ "aEjUuUqlUs4=" ],
-	"create offer|protocol version 12|create offer|xlm -> idr|crossing + create" : [ "AXLoOe/luqc=", "AXLoOe/luqc=" ],
-	"create offer|protocol version 12|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : 
+	"create offer|protocol version 12|create offer|gram -> idr|create" : [ "aEjUuUqlUs4=" ],
+	"create offer|protocol version 12|create offer|gram -> idr|crossing + create" : [ "AXLoOe/luqc=", "AXLoOe/luqc=" ],
+	"create offer|protocol version 12|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : 
 	[
 		"mB/jdrDvVuk=",
 		"R13sDRjJNHM=",
@@ -5883,7 +5883,7 @@
 		"HAIl3ivd8wo=",
 		"rI/vfSSYHr8="
 	],
-	"create offer|protocol version 12|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "KPOSVvbGiVA=", "P4S+cWr01og=", "YPCbPkznb1c=" ],
+	"create offer|protocol version 12|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "KPOSVvbGiVA=", "P4S+cWr01og=", "YPCbPkznb1c=" ],
 	"create offer|protocol version 12|crossing offers with rounding" : 
 	[
 		"Y4N6D8KwMbA=",
@@ -6993,7 +6993,7 @@
 		"U2Nb/8XNbjc=",
 		"Aej+m1BajA8="
 	],
-	"create offer|protocol version 13|create offer errors|create offer without XLM to make for reserve" : 
+	"create offer|protocol version 13|create offer errors|create offer without GRAM to make for reserve" : 
 	[
 		"4UVWMQpo4BI=",
 		"6zLk3iiYywQ=",
@@ -7021,7 +7021,7 @@
 	],
 	"create offer|protocol version 13|create offer errors|create offer without trustline for buying" : [ "4UVWMQpo4BI=", "6zLk3iiYywQ=", "ZJDbyZDJSgY=", "T1tfLsxVvSc=" ],
 	"create offer|protocol version 13|create offer errors|create offer without trustline for selling" : [ "4UVWMQpo4BI=", "zC9gaUiV5S4=" ],
-	"create offer|protocol version 13|create offer|idr -> xlm" : [ "x6RiDzBD2sY=" ],
+	"create offer|protocol version 13|create offer|idr -> gram" : [ "x6RiDzBD2sY=" ],
 	"create offer|protocol version 13|create offer|issuer offers" : [ "lX02oYoXCEg=", "lX02oYoXCEg=" ],
 	"create offer|protocol version 13|create offer|issuer offers|issuer claims an offer from somebody else" : [ "ae3uehEsAWA=" ],
 	"create offer|protocol version 13|create offer|issuer offers|issuer creates an offer, claimed by somebody else" : [ "2Cl2x2MB51c=", "R5QWhwqKoTk=", "dME0yzYQZJI=" ],
@@ -7674,9 +7674,9 @@
 		"obcaqXLLtHo=",
 		"X2PBhSnb+mc="
 	],
-	"create offer|protocol version 13|create offer|xlm -> idr|create" : [ "aEjUuUqlUs4=" ],
-	"create offer|protocol version 13|create offer|xlm -> idr|crossing + create" : [ "AXLoOe/luqc=", "AXLoOe/luqc=" ],
-	"create offer|protocol version 13|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : 
+	"create offer|protocol version 13|create offer|gram -> idr|create" : [ "aEjUuUqlUs4=" ],
+	"create offer|protocol version 13|create offer|gram -> idr|crossing + create" : [ "AXLoOe/luqc=", "AXLoOe/luqc=" ],
+	"create offer|protocol version 13|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : 
 	[
 		"mB/jdrDvVuk=",
 		"R13sDRjJNHM=",
@@ -7684,7 +7684,7 @@
 		"HAIl3ivd8wo=",
 		"rI/vfSSYHr8="
 	],
-	"create offer|protocol version 13|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "KPOSVvbGiVA=", "P4S+cWr01og=", "YPCbPkznb1c=" ],
+	"create offer|protocol version 13|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "KPOSVvbGiVA=", "P4S+cWr01og=", "YPCbPkznb1c=" ],
 	"create offer|protocol version 13|crossing offers with rounding" : 
 	[
 		"Y4N6D8KwMbA=",
@@ -8896,7 +8896,7 @@
 		"U2Nb/8XNbjc=",
 		"Aej+m1BajA8="
 	],
-	"create offer|protocol version 14|create offer errors|create offer without XLM to make for reserve" : 
+	"create offer|protocol version 14|create offer errors|create offer without GRAM to make for reserve" : 
 	[
 		"4UVWMQpo4BI=",
 		"6zLk3iiYywQ=",
@@ -8924,7 +8924,7 @@
 	],
 	"create offer|protocol version 14|create offer errors|create offer without trustline for buying" : [ "4UVWMQpo4BI=", "6zLk3iiYywQ=", "ZJDbyZDJSgY=", "T1tfLsxVvSc=" ],
 	"create offer|protocol version 14|create offer errors|create offer without trustline for selling" : [ "4UVWMQpo4BI=", "zC9gaUiV5S4=" ],
-	"create offer|protocol version 14|create offer|idr -> xlm" : [ "x6RiDzBD2sY=" ],
+	"create offer|protocol version 14|create offer|idr -> gram" : [ "x6RiDzBD2sY=" ],
 	"create offer|protocol version 14|create offer|issuer offers" : [ "lX02oYoXCEg=", "lX02oYoXCEg=" ],
 	"create offer|protocol version 14|create offer|issuer offers|issuer claims an offer from somebody else" : [ "6h1c9uKnU0I=" ],
 	"create offer|protocol version 14|create offer|issuer offers|issuer creates an offer, claimed by somebody else" : [ "2Cl2x2MB51c=", "R5QWhwqKoTk=", "BdJWEMFm9UM=" ],
@@ -9577,9 +9577,9 @@
 		"obcaqXLLtHo=",
 		"X2PBhSnb+mc="
 	],
-	"create offer|protocol version 14|create offer|xlm -> idr|create" : [ "aEjUuUqlUs4=" ],
-	"create offer|protocol version 14|create offer|xlm -> idr|crossing + create" : [ "AXLoOe/luqc=", "AXLoOe/luqc=" ],
-	"create offer|protocol version 14|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : 
+	"create offer|protocol version 14|create offer|gram -> idr|create" : [ "aEjUuUqlUs4=" ],
+	"create offer|protocol version 14|create offer|gram -> idr|crossing + create" : [ "AXLoOe/luqc=", "AXLoOe/luqc=" ],
+	"create offer|protocol version 14|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : 
 	[
 		"mB/jdrDvVuk=",
 		"R13sDRjJNHM=",
@@ -9587,7 +9587,7 @@
 		"HAIl3ivd8wo=",
 		"rI/vfSSYHr8="
 	],
-	"create offer|protocol version 14|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "KPOSVvbGiVA=", "P4S+cWr01og=", "YPCbPkznb1c=" ],
+	"create offer|protocol version 14|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "KPOSVvbGiVA=", "P4S+cWr01og=", "YPCbPkznb1c=" ],
 	"create offer|protocol version 14|crossed sponsored offers|offer sponsor is other offer account|native for non-native" : 
 	[
 		"BrrE67VA1CU=",
@@ -13349,7 +13349,7 @@
 		"U2Nb/8XNbjc=",
 		"Aej+m1BajA8="
 	],
-	"create offer|protocol version 15|create offer errors|create offer without XLM to make for reserve" : 
+	"create offer|protocol version 15|create offer errors|create offer without GRAM to make for reserve" : 
 	[
 		"4UVWMQpo4BI=",
 		"6zLk3iiYywQ=",
@@ -13377,7 +13377,7 @@
 	],
 	"create offer|protocol version 15|create offer errors|create offer without trustline for buying" : [ "4UVWMQpo4BI=", "6zLk3iiYywQ=", "ZJDbyZDJSgY=", "T1tfLsxVvSc=" ],
 	"create offer|protocol version 15|create offer errors|create offer without trustline for selling" : [ "4UVWMQpo4BI=", "zC9gaUiV5S4=" ],
-	"create offer|protocol version 15|create offer|idr -> xlm" : [ "x6RiDzBD2sY=" ],
+	"create offer|protocol version 15|create offer|idr -> gram" : [ "x6RiDzBD2sY=" ],
 	"create offer|protocol version 15|create offer|issuer offers" : [ "lX02oYoXCEg=", "lX02oYoXCEg=" ],
 	"create offer|protocol version 15|create offer|issuer offers|issuer claims an offer from somebody else" : [ "6h1c9uKnU0I=" ],
 	"create offer|protocol version 15|create offer|issuer offers|issuer creates an offer, claimed by somebody else" : [ "2Cl2x2MB51c=", "R5QWhwqKoTk=", "BdJWEMFm9UM=" ],
@@ -14030,9 +14030,9 @@
 		"obcaqXLLtHo=",
 		"X2PBhSnb+mc="
 	],
-	"create offer|protocol version 15|create offer|xlm -> idr|create" : [ "aEjUuUqlUs4=" ],
-	"create offer|protocol version 15|create offer|xlm -> idr|crossing + create" : [ "AXLoOe/luqc=", "AXLoOe/luqc=" ],
-	"create offer|protocol version 15|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : 
+	"create offer|protocol version 15|create offer|gram -> idr|create" : [ "aEjUuUqlUs4=" ],
+	"create offer|protocol version 15|create offer|gram -> idr|crossing + create" : [ "AXLoOe/luqc=", "AXLoOe/luqc=" ],
+	"create offer|protocol version 15|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : 
 	[
 		"mB/jdrDvVuk=",
 		"R13sDRjJNHM=",
@@ -14040,7 +14040,7 @@
 		"HAIl3ivd8wo=",
 		"rI/vfSSYHr8="
 	],
-	"create offer|protocol version 15|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "KPOSVvbGiVA=", "P4S+cWr01og=", "YPCbPkznb1c=" ],
+	"create offer|protocol version 15|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "KPOSVvbGiVA=", "P4S+cWr01og=", "YPCbPkznb1c=" ],
 	"create offer|protocol version 15|crossed sponsored offers|offer sponsor is other offer account|native for non-native" : 
 	[
 		"BrrE67VA1CU=",
@@ -17802,7 +17802,7 @@
 		"U2Nb/8XNbjc=",
 		"Aej+m1BajA8="
 	],
-	"create offer|protocol version 16|create offer errors|create offer without XLM to make for reserve" : 
+	"create offer|protocol version 16|create offer errors|create offer without GRAM to make for reserve" : 
 	[
 		"4UVWMQpo4BI=",
 		"6zLk3iiYywQ=",
@@ -17830,7 +17830,7 @@
 	],
 	"create offer|protocol version 16|create offer errors|create offer without trustline for buying" : [ "4UVWMQpo4BI=", "6zLk3iiYywQ=", "ZJDbyZDJSgY=", "T1tfLsxVvSc=" ],
 	"create offer|protocol version 16|create offer errors|create offer without trustline for selling" : [ "4UVWMQpo4BI=", "zC9gaUiV5S4=" ],
-	"create offer|protocol version 16|create offer|idr -> xlm" : [ "x6RiDzBD2sY=" ],
+	"create offer|protocol version 16|create offer|idr -> gram" : [ "x6RiDzBD2sY=" ],
 	"create offer|protocol version 16|create offer|issuer offers" : [ "lX02oYoXCEg=", "lX02oYoXCEg=" ],
 	"create offer|protocol version 16|create offer|issuer offers|issuer claims an offer from somebody else" : [ "6h1c9uKnU0I=" ],
 	"create offer|protocol version 16|create offer|issuer offers|issuer creates an offer, claimed by somebody else" : [ "2Cl2x2MB51c=", "R5QWhwqKoTk=", "BdJWEMFm9UM=" ],
@@ -18483,9 +18483,9 @@
 		"obcaqXLLtHo=",
 		"X2PBhSnb+mc="
 	],
-	"create offer|protocol version 16|create offer|xlm -> idr|create" : [ "aEjUuUqlUs4=" ],
-	"create offer|protocol version 16|create offer|xlm -> idr|crossing + create" : [ "AXLoOe/luqc=", "AXLoOe/luqc=" ],
-	"create offer|protocol version 16|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : 
+	"create offer|protocol version 16|create offer|gram -> idr|create" : [ "aEjUuUqlUs4=" ],
+	"create offer|protocol version 16|create offer|gram -> idr|crossing + create" : [ "AXLoOe/luqc=", "AXLoOe/luqc=" ],
+	"create offer|protocol version 16|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : 
 	[
 		"mB/jdrDvVuk=",
 		"R13sDRjJNHM=",
@@ -18493,7 +18493,7 @@
 		"HAIl3ivd8wo=",
 		"rI/vfSSYHr8="
 	],
-	"create offer|protocol version 16|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "KPOSVvbGiVA=", "P4S+cWr01og=", "YPCbPkznb1c=" ],
+	"create offer|protocol version 16|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "KPOSVvbGiVA=", "P4S+cWr01og=", "YPCbPkznb1c=" ],
 	"create offer|protocol version 16|crossed sponsored offers|offer sponsor is other offer account|native for non-native" : 
 	[
 		"BrrE67VA1CU=",
@@ -22266,7 +22266,7 @@
 		"U2Nb/8XNbjc=",
 		"Aej+m1BajA8="
 	],
-	"create offer|protocol version 17|create offer errors|create offer without XLM to make for reserve" : 
+	"create offer|protocol version 17|create offer errors|create offer without GRAM to make for reserve" : 
 	[
 		"4UVWMQpo4BI=",
 		"6zLk3iiYywQ=",
@@ -22294,7 +22294,7 @@
 	],
 	"create offer|protocol version 17|create offer errors|create offer without trustline for buying" : [ "4UVWMQpo4BI=", "6zLk3iiYywQ=", "ZJDbyZDJSgY=", "T1tfLsxVvSc=" ],
 	"create offer|protocol version 17|create offer errors|create offer without trustline for selling" : [ "4UVWMQpo4BI=", "zC9gaUiV5S4=" ],
-	"create offer|protocol version 17|create offer|idr -> xlm" : [ "x6RiDzBD2sY=" ],
+	"create offer|protocol version 17|create offer|idr -> gram" : [ "x6RiDzBD2sY=" ],
 	"create offer|protocol version 17|create offer|issuer offers" : [ "lX02oYoXCEg=", "lX02oYoXCEg=" ],
 	"create offer|protocol version 17|create offer|issuer offers|issuer claims an offer from somebody else" : [ "6h1c9uKnU0I=" ],
 	"create offer|protocol version 17|create offer|issuer offers|issuer creates an offer, claimed by somebody else" : [ "2Cl2x2MB51c=", "R5QWhwqKoTk=", "BdJWEMFm9UM=" ],
@@ -22947,9 +22947,9 @@
 		"obcaqXLLtHo=",
 		"X2PBhSnb+mc="
 	],
-	"create offer|protocol version 17|create offer|xlm -> idr|create" : [ "aEjUuUqlUs4=" ],
-	"create offer|protocol version 17|create offer|xlm -> idr|crossing + create" : [ "AXLoOe/luqc=", "AXLoOe/luqc=" ],
-	"create offer|protocol version 17|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : 
+	"create offer|protocol version 17|create offer|gram -> idr|create" : [ "aEjUuUqlUs4=" ],
+	"create offer|protocol version 17|create offer|gram -> idr|crossing + create" : [ "AXLoOe/luqc=", "AXLoOe/luqc=" ],
+	"create offer|protocol version 17|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : 
 	[
 		"mB/jdrDvVuk=",
 		"R13sDRjJNHM=",
@@ -22957,7 +22957,7 @@
 		"HAIl3ivd8wo=",
 		"rI/vfSSYHr8="
 	],
-	"create offer|protocol version 17|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "KPOSVvbGiVA=", "P4S+cWr01og=", "YPCbPkznb1c=" ],
+	"create offer|protocol version 17|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "KPOSVvbGiVA=", "P4S+cWr01og=", "YPCbPkznb1c=" ],
 	"create offer|protocol version 17|crossed sponsored offers|offer sponsor is other offer account|native for non-native" : 
 	[
 		"BrrE67VA1CU=",
@@ -26754,7 +26754,7 @@
 		"U2Nb/8XNbjc=",
 		"Aej+m1BajA8="
 	],
-	"create offer|protocol version 18|create offer errors|create offer without XLM to make for reserve" : 
+	"create offer|protocol version 18|create offer errors|create offer without GRAM to make for reserve" : 
 	[
 		"4UVWMQpo4BI=",
 		"6zLk3iiYywQ=",
@@ -26782,7 +26782,7 @@
 	],
 	"create offer|protocol version 18|create offer errors|create offer without trustline for buying" : [ "4UVWMQpo4BI=", "6zLk3iiYywQ=", "ZJDbyZDJSgY=", "T1tfLsxVvSc=" ],
 	"create offer|protocol version 18|create offer errors|create offer without trustline for selling" : [ "4UVWMQpo4BI=", "zC9gaUiV5S4=" ],
-	"create offer|protocol version 18|create offer|idr -> xlm" : [ "x6RiDzBD2sY=" ],
+	"create offer|protocol version 18|create offer|idr -> gram" : [ "x6RiDzBD2sY=" ],
 	"create offer|protocol version 18|create offer|issuer offers" : [ "lX02oYoXCEg=", "lX02oYoXCEg=" ],
 	"create offer|protocol version 18|create offer|issuer offers|issuer claims an offer from somebody else" : [ "6h1c9uKnU0I=" ],
 	"create offer|protocol version 18|create offer|issuer offers|issuer creates an offer, claimed by somebody else" : [ "2Cl2x2MB51c=", "R5QWhwqKoTk=", "BdJWEMFm9UM=" ],
@@ -27435,9 +27435,9 @@
 		"obcaqXLLtHo=",
 		"X2PBhSnb+mc="
 	],
-	"create offer|protocol version 18|create offer|xlm -> idr|create" : [ "aEjUuUqlUs4=" ],
-	"create offer|protocol version 18|create offer|xlm -> idr|crossing + create" : [ "AXLoOe/luqc=", "AXLoOe/luqc=" ],
-	"create offer|protocol version 18|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : 
+	"create offer|protocol version 18|create offer|gram -> idr|create" : [ "aEjUuUqlUs4=" ],
+	"create offer|protocol version 18|create offer|gram -> idr|crossing + create" : [ "AXLoOe/luqc=", "AXLoOe/luqc=" ],
+	"create offer|protocol version 18|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : 
 	[
 		"mB/jdrDvVuk=",
 		"R13sDRjJNHM=",
@@ -27445,7 +27445,7 @@
 		"HAIl3ivd8wo=",
 		"rI/vfSSYHr8="
 	],
-	"create offer|protocol version 18|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "KPOSVvbGiVA=", "P4S+cWr01og=", "YPCbPkznb1c=" ],
+	"create offer|protocol version 18|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "KPOSVvbGiVA=", "P4S+cWr01og=", "YPCbPkznb1c=" ],
 	"create offer|protocol version 18|crossed sponsored offers|offer sponsor is other offer account|native for non-native" : 
 	[
 		"BrrE67VA1CU=",
@@ -31242,7 +31242,7 @@
 		"rvZmpmU73S4=",
 		"0wW9VmxOM9s="
 	],
-	"create offer|protocol version 19|create offer errors|create offer without XLM to make for reserve" : 
+	"create offer|protocol version 19|create offer errors|create offer without GRAM to make for reserve" : 
 	[
 		"QIc1LzGtKHQ=",
 		"utexMAR/OkI=",
@@ -31270,7 +31270,7 @@
 	],
 	"create offer|protocol version 19|create offer errors|create offer without trustline for buying" : [ "QIc1LzGtKHQ=", "utexMAR/OkI=", "vTUirx3kjB8=", "oAkh/5eUJ8U=" ],
 	"create offer|protocol version 19|create offer errors|create offer without trustline for selling" : [ "QIc1LzGtKHQ=", "GG8UZ0LYmsI=" ],
-	"create offer|protocol version 19|create offer|idr -> xlm" : [ "3FO9bU14cGc=" ],
+	"create offer|protocol version 19|create offer|idr -> gram" : [ "3FO9bU14cGc=" ],
 	"create offer|protocol version 19|create offer|issuer offers" : [ "kmu8aML7cUs=", "kmu8aML7cUs=" ],
 	"create offer|protocol version 19|create offer|issuer offers|issuer claims an offer from somebody else" : [ "0EdLYYKBRmY=" ],
 	"create offer|protocol version 19|create offer|issuer offers|issuer creates an offer, claimed by somebody else" : [ "zaTW1pONCfY=", "jkg9KYP1oHE=", "NTBzwgP5KqU=" ],
@@ -31923,9 +31923,9 @@
 		"r6PgW7IxB3Y=",
 		"XKJON2Kx1L4="
 	],
-	"create offer|protocol version 19|create offer|xlm -> idr|create" : [ "GDZYAUWhasI=" ],
-	"create offer|protocol version 19|create offer|xlm -> idr|crossing + create" : [ "+z7KHX/Fb7g=", "+z7KHX/Fb7g=" ],
-	"create offer|protocol version 19|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : 
+	"create offer|protocol version 19|create offer|gram -> idr|create" : [ "GDZYAUWhasI=" ],
+	"create offer|protocol version 19|create offer|gram -> idr|crossing + create" : [ "+z7KHX/Fb7g=", "+z7KHX/Fb7g=" ],
+	"create offer|protocol version 19|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : 
 	[
 		"7Cy0UjK0KKo=",
 		"ccUtJm0W/2g=",
@@ -31933,7 +31933,7 @@
 		"o4H7ESaeUC8=",
 		"U21TmuoVS44="
 	],
-	"create offer|protocol version 19|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "s4FMmLIOKyE=", "3IeIm3bHpnA=", "KXcxf7/vcBQ=" ],
+	"create offer|protocol version 19|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "s4FMmLIOKyE=", "3IeIm3bHpnA=", "KXcxf7/vcBQ=" ],
 	"create offer|protocol version 19|crossed sponsored offers|offer sponsor is other offer account|native for non-native" : 
 	[
 		"AoNHCcYoPKk=",
@@ -35384,7 +35384,7 @@
 		"+PvmDcMgVBQ=",
 		"/lfj8xIFS8I="
 	],
-	"create offer|protocol version 1|create offer errors|create offer without XLM to make for reserve" : 
+	"create offer|protocol version 1|create offer errors|create offer without GRAM to make for reserve" : 
 	[
 		"XuDATGliI38=",
 		"oSNMkC0ZXHY=",
@@ -35412,7 +35412,7 @@
 	],
 	"create offer|protocol version 1|create offer errors|create offer without trustline for buying" : [ "XuDATGliI38=", "oSNMkC0ZXHY=", "qBT2qx3KxDU=", "/lfj8xIFS8I=" ],
 	"create offer|protocol version 1|create offer errors|create offer without trustline for selling" : [ "XuDATGliI38=", "/lfj8xIFS8I=" ],
-	"create offer|protocol version 1|create offer|idr -> xlm" : [ "pu8TRoilBC8=" ],
+	"create offer|protocol version 1|create offer|idr -> gram" : [ "pu8TRoilBC8=" ],
 	"create offer|protocol version 1|create offer|issuer offers" : [ "DUipqtGpJsA=", "DUipqtGpJsA=" ],
 	"create offer|protocol version 1|create offer|issuer offers|issuer claims an offer from somebody else" : [ "sZG2f3w/KuU=" ],
 	"create offer|protocol version 1|create offer|issuer offers|issuer creates an offer, claimed by somebody else" : [ "024QpaJbQn4=", "01DMMdKwxbA=", "kkm++oknTdE=" ],
@@ -36155,10 +36155,10 @@
 	"create offer|protocol version 1|create offer|offers with limits|creates an offer but top seller is not authorized|D not authorized to hold USD" : [ "erCzhN6wXec=" ],
 	"create offer|protocol version 1|create offer|offers with limits|creates an offer but top seller is not authorized|D not authorized to send IDR" : [ "7wd1CKHccWs=" ],
 	"create offer|protocol version 1|create offer|offers with limits|creates an offer but top seller reaches limit" : [ "vhrxIZQHUR0=", "rr4HuOHEWio=" ],
-	"create offer|protocol version 1|create offer|xlm -> idr|create" : [ "/JHKAlanxUY=" ],
-	"create offer|protocol version 1|create offer|xlm -> idr|crossing + create" : [ "TsEUGePjm/s=", "TsEUGePjm/s=" ],
-	"create offer|protocol version 1|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : [ "K0662h8Q4fs=", "JG/XQ+lZfU4=", "/lfj8xIFS8I=" ],
-	"create offer|protocol version 1|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "DILVHDisA7w=", "WW2DihdWZkQ=", "8GQuhTyrHB8=" ],
+	"create offer|protocol version 1|create offer|gram -> idr|create" : [ "/JHKAlanxUY=" ],
+	"create offer|protocol version 1|create offer|gram -> idr|crossing + create" : [ "TsEUGePjm/s=", "TsEUGePjm/s=" ],
+	"create offer|protocol version 1|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : [ "K0662h8Q4fs=", "JG/XQ+lZfU4=", "/lfj8xIFS8I=" ],
+	"create offer|protocol version 1|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "DILVHDisA7w=", "WW2DihdWZkQ=", "8GQuhTyrHB8=" ],
 	"create offer|protocol version 1|crossing offers with rounding" : 
 	[
 		"4uUdxWG77QI=",
@@ -37019,7 +37019,7 @@
 		"MXM8MpgQ94o=",
 		"rBPzdsXg0mU="
 	],
-	"create offer|protocol version 20|create offer errors|create offer without XLM to make for reserve" : 
+	"create offer|protocol version 20|create offer errors|create offer without GRAM to make for reserve" : 
 	[
 		"x27nz/FFrHo=",
 		"njRu3zKVM+c=",
@@ -37047,7 +37047,7 @@
 	],
 	"create offer|protocol version 20|create offer errors|create offer without trustline for buying" : [ "x27nz/FFrHo=", "njRu3zKVM+c=", "RLW48bQhWzs=", "+VCWDpD9U/c=" ],
 	"create offer|protocol version 20|create offer errors|create offer without trustline for selling" : [ "x27nz/FFrHo=", "WvI90NxUEOU=" ],
-	"create offer|protocol version 20|create offer|idr -> xlm" : [ "saNdELB7N4A=" ],
+	"create offer|protocol version 20|create offer|idr -> gram" : [ "saNdELB7N4A=" ],
 	"create offer|protocol version 20|create offer|issuer offers" : [ "fPHPVgQ2JZs=", "fPHPVgQ2JZs=" ],
 	"create offer|protocol version 20|create offer|issuer offers|issuer claims an offer from somebody else" : [ "qYSJSy3ebY8=" ],
 	"create offer|protocol version 20|create offer|issuer offers|issuer creates an offer, claimed by somebody else" : [ "++KhRCklplY=", "7HF5WwlxBmc=", "ulBTtcfpmCY=" ],
@@ -37700,9 +37700,9 @@
 		"MutgqvKLZM8=",
 		"urw6MKScDpA="
 	],
-	"create offer|protocol version 20|create offer|xlm -> idr|create" : [ "L5vNlhnJanA=" ],
-	"create offer|protocol version 20|create offer|xlm -> idr|crossing + create" : [ "6YGuEPV4t6s=", "6YGuEPV4t6s=" ],
-	"create offer|protocol version 20|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : 
+	"create offer|protocol version 20|create offer|gram -> idr|create" : [ "L5vNlhnJanA=" ],
+	"create offer|protocol version 20|create offer|gram -> idr|crossing + create" : [ "6YGuEPV4t6s=", "6YGuEPV4t6s=" ],
+	"create offer|protocol version 20|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : 
 	[
 		"6Zes4TqorIU=",
 		"KFvuD9Zokak=",
@@ -37710,7 +37710,7 @@
 		"kaww0ygHKGw=",
 		"m/W199BLqN0="
 	],
-	"create offer|protocol version 20|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "Jx7VP8NQFFo=", "WaCos9QSKXo=", "4j9tXh/D/Ic=" ],
+	"create offer|protocol version 20|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "Jx7VP8NQFFo=", "WaCos9QSKXo=", "4j9tXh/D/Ic=" ],
 	"create offer|protocol version 20|crossed sponsored offers|offer sponsor is other offer account|native for non-native" : 
 	[
 		"mM//crFdYkg=",
@@ -41161,7 +41161,7 @@
 		"+PvmDcMgVBQ=",
 		"/lfj8xIFS8I="
 	],
-	"create offer|protocol version 2|create offer errors|create offer without XLM to make for reserve" : 
+	"create offer|protocol version 2|create offer errors|create offer without GRAM to make for reserve" : 
 	[
 		"XuDATGliI38=",
 		"oSNMkC0ZXHY=",
@@ -41189,7 +41189,7 @@
 	],
 	"create offer|protocol version 2|create offer errors|create offer without trustline for buying" : [ "XuDATGliI38=", "oSNMkC0ZXHY=", "qBT2qx3KxDU=", "/lfj8xIFS8I=" ],
 	"create offer|protocol version 2|create offer errors|create offer without trustline for selling" : [ "XuDATGliI38=", "/lfj8xIFS8I=" ],
-	"create offer|protocol version 2|create offer|idr -> xlm" : [ "pu8TRoilBC8=" ],
+	"create offer|protocol version 2|create offer|idr -> gram" : [ "pu8TRoilBC8=" ],
 	"create offer|protocol version 2|create offer|issuer offers" : [ "DUipqtGpJsA=", "DUipqtGpJsA=" ],
 	"create offer|protocol version 2|create offer|issuer offers|issuer claims an offer from somebody else" : [ "sZG2f3w/KuU=" ],
 	"create offer|protocol version 2|create offer|issuer offers|issuer creates an offer, claimed by somebody else" : [ "024QpaJbQn4=", "01DMMdKwxbA=", "kkm++oknTdE=" ],
@@ -41932,10 +41932,10 @@
 	"create offer|protocol version 2|create offer|offers with limits|creates an offer but top seller is not authorized|D not authorized to hold USD" : [ "erCzhN6wXec=" ],
 	"create offer|protocol version 2|create offer|offers with limits|creates an offer but top seller is not authorized|D not authorized to send IDR" : [ "7wd1CKHccWs=" ],
 	"create offer|protocol version 2|create offer|offers with limits|creates an offer but top seller reaches limit" : [ "vhrxIZQHUR0=", "rr4HuOHEWio=" ],
-	"create offer|protocol version 2|create offer|xlm -> idr|create" : [ "/JHKAlanxUY=" ],
-	"create offer|protocol version 2|create offer|xlm -> idr|crossing + create" : [ "TsEUGePjm/s=", "TsEUGePjm/s=" ],
-	"create offer|protocol version 2|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : [ "K0662h8Q4fs=", "JG/XQ+lZfU4=", "/lfj8xIFS8I=" ],
-	"create offer|protocol version 2|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "DILVHDisA7w=", "WW2DihdWZkQ=", "8GQuhTyrHB8=" ],
+	"create offer|protocol version 2|create offer|gram -> idr|create" : [ "/JHKAlanxUY=" ],
+	"create offer|protocol version 2|create offer|gram -> idr|crossing + create" : [ "TsEUGePjm/s=", "TsEUGePjm/s=" ],
+	"create offer|protocol version 2|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : [ "K0662h8Q4fs=", "JG/XQ+lZfU4=", "/lfj8xIFS8I=" ],
+	"create offer|protocol version 2|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "DILVHDisA7w=", "WW2DihdWZkQ=", "8GQuhTyrHB8=" ],
 	"create offer|protocol version 2|crossing offers with rounding" : 
 	[
 		"4uUdxWG77QI=",
@@ -42450,7 +42450,7 @@
 		"+PvmDcMgVBQ=",
 		"/lfj8xIFS8I="
 	],
-	"create offer|protocol version 3|create offer errors|create offer without XLM to make for reserve" : 
+	"create offer|protocol version 3|create offer errors|create offer without GRAM to make for reserve" : 
 	[
 		"XuDATGliI38=",
 		"oSNMkC0ZXHY=",
@@ -42478,7 +42478,7 @@
 	],
 	"create offer|protocol version 3|create offer errors|create offer without trustline for buying" : [ "XuDATGliI38=", "oSNMkC0ZXHY=", "qBT2qx3KxDU=", "/lfj8xIFS8I=" ],
 	"create offer|protocol version 3|create offer errors|create offer without trustline for selling" : [ "XuDATGliI38=", "/lfj8xIFS8I=" ],
-	"create offer|protocol version 3|create offer|idr -> xlm" : [ "pu8TRoilBC8=" ],
+	"create offer|protocol version 3|create offer|idr -> gram" : [ "pu8TRoilBC8=" ],
 	"create offer|protocol version 3|create offer|issuer offers" : [ "DUipqtGpJsA=", "DUipqtGpJsA=" ],
 	"create offer|protocol version 3|create offer|issuer offers|issuer claims an offer from somebody else" : [ "sZG2f3w/KuU=" ],
 	"create offer|protocol version 3|create offer|issuer offers|issuer creates an offer, claimed by somebody else" : [ "024QpaJbQn4=", "01DMMdKwxbA=", "kkm++oknTdE=" ],
@@ -43221,10 +43221,10 @@
 	"create offer|protocol version 3|create offer|offers with limits|creates an offer but top seller is not authorized|D not authorized to hold USD" : [ "erCzhN6wXec=" ],
 	"create offer|protocol version 3|create offer|offers with limits|creates an offer but top seller is not authorized|D not authorized to send IDR" : [ "7wd1CKHccWs=" ],
 	"create offer|protocol version 3|create offer|offers with limits|creates an offer but top seller reaches limit" : [ "vhrxIZQHUR0=", "rr4HuOHEWio=" ],
-	"create offer|protocol version 3|create offer|xlm -> idr|create" : [ "/JHKAlanxUY=" ],
-	"create offer|protocol version 3|create offer|xlm -> idr|crossing + create" : [ "TsEUGePjm/s=", "TsEUGePjm/s=" ],
-	"create offer|protocol version 3|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : [ "K0662h8Q4fs=", "JG/XQ+lZfU4=", "/lfj8xIFS8I=" ],
-	"create offer|protocol version 3|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "DILVHDisA7w=", "WW2DihdWZkQ=", "8GQuhTyrHB8=" ],
+	"create offer|protocol version 3|create offer|gram -> idr|create" : [ "/JHKAlanxUY=" ],
+	"create offer|protocol version 3|create offer|gram -> idr|crossing + create" : [ "TsEUGePjm/s=", "TsEUGePjm/s=" ],
+	"create offer|protocol version 3|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : [ "K0662h8Q4fs=", "JG/XQ+lZfU4=", "/lfj8xIFS8I=" ],
+	"create offer|protocol version 3|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "DILVHDisA7w=", "WW2DihdWZkQ=", "8GQuhTyrHB8=" ],
 	"create offer|protocol version 3|crossing offers with rounding" : 
 	[
 		"4uUdxWG77QI=",
@@ -43739,7 +43739,7 @@
 		"+PvmDcMgVBQ=",
 		"/lfj8xIFS8I="
 	],
-	"create offer|protocol version 4|create offer errors|create offer without XLM to make for reserve" : 
+	"create offer|protocol version 4|create offer errors|create offer without GRAM to make for reserve" : 
 	[
 		"XuDATGliI38=",
 		"oSNMkC0ZXHY=",
@@ -43767,7 +43767,7 @@
 	],
 	"create offer|protocol version 4|create offer errors|create offer without trustline for buying" : [ "XuDATGliI38=", "oSNMkC0ZXHY=", "qBT2qx3KxDU=", "/lfj8xIFS8I=" ],
 	"create offer|protocol version 4|create offer errors|create offer without trustline for selling" : [ "XuDATGliI38=", "/lfj8xIFS8I=" ],
-	"create offer|protocol version 4|create offer|idr -> xlm" : [ "pu8TRoilBC8=" ],
+	"create offer|protocol version 4|create offer|idr -> gram" : [ "pu8TRoilBC8=" ],
 	"create offer|protocol version 4|create offer|issuer offers" : [ "DUipqtGpJsA=", "DUipqtGpJsA=" ],
 	"create offer|protocol version 4|create offer|issuer offers|issuer claims an offer from somebody else" : [ "sZG2f3w/KuU=" ],
 	"create offer|protocol version 4|create offer|issuer offers|issuer creates an offer, claimed by somebody else" : [ "024QpaJbQn4=", "01DMMdKwxbA=", "kkm++oknTdE=" ],
@@ -44510,10 +44510,10 @@
 	"create offer|protocol version 4|create offer|offers with limits|creates an offer but top seller is not authorized|D not authorized to hold USD" : [ "erCzhN6wXec=" ],
 	"create offer|protocol version 4|create offer|offers with limits|creates an offer but top seller is not authorized|D not authorized to send IDR" : [ "7wd1CKHccWs=" ],
 	"create offer|protocol version 4|create offer|offers with limits|creates an offer but top seller reaches limit" : [ "vhrxIZQHUR0=", "rr4HuOHEWio=" ],
-	"create offer|protocol version 4|create offer|xlm -> idr|create" : [ "/JHKAlanxUY=" ],
-	"create offer|protocol version 4|create offer|xlm -> idr|crossing + create" : [ "TsEUGePjm/s=", "TsEUGePjm/s=" ],
-	"create offer|protocol version 4|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : [ "K0662h8Q4fs=", "JG/XQ+lZfU4=", "/lfj8xIFS8I=" ],
-	"create offer|protocol version 4|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "DILVHDisA7w=", "WW2DihdWZkQ=", "8GQuhTyrHB8=" ],
+	"create offer|protocol version 4|create offer|gram -> idr|create" : [ "/JHKAlanxUY=" ],
+	"create offer|protocol version 4|create offer|gram -> idr|crossing + create" : [ "TsEUGePjm/s=", "TsEUGePjm/s=" ],
+	"create offer|protocol version 4|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : [ "K0662h8Q4fs=", "JG/XQ+lZfU4=", "/lfj8xIFS8I=" ],
+	"create offer|protocol version 4|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "DILVHDisA7w=", "WW2DihdWZkQ=", "8GQuhTyrHB8=" ],
 	"create offer|protocol version 4|crossing offers with rounding" : 
 	[
 		"4uUdxWG77QI=",
@@ -45028,7 +45028,7 @@
 		"+PvmDcMgVBQ=",
 		"/lfj8xIFS8I="
 	],
-	"create offer|protocol version 5|create offer errors|create offer without XLM to make for reserve" : 
+	"create offer|protocol version 5|create offer errors|create offer without GRAM to make for reserve" : 
 	[
 		"XuDATGliI38=",
 		"oSNMkC0ZXHY=",
@@ -45056,7 +45056,7 @@
 	],
 	"create offer|protocol version 5|create offer errors|create offer without trustline for buying" : [ "XuDATGliI38=", "oSNMkC0ZXHY=", "qBT2qx3KxDU=", "/lfj8xIFS8I=" ],
 	"create offer|protocol version 5|create offer errors|create offer without trustline for selling" : [ "XuDATGliI38=", "/lfj8xIFS8I=" ],
-	"create offer|protocol version 5|create offer|idr -> xlm" : [ "pu8TRoilBC8=" ],
+	"create offer|protocol version 5|create offer|idr -> gram" : [ "pu8TRoilBC8=" ],
 	"create offer|protocol version 5|create offer|issuer offers" : [ "DUipqtGpJsA=", "DUipqtGpJsA=" ],
 	"create offer|protocol version 5|create offer|issuer offers|issuer claims an offer from somebody else" : [ "sZG2f3w/KuU=" ],
 	"create offer|protocol version 5|create offer|issuer offers|issuer creates an offer, claimed by somebody else" : [ "024QpaJbQn4=", "01DMMdKwxbA=", "kkm++oknTdE=" ],
@@ -45799,10 +45799,10 @@
 	"create offer|protocol version 5|create offer|offers with limits|creates an offer but top seller is not authorized|D not authorized to hold USD" : [ "erCzhN6wXec=" ],
 	"create offer|protocol version 5|create offer|offers with limits|creates an offer but top seller is not authorized|D not authorized to send IDR" : [ "7wd1CKHccWs=" ],
 	"create offer|protocol version 5|create offer|offers with limits|creates an offer but top seller reaches limit" : [ "vhrxIZQHUR0=", "rr4HuOHEWio=" ],
-	"create offer|protocol version 5|create offer|xlm -> idr|create" : [ "/JHKAlanxUY=" ],
-	"create offer|protocol version 5|create offer|xlm -> idr|crossing + create" : [ "TsEUGePjm/s=", "TsEUGePjm/s=" ],
-	"create offer|protocol version 5|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : [ "K0662h8Q4fs=", "JG/XQ+lZfU4=", "/lfj8xIFS8I=" ],
-	"create offer|protocol version 5|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "DILVHDisA7w=", "WW2DihdWZkQ=", "8GQuhTyrHB8=" ],
+	"create offer|protocol version 5|create offer|gram -> idr|create" : [ "/JHKAlanxUY=" ],
+	"create offer|protocol version 5|create offer|gram -> idr|crossing + create" : [ "TsEUGePjm/s=", "TsEUGePjm/s=" ],
+	"create offer|protocol version 5|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : [ "K0662h8Q4fs=", "JG/XQ+lZfU4=", "/lfj8xIFS8I=" ],
+	"create offer|protocol version 5|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "DILVHDisA7w=", "WW2DihdWZkQ=", "8GQuhTyrHB8=" ],
 	"create offer|protocol version 5|crossing offers with rounding" : 
 	[
 		"4uUdxWG77QI=",
@@ -46317,7 +46317,7 @@
 		"+PvmDcMgVBQ=",
 		"/lfj8xIFS8I="
 	],
-	"create offer|protocol version 6|create offer errors|create offer without XLM to make for reserve" : 
+	"create offer|protocol version 6|create offer errors|create offer without GRAM to make for reserve" : 
 	[
 		"XuDATGliI38=",
 		"oSNMkC0ZXHY=",
@@ -46345,7 +46345,7 @@
 	],
 	"create offer|protocol version 6|create offer errors|create offer without trustline for buying" : [ "XuDATGliI38=", "oSNMkC0ZXHY=", "qBT2qx3KxDU=", "/lfj8xIFS8I=" ],
 	"create offer|protocol version 6|create offer errors|create offer without trustline for selling" : [ "XuDATGliI38=", "/lfj8xIFS8I=" ],
-	"create offer|protocol version 6|create offer|idr -> xlm" : [ "pu8TRoilBC8=" ],
+	"create offer|protocol version 6|create offer|idr -> gram" : [ "pu8TRoilBC8=" ],
 	"create offer|protocol version 6|create offer|issuer offers" : [ "DUipqtGpJsA=", "DUipqtGpJsA=" ],
 	"create offer|protocol version 6|create offer|issuer offers|issuer claims an offer from somebody else" : [ "sZG2f3w/KuU=" ],
 	"create offer|protocol version 6|create offer|issuer offers|issuer creates an offer, claimed by somebody else" : [ "024QpaJbQn4=", "01DMMdKwxbA=", "kkm++oknTdE=" ],
@@ -47088,10 +47088,10 @@
 	"create offer|protocol version 6|create offer|offers with limits|creates an offer but top seller is not authorized|D not authorized to hold USD" : [ "erCzhN6wXec=" ],
 	"create offer|protocol version 6|create offer|offers with limits|creates an offer but top seller is not authorized|D not authorized to send IDR" : [ "7wd1CKHccWs=" ],
 	"create offer|protocol version 6|create offer|offers with limits|creates an offer but top seller reaches limit" : [ "vhrxIZQHUR0=", "rr4HuOHEWio=" ],
-	"create offer|protocol version 6|create offer|xlm -> idr|create" : [ "/JHKAlanxUY=" ],
-	"create offer|protocol version 6|create offer|xlm -> idr|crossing + create" : [ "TsEUGePjm/s=", "TsEUGePjm/s=" ],
-	"create offer|protocol version 6|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : [ "K0662h8Q4fs=", "JG/XQ+lZfU4=", "/lfj8xIFS8I=" ],
-	"create offer|protocol version 6|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "DILVHDisA7w=", "WW2DihdWZkQ=", "8GQuhTyrHB8=" ],
+	"create offer|protocol version 6|create offer|gram -> idr|create" : [ "/JHKAlanxUY=" ],
+	"create offer|protocol version 6|create offer|gram -> idr|crossing + create" : [ "TsEUGePjm/s=", "TsEUGePjm/s=" ],
+	"create offer|protocol version 6|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : [ "K0662h8Q4fs=", "JG/XQ+lZfU4=", "/lfj8xIFS8I=" ],
+	"create offer|protocol version 6|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "DILVHDisA7w=", "WW2DihdWZkQ=", "8GQuhTyrHB8=" ],
 	"create offer|protocol version 6|crossing offers with rounding" : 
 	[
 		"4uUdxWG77QI=",
@@ -47606,7 +47606,7 @@
 		"+PvmDcMgVBQ=",
 		"/lfj8xIFS8I="
 	],
-	"create offer|protocol version 7|create offer errors|create offer without XLM to make for reserve" : 
+	"create offer|protocol version 7|create offer errors|create offer without GRAM to make for reserve" : 
 	[
 		"XuDATGliI38=",
 		"oSNMkC0ZXHY=",
@@ -47634,7 +47634,7 @@
 	],
 	"create offer|protocol version 7|create offer errors|create offer without trustline for buying" : [ "XuDATGliI38=", "oSNMkC0ZXHY=", "qBT2qx3KxDU=", "/lfj8xIFS8I=" ],
 	"create offer|protocol version 7|create offer errors|create offer without trustline for selling" : [ "XuDATGliI38=", "/lfj8xIFS8I=" ],
-	"create offer|protocol version 7|create offer|idr -> xlm" : [ "pu8TRoilBC8=" ],
+	"create offer|protocol version 7|create offer|idr -> gram" : [ "pu8TRoilBC8=" ],
 	"create offer|protocol version 7|create offer|issuer offers" : [ "DUipqtGpJsA=", "DUipqtGpJsA=" ],
 	"create offer|protocol version 7|create offer|issuer offers|issuer claims an offer from somebody else" : [ "sZG2f3w/KuU=" ],
 	"create offer|protocol version 7|create offer|issuer offers|issuer creates an offer, claimed by somebody else" : [ "024QpaJbQn4=", "01DMMdKwxbA=", "kkm++oknTdE=" ],
@@ -48377,10 +48377,10 @@
 	"create offer|protocol version 7|create offer|offers with limits|creates an offer but top seller is not authorized|D not authorized to hold USD" : [ "erCzhN6wXec=" ],
 	"create offer|protocol version 7|create offer|offers with limits|creates an offer but top seller is not authorized|D not authorized to send IDR" : [ "7wd1CKHccWs=" ],
 	"create offer|protocol version 7|create offer|offers with limits|creates an offer but top seller reaches limit" : [ "vhrxIZQHUR0=", "rr4HuOHEWio=" ],
-	"create offer|protocol version 7|create offer|xlm -> idr|create" : [ "/JHKAlanxUY=" ],
-	"create offer|protocol version 7|create offer|xlm -> idr|crossing + create" : [ "TsEUGePjm/s=", "TsEUGePjm/s=" ],
-	"create offer|protocol version 7|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : [ "K0662h8Q4fs=", "JG/XQ+lZfU4=", "/lfj8xIFS8I=" ],
-	"create offer|protocol version 7|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "DILVHDisA7w=", "WW2DihdWZkQ=", "8GQuhTyrHB8=" ],
+	"create offer|protocol version 7|create offer|gram -> idr|create" : [ "/JHKAlanxUY=" ],
+	"create offer|protocol version 7|create offer|gram -> idr|crossing + create" : [ "TsEUGePjm/s=", "TsEUGePjm/s=" ],
+	"create offer|protocol version 7|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : [ "K0662h8Q4fs=", "JG/XQ+lZfU4=", "/lfj8xIFS8I=" ],
+	"create offer|protocol version 7|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "DILVHDisA7w=", "WW2DihdWZkQ=", "8GQuhTyrHB8=" ],
 	"create offer|protocol version 7|crossing offers with rounding" : 
 	[
 		"4uUdxWG77QI=",
@@ -48895,7 +48895,7 @@
 		"+PvmDcMgVBQ=",
 		"/lfj8xIFS8I="
 	],
-	"create offer|protocol version 8|create offer errors|create offer without XLM to make for reserve" : 
+	"create offer|protocol version 8|create offer errors|create offer without GRAM to make for reserve" : 
 	[
 		"XuDATGliI38=",
 		"oSNMkC0ZXHY=",
@@ -48923,7 +48923,7 @@
 	],
 	"create offer|protocol version 8|create offer errors|create offer without trustline for buying" : [ "XuDATGliI38=", "oSNMkC0ZXHY=", "qBT2qx3KxDU=", "/lfj8xIFS8I=" ],
 	"create offer|protocol version 8|create offer errors|create offer without trustline for selling" : [ "XuDATGliI38=", "/lfj8xIFS8I=" ],
-	"create offer|protocol version 8|create offer|idr -> xlm" : [ "pu8TRoilBC8=" ],
+	"create offer|protocol version 8|create offer|idr -> gram" : [ "pu8TRoilBC8=" ],
 	"create offer|protocol version 8|create offer|issuer offers" : [ "DUipqtGpJsA=", "DUipqtGpJsA=" ],
 	"create offer|protocol version 8|create offer|issuer offers|issuer claims an offer from somebody else" : [ "sZG2f3w/KuU=" ],
 	"create offer|protocol version 8|create offer|issuer offers|issuer creates an offer, claimed by somebody else" : [ "024QpaJbQn4=", "01DMMdKwxbA=", "kkm++oknTdE=" ],
@@ -49666,10 +49666,10 @@
 	"create offer|protocol version 8|create offer|offers with limits|creates an offer but top seller is not authorized|D not authorized to hold USD" : [ "erCzhN6wXec=" ],
 	"create offer|protocol version 8|create offer|offers with limits|creates an offer but top seller is not authorized|D not authorized to send IDR" : [ "7wd1CKHccWs=" ],
 	"create offer|protocol version 8|create offer|offers with limits|creates an offer but top seller reaches limit" : [ "vhrxIZQHUR0=", "rr4HuOHEWio=" ],
-	"create offer|protocol version 8|create offer|xlm -> idr|create" : [ "/JHKAlanxUY=" ],
-	"create offer|protocol version 8|create offer|xlm -> idr|crossing + create" : [ "TsEUGePjm/s=", "TsEUGePjm/s=" ],
-	"create offer|protocol version 8|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : [ "K0662h8Q4fs=", "JG/XQ+lZfU4=", "/lfj8xIFS8I=" ],
-	"create offer|protocol version 8|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "DILVHDisA7w=", "WW2DihdWZkQ=", "8GQuhTyrHB8=" ],
+	"create offer|protocol version 8|create offer|gram -> idr|create" : [ "/JHKAlanxUY=" ],
+	"create offer|protocol version 8|create offer|gram -> idr|crossing + create" : [ "TsEUGePjm/s=", "TsEUGePjm/s=" ],
+	"create offer|protocol version 8|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : [ "K0662h8Q4fs=", "JG/XQ+lZfU4=", "/lfj8xIFS8I=" ],
+	"create offer|protocol version 8|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "DILVHDisA7w=", "WW2DihdWZkQ=", "8GQuhTyrHB8=" ],
 	"create offer|protocol version 8|crossing offers with rounding" : 
 	[
 		"4uUdxWG77QI=",
@@ -50184,7 +50184,7 @@
 		"+PvmDcMgVBQ=",
 		"/lfj8xIFS8I="
 	],
-	"create offer|protocol version 9|create offer errors|create offer without XLM to make for reserve" : 
+	"create offer|protocol version 9|create offer errors|create offer without GRAM to make for reserve" : 
 	[
 		"XuDATGliI38=",
 		"oSNMkC0ZXHY=",
@@ -50212,7 +50212,7 @@
 	],
 	"create offer|protocol version 9|create offer errors|create offer without trustline for buying" : [ "XuDATGliI38=", "oSNMkC0ZXHY=", "qBT2qx3KxDU=", "/lfj8xIFS8I=" ],
 	"create offer|protocol version 9|create offer errors|create offer without trustline for selling" : [ "XuDATGliI38=", "/lfj8xIFS8I=" ],
-	"create offer|protocol version 9|create offer|idr -> xlm" : [ "pu8TRoilBC8=" ],
+	"create offer|protocol version 9|create offer|idr -> gram" : [ "pu8TRoilBC8=" ],
 	"create offer|protocol version 9|create offer|issuer offers" : [ "DUipqtGpJsA=", "DUipqtGpJsA=" ],
 	"create offer|protocol version 9|create offer|issuer offers|issuer claims an offer from somebody else" : [ "sZG2f3w/KuU=" ],
 	"create offer|protocol version 9|create offer|issuer offers|issuer creates an offer, claimed by somebody else" : [ "024QpaJbQn4=", "01DMMdKwxbA=", "kkm++oknTdE=" ],
@@ -50955,10 +50955,10 @@
 	"create offer|protocol version 9|create offer|offers with limits|creates an offer but top seller is not authorized|D not authorized to hold USD" : [ "erCzhN6wXec=" ],
 	"create offer|protocol version 9|create offer|offers with limits|creates an offer but top seller is not authorized|D not authorized to send IDR" : [ "7wd1CKHccWs=" ],
 	"create offer|protocol version 9|create offer|offers with limits|creates an offer but top seller reaches limit" : [ "vhrxIZQHUR0=", "rr4HuOHEWio=" ],
-	"create offer|protocol version 9|create offer|xlm -> idr|create" : [ "/JHKAlanxUY=" ],
-	"create offer|protocol version 9|create offer|xlm -> idr|crossing + create" : [ "TsEUGePjm/s=", "TsEUGePjm/s=" ],
-	"create offer|protocol version 9|create offer|xlm -> idr|crossing + create|large amount (oversell) - cross & create" : [ "K0662h8Q4fs=", "JG/XQ+lZfU4=", "chuMQ3FfjEA=" ],
-	"create offer|protocol version 9|create offer|xlm -> idr|crossing + create|small offer amount - cross only" : [ "DILVHDisA7w=", "WW2DihdWZkQ=", "/lfj8xIFS8I=" ],
+	"create offer|protocol version 9|create offer|gram -> idr|create" : [ "/JHKAlanxUY=" ],
+	"create offer|protocol version 9|create offer|gram -> idr|crossing + create" : [ "TsEUGePjm/s=", "TsEUGePjm/s=" ],
+	"create offer|protocol version 9|create offer|gram -> idr|crossing + create|large amount (oversell) - cross & create" : [ "K0662h8Q4fs=", "JG/XQ+lZfU4=", "chuMQ3FfjEA=" ],
+	"create offer|protocol version 9|create offer|gram -> idr|crossing + create|small offer amount - cross only" : [ "DILVHDisA7w=", "WW2DihdWZkQ=", "/lfj8xIFS8I=" ],
 	"create offer|protocol version 9|crossing offers with rounding" : 
 	[
 		"4uUdxWG77QI=",

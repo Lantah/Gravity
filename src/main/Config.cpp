@@ -10,7 +10,7 @@
 #include "history/HistoryArchive.h"
 #include "ledger/LedgerManager.h"
 #include "main/ExternalQueue.h"
-#include "main/StellarCoreVersion.h"
+#include "main/GramrVersion.h"
 #include "scp/LocalNode.h"
 #include "scp/QuorumSetUtils.h"
 #include "util/Fs.h"
@@ -130,7 +130,7 @@ Config::Config() : NODE_SEED(SecretKey::random())
     OVERLAY_PROTOCOL_MIN_VERSION = 27;
     OVERLAY_PROTOCOL_VERSION = 28;
 
-    VERSION_STR = STELLAR_CORE_VERSION;
+    VERSION_STR = GRAMR_VERSION;
 
     // configurable
     RUN_STANDALONE = false;
@@ -188,7 +188,7 @@ Config::Config() : NODE_SEED(SecretKey::random())
     METADATA_OUTPUT_STREAM = "";
     METADATA_DEBUG_LEDGERS = 0;
 
-    LOG_FILE_PATH = "stellar-core-{datetime:%Y-%m-%d_%H-%M-%S}.log";
+    LOG_FILE_PATH = "gramr-{datetime:%Y-%m-%d_%H-%M-%S}.log";
     BUCKET_DIR_PATH = "buckets";
 
     LOG_COLOR = false;
@@ -1562,7 +1562,7 @@ Config::processConfig(std::shared_ptr<cpptoml::table> t)
         verifyLoadGenOpCountForTestingConfigs();
 
         gIsProductionNetwork = NETWORK_PASSPHRASE ==
-                               "Public Global Stellar Network ; September 2015";
+                               "Public Global Lantah Network ; 2023";
 
         // Validators default to starting the network from local state
         FORCE_SCP = NODE_IS_VALIDATOR;

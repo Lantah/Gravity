@@ -158,7 +158,7 @@ class Database : NonMovableOrCopyable
     bool canUsePool() const;
 
     // Drop and recreate all tables in the database target. This is called
-    // by the new-db command on stellar-core.
+    // by the new-db command on gramr.
     void initialize();
 
     // Save `vers` as schema version.

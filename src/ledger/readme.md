@@ -33,7 +33,7 @@ One can think of the historical chain as a linked list of LedgerHeaders:
 Each LedgerHeader has many references described below.
 
 Some key properties are directly inside the LedgerHeader such as the number of
-lumens present at a given time.
+grams present at a given time.
 
 ## Back references
 The way a ledger header refers to a previous ledger is actually done with
@@ -106,7 +106,7 @@ the issuer (authorized flag for example).
 
 ### OfferEntry
 Offers are entries in the Order Book that an account creates.
-Offers are a way to automate simple trading inside the Stellar network.
+Offers are a way to automate simple trading inside the Lantah Network.
 
 # Source code organization
 

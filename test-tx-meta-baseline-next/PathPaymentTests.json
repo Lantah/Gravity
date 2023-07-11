@@ -2311,7 +2311,7 @@
 		"XARVZz/W63E=",
 		"5OUFZZHlc4k="
 	],
-	"pathpayment|protocol version 0|dest amount too big for XLM" : [ "0x5DeY+r7uk=" ],
+	"pathpayment|protocol version 0|dest amount too big for GRAM" : [ "0x5DeY+r7uk=" ],
 	"pathpayment|protocol version 0|dest amount too big for asset" : [ "0x5DeY+r7uk=", "h0JgCaMMbws=", "VtXCXZ79QUI=" ],
 	"pathpayment|protocol version 0|issuer missing" : 
 	[
@@ -2518,7 +2518,7 @@
 		"k5QIerNJV04=",
 		"5OUFZZHlc4k="
 	],
-	"pathpayment|protocol version 0|path payment XLM with not enough funds" : [ "Iq5k5w9CzE8=" ],
+	"pathpayment|protocol version 0|path payment GRAM with not enough funds" : [ "Iq5k5w9CzE8=" ],
 	"pathpayment|protocol version 0|path payment asset with not enough funds" : 
 	[
 		"3SFfUC6hnhs=",
@@ -3174,7 +3174,7 @@
 		"rRSQZSWM/xA=",
 		"z1XYTx5q5u0="
 	],
-	"pathpayment|protocol version 0|path payment over send max XLM" : [ "wOEhTqLZBzU=", "kNbNW4NyDzY=" ],
+	"pathpayment|protocol version 0|path payment over send max GRAM" : [ "wOEhTqLZBzU=", "kNbNW4NyDzY=" ],
 	"pathpayment|protocol version 0|path payment over send max asset" : 
 	[
 		"GCKs5Ag4530=",
@@ -3442,7 +3442,7 @@
 		"xVqZ2ZvnEeE=",
 		"5JgPO5DfpQA="
 	],
-	"pathpayment|protocol version 0|path payment to self XLM" : [ "FFXWf2blLP4=" ],
+	"pathpayment|protocol version 0|path payment to self GRAM" : [ "FFXWf2blLP4=" ],
 	"pathpayment|protocol version 0|path payment to self asset" : [ "lYvlBBGm+v8=", "lOz1fFA01Ec=", "1XAEfe/y15g=" ],
 	"pathpayment|protocol version 0|path payment to self asset over the limit" : [ "lYvlBBGm+v8=", "lOz1fFA01Ec=", "YtzglQj6sxU=" ],
 	"pathpayment|protocol version 0|path payment with rounding errors" : 
@@ -4036,7 +4036,7 @@
 		"ztteMJke1g0=",
 		"BVYxcPf1Yr4="
 	],
-	"pathpayment|protocol version 10|dest amount too big for XLM" : [ "RFByiDrk0l4=", "ruPxFaUx7lE=" ],
+	"pathpayment|protocol version 10|dest amount too big for GRAM" : [ "RFByiDrk0l4=", "ruPxFaUx7lE=" ],
 	"pathpayment|protocol version 10|dest amount too big for asset" : [ "RFByiDrk0l4=", "rmS2gCXBxvo=", "Kuxdj0lW0BM=", "drB8onyy+KU=" ],
 	"pathpayment|protocol version 10|issuer missing" : 
 	[
@@ -4260,7 +4260,7 @@
 		"VTThTVi6UQU=",
 		"ztteMJke1g0="
 	],
-	"pathpayment|protocol version 10|path payment XLM with not enough funds" : [ "XT3pOu8cdhw=", "X1K3BhPgp5o=" ],
+	"pathpayment|protocol version 10|path payment GRAM with not enough funds" : [ "XT3pOu8cdhw=", "X1K3BhPgp5o=" ],
 	"pathpayment|protocol version 10|path payment asset with not enough funds" : 
 	[
 		"+UQ7e4cqii8=",
@@ -4997,7 +4997,7 @@
 		"nuAO7knZdCo=",
 		"mCEppkuG1P0="
 	],
-	"pathpayment|protocol version 10|path payment over send max XLM" : [ "uW+QMcnu4jo=", "Tr398xuAOlM=", "YP84acm1t24=" ],
+	"pathpayment|protocol version 10|path payment over send max GRAM" : [ "uW+QMcnu4jo=", "Tr398xuAOlM=", "YP84acm1t24=" ],
 	"pathpayment|protocol version 10|path payment over send max asset" : 
 	[
 		"KhFo2YknmmM=",
@@ -5322,7 +5322,7 @@
 		"5sQraF6caxM=",
 		"hi1j1LqsfDg="
 	],
-	"pathpayment|protocol version 10|path payment to self XLM" : [ "2aMCWRIFk0U=", "6ueVSu7kRDY=" ],
+	"pathpayment|protocol version 10|path payment to self GRAM" : [ "2aMCWRIFk0U=", "6ueVSu7kRDY=" ],
 	"pathpayment|protocol version 10|path payment to self asset" : [ "VaAdyqnFiRk=", "t88WuQ0sYac=", "yUlqD+DL13g=", "+iHWvnYqliY=" ],
 	"pathpayment|protocol version 10|path payment to self asset over the limit" : [ "VaAdyqnFiRk=", "t88WuQ0sYac=", "2MObD3LGhKc=", "la1NUeI1Z28=" ],
 	"pathpayment|protocol version 10|path payment with cycle" : 
@@ -5577,12 +5577,12 @@
 		"jZ2IcxtmuwI=",
 		"WfylEUOwXGs="
 	],
-	"pathpayment|protocol version 10|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> XLM -> IDR)" : [ "wN2r051AFJg=" ],
-	"pathpayment|protocol version 10|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> XLM -> IDR -> USD)" : [ "rajJDk1VtVk=" ],
-	"pathpayment|protocol version 10|path payment with cycle|anti-arbitrage with big sendmax|send with path (XLM -> IDR -> USD -> XLM)" : [ "cSIjvPKiUIU=" ],
-	"pathpayment|protocol version 10|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "rVjk0mPsm4Y=" ],
-	"pathpayment|protocol version 10|path payment with cycle|anti-arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "rVjk0mPsm4Y=" ],
-	"pathpayment|protocol version 10|path payment with cycle|anti-arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 10|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> GRAM -> IDR)" : [ "wN2r051AFJg=" ],
+	"pathpayment|protocol version 10|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> GRAM -> IDR -> USD)" : [ "rajJDk1VtVk=" ],
+	"pathpayment|protocol version 10|path payment with cycle|anti-arbitrage with big sendmax|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "cSIjvPKiUIU=" ],
+	"pathpayment|protocol version 10|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 10|path payment with cycle|anti-arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 10|path payment with cycle|anti-arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "rVjk0mPsm4Y=" ],
 	"pathpayment|protocol version 10|path payment with cycle|arbitrage" : 
 	[
 		"p6DWB28IZKw=",
@@ -5595,9 +5595,9 @@
 		"wNsSrMO0hu8=",
 		"9puJKjqlZU8="
 	],
-	"pathpayment|protocol version 10|path payment with cycle|arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "x+rKerTjpqg=" ],
-	"pathpayment|protocol version 10|path payment with cycle|arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "PYxaCdCyYu0=" ],
-	"pathpayment|protocol version 10|path payment with cycle|arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "yuucoldlZn4=" ],
+	"pathpayment|protocol version 10|path payment with cycle|arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "x+rKerTjpqg=" ],
+	"pathpayment|protocol version 10|path payment with cycle|arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "PYxaCdCyYu0=" ],
+	"pathpayment|protocol version 10|path payment with cycle|arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "yuucoldlZn4=" ],
 	"pathpayment|protocol version 10|path payment with rounding errors" : 
 	[
 		"s77hb5DFdGk=",
@@ -6025,7 +6025,7 @@
 		"ztteMJke1g0=",
 		"BVYxcPf1Yr4="
 	],
-	"pathpayment|protocol version 11|dest amount too big for XLM" : [ "RFByiDrk0l4=", "ruPxFaUx7lE=" ],
+	"pathpayment|protocol version 11|dest amount too big for GRAM" : [ "RFByiDrk0l4=", "ruPxFaUx7lE=" ],
 	"pathpayment|protocol version 11|dest amount too big for asset" : [ "RFByiDrk0l4=", "rmS2gCXBxvo=", "Kuxdj0lW0BM=", "drB8onyy+KU=" ],
 	"pathpayment|protocol version 11|issuer missing" : 
 	[
@@ -6249,7 +6249,7 @@
 		"VTThTVi6UQU=",
 		"ztteMJke1g0="
 	],
-	"pathpayment|protocol version 11|path payment XLM with not enough funds" : [ "XT3pOu8cdhw=", "X1K3BhPgp5o=" ],
+	"pathpayment|protocol version 11|path payment GRAM with not enough funds" : [ "XT3pOu8cdhw=", "X1K3BhPgp5o=" ],
 	"pathpayment|protocol version 11|path payment asset with not enough funds" : 
 	[
 		"+UQ7e4cqii8=",
@@ -6986,7 +6986,7 @@
 		"nuAO7knZdCo=",
 		"mCEppkuG1P0="
 	],
-	"pathpayment|protocol version 11|path payment over send max XLM" : [ "uW+QMcnu4jo=", "Tr398xuAOlM=", "YP84acm1t24=" ],
+	"pathpayment|protocol version 11|path payment over send max GRAM" : [ "uW+QMcnu4jo=", "Tr398xuAOlM=", "YP84acm1t24=" ],
 	"pathpayment|protocol version 11|path payment over send max asset" : 
 	[
 		"KhFo2YknmmM=",
@@ -7311,7 +7311,7 @@
 		"5sQraF6caxM=",
 		"hi1j1LqsfDg="
 	],
-	"pathpayment|protocol version 11|path payment to self XLM" : [ "2aMCWRIFk0U=", "6ueVSu7kRDY=" ],
+	"pathpayment|protocol version 11|path payment to self GRAM" : [ "2aMCWRIFk0U=", "6ueVSu7kRDY=" ],
 	"pathpayment|protocol version 11|path payment to self asset" : [ "VaAdyqnFiRk=", "t88WuQ0sYac=", "yUlqD+DL13g=", "+iHWvnYqliY=" ],
 	"pathpayment|protocol version 11|path payment to self asset over the limit" : [ "VaAdyqnFiRk=", "t88WuQ0sYac=", "2MObD3LGhKc=", "la1NUeI1Z28=" ],
 	"pathpayment|protocol version 11|path payment with cycle" : 
@@ -7566,12 +7566,12 @@
 		"jZ2IcxtmuwI=",
 		"WfylEUOwXGs="
 	],
-	"pathpayment|protocol version 11|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> XLM -> IDR)" : [ "wN2r051AFJg=" ],
-	"pathpayment|protocol version 11|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> XLM -> IDR -> USD)" : [ "rajJDk1VtVk=" ],
-	"pathpayment|protocol version 11|path payment with cycle|anti-arbitrage with big sendmax|send with path (XLM -> IDR -> USD -> XLM)" : [ "cSIjvPKiUIU=" ],
-	"pathpayment|protocol version 11|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "rVjk0mPsm4Y=" ],
-	"pathpayment|protocol version 11|path payment with cycle|anti-arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "rVjk0mPsm4Y=" ],
-	"pathpayment|protocol version 11|path payment with cycle|anti-arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 11|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> GRAM -> IDR)" : [ "wN2r051AFJg=" ],
+	"pathpayment|protocol version 11|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> GRAM -> IDR -> USD)" : [ "rajJDk1VtVk=" ],
+	"pathpayment|protocol version 11|path payment with cycle|anti-arbitrage with big sendmax|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "cSIjvPKiUIU=" ],
+	"pathpayment|protocol version 11|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 11|path payment with cycle|anti-arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 11|path payment with cycle|anti-arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "rVjk0mPsm4Y=" ],
 	"pathpayment|protocol version 11|path payment with cycle|arbitrage" : 
 	[
 		"p6DWB28IZKw=",
@@ -7584,9 +7584,9 @@
 		"wNsSrMO0hu8=",
 		"9puJKjqlZU8="
 	],
-	"pathpayment|protocol version 11|path payment with cycle|arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "x+rKerTjpqg=" ],
-	"pathpayment|protocol version 11|path payment with cycle|arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "PYxaCdCyYu0=" ],
-	"pathpayment|protocol version 11|path payment with cycle|arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "yuucoldlZn4=" ],
+	"pathpayment|protocol version 11|path payment with cycle|arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "x+rKerTjpqg=" ],
+	"pathpayment|protocol version 11|path payment with cycle|arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "PYxaCdCyYu0=" ],
+	"pathpayment|protocol version 11|path payment with cycle|arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "yuucoldlZn4=" ],
 	"pathpayment|protocol version 11|path payment with rounding errors" : 
 	[
 		"s77hb5DFdGk=",
@@ -8014,7 +8014,7 @@
 		"ztteMJke1g0=",
 		"BVYxcPf1Yr4="
 	],
-	"pathpayment|protocol version 12|dest amount too big for XLM" : [ "RFByiDrk0l4=", "ruPxFaUx7lE=" ],
+	"pathpayment|protocol version 12|dest amount too big for GRAM" : [ "RFByiDrk0l4=", "ruPxFaUx7lE=" ],
 	"pathpayment|protocol version 12|dest amount too big for asset" : [ "RFByiDrk0l4=", "rmS2gCXBxvo=", "Kuxdj0lW0BM=", "drB8onyy+KU=" ],
 	"pathpayment|protocol version 12|issuer missing" : 
 	[
@@ -8238,7 +8238,7 @@
 		"VTThTVi6UQU=",
 		"ztteMJke1g0="
 	],
-	"pathpayment|protocol version 12|path payment XLM with not enough funds" : [ "XT3pOu8cdhw=", "X1K3BhPgp5o=" ],
+	"pathpayment|protocol version 12|path payment GRAM with not enough funds" : [ "XT3pOu8cdhw=", "X1K3BhPgp5o=" ],
 	"pathpayment|protocol version 12|path payment asset with not enough funds" : 
 	[
 		"+UQ7e4cqii8=",
@@ -8975,7 +8975,7 @@
 		"nuAO7knZdCo=",
 		"mCEppkuG1P0="
 	],
-	"pathpayment|protocol version 12|path payment over send max XLM" : [ "uW+QMcnu4jo=", "Tr398xuAOlM=", "YP84acm1t24=" ],
+	"pathpayment|protocol version 12|path payment over send max GRAM" : [ "uW+QMcnu4jo=", "Tr398xuAOlM=", "YP84acm1t24=" ],
 	"pathpayment|protocol version 12|path payment over send max asset" : 
 	[
 		"KhFo2YknmmM=",
@@ -9300,7 +9300,7 @@
 		"5sQraF6caxM=",
 		"hi1j1LqsfDg="
 	],
-	"pathpayment|protocol version 12|path payment to self XLM" : [ "2aMCWRIFk0U=", "6ueVSu7kRDY=" ],
+	"pathpayment|protocol version 12|path payment to self GRAM" : [ "2aMCWRIFk0U=", "6ueVSu7kRDY=" ],
 	"pathpayment|protocol version 12|path payment to self asset" : [ "VaAdyqnFiRk=", "t88WuQ0sYac=", "yUlqD+DL13g=", "+iHWvnYqliY=" ],
 	"pathpayment|protocol version 12|path payment to self asset over the limit" : [ "VaAdyqnFiRk=", "t88WuQ0sYac=", "2MObD3LGhKc=", "la1NUeI1Z28=" ],
 	"pathpayment|protocol version 12|path payment with cycle" : 
@@ -9555,12 +9555,12 @@
 		"jZ2IcxtmuwI=",
 		"WfylEUOwXGs="
 	],
-	"pathpayment|protocol version 12|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> XLM -> IDR)" : [ "wN2r051AFJg=" ],
-	"pathpayment|protocol version 12|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> XLM -> IDR -> USD)" : [ "rajJDk1VtVk=" ],
-	"pathpayment|protocol version 12|path payment with cycle|anti-arbitrage with big sendmax|send with path (XLM -> IDR -> USD -> XLM)" : [ "cSIjvPKiUIU=" ],
-	"pathpayment|protocol version 12|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "rVjk0mPsm4Y=" ],
-	"pathpayment|protocol version 12|path payment with cycle|anti-arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "rVjk0mPsm4Y=" ],
-	"pathpayment|protocol version 12|path payment with cycle|anti-arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 12|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> GRAM -> IDR)" : [ "wN2r051AFJg=" ],
+	"pathpayment|protocol version 12|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> GRAM -> IDR -> USD)" : [ "rajJDk1VtVk=" ],
+	"pathpayment|protocol version 12|path payment with cycle|anti-arbitrage with big sendmax|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "cSIjvPKiUIU=" ],
+	"pathpayment|protocol version 12|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 12|path payment with cycle|anti-arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 12|path payment with cycle|anti-arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "rVjk0mPsm4Y=" ],
 	"pathpayment|protocol version 12|path payment with cycle|arbitrage" : 
 	[
 		"p6DWB28IZKw=",
@@ -9573,9 +9573,9 @@
 		"wNsSrMO0hu8=",
 		"9puJKjqlZU8="
 	],
-	"pathpayment|protocol version 12|path payment with cycle|arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "x+rKerTjpqg=" ],
-	"pathpayment|protocol version 12|path payment with cycle|arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "PYxaCdCyYu0=" ],
-	"pathpayment|protocol version 12|path payment with cycle|arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "yuucoldlZn4=" ],
+	"pathpayment|protocol version 12|path payment with cycle|arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "x+rKerTjpqg=" ],
+	"pathpayment|protocol version 12|path payment with cycle|arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "PYxaCdCyYu0=" ],
+	"pathpayment|protocol version 12|path payment with cycle|arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "yuucoldlZn4=" ],
 	"pathpayment|protocol version 12|path payment with rounding errors" : 
 	[
 		"s77hb5DFdGk=",
@@ -10015,7 +10015,7 @@
 		"ztteMJke1g0=",
 		"BVYxcPf1Yr4="
 	],
-	"pathpayment|protocol version 13|dest amount too big for XLM" : [ "RFByiDrk0l4=", "ruPxFaUx7lE=" ],
+	"pathpayment|protocol version 13|dest amount too big for GRAM" : [ "RFByiDrk0l4=", "ruPxFaUx7lE=" ],
 	"pathpayment|protocol version 13|dest amount too big for asset" : [ "RFByiDrk0l4=", "rmS2gCXBxvo=", "Kuxdj0lW0BM=", "drB8onyy+KU=" ],
 	"pathpayment|protocol version 13|issuer missing" : 
 	[
@@ -10239,7 +10239,7 @@
 		"VTThTVi6UQU=",
 		"ztteMJke1g0="
 	],
-	"pathpayment|protocol version 13|path payment XLM with not enough funds" : [ "XT3pOu8cdhw=", "X1K3BhPgp5o=" ],
+	"pathpayment|protocol version 13|path payment GRAM with not enough funds" : [ "XT3pOu8cdhw=", "X1K3BhPgp5o=" ],
 	"pathpayment|protocol version 13|path payment asset with not enough funds" : 
 	[
 		"+UQ7e4cqii8=",
@@ -10977,7 +10977,7 @@
 		"nuAO7knZdCo=",
 		"mCEppkuG1P0="
 	],
-	"pathpayment|protocol version 13|path payment over send max XLM" : [ "uW+QMcnu4jo=", "Tr398xuAOlM=", "YP84acm1t24=" ],
+	"pathpayment|protocol version 13|path payment over send max GRAM" : [ "uW+QMcnu4jo=", "Tr398xuAOlM=", "YP84acm1t24=" ],
 	"pathpayment|protocol version 13|path payment over send max asset" : 
 	[
 		"KhFo2YknmmM=",
@@ -11303,7 +11303,7 @@
 		"5sQraF6caxM=",
 		"hi1j1LqsfDg="
 	],
-	"pathpayment|protocol version 13|path payment to self XLM" : [ "2aMCWRIFk0U=", "6ueVSu7kRDY=" ],
+	"pathpayment|protocol version 13|path payment to self GRAM" : [ "2aMCWRIFk0U=", "6ueVSu7kRDY=" ],
 	"pathpayment|protocol version 13|path payment to self asset" : [ "VaAdyqnFiRk=", "t88WuQ0sYac=", "yUlqD+DL13g=", "+iHWvnYqliY=" ],
 	"pathpayment|protocol version 13|path payment to self asset over the limit" : [ "VaAdyqnFiRk=", "t88WuQ0sYac=", "2MObD3LGhKc=", "la1NUeI1Z28=" ],
 	"pathpayment|protocol version 13|path payment with cycle" : 
@@ -11558,12 +11558,12 @@
 		"jZ2IcxtmuwI=",
 		"WfylEUOwXGs="
 	],
-	"pathpayment|protocol version 13|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> XLM -> IDR)" : [ "wN2r051AFJg=" ],
-	"pathpayment|protocol version 13|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> XLM -> IDR -> USD)" : [ "rajJDk1VtVk=" ],
-	"pathpayment|protocol version 13|path payment with cycle|anti-arbitrage with big sendmax|send with path (XLM -> IDR -> USD -> XLM)" : [ "cSIjvPKiUIU=" ],
-	"pathpayment|protocol version 13|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "rVjk0mPsm4Y=" ],
-	"pathpayment|protocol version 13|path payment with cycle|anti-arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "rVjk0mPsm4Y=" ],
-	"pathpayment|protocol version 13|path payment with cycle|anti-arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 13|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> GRAM -> IDR)" : [ "wN2r051AFJg=" ],
+	"pathpayment|protocol version 13|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> GRAM -> IDR -> USD)" : [ "rajJDk1VtVk=" ],
+	"pathpayment|protocol version 13|path payment with cycle|anti-arbitrage with big sendmax|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "cSIjvPKiUIU=" ],
+	"pathpayment|protocol version 13|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 13|path payment with cycle|anti-arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 13|path payment with cycle|anti-arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "rVjk0mPsm4Y=" ],
 	"pathpayment|protocol version 13|path payment with cycle|arbitrage" : 
 	[
 		"p6DWB28IZKw=",
@@ -11576,9 +11576,9 @@
 		"wNsSrMO0hu8=",
 		"9puJKjqlZU8="
 	],
-	"pathpayment|protocol version 13|path payment with cycle|arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "x+rKerTjpqg=" ],
-	"pathpayment|protocol version 13|path payment with cycle|arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "PYxaCdCyYu0=" ],
-	"pathpayment|protocol version 13|path payment with cycle|arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "yuucoldlZn4=" ],
+	"pathpayment|protocol version 13|path payment with cycle|arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "x+rKerTjpqg=" ],
+	"pathpayment|protocol version 13|path payment with cycle|arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "PYxaCdCyYu0=" ],
+	"pathpayment|protocol version 13|path payment with cycle|arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "yuucoldlZn4=" ],
 	"pathpayment|protocol version 13|path payment with rounding errors" : 
 	[
 		"s77hb5DFdGk=",
@@ -13458,7 +13458,7 @@
 	"pathpayment|protocol version 14|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross three offers fully" : [ "Zjz18JfhuwA=" ],
 	"pathpayment|protocol version 14|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross two offers fully" : [ "uugCW5HcXBM=" ],
 	"pathpayment|protocol version 14|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross two offers fully and one partially" : [ "NBD4h7Cuzb4=" ],
-	"pathpayment|protocol version 14|dest amount too big for XLM" : [ "RFByiDrk0l4=", "ruPxFaUx7lE=" ],
+	"pathpayment|protocol version 14|dest amount too big for GRAM" : [ "RFByiDrk0l4=", "ruPxFaUx7lE=" ],
 	"pathpayment|protocol version 14|dest amount too big for asset" : [ "RFByiDrk0l4=", "rmS2gCXBxvo=", "Kuxdj0lW0BM=", "drB8onyy+KU=" ],
 	"pathpayment|protocol version 14|issuer missing" : 
 	[
@@ -13682,7 +13682,7 @@
 		"VTThTVi6UQU=",
 		"ztteMJke1g0="
 	],
-	"pathpayment|protocol version 14|path payment XLM with not enough funds" : [ "XT3pOu8cdhw=", "X1K3BhPgp5o=" ],
+	"pathpayment|protocol version 14|path payment GRAM with not enough funds" : [ "XT3pOu8cdhw=", "X1K3BhPgp5o=" ],
 	"pathpayment|protocol version 14|path payment asset with not enough funds" : 
 	[
 		"+UQ7e4cqii8=",
@@ -14420,7 +14420,7 @@
 		"nuAO7knZdCo=",
 		"mCEppkuG1P0="
 	],
-	"pathpayment|protocol version 14|path payment over send max XLM" : [ "uW+QMcnu4jo=", "Tr398xuAOlM=", "YP84acm1t24=" ],
+	"pathpayment|protocol version 14|path payment over send max GRAM" : [ "uW+QMcnu4jo=", "Tr398xuAOlM=", "YP84acm1t24=" ],
 	"pathpayment|protocol version 14|path payment over send max asset" : 
 	[
 		"KhFo2YknmmM=",
@@ -14746,7 +14746,7 @@
 		"5sQraF6caxM=",
 		"hi1j1LqsfDg="
 	],
-	"pathpayment|protocol version 14|path payment to self XLM" : [ "2aMCWRIFk0U=", "6ueVSu7kRDY=" ],
+	"pathpayment|protocol version 14|path payment to self GRAM" : [ "2aMCWRIFk0U=", "6ueVSu7kRDY=" ],
 	"pathpayment|protocol version 14|path payment to self asset" : [ "VaAdyqnFiRk=", "t88WuQ0sYac=", "yUlqD+DL13g=", "+iHWvnYqliY=" ],
 	"pathpayment|protocol version 14|path payment to self asset over the limit" : [ "VaAdyqnFiRk=", "t88WuQ0sYac=", "2MObD3LGhKc=", "la1NUeI1Z28=" ],
 	"pathpayment|protocol version 14|path payment with cycle" : 
@@ -15001,12 +15001,12 @@
 		"jZ2IcxtmuwI=",
 		"WfylEUOwXGs="
 	],
-	"pathpayment|protocol version 14|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> XLM -> IDR)" : [ "wN2r051AFJg=" ],
-	"pathpayment|protocol version 14|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> XLM -> IDR -> USD)" : [ "rajJDk1VtVk=" ],
-	"pathpayment|protocol version 14|path payment with cycle|anti-arbitrage with big sendmax|send with path (XLM -> IDR -> USD -> XLM)" : [ "cSIjvPKiUIU=" ],
-	"pathpayment|protocol version 14|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "rVjk0mPsm4Y=" ],
-	"pathpayment|protocol version 14|path payment with cycle|anti-arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "rVjk0mPsm4Y=" ],
-	"pathpayment|protocol version 14|path payment with cycle|anti-arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 14|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> GRAM -> IDR)" : [ "wN2r051AFJg=" ],
+	"pathpayment|protocol version 14|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> GRAM -> IDR -> USD)" : [ "rajJDk1VtVk=" ],
+	"pathpayment|protocol version 14|path payment with cycle|anti-arbitrage with big sendmax|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "cSIjvPKiUIU=" ],
+	"pathpayment|protocol version 14|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 14|path payment with cycle|anti-arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 14|path payment with cycle|anti-arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "rVjk0mPsm4Y=" ],
 	"pathpayment|protocol version 14|path payment with cycle|arbitrage" : 
 	[
 		"p6DWB28IZKw=",
@@ -15019,9 +15019,9 @@
 		"wNsSrMO0hu8=",
 		"9puJKjqlZU8="
 	],
-	"pathpayment|protocol version 14|path payment with cycle|arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "x+rKerTjpqg=" ],
-	"pathpayment|protocol version 14|path payment with cycle|arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "PYxaCdCyYu0=" ],
-	"pathpayment|protocol version 14|path payment with cycle|arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "yuucoldlZn4=" ],
+	"pathpayment|protocol version 14|path payment with cycle|arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "x+rKerTjpqg=" ],
+	"pathpayment|protocol version 14|path payment with cycle|arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "PYxaCdCyYu0=" ],
+	"pathpayment|protocol version 14|path payment with cycle|arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "yuucoldlZn4=" ],
 	"pathpayment|protocol version 14|path payment with rounding errors" : 
 	[
 		"s77hb5DFdGk=",
@@ -16901,7 +16901,7 @@
 	"pathpayment|protocol version 15|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross three offers fully" : [ "Zjz18JfhuwA=" ],
 	"pathpayment|protocol version 15|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross two offers fully" : [ "uugCW5HcXBM=" ],
 	"pathpayment|protocol version 15|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross two offers fully and one partially" : [ "NBD4h7Cuzb4=" ],
-	"pathpayment|protocol version 15|dest amount too big for XLM" : [ "RFByiDrk0l4=", "ruPxFaUx7lE=" ],
+	"pathpayment|protocol version 15|dest amount too big for GRAM" : [ "RFByiDrk0l4=", "ruPxFaUx7lE=" ],
 	"pathpayment|protocol version 15|dest amount too big for asset" : [ "RFByiDrk0l4=", "rmS2gCXBxvo=", "Kuxdj0lW0BM=", "drB8onyy+KU=" ],
 	"pathpayment|protocol version 15|issuer missing" : 
 	[
@@ -17125,7 +17125,7 @@
 		"VTThTVi6UQU=",
 		"ztteMJke1g0="
 	],
-	"pathpayment|protocol version 15|path payment XLM with not enough funds" : [ "XT3pOu8cdhw=", "X1K3BhPgp5o=" ],
+	"pathpayment|protocol version 15|path payment GRAM with not enough funds" : [ "XT3pOu8cdhw=", "X1K3BhPgp5o=" ],
 	"pathpayment|protocol version 15|path payment asset with not enough funds" : 
 	[
 		"+UQ7e4cqii8=",
@@ -17863,7 +17863,7 @@
 		"nuAO7knZdCo=",
 		"mCEppkuG1P0="
 	],
-	"pathpayment|protocol version 15|path payment over send max XLM" : [ "uW+QMcnu4jo=", "Tr398xuAOlM=", "YP84acm1t24=" ],
+	"pathpayment|protocol version 15|path payment over send max GRAM" : [ "uW+QMcnu4jo=", "Tr398xuAOlM=", "YP84acm1t24=" ],
 	"pathpayment|protocol version 15|path payment over send max asset" : 
 	[
 		"KhFo2YknmmM=",
@@ -18189,7 +18189,7 @@
 		"5sQraF6caxM=",
 		"hi1j1LqsfDg="
 	],
-	"pathpayment|protocol version 15|path payment to self XLM" : [ "2aMCWRIFk0U=", "6ueVSu7kRDY=" ],
+	"pathpayment|protocol version 15|path payment to self GRAM" : [ "2aMCWRIFk0U=", "6ueVSu7kRDY=" ],
 	"pathpayment|protocol version 15|path payment to self asset" : [ "VaAdyqnFiRk=", "t88WuQ0sYac=", "yUlqD+DL13g=", "+iHWvnYqliY=" ],
 	"pathpayment|protocol version 15|path payment to self asset over the limit" : [ "VaAdyqnFiRk=", "t88WuQ0sYac=", "2MObD3LGhKc=", "la1NUeI1Z28=" ],
 	"pathpayment|protocol version 15|path payment with cycle" : 
@@ -18444,12 +18444,12 @@
 		"jZ2IcxtmuwI=",
 		"WfylEUOwXGs="
 	],
-	"pathpayment|protocol version 15|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> XLM -> IDR)" : [ "wN2r051AFJg=" ],
-	"pathpayment|protocol version 15|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> XLM -> IDR -> USD)" : [ "rajJDk1VtVk=" ],
-	"pathpayment|protocol version 15|path payment with cycle|anti-arbitrage with big sendmax|send with path (XLM -> IDR -> USD -> XLM)" : [ "cSIjvPKiUIU=" ],
-	"pathpayment|protocol version 15|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "rVjk0mPsm4Y=" ],
-	"pathpayment|protocol version 15|path payment with cycle|anti-arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "rVjk0mPsm4Y=" ],
-	"pathpayment|protocol version 15|path payment with cycle|anti-arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 15|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> GRAM -> IDR)" : [ "wN2r051AFJg=" ],
+	"pathpayment|protocol version 15|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> GRAM -> IDR -> USD)" : [ "rajJDk1VtVk=" ],
+	"pathpayment|protocol version 15|path payment with cycle|anti-arbitrage with big sendmax|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "cSIjvPKiUIU=" ],
+	"pathpayment|protocol version 15|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 15|path payment with cycle|anti-arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 15|path payment with cycle|anti-arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "rVjk0mPsm4Y=" ],
 	"pathpayment|protocol version 15|path payment with cycle|arbitrage" : 
 	[
 		"p6DWB28IZKw=",
@@ -18462,9 +18462,9 @@
 		"wNsSrMO0hu8=",
 		"9puJKjqlZU8="
 	],
-	"pathpayment|protocol version 15|path payment with cycle|arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "x+rKerTjpqg=" ],
-	"pathpayment|protocol version 15|path payment with cycle|arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "PYxaCdCyYu0=" ],
-	"pathpayment|protocol version 15|path payment with cycle|arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "yuucoldlZn4=" ],
+	"pathpayment|protocol version 15|path payment with cycle|arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "x+rKerTjpqg=" ],
+	"pathpayment|protocol version 15|path payment with cycle|arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "PYxaCdCyYu0=" ],
+	"pathpayment|protocol version 15|path payment with cycle|arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "yuucoldlZn4=" ],
 	"pathpayment|protocol version 15|path payment with rounding errors" : 
 	[
 		"s77hb5DFdGk=",
@@ -20344,7 +20344,7 @@
 	"pathpayment|protocol version 16|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross three offers fully" : [ "Zjz18JfhuwA=" ],
 	"pathpayment|protocol version 16|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross two offers fully" : [ "uugCW5HcXBM=" ],
 	"pathpayment|protocol version 16|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross two offers fully and one partially" : [ "NBD4h7Cuzb4=" ],
-	"pathpayment|protocol version 16|dest amount too big for XLM" : [ "RFByiDrk0l4=", "ruPxFaUx7lE=" ],
+	"pathpayment|protocol version 16|dest amount too big for GRAM" : [ "RFByiDrk0l4=", "ruPxFaUx7lE=" ],
 	"pathpayment|protocol version 16|dest amount too big for asset" : [ "RFByiDrk0l4=", "rmS2gCXBxvo=", "Kuxdj0lW0BM=", "drB8onyy+KU=" ],
 	"pathpayment|protocol version 16|issuer missing" : 
 	[
@@ -20568,7 +20568,7 @@
 		"VTThTVi6UQU=",
 		"ztteMJke1g0="
 	],
-	"pathpayment|protocol version 16|path payment XLM with not enough funds" : [ "XT3pOu8cdhw=", "X1K3BhPgp5o=" ],
+	"pathpayment|protocol version 16|path payment GRAM with not enough funds" : [ "XT3pOu8cdhw=", "X1K3BhPgp5o=" ],
 	"pathpayment|protocol version 16|path payment asset with not enough funds" : 
 	[
 		"+UQ7e4cqii8=",
@@ -21306,7 +21306,7 @@
 		"nuAO7knZdCo=",
 		"mCEppkuG1P0="
 	],
-	"pathpayment|protocol version 16|path payment over send max XLM" : [ "uW+QMcnu4jo=", "Tr398xuAOlM=", "YP84acm1t24=" ],
+	"pathpayment|protocol version 16|path payment over send max GRAM" : [ "uW+QMcnu4jo=", "Tr398xuAOlM=", "YP84acm1t24=" ],
 	"pathpayment|protocol version 16|path payment over send max asset" : 
 	[
 		"KhFo2YknmmM=",
@@ -21632,7 +21632,7 @@
 		"5sQraF6caxM=",
 		"hi1j1LqsfDg="
 	],
-	"pathpayment|protocol version 16|path payment to self XLM" : [ "2aMCWRIFk0U=", "6ueVSu7kRDY=" ],
+	"pathpayment|protocol version 16|path payment to self GRAM" : [ "2aMCWRIFk0U=", "6ueVSu7kRDY=" ],
 	"pathpayment|protocol version 16|path payment to self asset" : [ "VaAdyqnFiRk=", "t88WuQ0sYac=", "yUlqD+DL13g=", "+iHWvnYqliY=" ],
 	"pathpayment|protocol version 16|path payment to self asset over the limit" : [ "VaAdyqnFiRk=", "t88WuQ0sYac=", "2MObD3LGhKc=", "la1NUeI1Z28=" ],
 	"pathpayment|protocol version 16|path payment with cycle" : 
@@ -21887,12 +21887,12 @@
 		"jZ2IcxtmuwI=",
 		"WfylEUOwXGs="
 	],
-	"pathpayment|protocol version 16|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> XLM -> IDR)" : [ "wN2r051AFJg=" ],
-	"pathpayment|protocol version 16|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> XLM -> IDR -> USD)" : [ "rajJDk1VtVk=" ],
-	"pathpayment|protocol version 16|path payment with cycle|anti-arbitrage with big sendmax|send with path (XLM -> IDR -> USD -> XLM)" : [ "cSIjvPKiUIU=" ],
-	"pathpayment|protocol version 16|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "rVjk0mPsm4Y=" ],
-	"pathpayment|protocol version 16|path payment with cycle|anti-arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "rVjk0mPsm4Y=" ],
-	"pathpayment|protocol version 16|path payment with cycle|anti-arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 16|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> GRAM -> IDR)" : [ "wN2r051AFJg=" ],
+	"pathpayment|protocol version 16|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> GRAM -> IDR -> USD)" : [ "rajJDk1VtVk=" ],
+	"pathpayment|protocol version 16|path payment with cycle|anti-arbitrage with big sendmax|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "cSIjvPKiUIU=" ],
+	"pathpayment|protocol version 16|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 16|path payment with cycle|anti-arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 16|path payment with cycle|anti-arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "rVjk0mPsm4Y=" ],
 	"pathpayment|protocol version 16|path payment with cycle|arbitrage" : 
 	[
 		"p6DWB28IZKw=",
@@ -21905,9 +21905,9 @@
 		"wNsSrMO0hu8=",
 		"9puJKjqlZU8="
 	],
-	"pathpayment|protocol version 16|path payment with cycle|arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "x+rKerTjpqg=" ],
-	"pathpayment|protocol version 16|path payment with cycle|arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "PYxaCdCyYu0=" ],
-	"pathpayment|protocol version 16|path payment with cycle|arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "yuucoldlZn4=" ],
+	"pathpayment|protocol version 16|path payment with cycle|arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "x+rKerTjpqg=" ],
+	"pathpayment|protocol version 16|path payment with cycle|arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "PYxaCdCyYu0=" ],
+	"pathpayment|protocol version 16|path payment with cycle|arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "yuucoldlZn4=" ],
 	"pathpayment|protocol version 16|path payment with rounding errors" : 
 	[
 		"s77hb5DFdGk=",
@@ -23787,7 +23787,7 @@
 	"pathpayment|protocol version 17|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross three offers fully" : [ "Zjz18JfhuwA=" ],
 	"pathpayment|protocol version 17|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross two offers fully" : [ "uugCW5HcXBM=" ],
 	"pathpayment|protocol version 17|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross two offers fully and one partially" : [ "NBD4h7Cuzb4=" ],
-	"pathpayment|protocol version 17|dest amount too big for XLM" : [ "RFByiDrk0l4=", "ruPxFaUx7lE=" ],
+	"pathpayment|protocol version 17|dest amount too big for GRAM" : [ "RFByiDrk0l4=", "ruPxFaUx7lE=" ],
 	"pathpayment|protocol version 17|dest amount too big for asset" : [ "RFByiDrk0l4=", "rmS2gCXBxvo=", "Kuxdj0lW0BM=", "drB8onyy+KU=" ],
 	"pathpayment|protocol version 17|issuer missing" : 
 	[
@@ -24011,7 +24011,7 @@
 		"VTThTVi6UQU=",
 		"ztteMJke1g0="
 	],
-	"pathpayment|protocol version 17|path payment XLM with not enough funds" : [ "XT3pOu8cdhw=", "X1K3BhPgp5o=" ],
+	"pathpayment|protocol version 17|path payment GRAM with not enough funds" : [ "XT3pOu8cdhw=", "X1K3BhPgp5o=" ],
 	"pathpayment|protocol version 17|path payment asset with not enough funds" : 
 	[
 		"+UQ7e4cqii8=",
@@ -24749,7 +24749,7 @@
 		"nuAO7knZdCo=",
 		"mCEppkuG1P0="
 	],
-	"pathpayment|protocol version 17|path payment over send max XLM" : [ "uW+QMcnu4jo=", "Tr398xuAOlM=", "YP84acm1t24=" ],
+	"pathpayment|protocol version 17|path payment over send max GRAM" : [ "uW+QMcnu4jo=", "Tr398xuAOlM=", "YP84acm1t24=" ],
 	"pathpayment|protocol version 17|path payment over send max asset" : 
 	[
 		"KhFo2YknmmM=",
@@ -25075,7 +25075,7 @@
 		"5sQraF6caxM=",
 		"hi1j1LqsfDg="
 	],
-	"pathpayment|protocol version 17|path payment to self XLM" : [ "2aMCWRIFk0U=", "6ueVSu7kRDY=" ],
+	"pathpayment|protocol version 17|path payment to self GRAM" : [ "2aMCWRIFk0U=", "6ueVSu7kRDY=" ],
 	"pathpayment|protocol version 17|path payment to self asset" : [ "VaAdyqnFiRk=", "t88WuQ0sYac=", "yUlqD+DL13g=", "+iHWvnYqliY=" ],
 	"pathpayment|protocol version 17|path payment to self asset over the limit" : [ "VaAdyqnFiRk=", "t88WuQ0sYac=", "2MObD3LGhKc=", "la1NUeI1Z28=" ],
 	"pathpayment|protocol version 17|path payment with cycle" : 
@@ -25330,12 +25330,12 @@
 		"jZ2IcxtmuwI=",
 		"WfylEUOwXGs="
 	],
-	"pathpayment|protocol version 17|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> XLM -> IDR)" : [ "wN2r051AFJg=" ],
-	"pathpayment|protocol version 17|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> XLM -> IDR -> USD)" : [ "rajJDk1VtVk=" ],
-	"pathpayment|protocol version 17|path payment with cycle|anti-arbitrage with big sendmax|send with path (XLM -> IDR -> USD -> XLM)" : [ "cSIjvPKiUIU=" ],
-	"pathpayment|protocol version 17|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "rVjk0mPsm4Y=" ],
-	"pathpayment|protocol version 17|path payment with cycle|anti-arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "rVjk0mPsm4Y=" ],
-	"pathpayment|protocol version 17|path payment with cycle|anti-arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 17|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> GRAM -> IDR)" : [ "wN2r051AFJg=" ],
+	"pathpayment|protocol version 17|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> GRAM -> IDR -> USD)" : [ "rajJDk1VtVk=" ],
+	"pathpayment|protocol version 17|path payment with cycle|anti-arbitrage with big sendmax|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "cSIjvPKiUIU=" ],
+	"pathpayment|protocol version 17|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 17|path payment with cycle|anti-arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 17|path payment with cycle|anti-arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "rVjk0mPsm4Y=" ],
 	"pathpayment|protocol version 17|path payment with cycle|arbitrage" : 
 	[
 		"p6DWB28IZKw=",
@@ -25348,9 +25348,9 @@
 		"wNsSrMO0hu8=",
 		"9puJKjqlZU8="
 	],
-	"pathpayment|protocol version 17|path payment with cycle|arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "x+rKerTjpqg=" ],
-	"pathpayment|protocol version 17|path payment with cycle|arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "PYxaCdCyYu0=" ],
-	"pathpayment|protocol version 17|path payment with cycle|arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "yuucoldlZn4=" ],
+	"pathpayment|protocol version 17|path payment with cycle|arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "x+rKerTjpqg=" ],
+	"pathpayment|protocol version 17|path payment with cycle|arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "PYxaCdCyYu0=" ],
+	"pathpayment|protocol version 17|path payment with cycle|arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "yuucoldlZn4=" ],
 	"pathpayment|protocol version 17|path payment with rounding errors" : 
 	[
 		"s77hb5DFdGk=",
@@ -27230,7 +27230,7 @@
 	"pathpayment|protocol version 18|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross three offers fully" : [ "Zjz18JfhuwA=" ],
 	"pathpayment|protocol version 18|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross two offers fully" : [ "uugCW5HcXBM=" ],
 	"pathpayment|protocol version 18|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross two offers fully and one partially" : [ "NBD4h7Cuzb4=" ],
-	"pathpayment|protocol version 18|dest amount too big for XLM" : [ "RFByiDrk0l4=", "ruPxFaUx7lE=" ],
+	"pathpayment|protocol version 18|dest amount too big for GRAM" : [ "RFByiDrk0l4=", "ruPxFaUx7lE=" ],
 	"pathpayment|protocol version 18|dest amount too big for asset" : [ "RFByiDrk0l4=", "rmS2gCXBxvo=", "Kuxdj0lW0BM=", "drB8onyy+KU=" ],
 	"pathpayment|protocol version 18|issuer missing" : 
 	[
@@ -27454,7 +27454,7 @@
 		"VTThTVi6UQU=",
 		"ztteMJke1g0="
 	],
-	"pathpayment|protocol version 18|path payment XLM with not enough funds" : [ "XT3pOu8cdhw=", "X1K3BhPgp5o=" ],
+	"pathpayment|protocol version 18|path payment GRAM with not enough funds" : [ "XT3pOu8cdhw=", "X1K3BhPgp5o=" ],
 	"pathpayment|protocol version 18|path payment asset with not enough funds" : 
 	[
 		"+UQ7e4cqii8=",
@@ -28192,7 +28192,7 @@
 		"nuAO7knZdCo=",
 		"mCEppkuG1P0="
 	],
-	"pathpayment|protocol version 18|path payment over send max XLM" : [ "uW+QMcnu4jo=", "Tr398xuAOlM=", "YP84acm1t24=" ],
+	"pathpayment|protocol version 18|path payment over send max GRAM" : [ "uW+QMcnu4jo=", "Tr398xuAOlM=", "YP84acm1t24=" ],
 	"pathpayment|protocol version 18|path payment over send max asset" : 
 	[
 		"KhFo2YknmmM=",
@@ -28518,7 +28518,7 @@
 		"5sQraF6caxM=",
 		"hi1j1LqsfDg="
 	],
-	"pathpayment|protocol version 18|path payment to self XLM" : [ "2aMCWRIFk0U=", "6ueVSu7kRDY=" ],
+	"pathpayment|protocol version 18|path payment to self GRAM" : [ "2aMCWRIFk0U=", "6ueVSu7kRDY=" ],
 	"pathpayment|protocol version 18|path payment to self asset" : [ "VaAdyqnFiRk=", "t88WuQ0sYac=", "yUlqD+DL13g=", "+iHWvnYqliY=" ],
 	"pathpayment|protocol version 18|path payment to self asset over the limit" : [ "VaAdyqnFiRk=", "t88WuQ0sYac=", "2MObD3LGhKc=", "la1NUeI1Z28=" ],
 	"pathpayment|protocol version 18|path payment with cycle" : 
@@ -28773,12 +28773,12 @@
 		"jZ2IcxtmuwI=",
 		"WfylEUOwXGs="
 	],
-	"pathpayment|protocol version 18|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> XLM -> IDR)" : [ "wN2r051AFJg=" ],
-	"pathpayment|protocol version 18|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> XLM -> IDR -> USD)" : [ "rajJDk1VtVk=" ],
-	"pathpayment|protocol version 18|path payment with cycle|anti-arbitrage with big sendmax|send with path (XLM -> IDR -> USD -> XLM)" : [ "cSIjvPKiUIU=" ],
-	"pathpayment|protocol version 18|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "rVjk0mPsm4Y=" ],
-	"pathpayment|protocol version 18|path payment with cycle|anti-arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "rVjk0mPsm4Y=" ],
-	"pathpayment|protocol version 18|path payment with cycle|anti-arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 18|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> GRAM -> IDR)" : [ "wN2r051AFJg=" ],
+	"pathpayment|protocol version 18|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> GRAM -> IDR -> USD)" : [ "rajJDk1VtVk=" ],
+	"pathpayment|protocol version 18|path payment with cycle|anti-arbitrage with big sendmax|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "cSIjvPKiUIU=" ],
+	"pathpayment|protocol version 18|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 18|path payment with cycle|anti-arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "rVjk0mPsm4Y=" ],
+	"pathpayment|protocol version 18|path payment with cycle|anti-arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "rVjk0mPsm4Y=" ],
 	"pathpayment|protocol version 18|path payment with cycle|arbitrage" : 
 	[
 		"p6DWB28IZKw=",
@@ -28791,9 +28791,9 @@
 		"wNsSrMO0hu8=",
 		"9puJKjqlZU8="
 	],
-	"pathpayment|protocol version 18|path payment with cycle|arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "x+rKerTjpqg=" ],
-	"pathpayment|protocol version 18|path payment with cycle|arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "PYxaCdCyYu0=" ],
-	"pathpayment|protocol version 18|path payment with cycle|arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "yuucoldlZn4=" ],
+	"pathpayment|protocol version 18|path payment with cycle|arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "x+rKerTjpqg=" ],
+	"pathpayment|protocol version 18|path payment with cycle|arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "PYxaCdCyYu0=" ],
+	"pathpayment|protocol version 18|path payment with cycle|arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "yuucoldlZn4=" ],
 	"pathpayment|protocol version 18|path payment with rounding errors" : 
 	[
 		"s77hb5DFdGk=",
@@ -30673,7 +30673,7 @@
 	"pathpayment|protocol version 19|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross three offers fully" : [ "Xna4omKJltU=" ],
 	"pathpayment|protocol version 19|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross two offers fully" : [ "fYPychnBMDs=" ],
 	"pathpayment|protocol version 19|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross two offers fully and one partially" : [ "XcZTirPbB+Q=" ],
-	"pathpayment|protocol version 19|dest amount too big for XLM" : [ "0UBTgjBJQxA=", "q02uKuKv3WY=" ],
+	"pathpayment|protocol version 19|dest amount too big for GRAM" : [ "0UBTgjBJQxA=", "q02uKuKv3WY=" ],
 	"pathpayment|protocol version 19|dest amount too big for asset" : [ "0UBTgjBJQxA=", "AL1I5MsIItw=", "HaIeM5DhYt0=", "HMP69kbvJno=" ],
 	"pathpayment|protocol version 19|issuer missing" : 
 	[
@@ -30897,7 +30897,7 @@
 		"+wQ1vKWmlys=",
 		"XnpWHiUb2Xk="
 	],
-	"pathpayment|protocol version 19|path payment XLM with not enough funds" : [ "ggKgiPiYJXk=", "FkhnBbD80X4=" ],
+	"pathpayment|protocol version 19|path payment GRAM with not enough funds" : [ "ggKgiPiYJXk=", "FkhnBbD80X4=" ],
 	"pathpayment|protocol version 19|path payment asset with not enough funds" : 
 	[
 		"bDvRudTvatg=",
@@ -31635,7 +31635,7 @@
 		"AOMAiotaIUw=",
 		"lxruYXDzucM="
 	],
-	"pathpayment|protocol version 19|path payment over send max XLM" : [ "PKF5mVWuhw8=", "9FwZRnHVSoU=", "0RrYNT8ICpA=" ],
+	"pathpayment|protocol version 19|path payment over send max GRAM" : [ "PKF5mVWuhw8=", "9FwZRnHVSoU=", "0RrYNT8ICpA=" ],
 	"pathpayment|protocol version 19|path payment over send max asset" : 
 	[
 		"BzGp53I5+ps=",
@@ -31961,7 +31961,7 @@
 		"u5GZ8ituy6k=",
 		"dOANVSaPnmY="
 	],
-	"pathpayment|protocol version 19|path payment to self XLM" : [ "puStD8lL7go=", "aJtcNXgHcpA=" ],
+	"pathpayment|protocol version 19|path payment to self GRAM" : [ "puStD8lL7go=", "aJtcNXgHcpA=" ],
 	"pathpayment|protocol version 19|path payment to self asset" : [ "HOKK1+mn5JI=", "++cLHNjkidw=", "CBqAYUCAMeY=", "lywc6HZDTPc=" ],
 	"pathpayment|protocol version 19|path payment to self asset over the limit" : [ "HOKK1+mn5JI=", "++cLHNjkidw=", "sRCdDZvc0jk=", "brxL1/V08DI=" ],
 	"pathpayment|protocol version 19|path payment with cycle" : 
@@ -32216,12 +32216,12 @@
 		"WB3OrwhYkdc=",
 		"7GAygwZ+oPk="
 	],
-	"pathpayment|protocol version 19|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> XLM -> IDR)" : [ "PvEZ9Lc8ivU=" ],
-	"pathpayment|protocol version 19|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> XLM -> IDR -> USD)" : [ "Vs0zgGNgDYI=" ],
-	"pathpayment|protocol version 19|path payment with cycle|anti-arbitrage with big sendmax|send with path (XLM -> IDR -> USD -> XLM)" : [ "3GXKusQoDrg=" ],
-	"pathpayment|protocol version 19|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "2vNGHibT6v0=" ],
-	"pathpayment|protocol version 19|path payment with cycle|anti-arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "2vNGHibT6v0=" ],
-	"pathpayment|protocol version 19|path payment with cycle|anti-arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "2vNGHibT6v0=" ],
+	"pathpayment|protocol version 19|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> GRAM -> IDR)" : [ "PvEZ9Lc8ivU=" ],
+	"pathpayment|protocol version 19|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> GRAM -> IDR -> USD)" : [ "Vs0zgGNgDYI=" ],
+	"pathpayment|protocol version 19|path payment with cycle|anti-arbitrage with big sendmax|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "3GXKusQoDrg=" ],
+	"pathpayment|protocol version 19|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "2vNGHibT6v0=" ],
+	"pathpayment|protocol version 19|path payment with cycle|anti-arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "2vNGHibT6v0=" ],
+	"pathpayment|protocol version 19|path payment with cycle|anti-arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "2vNGHibT6v0=" ],
 	"pathpayment|protocol version 19|path payment with cycle|arbitrage" : 
 	[
 		"nYzXtUlHK3s=",
@@ -32234,9 +32234,9 @@
 		"hnyYeQAdJHk=",
 		"XjiVFcDAdx0="
 	],
-	"pathpayment|protocol version 19|path payment with cycle|arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "IKkcGIs8tb4=" ],
-	"pathpayment|protocol version 19|path payment with cycle|arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "8zPfBlydwrU=" ],
-	"pathpayment|protocol version 19|path payment with cycle|arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "ZoxJTh/MaQA=" ],
+	"pathpayment|protocol version 19|path payment with cycle|arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "IKkcGIs8tb4=" ],
+	"pathpayment|protocol version 19|path payment with cycle|arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "8zPfBlydwrU=" ],
+	"pathpayment|protocol version 19|path payment with cycle|arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "ZoxJTh/MaQA=" ],
 	"pathpayment|protocol version 19|path payment with rounding errors" : 
 	[
 		"2YxMmBKpo6U=",
@@ -32471,7 +32471,7 @@
 		"5OUFZZHlc4k=",
 		"tmspmJGlLck="
 	],
-	"pathpayment|protocol version 1|dest amount too big for XLM" : [ "0x5DeY+r7uk=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 1|dest amount too big for GRAM" : [ "0x5DeY+r7uk=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 1|dest amount too big for asset" : [ "0x5DeY+r7uk=", "h0JgCaMMbws=", "VtXCXZ79QUI=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 1|issuer missing" : 
 	[
@@ -32705,7 +32705,7 @@
 		"5NdIrA3L/4c=",
 		"asjXZGl3iU4="
 	],
-	"pathpayment|protocol version 1|path payment XLM with not enough funds" : [ "Iq5k5w9CzE8=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 1|path payment GRAM with not enough funds" : [ "Iq5k5w9CzE8=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 1|path payment asset with not enough funds" : 
 	[
 		"3SFfUC6hnhs=",
@@ -33448,7 +33448,7 @@
 		"z1XYTx5q5u0=",
 		"/lfj8xIFS8I="
 	],
-	"pathpayment|protocol version 1|path payment over send max XLM" : [ "wOEhTqLZBzU=", "kNbNW4NyDzY=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 1|path payment over send max GRAM" : [ "wOEhTqLZBzU=", "kNbNW4NyDzY=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 1|path payment over send max asset" : 
 	[
 		"GCKs5Ag4530=",
@@ -33774,7 +33774,7 @@
 		"xVqZ2ZvnEeE=",
 		"5JgPO5DfpQA="
 	],
-	"pathpayment|protocol version 1|path payment to self XLM" : [ "FFXWf2blLP4=", "xUWi8AHyAmA=" ],
+	"pathpayment|protocol version 1|path payment to self GRAM" : [ "FFXWf2blLP4=", "xUWi8AHyAmA=" ],
 	"pathpayment|protocol version 1|path payment to self asset" : [ "lYvlBBGm+v8=", "lOz1fFA01Ec=", "1XAEfe/y15g=", "/E5CgZvlVHE=" ],
 	"pathpayment|protocol version 1|path payment to self asset over the limit" : [ "lYvlBBGm+v8=", "lOz1fFA01Ec=", "YtzglQj6sxU=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 1|path payment with cycle" : 
@@ -34029,12 +34029,12 @@
 		"7E+w8oraZ7s=",
 		"ZQnKI2xMFeI="
 	],
-	"pathpayment|protocol version 1|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> XLM -> IDR)" : [ "svtrUbeyTeI=" ],
-	"pathpayment|protocol version 1|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> XLM -> IDR -> USD)" : [ "Cat0EhvD2p0=" ],
-	"pathpayment|protocol version 1|path payment with cycle|anti-arbitrage with big sendmax|send with path (XLM -> IDR -> USD -> XLM)" : [ "sqZSpwRkSN8=" ],
-	"pathpayment|protocol version 1|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "/lfj8xIFS8I=" ],
-	"pathpayment|protocol version 1|path payment with cycle|anti-arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "/lfj8xIFS8I=" ],
-	"pathpayment|protocol version 1|path payment with cycle|anti-arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 1|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> GRAM -> IDR)" : [ "svtrUbeyTeI=" ],
+	"pathpayment|protocol version 1|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> GRAM -> IDR -> USD)" : [ "Cat0EhvD2p0=" ],
+	"pathpayment|protocol version 1|path payment with cycle|anti-arbitrage with big sendmax|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "sqZSpwRkSN8=" ],
+	"pathpayment|protocol version 1|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 1|path payment with cycle|anti-arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 1|path payment with cycle|anti-arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 1|path payment with cycle|arbitrage" : 
 	[
 		"MUeFUdI6Tgk=",
@@ -34047,9 +34047,9 @@
 		"+v/UsqhRPJ8=",
 		"1oNroovO9Qc="
 	],
-	"pathpayment|protocol version 1|path payment with cycle|arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "gLObLIED/t0=" ],
-	"pathpayment|protocol version 1|path payment with cycle|arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "D0U7JwldSsw=" ],
-	"pathpayment|protocol version 1|path payment with cycle|arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "kCtQuNLSmPc=" ],
+	"pathpayment|protocol version 1|path payment with cycle|arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "gLObLIED/t0=" ],
+	"pathpayment|protocol version 1|path payment with cycle|arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "D0U7JwldSsw=" ],
+	"pathpayment|protocol version 1|path payment with cycle|arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "kCtQuNLSmPc=" ],
 	"pathpayment|protocol version 1|path payment with rounding errors" : 
 	[
 		"1Emdx7VsOE4=",
@@ -36099,7 +36099,7 @@
 	"pathpayment|protocol version 20|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross three offers fully" : [ "3FQCyH6+FqI=" ],
 	"pathpayment|protocol version 20|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross two offers fully" : [ "vsZpDJBWnsk=" ],
 	"pathpayment|protocol version 20|crossed sponsored offers|offer sponsor is source or dest account|source, non-native for non-native|cross two offers fully and one partially" : [ "Eoa09WFu8WY=" ],
-	"pathpayment|protocol version 20|dest amount too big for XLM" : [ "WiBwVeA+KDI=", "jOJv93YP134=" ],
+	"pathpayment|protocol version 20|dest amount too big for GRAM" : [ "WiBwVeA+KDI=", "jOJv93YP134=" ],
 	"pathpayment|protocol version 20|dest amount too big for asset" : [ "WiBwVeA+KDI=", "f3wzVuNjgZU=", "psh1pghXM3w=", "KCOw3FjuldY=" ],
 	"pathpayment|protocol version 20|issuer missing" : 
 	[
@@ -36323,7 +36323,7 @@
 		"fReaWr9wYCM=",
 		"IeLlyAL/6MQ="
 	],
-	"pathpayment|protocol version 20|path payment XLM with not enough funds" : [ "dw80Sbl5tBU=", "8cdU2snawDE=" ],
+	"pathpayment|protocol version 20|path payment GRAM with not enough funds" : [ "dw80Sbl5tBU=", "8cdU2snawDE=" ],
 	"pathpayment|protocol version 20|path payment asset with not enough funds" : 
 	[
 		"FX+q23cJfAo=",
@@ -37061,7 +37061,7 @@
 		"krhsu33pHaI=",
 		"08dLoGJriRo="
 	],
-	"pathpayment|protocol version 20|path payment over send max XLM" : [ "1EuqVcO5XOE=", "dSN5QmPLO+c=", "EgAPlzYOvwc=" ],
+	"pathpayment|protocol version 20|path payment over send max GRAM" : [ "1EuqVcO5XOE=", "dSN5QmPLO+c=", "EgAPlzYOvwc=" ],
 	"pathpayment|protocol version 20|path payment over send max asset" : 
 	[
 		"sSansCuyIl0=",
@@ -37387,7 +37387,7 @@
 		"/M4BlvIuDlk=",
 		"gGv3k1espWI="
 	],
-	"pathpayment|protocol version 20|path payment to self XLM" : [ "7jakaAY7eZA=", "yTJn0PnVVf8=" ],
+	"pathpayment|protocol version 20|path payment to self GRAM" : [ "7jakaAY7eZA=", "yTJn0PnVVf8=" ],
 	"pathpayment|protocol version 20|path payment to self asset" : [ "r6S6/rTv9w8=", "qJHYpOQuGMg=", "MrKKkdrpbpk=", "e7qtlATbZc4=" ],
 	"pathpayment|protocol version 20|path payment to self asset over the limit" : [ "r6S6/rTv9w8=", "qJHYpOQuGMg=", "xbXN1yOxTx8=", "GrdA9xA/iRM=" ],
 	"pathpayment|protocol version 20|path payment with cycle" : 
@@ -37642,12 +37642,12 @@
 		"nUG591kLmBU=",
 		"OhO7xwEHdiQ="
 	],
-	"pathpayment|protocol version 20|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> XLM -> IDR)" : [ "pcuoQjGwTlc=" ],
-	"pathpayment|protocol version 20|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> XLM -> IDR -> USD)" : [ "+p8J0vyqUEo=" ],
-	"pathpayment|protocol version 20|path payment with cycle|anti-arbitrage with big sendmax|send with path (XLM -> IDR -> USD -> XLM)" : [ "2erJELM5RuM=" ],
-	"pathpayment|protocol version 20|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "6UAGpzEeZf4=" ],
-	"pathpayment|protocol version 20|path payment with cycle|anti-arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "6UAGpzEeZf4=" ],
-	"pathpayment|protocol version 20|path payment with cycle|anti-arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "6UAGpzEeZf4=" ],
+	"pathpayment|protocol version 20|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> GRAM -> IDR)" : [ "pcuoQjGwTlc=" ],
+	"pathpayment|protocol version 20|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> GRAM -> IDR -> USD)" : [ "+p8J0vyqUEo=" ],
+	"pathpayment|protocol version 20|path payment with cycle|anti-arbitrage with big sendmax|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "2erJELM5RuM=" ],
+	"pathpayment|protocol version 20|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "6UAGpzEeZf4=" ],
+	"pathpayment|protocol version 20|path payment with cycle|anti-arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "6UAGpzEeZf4=" ],
+	"pathpayment|protocol version 20|path payment with cycle|anti-arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "6UAGpzEeZf4=" ],
 	"pathpayment|protocol version 20|path payment with cycle|arbitrage" : 
 	[
 		"P+BwxMk+DIQ=",
@@ -37660,9 +37660,9 @@
 		"tc8tL9hNa/I=",
 		"+cBiy3tg8/I="
 	],
-	"pathpayment|protocol version 20|path payment with cycle|arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "Kj3qwgb5iEw=" ],
-	"pathpayment|protocol version 20|path payment with cycle|arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "HqI7iMT2amc=" ],
-	"pathpayment|protocol version 20|path payment with cycle|arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "pzOn3kv6n30=" ],
+	"pathpayment|protocol version 20|path payment with cycle|arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "Kj3qwgb5iEw=" ],
+	"pathpayment|protocol version 20|path payment with cycle|arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "HqI7iMT2amc=" ],
+	"pathpayment|protocol version 20|path payment with cycle|arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "pzOn3kv6n30=" ],
 	"pathpayment|protocol version 20|path payment with rounding errors" : 
 	[
 		"0v1QwlaJtOk=",
@@ -37897,7 +37897,7 @@
 		"5OUFZZHlc4k=",
 		"tmspmJGlLck="
 	],
-	"pathpayment|protocol version 2|dest amount too big for XLM" : [ "0x5DeY+r7uk=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 2|dest amount too big for GRAM" : [ "0x5DeY+r7uk=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 2|dest amount too big for asset" : [ "0x5DeY+r7uk=", "h0JgCaMMbws=", "VtXCXZ79QUI=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 2|issuer missing" : 
 	[
@@ -38131,7 +38131,7 @@
 		"5NdIrA3L/4c=",
 		"asjXZGl3iU4="
 	],
-	"pathpayment|protocol version 2|path payment XLM with not enough funds" : [ "Iq5k5w9CzE8=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 2|path payment GRAM with not enough funds" : [ "Iq5k5w9CzE8=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 2|path payment asset with not enough funds" : 
 	[
 		"3SFfUC6hnhs=",
@@ -38874,7 +38874,7 @@
 		"z1XYTx5q5u0=",
 		"/lfj8xIFS8I="
 	],
-	"pathpayment|protocol version 2|path payment over send max XLM" : [ "wOEhTqLZBzU=", "kNbNW4NyDzY=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 2|path payment over send max GRAM" : [ "wOEhTqLZBzU=", "kNbNW4NyDzY=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 2|path payment over send max asset" : 
 	[
 		"GCKs5Ag4530=",
@@ -39200,7 +39200,7 @@
 		"xVqZ2ZvnEeE=",
 		"5JgPO5DfpQA="
 	],
-	"pathpayment|protocol version 2|path payment to self XLM" : [ "FFXWf2blLP4=", "xUWi8AHyAmA=" ],
+	"pathpayment|protocol version 2|path payment to self GRAM" : [ "FFXWf2blLP4=", "xUWi8AHyAmA=" ],
 	"pathpayment|protocol version 2|path payment to self asset" : [ "lYvlBBGm+v8=", "lOz1fFA01Ec=", "1XAEfe/y15g=", "/E5CgZvlVHE=" ],
 	"pathpayment|protocol version 2|path payment to self asset over the limit" : [ "lYvlBBGm+v8=", "lOz1fFA01Ec=", "YtzglQj6sxU=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 2|path payment with cycle" : 
@@ -39455,12 +39455,12 @@
 		"7E+w8oraZ7s=",
 		"ZQnKI2xMFeI="
 	],
-	"pathpayment|protocol version 2|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> XLM -> IDR)" : [ "svtrUbeyTeI=" ],
-	"pathpayment|protocol version 2|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> XLM -> IDR -> USD)" : [ "Cat0EhvD2p0=" ],
-	"pathpayment|protocol version 2|path payment with cycle|anti-arbitrage with big sendmax|send with path (XLM -> IDR -> USD -> XLM)" : [ "sqZSpwRkSN8=" ],
-	"pathpayment|protocol version 2|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "/lfj8xIFS8I=" ],
-	"pathpayment|protocol version 2|path payment with cycle|anti-arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "/lfj8xIFS8I=" ],
-	"pathpayment|protocol version 2|path payment with cycle|anti-arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 2|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> GRAM -> IDR)" : [ "svtrUbeyTeI=" ],
+	"pathpayment|protocol version 2|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> GRAM -> IDR -> USD)" : [ "Cat0EhvD2p0=" ],
+	"pathpayment|protocol version 2|path payment with cycle|anti-arbitrage with big sendmax|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "sqZSpwRkSN8=" ],
+	"pathpayment|protocol version 2|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 2|path payment with cycle|anti-arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 2|path payment with cycle|anti-arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 2|path payment with cycle|arbitrage" : 
 	[
 		"MUeFUdI6Tgk=",
@@ -39473,9 +39473,9 @@
 		"+v/UsqhRPJ8=",
 		"1oNroovO9Qc="
 	],
-	"pathpayment|protocol version 2|path payment with cycle|arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "gLObLIED/t0=" ],
-	"pathpayment|protocol version 2|path payment with cycle|arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "D0U7JwldSsw=" ],
-	"pathpayment|protocol version 2|path payment with cycle|arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "kCtQuNLSmPc=" ],
+	"pathpayment|protocol version 2|path payment with cycle|arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "gLObLIED/t0=" ],
+	"pathpayment|protocol version 2|path payment with cycle|arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "D0U7JwldSsw=" ],
+	"pathpayment|protocol version 2|path payment with cycle|arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "kCtQuNLSmPc=" ],
 	"pathpayment|protocol version 2|path payment with rounding errors" : 
 	[
 		"1Emdx7VsOE4=",
@@ -39880,7 +39880,7 @@
 		"5OUFZZHlc4k=",
 		"tmspmJGlLck="
 	],
-	"pathpayment|protocol version 3|dest amount too big for XLM" : [ "0x5DeY+r7uk=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 3|dest amount too big for GRAM" : [ "0x5DeY+r7uk=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 3|dest amount too big for asset" : [ "0x5DeY+r7uk=", "h0JgCaMMbws=", "VtXCXZ79QUI=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 3|issuer missing" : 
 	[
@@ -40114,7 +40114,7 @@
 		"5NdIrA3L/4c=",
 		"asjXZGl3iU4="
 	],
-	"pathpayment|protocol version 3|path payment XLM with not enough funds" : [ "Iq5k5w9CzE8=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 3|path payment GRAM with not enough funds" : [ "Iq5k5w9CzE8=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 3|path payment asset with not enough funds" : 
 	[
 		"3SFfUC6hnhs=",
@@ -40857,7 +40857,7 @@
 		"z1XYTx5q5u0=",
 		"/lfj8xIFS8I="
 	],
-	"pathpayment|protocol version 3|path payment over send max XLM" : [ "wOEhTqLZBzU=", "kNbNW4NyDzY=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 3|path payment over send max GRAM" : [ "wOEhTqLZBzU=", "kNbNW4NyDzY=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 3|path payment over send max asset" : 
 	[
 		"GCKs5Ag4530=",
@@ -41183,7 +41183,7 @@
 		"xVqZ2ZvnEeE=",
 		"5JgPO5DfpQA="
 	],
-	"pathpayment|protocol version 3|path payment to self XLM" : [ "FFXWf2blLP4=", "xUWi8AHyAmA=" ],
+	"pathpayment|protocol version 3|path payment to self GRAM" : [ "FFXWf2blLP4=", "xUWi8AHyAmA=" ],
 	"pathpayment|protocol version 3|path payment to self asset" : [ "lYvlBBGm+v8=", "lOz1fFA01Ec=", "1XAEfe/y15g=", "/E5CgZvlVHE=" ],
 	"pathpayment|protocol version 3|path payment to self asset over the limit" : [ "lYvlBBGm+v8=", "lOz1fFA01Ec=", "YtzglQj6sxU=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 3|path payment with cycle" : 
@@ -41438,12 +41438,12 @@
 		"7E+w8oraZ7s=",
 		"ZQnKI2xMFeI="
 	],
-	"pathpayment|protocol version 3|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> XLM -> IDR)" : [ "svtrUbeyTeI=" ],
-	"pathpayment|protocol version 3|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> XLM -> IDR -> USD)" : [ "Cat0EhvD2p0=" ],
-	"pathpayment|protocol version 3|path payment with cycle|anti-arbitrage with big sendmax|send with path (XLM -> IDR -> USD -> XLM)" : [ "sqZSpwRkSN8=" ],
-	"pathpayment|protocol version 3|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "/lfj8xIFS8I=" ],
-	"pathpayment|protocol version 3|path payment with cycle|anti-arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "/lfj8xIFS8I=" ],
-	"pathpayment|protocol version 3|path payment with cycle|anti-arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 3|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> GRAM -> IDR)" : [ "svtrUbeyTeI=" ],
+	"pathpayment|protocol version 3|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> GRAM -> IDR -> USD)" : [ "Cat0EhvD2p0=" ],
+	"pathpayment|protocol version 3|path payment with cycle|anti-arbitrage with big sendmax|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "sqZSpwRkSN8=" ],
+	"pathpayment|protocol version 3|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 3|path payment with cycle|anti-arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 3|path payment with cycle|anti-arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 3|path payment with cycle|arbitrage" : 
 	[
 		"MUeFUdI6Tgk=",
@@ -41456,9 +41456,9 @@
 		"+v/UsqhRPJ8=",
 		"1oNroovO9Qc="
 	],
-	"pathpayment|protocol version 3|path payment with cycle|arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "gLObLIED/t0=" ],
-	"pathpayment|protocol version 3|path payment with cycle|arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "D0U7JwldSsw=" ],
-	"pathpayment|protocol version 3|path payment with cycle|arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "kCtQuNLSmPc=" ],
+	"pathpayment|protocol version 3|path payment with cycle|arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "gLObLIED/t0=" ],
+	"pathpayment|protocol version 3|path payment with cycle|arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "D0U7JwldSsw=" ],
+	"pathpayment|protocol version 3|path payment with cycle|arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "kCtQuNLSmPc=" ],
 	"pathpayment|protocol version 3|path payment with rounding errors" : 
 	[
 		"1Emdx7VsOE4=",
@@ -41863,7 +41863,7 @@
 		"5OUFZZHlc4k=",
 		"tmspmJGlLck="
 	],
-	"pathpayment|protocol version 4|dest amount too big for XLM" : [ "0x5DeY+r7uk=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 4|dest amount too big for GRAM" : [ "0x5DeY+r7uk=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 4|dest amount too big for asset" : [ "0x5DeY+r7uk=", "h0JgCaMMbws=", "VtXCXZ79QUI=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 4|issuer missing" : 
 	[
@@ -42097,7 +42097,7 @@
 		"5NdIrA3L/4c=",
 		"asjXZGl3iU4="
 	],
-	"pathpayment|protocol version 4|path payment XLM with not enough funds" : [ "Iq5k5w9CzE8=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 4|path payment GRAM with not enough funds" : [ "Iq5k5w9CzE8=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 4|path payment asset with not enough funds" : 
 	[
 		"3SFfUC6hnhs=",
@@ -42840,7 +42840,7 @@
 		"z1XYTx5q5u0=",
 		"/lfj8xIFS8I="
 	],
-	"pathpayment|protocol version 4|path payment over send max XLM" : [ "wOEhTqLZBzU=", "kNbNW4NyDzY=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 4|path payment over send max GRAM" : [ "wOEhTqLZBzU=", "kNbNW4NyDzY=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 4|path payment over send max asset" : 
 	[
 		"GCKs5Ag4530=",
@@ -43166,7 +43166,7 @@
 		"xVqZ2ZvnEeE=",
 		"5JgPO5DfpQA="
 	],
-	"pathpayment|protocol version 4|path payment to self XLM" : [ "FFXWf2blLP4=", "xUWi8AHyAmA=" ],
+	"pathpayment|protocol version 4|path payment to self GRAM" : [ "FFXWf2blLP4=", "xUWi8AHyAmA=" ],
 	"pathpayment|protocol version 4|path payment to self asset" : [ "lYvlBBGm+v8=", "lOz1fFA01Ec=", "1XAEfe/y15g=", "/E5CgZvlVHE=" ],
 	"pathpayment|protocol version 4|path payment to self asset over the limit" : [ "lYvlBBGm+v8=", "lOz1fFA01Ec=", "YtzglQj6sxU=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 4|path payment with cycle" : 
@@ -43421,12 +43421,12 @@
 		"7E+w8oraZ7s=",
 		"ZQnKI2xMFeI="
 	],
-	"pathpayment|protocol version 4|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> XLM -> IDR)" : [ "svtrUbeyTeI=" ],
-	"pathpayment|protocol version 4|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> XLM -> IDR -> USD)" : [ "Cat0EhvD2p0=" ],
-	"pathpayment|protocol version 4|path payment with cycle|anti-arbitrage with big sendmax|send with path (XLM -> IDR -> USD -> XLM)" : [ "sqZSpwRkSN8=" ],
-	"pathpayment|protocol version 4|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "/lfj8xIFS8I=" ],
-	"pathpayment|protocol version 4|path payment with cycle|anti-arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "/lfj8xIFS8I=" ],
-	"pathpayment|protocol version 4|path payment with cycle|anti-arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 4|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> GRAM -> IDR)" : [ "svtrUbeyTeI=" ],
+	"pathpayment|protocol version 4|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> GRAM -> IDR -> USD)" : [ "Cat0EhvD2p0=" ],
+	"pathpayment|protocol version 4|path payment with cycle|anti-arbitrage with big sendmax|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "sqZSpwRkSN8=" ],
+	"pathpayment|protocol version 4|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 4|path payment with cycle|anti-arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 4|path payment with cycle|anti-arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 4|path payment with cycle|arbitrage" : 
 	[
 		"MUeFUdI6Tgk=",
@@ -43439,9 +43439,9 @@
 		"+v/UsqhRPJ8=",
 		"1oNroovO9Qc="
 	],
-	"pathpayment|protocol version 4|path payment with cycle|arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "gLObLIED/t0=" ],
-	"pathpayment|protocol version 4|path payment with cycle|arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "D0U7JwldSsw=" ],
-	"pathpayment|protocol version 4|path payment with cycle|arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "kCtQuNLSmPc=" ],
+	"pathpayment|protocol version 4|path payment with cycle|arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "gLObLIED/t0=" ],
+	"pathpayment|protocol version 4|path payment with cycle|arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "D0U7JwldSsw=" ],
+	"pathpayment|protocol version 4|path payment with cycle|arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "kCtQuNLSmPc=" ],
 	"pathpayment|protocol version 4|path payment with rounding errors" : 
 	[
 		"1Emdx7VsOE4=",
@@ -43846,7 +43846,7 @@
 		"5OUFZZHlc4k=",
 		"tmspmJGlLck="
 	],
-	"pathpayment|protocol version 5|dest amount too big for XLM" : [ "0x5DeY+r7uk=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 5|dest amount too big for GRAM" : [ "0x5DeY+r7uk=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 5|dest amount too big for asset" : [ "0x5DeY+r7uk=", "h0JgCaMMbws=", "VtXCXZ79QUI=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 5|issuer missing" : 
 	[
@@ -44080,7 +44080,7 @@
 		"5NdIrA3L/4c=",
 		"asjXZGl3iU4="
 	],
-	"pathpayment|protocol version 5|path payment XLM with not enough funds" : [ "Iq5k5w9CzE8=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 5|path payment GRAM with not enough funds" : [ "Iq5k5w9CzE8=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 5|path payment asset with not enough funds" : 
 	[
 		"3SFfUC6hnhs=",
@@ -44823,7 +44823,7 @@
 		"z1XYTx5q5u0=",
 		"/lfj8xIFS8I="
 	],
-	"pathpayment|protocol version 5|path payment over send max XLM" : [ "wOEhTqLZBzU=", "kNbNW4NyDzY=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 5|path payment over send max GRAM" : [ "wOEhTqLZBzU=", "kNbNW4NyDzY=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 5|path payment over send max asset" : 
 	[
 		"GCKs5Ag4530=",
@@ -45149,7 +45149,7 @@
 		"xVqZ2ZvnEeE=",
 		"5JgPO5DfpQA="
 	],
-	"pathpayment|protocol version 5|path payment to self XLM" : [ "FFXWf2blLP4=", "xUWi8AHyAmA=" ],
+	"pathpayment|protocol version 5|path payment to self GRAM" : [ "FFXWf2blLP4=", "xUWi8AHyAmA=" ],
 	"pathpayment|protocol version 5|path payment to self asset" : [ "lYvlBBGm+v8=", "lOz1fFA01Ec=", "1XAEfe/y15g=", "/E5CgZvlVHE=" ],
 	"pathpayment|protocol version 5|path payment to self asset over the limit" : [ "lYvlBBGm+v8=", "lOz1fFA01Ec=", "YtzglQj6sxU=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 5|path payment with cycle" : 
@@ -45404,12 +45404,12 @@
 		"7E+w8oraZ7s=",
 		"ZQnKI2xMFeI="
 	],
-	"pathpayment|protocol version 5|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> XLM -> IDR)" : [ "svtrUbeyTeI=" ],
-	"pathpayment|protocol version 5|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> XLM -> IDR -> USD)" : [ "Cat0EhvD2p0=" ],
-	"pathpayment|protocol version 5|path payment with cycle|anti-arbitrage with big sendmax|send with path (XLM -> IDR -> USD -> XLM)" : [ "sqZSpwRkSN8=" ],
-	"pathpayment|protocol version 5|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "/lfj8xIFS8I=" ],
-	"pathpayment|protocol version 5|path payment with cycle|anti-arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "/lfj8xIFS8I=" ],
-	"pathpayment|protocol version 5|path payment with cycle|anti-arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 5|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> GRAM -> IDR)" : [ "svtrUbeyTeI=" ],
+	"pathpayment|protocol version 5|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> GRAM -> IDR -> USD)" : [ "Cat0EhvD2p0=" ],
+	"pathpayment|protocol version 5|path payment with cycle|anti-arbitrage with big sendmax|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "sqZSpwRkSN8=" ],
+	"pathpayment|protocol version 5|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 5|path payment with cycle|anti-arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 5|path payment with cycle|anti-arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 5|path payment with cycle|arbitrage" : 
 	[
 		"MUeFUdI6Tgk=",
@@ -45422,9 +45422,9 @@
 		"+v/UsqhRPJ8=",
 		"1oNroovO9Qc="
 	],
-	"pathpayment|protocol version 5|path payment with cycle|arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "gLObLIED/t0=" ],
-	"pathpayment|protocol version 5|path payment with cycle|arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "D0U7JwldSsw=" ],
-	"pathpayment|protocol version 5|path payment with cycle|arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "kCtQuNLSmPc=" ],
+	"pathpayment|protocol version 5|path payment with cycle|arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "gLObLIED/t0=" ],
+	"pathpayment|protocol version 5|path payment with cycle|arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "D0U7JwldSsw=" ],
+	"pathpayment|protocol version 5|path payment with cycle|arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "kCtQuNLSmPc=" ],
 	"pathpayment|protocol version 5|path payment with rounding errors" : 
 	[
 		"1Emdx7VsOE4=",
@@ -45829,7 +45829,7 @@
 		"5OUFZZHlc4k=",
 		"tmspmJGlLck="
 	],
-	"pathpayment|protocol version 6|dest amount too big for XLM" : [ "0x5DeY+r7uk=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 6|dest amount too big for GRAM" : [ "0x5DeY+r7uk=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 6|dest amount too big for asset" : [ "0x5DeY+r7uk=", "h0JgCaMMbws=", "VtXCXZ79QUI=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 6|issuer missing" : 
 	[
@@ -46063,7 +46063,7 @@
 		"5NdIrA3L/4c=",
 		"asjXZGl3iU4="
 	],
-	"pathpayment|protocol version 6|path payment XLM with not enough funds" : [ "Iq5k5w9CzE8=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 6|path payment GRAM with not enough funds" : [ "Iq5k5w9CzE8=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 6|path payment asset with not enough funds" : 
 	[
 		"3SFfUC6hnhs=",
@@ -46806,7 +46806,7 @@
 		"z1XYTx5q5u0=",
 		"/lfj8xIFS8I="
 	],
-	"pathpayment|protocol version 6|path payment over send max XLM" : [ "wOEhTqLZBzU=", "kNbNW4NyDzY=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 6|path payment over send max GRAM" : [ "wOEhTqLZBzU=", "kNbNW4NyDzY=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 6|path payment over send max asset" : 
 	[
 		"GCKs5Ag4530=",
@@ -47132,7 +47132,7 @@
 		"xVqZ2ZvnEeE=",
 		"5JgPO5DfpQA="
 	],
-	"pathpayment|protocol version 6|path payment to self XLM" : [ "FFXWf2blLP4=", "xUWi8AHyAmA=" ],
+	"pathpayment|protocol version 6|path payment to self GRAM" : [ "FFXWf2blLP4=", "xUWi8AHyAmA=" ],
 	"pathpayment|protocol version 6|path payment to self asset" : [ "lYvlBBGm+v8=", "lOz1fFA01Ec=", "1XAEfe/y15g=", "/E5CgZvlVHE=" ],
 	"pathpayment|protocol version 6|path payment to self asset over the limit" : [ "lYvlBBGm+v8=", "lOz1fFA01Ec=", "YtzglQj6sxU=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 6|path payment with cycle" : 
@@ -47387,12 +47387,12 @@
 		"7E+w8oraZ7s=",
 		"ZQnKI2xMFeI="
 	],
-	"pathpayment|protocol version 6|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> XLM -> IDR)" : [ "svtrUbeyTeI=" ],
-	"pathpayment|protocol version 6|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> XLM -> IDR -> USD)" : [ "Cat0EhvD2p0=" ],
-	"pathpayment|protocol version 6|path payment with cycle|anti-arbitrage with big sendmax|send with path (XLM -> IDR -> USD -> XLM)" : [ "sqZSpwRkSN8=" ],
-	"pathpayment|protocol version 6|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "/lfj8xIFS8I=" ],
-	"pathpayment|protocol version 6|path payment with cycle|anti-arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "/lfj8xIFS8I=" ],
-	"pathpayment|protocol version 6|path payment with cycle|anti-arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 6|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> GRAM -> IDR)" : [ "svtrUbeyTeI=" ],
+	"pathpayment|protocol version 6|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> GRAM -> IDR -> USD)" : [ "Cat0EhvD2p0=" ],
+	"pathpayment|protocol version 6|path payment with cycle|anti-arbitrage with big sendmax|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "sqZSpwRkSN8=" ],
+	"pathpayment|protocol version 6|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 6|path payment with cycle|anti-arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 6|path payment with cycle|anti-arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 6|path payment with cycle|arbitrage" : 
 	[
 		"MUeFUdI6Tgk=",
@@ -47405,9 +47405,9 @@
 		"+v/UsqhRPJ8=",
 		"1oNroovO9Qc="
 	],
-	"pathpayment|protocol version 6|path payment with cycle|arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "gLObLIED/t0=" ],
-	"pathpayment|protocol version 6|path payment with cycle|arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "D0U7JwldSsw=" ],
-	"pathpayment|protocol version 6|path payment with cycle|arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "kCtQuNLSmPc=" ],
+	"pathpayment|protocol version 6|path payment with cycle|arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "gLObLIED/t0=" ],
+	"pathpayment|protocol version 6|path payment with cycle|arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "D0U7JwldSsw=" ],
+	"pathpayment|protocol version 6|path payment with cycle|arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "kCtQuNLSmPc=" ],
 	"pathpayment|protocol version 6|path payment with rounding errors" : 
 	[
 		"1Emdx7VsOE4=",
@@ -47812,7 +47812,7 @@
 		"5OUFZZHlc4k=",
 		"tmspmJGlLck="
 	],
-	"pathpayment|protocol version 7|dest amount too big for XLM" : [ "0x5DeY+r7uk=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 7|dest amount too big for GRAM" : [ "0x5DeY+r7uk=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 7|dest amount too big for asset" : [ "0x5DeY+r7uk=", "h0JgCaMMbws=", "VtXCXZ79QUI=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 7|issuer missing" : 
 	[
@@ -48046,7 +48046,7 @@
 		"5NdIrA3L/4c=",
 		"asjXZGl3iU4="
 	],
-	"pathpayment|protocol version 7|path payment XLM with not enough funds" : [ "Iq5k5w9CzE8=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 7|path payment GRAM with not enough funds" : [ "Iq5k5w9CzE8=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 7|path payment asset with not enough funds" : 
 	[
 		"3SFfUC6hnhs=",
@@ -48789,7 +48789,7 @@
 		"z1XYTx5q5u0=",
 		"/lfj8xIFS8I="
 	],
-	"pathpayment|protocol version 7|path payment over send max XLM" : [ "wOEhTqLZBzU=", "kNbNW4NyDzY=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 7|path payment over send max GRAM" : [ "wOEhTqLZBzU=", "kNbNW4NyDzY=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 7|path payment over send max asset" : 
 	[
 		"GCKs5Ag4530=",
@@ -49115,7 +49115,7 @@
 		"xVqZ2ZvnEeE=",
 		"5JgPO5DfpQA="
 	],
-	"pathpayment|protocol version 7|path payment to self XLM" : [ "FFXWf2blLP4=", "xUWi8AHyAmA=" ],
+	"pathpayment|protocol version 7|path payment to self GRAM" : [ "FFXWf2blLP4=", "xUWi8AHyAmA=" ],
 	"pathpayment|protocol version 7|path payment to self asset" : [ "lYvlBBGm+v8=", "lOz1fFA01Ec=", "1XAEfe/y15g=", "/E5CgZvlVHE=" ],
 	"pathpayment|protocol version 7|path payment to self asset over the limit" : [ "lYvlBBGm+v8=", "lOz1fFA01Ec=", "YtzglQj6sxU=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 7|path payment with cycle" : 
@@ -49370,12 +49370,12 @@
 		"7E+w8oraZ7s=",
 		"ZQnKI2xMFeI="
 	],
-	"pathpayment|protocol version 7|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> XLM -> IDR)" : [ "svtrUbeyTeI=" ],
-	"pathpayment|protocol version 7|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> XLM -> IDR -> USD)" : [ "Cat0EhvD2p0=" ],
-	"pathpayment|protocol version 7|path payment with cycle|anti-arbitrage with big sendmax|send with path (XLM -> IDR -> USD -> XLM)" : [ "sqZSpwRkSN8=" ],
-	"pathpayment|protocol version 7|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "/lfj8xIFS8I=" ],
-	"pathpayment|protocol version 7|path payment with cycle|anti-arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "/lfj8xIFS8I=" ],
-	"pathpayment|protocol version 7|path payment with cycle|anti-arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 7|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> GRAM -> IDR)" : [ "svtrUbeyTeI=" ],
+	"pathpayment|protocol version 7|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> GRAM -> IDR -> USD)" : [ "Cat0EhvD2p0=" ],
+	"pathpayment|protocol version 7|path payment with cycle|anti-arbitrage with big sendmax|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "sqZSpwRkSN8=" ],
+	"pathpayment|protocol version 7|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 7|path payment with cycle|anti-arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 7|path payment with cycle|anti-arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 7|path payment with cycle|arbitrage" : 
 	[
 		"MUeFUdI6Tgk=",
@@ -49388,9 +49388,9 @@
 		"+v/UsqhRPJ8=",
 		"1oNroovO9Qc="
 	],
-	"pathpayment|protocol version 7|path payment with cycle|arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "gLObLIED/t0=" ],
-	"pathpayment|protocol version 7|path payment with cycle|arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "D0U7JwldSsw=" ],
-	"pathpayment|protocol version 7|path payment with cycle|arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "kCtQuNLSmPc=" ],
+	"pathpayment|protocol version 7|path payment with cycle|arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "gLObLIED/t0=" ],
+	"pathpayment|protocol version 7|path payment with cycle|arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "D0U7JwldSsw=" ],
+	"pathpayment|protocol version 7|path payment with cycle|arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "kCtQuNLSmPc=" ],
 	"pathpayment|protocol version 7|path payment with rounding errors" : 
 	[
 		"1Emdx7VsOE4=",
@@ -49795,7 +49795,7 @@
 		"5OUFZZHlc4k=",
 		"tmspmJGlLck="
 	],
-	"pathpayment|protocol version 8|dest amount too big for XLM" : [ "0x5DeY+r7uk=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 8|dest amount too big for GRAM" : [ "0x5DeY+r7uk=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 8|dest amount too big for asset" : [ "0x5DeY+r7uk=", "h0JgCaMMbws=", "VtXCXZ79QUI=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 8|issuer missing" : 
 	[
@@ -50029,7 +50029,7 @@
 		"5NdIrA3L/4c=",
 		"asjXZGl3iU4="
 	],
-	"pathpayment|protocol version 8|path payment XLM with not enough funds" : [ "Iq5k5w9CzE8=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 8|path payment GRAM with not enough funds" : [ "Iq5k5w9CzE8=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 8|path payment asset with not enough funds" : 
 	[
 		"3SFfUC6hnhs=",
@@ -50772,7 +50772,7 @@
 		"z1XYTx5q5u0=",
 		"/lfj8xIFS8I="
 	],
-	"pathpayment|protocol version 8|path payment over send max XLM" : [ "wOEhTqLZBzU=", "kNbNW4NyDzY=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 8|path payment over send max GRAM" : [ "wOEhTqLZBzU=", "kNbNW4NyDzY=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 8|path payment over send max asset" : 
 	[
 		"GCKs5Ag4530=",
@@ -51098,7 +51098,7 @@
 		"xVqZ2ZvnEeE=",
 		"5JgPO5DfpQA="
 	],
-	"pathpayment|protocol version 8|path payment to self XLM" : [ "FFXWf2blLP4=", "iuoNzJu7VH0=" ],
+	"pathpayment|protocol version 8|path payment to self GRAM" : [ "FFXWf2blLP4=", "iuoNzJu7VH0=" ],
 	"pathpayment|protocol version 8|path payment to self asset" : [ "lYvlBBGm+v8=", "lOz1fFA01Ec=", "1XAEfe/y15g=", "/E5CgZvlVHE=" ],
 	"pathpayment|protocol version 8|path payment to self asset over the limit" : [ "lYvlBBGm+v8=", "lOz1fFA01Ec=", "YtzglQj6sxU=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 8|path payment with cycle" : 
@@ -51353,12 +51353,12 @@
 		"7E+w8oraZ7s=",
 		"ZQnKI2xMFeI="
 	],
-	"pathpayment|protocol version 8|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> XLM -> IDR)" : [ "svtrUbeyTeI=" ],
-	"pathpayment|protocol version 8|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> XLM -> IDR -> USD)" : [ "Cat0EhvD2p0=" ],
-	"pathpayment|protocol version 8|path payment with cycle|anti-arbitrage with big sendmax|send with path (XLM -> IDR -> USD -> XLM)" : [ "sqZSpwRkSN8=" ],
-	"pathpayment|protocol version 8|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "/lfj8xIFS8I=" ],
-	"pathpayment|protocol version 8|path payment with cycle|anti-arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "/lfj8xIFS8I=" ],
-	"pathpayment|protocol version 8|path payment with cycle|anti-arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 8|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> GRAM -> IDR)" : [ "svtrUbeyTeI=" ],
+	"pathpayment|protocol version 8|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> GRAM -> IDR -> USD)" : [ "Cat0EhvD2p0=" ],
+	"pathpayment|protocol version 8|path payment with cycle|anti-arbitrage with big sendmax|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "sqZSpwRkSN8=" ],
+	"pathpayment|protocol version 8|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 8|path payment with cycle|anti-arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 8|path payment with cycle|anti-arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 8|path payment with cycle|arbitrage" : 
 	[
 		"MUeFUdI6Tgk=",
@@ -51371,9 +51371,9 @@
 		"+v/UsqhRPJ8=",
 		"1oNroovO9Qc="
 	],
-	"pathpayment|protocol version 8|path payment with cycle|arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "gLObLIED/t0=" ],
-	"pathpayment|protocol version 8|path payment with cycle|arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "D0U7JwldSsw=" ],
-	"pathpayment|protocol version 8|path payment with cycle|arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "kCtQuNLSmPc=" ],
+	"pathpayment|protocol version 8|path payment with cycle|arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "gLObLIED/t0=" ],
+	"pathpayment|protocol version 8|path payment with cycle|arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "D0U7JwldSsw=" ],
+	"pathpayment|protocol version 8|path payment with cycle|arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "kCtQuNLSmPc=" ],
 	"pathpayment|protocol version 8|path payment with rounding errors" : 
 	[
 		"1Emdx7VsOE4=",
@@ -51778,7 +51778,7 @@
 		"5OUFZZHlc4k=",
 		"tmspmJGlLck="
 	],
-	"pathpayment|protocol version 9|dest amount too big for XLM" : [ "0x5DeY+r7uk=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 9|dest amount too big for GRAM" : [ "0x5DeY+r7uk=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 9|dest amount too big for asset" : [ "0x5DeY+r7uk=", "h0JgCaMMbws=", "VtXCXZ79QUI=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 9|issuer missing" : 
 	[
@@ -52012,7 +52012,7 @@
 		"5NdIrA3L/4c=",
 		"asjXZGl3iU4="
 	],
-	"pathpayment|protocol version 9|path payment XLM with not enough funds" : [ "Iq5k5w9CzE8=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 9|path payment GRAM with not enough funds" : [ "Iq5k5w9CzE8=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 9|path payment asset with not enough funds" : 
 	[
 		"3SFfUC6hnhs=",
@@ -52755,7 +52755,7 @@
 		"z1XYTx5q5u0=",
 		"/lfj8xIFS8I="
 	],
-	"pathpayment|protocol version 9|path payment over send max XLM" : [ "wOEhTqLZBzU=", "kNbNW4NyDzY=", "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 9|path payment over send max GRAM" : [ "wOEhTqLZBzU=", "kNbNW4NyDzY=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 9|path payment over send max asset" : 
 	[
 		"GCKs5Ag4530=",
@@ -53081,7 +53081,7 @@
 		"xVqZ2ZvnEeE=",
 		"5JgPO5DfpQA="
 	],
-	"pathpayment|protocol version 9|path payment to self XLM" : [ "FFXWf2blLP4=", "iuoNzJu7VH0=" ],
+	"pathpayment|protocol version 9|path payment to self GRAM" : [ "FFXWf2blLP4=", "iuoNzJu7VH0=" ],
 	"pathpayment|protocol version 9|path payment to self asset" : [ "lYvlBBGm+v8=", "lOz1fFA01Ec=", "1XAEfe/y15g=", "/E5CgZvlVHE=" ],
 	"pathpayment|protocol version 9|path payment to self asset over the limit" : [ "lYvlBBGm+v8=", "lOz1fFA01Ec=", "YtzglQj6sxU=", "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 9|path payment with cycle" : 
@@ -53336,12 +53336,12 @@
 		"7E+w8oraZ7s=",
 		"ZQnKI2xMFeI="
 	],
-	"pathpayment|protocol version 9|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> XLM -> IDR)" : [ "svtrUbeyTeI=" ],
-	"pathpayment|protocol version 9|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> XLM -> IDR -> USD)" : [ "Cat0EhvD2p0=" ],
-	"pathpayment|protocol version 9|path payment with cycle|anti-arbitrage with big sendmax|send with path (XLM -> IDR -> USD -> XLM)" : [ "sqZSpwRkSN8=" ],
-	"pathpayment|protocol version 9|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "/lfj8xIFS8I=" ],
-	"pathpayment|protocol version 9|path payment with cycle|anti-arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "/lfj8xIFS8I=" ],
-	"pathpayment|protocol version 9|path payment with cycle|anti-arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 9|path payment with cycle|anti-arbitrage with big sendmax|send with path (IDR -> USD -> GRAM -> IDR)" : [ "svtrUbeyTeI=" ],
+	"pathpayment|protocol version 9|path payment with cycle|anti-arbitrage with big sendmax|send with path (USD -> GRAM -> IDR -> USD)" : [ "Cat0EhvD2p0=" ],
+	"pathpayment|protocol version 9|path payment with cycle|anti-arbitrage with big sendmax|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "sqZSpwRkSN8=" ],
+	"pathpayment|protocol version 9|path payment with cycle|anti-arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 9|path payment with cycle|anti-arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "/lfj8xIFS8I=" ],
+	"pathpayment|protocol version 9|path payment with cycle|anti-arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "/lfj8xIFS8I=" ],
 	"pathpayment|protocol version 9|path payment with cycle|arbitrage" : 
 	[
 		"MUeFUdI6Tgk=",
@@ -53354,9 +53354,9 @@
 		"+v/UsqhRPJ8=",
 		"1oNroovO9Qc="
 	],
-	"pathpayment|protocol version 9|path payment with cycle|arbitrage|send with path (IDR -> USD -> XLM -> IDR)" : [ "gLObLIED/t0=" ],
-	"pathpayment|protocol version 9|path payment with cycle|arbitrage|send with path (USD -> XLM -> IDR -> USD)" : [ "D0U7JwldSsw=" ],
-	"pathpayment|protocol version 9|path payment with cycle|arbitrage|send with path (XLM -> IDR -> USD -> XLM)" : [ "kCtQuNLSmPc=" ],
+	"pathpayment|protocol version 9|path payment with cycle|arbitrage|send with path (IDR -> USD -> GRAM -> IDR)" : [ "gLObLIED/t0=" ],
+	"pathpayment|protocol version 9|path payment with cycle|arbitrage|send with path (USD -> GRAM -> IDR -> USD)" : [ "D0U7JwldSsw=" ],
+	"pathpayment|protocol version 9|path payment with cycle|arbitrage|send with path (GRAM -> IDR -> USD -> GRAM)" : [ "kCtQuNLSmPc=" ],
 	"pathpayment|protocol version 9|path payment with rounding errors" : 
 	[
 		"1Emdx7VsOE4=",

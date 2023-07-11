@@ -1,11 +1,11 @@
 [package]
-name = "stellar-core"
+name = "gramr"
 version = "0.1.0"
 edition = "2021"
 rust-version = "1.67"
 
 [lib]
-name = "rust_stellar_core"
+name = "rust_gramr"
 crate-type = ["staticlib"]
 
 [dependencies]
@@ -15,7 +15,7 @@ base64 = "0.13.0"
 rustc-simple-version = "0.1.0"
 
 # This copy of the soroban host is always enabled, and should always point to a
-# version that supports stellar-core's Config::CURRENT_LEDGER_PROTOCOL_VERSION.
+# version that supports gramr's Config::CURRENT_LEDGER_PROTOCOL_VERSION.
 # When upgrading from protocol N to N+1, this copy will therefore have its
 # version advance first (to enable support for N+1) even before the network has
 # voted to upgrade to it. In order to avoid divergence during such an upgrade,

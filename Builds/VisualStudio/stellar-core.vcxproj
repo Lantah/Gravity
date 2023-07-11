@@ -24,7 +24,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{916B91AB-A300-422C-B9C2-D683924DC109}</ProjectGuid>
-    <RootNamespace>stellar-core</RootNamespace>
+    <RootNamespace>gramr</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <UseNativeEnvironment>true</UseNativeEnvironment>
   </PropertyGroup>
@@ -140,7 +140,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;psapi.lib;Credui.lib;userenv.lib;bcrypt.lib;ntdll.lib;$(OutDir)\rust\target\debug\rust_stellar_core.lib;C:\Program Files\PostgreSQL\15\lib\libpq.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;psapi.lib;Credui.lib;userenv.lib;bcrypt.lib;ntdll.lib;$(OutDir)\rust\target\debug\rust_gramr.lib;C:\Program Files\PostgreSQL\15\lib\libpq.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>(set CFLAGS=-MDd) &amp; (set CXXFLAGS=-MDd) &amp; cargo build --target-dir $(OutDir)\rust\target</Command>
@@ -201,7 +201,7 @@ exit /b 0
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;psapi.lib;Credui.lib;userenv.lib;bcrypt.lib;ntdll.lib;$(OutDir)\rust\target\debug\rust_stellar_core.lib;C:\Program Files\PostgreSQL\15\lib\libpq.lib;%(AdditionalDependencies);</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;psapi.lib;Credui.lib;userenv.lib;bcrypt.lib;ntdll.lib;$(OutDir)\rust\target\debug\rust_gramr.lib;C:\Program Files\PostgreSQL\15\lib\libpq.lib;%(AdditionalDependencies);</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>(set CFLAGS=-MDd) &amp; (set CXXFLAGS=-MDd) &amp; cargo build --target-dir $(OutDir)\rust\target</Command>
@@ -263,7 +263,7 @@ exit /b 0
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;psapi.lib;Credui.lib;userenv.lib;bcrypt.lib;ntdll.lib;$(OutDir)\rust\target\debug\rust_stellar_core.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;psapi.lib;Credui.lib;userenv.lib;bcrypt.lib;ntdll.lib;$(OutDir)\rust\target\debug\rust_gramr.lib</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
     </Link>
@@ -327,7 +327,7 @@ exit /b 0
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;psapi.lib;Credui.lib;userenv.lib;bcrypt.lib;ntdll.lib;$(OutDir)\rust\target\release\rust_stellar_core.lib;C:\Program Files\PostgreSQL\15\lib\libpq.lib;%(AdditionalDependencies);</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;psapi.lib;Credui.lib;userenv.lib;bcrypt.lib;ntdll.lib;$(OutDir)\rust\target\release\rust_gramr.lib;C:\Program Files\PostgreSQL\15\lib\libpq.lib;%(AdditionalDependencies);</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>cargo build --release --target-dir $(OutDir)\rust\target</Command>
@@ -388,7 +388,7 @@ exit /b 0
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;psapi.lib;Credui.lib;userenv.lib;bcrypt.lib;ntdll.lib;$(OutDir)\rust\target\release\rust_stellar_core.lib;C:\Program Files\PostgreSQL\15\lib\libpq.lib;%(AdditionalDependencies);</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;psapi.lib;Credui.lib;userenv.lib;bcrypt.lib;ntdll.lib;$(OutDir)\rust\target\release\rust_gramr.lib;C:\Program Files\PostgreSQL\15\lib\libpq.lib;%(AdditionalDependencies);</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>cargo build --release --target-dir $(OutDir)\rust\target</Command>
@@ -542,7 +542,7 @@ exit /b 0
     <ClCompile Include="..\..\src\history\test\SerializeTests.cpp" />
     <ClCompile Include="..\..\src\invariant\AccountSubEntriesCountIsValid.cpp" />
     <ClCompile Include="..\..\src\invariant\BucketListIsConsistentWithDatabase.cpp" />
-    <ClCompile Include="..\..\src\invariant\ConservationOfLumens.cpp" />
+    <ClCompile Include="..\..\src\invariant\ConservationOfGrams.cpp" />
     <ClCompile Include="..\..\src\invariant\ConstantProductInvariant.cpp" />
     <ClCompile Include="..\..\src\invariant\InvariantManagerImpl.cpp" />
     <ClCompile Include="..\..\src\invariant\LedgerEntryIsValid.cpp" />
@@ -551,7 +551,7 @@ exit /b 0
     <ClCompile Include="..\..\src\invariant\SponsorshipCountIsValid.cpp" />
     <ClCompile Include="..\..\src\invariant\test\AccountSubEntriesCountIsValidTests.cpp" />
     <ClCompile Include="..\..\src\invariant\test\BucketListIsConsistentWithDatabaseTests.cpp" />
-    <ClCompile Include="..\..\src\invariant\test\ConservationOfLumensTests.cpp" />
+    <ClCompile Include="..\..\src\invariant\test\ConservationOfGramsTests.cpp" />
     <ClCompile Include="..\..\src\invariant\test\InvariantTests.cpp" />
     <ClCompile Include="..\..\src\invariant\test\InvariantTestUtils.cpp" />
     <ClCompile Include="..\..\src\invariant\test\LedgerEntryIsValidTests.cpp" />
@@ -807,7 +807,7 @@ exit /b 0
     <ClCompile Include="..\..\src\main\main.cpp" />
     <ClCompile Include="..\..\src\main\Maintainer.cpp" />
     <ClCompile Include="..\..\src\main\PersistentState.cpp" />
-    <ClCompile Include="..\..\src\main\StellarCoreVersion.cpp" />
+    <ClCompile Include="..\..\src\main\GramrVersion.cpp" />
     <ClCompile Include="..\..\src\util\test\BitSetTests.cpp" />
     <ClCompile Include="..\..\src\util\test\CacheTests.cpp" />
     <ClCompile Include="..\..\src\process\test\ProcessTests.cpp" />
@@ -981,7 +981,7 @@ exit /b 0
     <ClInclude Include="..\..\src\history\test\HistoryTestsUtils.h" />
     <ClInclude Include="..\..\src\invariant\AccountSubEntriesCountIsValid.h" />
     <ClInclude Include="..\..\src\invariant\BucketListIsConsistentWithDatabase.h" />
-    <ClInclude Include="..\..\src\invariant\ConservationOfLumens.h" />
+    <ClInclude Include="..\..\src\invariant\ConservationOfGrams.h" />
     <ClInclude Include="..\..\src\invariant\ConstantProductInvariant.h" />
     <ClInclude Include="..\..\src\invariant\Invariant.h" />
     <ClInclude Include="..\..\src\invariant\InvariantDoesNotHold.h" />
@@ -1119,7 +1119,7 @@ exit /b 0
     <ClInclude Include="..\..\src\main\ExternalQueue.h" />
     <ClInclude Include="..\..\src\main\Maintainer.h" />
     <ClInclude Include="..\..\src\main\PersistentState.h" />
-    <ClInclude Include="..\..\src\main\StellarCoreVersion.h" />
+    <ClInclude Include="..\..\src\main\GramrVersion.h" />
     <ClInclude Include="..\..\lib\http\connection.hpp" />
     <ClInclude Include="..\..\lib\http\connection_manager.hpp" />
     <ClInclude Include="..\..\lib\http\header.hpp" />
@@ -1233,12 +1233,12 @@ exit /b 0
     <None Include="..\..\docs\software\performance.md" />
     <None Include="..\..\docs\software\security-protocol-release-notes.md" />
     <None Include="..\..\docs\software\testnet.md" />
-    <None Include="..\..\docs\stellar-core_example.cfg" />
-    <None Include="..\..\docs\stellar-core_example_validators.cfg" />
-    <None Include="..\..\docs\stellar-core_standalone.cfg" />
-    <None Include="..\..\docs\stellar-core_testnet_validator.cfg" />
-    <None Include="..\..\docs\stellar-core_testnet.cfg" />
-    <None Include="..\..\docs\stellar-core_testnet_legacy.cfg" />
+    <None Include="..\..\docs\gramr_example.cfg" />
+    <None Include="..\..\docs\gramr_example_validators.cfg" />
+    <None Include="..\..\docs\gramr_standalone.cfg" />
+    <None Include="..\..\docs\gramr_testnet_validator.cfg" />
+    <None Include="..\..\docs\gramr_testnet.cfg" />
+    <None Include="..\..\docs\gramr_testnet_legacy.cfg" />
     <None Include="..\..\docs\transaction.md" />
     <None Include="..\..\docs\tx-simulation.md" />
     <None Include="..\..\docs\versioning.md" />
@@ -1526,29 +1526,29 @@ exit /b 0
       <AdditionalInputs>src/$(Configuration)/generated/xdr/Stellar-types.h</AdditionalInputs>
       <OutputItemType>ClInclude</OutputItemType>
     </CustomBuild>
-    <CustomBuild Include="..\..\src\main\StellarCoreVersion.cpp.in">
+    <CustomBuild Include="..\..\src\main\GramrVersion.cpp.in">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='DebugNextV|x64'">sed.exe -e "s/%%%%VERSION%%%%/msvc custom/" &lt; %(FullPath) &gt; %(RelativeDir)\StellarCoreVersion.cpp</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='DebugCurrV|x64'">sed.exe -e "s/%%%%VERSION%%%%/msvc custom/" &lt; %(FullPath) &gt; %(RelativeDir)\StellarCoreVersion.cpp</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='DebugNextV|x64'">Generating StellarCoreVersion.cpp</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='DebugCurrV|x64'">Generating StellarCoreVersion.cpp</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='DebugNextV|x64'">../../src/main/StellarCoreVersion.cpp</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='DebugCurrV|x64'">../../src/main/StellarCoreVersion.cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DebugNextV|x64'">sed.exe -e "s/%%%%VERSION%%%%/msvc custom/" &lt; %(FullPath) &gt; %(RelativeDir)\GramrVersion.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DebugCurrV|x64'">sed.exe -e "s/%%%%VERSION%%%%/msvc custom/" &lt; %(FullPath) &gt; %(RelativeDir)\GramrVersion.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='DebugNextV|x64'">Generating GramrVersion.cpp</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='DebugCurrV|x64'">Generating GramrVersion.cpp</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='DebugNextV|x64'">../../src/main/GramrVersion.cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='DebugCurrV|x64'">../../src/main/GramrVersion.cpp</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='DebugNextV|x64'">
       </AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='DebugCurrV|x64'">
       </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='DebugNoPostgres|x64'">sed.exe -e "s/%%%%VERSION%%%%/msvc custom/" &lt; %(FullPath) &gt; %(RelativeDir)\StellarCoreVersion.cpp</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseNextV|x64'">sed.exe -e "s/%%%%VERSION%%%%/msvc custom/" &lt; %(FullPath) &gt; %(RelativeDir)\StellarCoreVersion.cpp</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseCurrV|x64'">sed.exe -e "s/%%%%VERSION%%%%/msvc custom/" &lt; %(FullPath) &gt; %(RelativeDir)\StellarCoreVersion.cpp</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='DebugNoPostgres|x64'">Generating StellarCoreVersion.cpp</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='ReleaseNextV|x64'">Generating StellarCoreVersion.cpp</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='ReleaseCurrV|x64'">Generating StellarCoreVersion.cpp</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='DebugNoPostgres|x64'">../../src/main/StellarCoreVersion.cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='DebugNoPostgres|x64'">sed.exe -e "s/%%%%VERSION%%%%/msvc custom/" &lt; %(FullPath) &gt; %(RelativeDir)\GramrVersion.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseNextV|x64'">sed.exe -e "s/%%%%VERSION%%%%/msvc custom/" &lt; %(FullPath) &gt; %(RelativeDir)\GramrVersion.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseCurrV|x64'">sed.exe -e "s/%%%%VERSION%%%%/msvc custom/" &lt; %(FullPath) &gt; %(RelativeDir)\GramrVersion.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='DebugNoPostgres|x64'">Generating GramrVersion.cpp</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='ReleaseNextV|x64'">Generating GramrVersion.cpp</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='ReleaseCurrV|x64'">Generating GramrVersion.cpp</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='DebugNoPostgres|x64'">../../src/main/GramrVersion.cpp</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='DebugNoPostgres|x64'">
       </AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='ReleaseNextV|x64'">../../src/main/StellarCoreVersion.cpp</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='ReleaseCurrV|x64'">../../src/main/StellarCoreVersion.cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='ReleaseNextV|x64'">../../src/main/GramrVersion.cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='ReleaseCurrV|x64'">../../src/main/GramrVersion.cpp</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='ReleaseNextV|x64'">
       </AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='ReleaseCurrV|x64'">
@@ -1565,7 +1565,7 @@ $(OutDir)\bin\cxxbridge.exe ..\..\src\rust\src\lib.rs --output src\$(Configurati
       <Outputs>src\$(Configuration)\generated\rust\RustBridge.h;src\$(Configuration)\generated\rust\RustBridge.cpp</Outputs>
       <OutputItemType>ClInclude</OutputItemType>
       <AdditionalInputs>$(OutDir)\bin\cxxbridge.exe</AdditionalInputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='DebugNoPostgres|x64'">$(OutDir)\bin\cxxbridge.exe;$(OutDir)\rust\target\debug\rust_stellar_core.lib</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='DebugNoPostgres|x64'">$(OutDir)\bin\cxxbridge.exe;$(OutDir)\rust\target\debug\rust_gramr.lib</AdditionalInputs>
     </CustomBuild>
     <CustomBuild Include="..\..\src\rust\install-cxxbridge-cmd">
       <FileType>Document</FileType>

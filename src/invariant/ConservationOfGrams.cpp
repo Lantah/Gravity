@@ -2,7 +2,7 @@
 // under the Apache License, Version 2.0. See the COPYING file at the root
 // of this distribution or at http://www.apache.org/licenses/LICENSE-2.0
 
-#include "invariant/ConservationOfLumens.h"
+#include "invariant/ConservationOfGrams.h"
 #include "crypto/SHA.h"
 #include "invariant/InvariantManager.h"
 #include "ledger/LedgerTxn.h"
@@ -16,7 +16,7 @@ namespace stellar
 
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
 static int64_t
-calculateDeltaBalance(Hash const& lumenContractID, SCVal const& balanceSymbol,
+calculateDeltaBalance(Hash const& gramContractID, SCVal const& balanceSymbol,
                       SCVal const& amountSymbol, LedgerEntry const* current,
                       LedgerEntry const* previous)
 #else
@@ -83,7 +83,7 @@ calculateDeltaBalance(LedgerEntry const* current, LedgerEntry const* previous)
         auto const& contractData = current ? current->data.contractData()
                                            : previous->data.contractData();
         if (contractData.contract.type() != SC_ADDRESS_TYPE_CONTRACT ||
-            contractData.contract.contractId() != lumenContractID ||
+            contractData.contract.contractId() != gramContractID ||
             contractData.key.type() != SCV_VEC || !contractData.key.vec() ||
             contractData.key.vec().size() == 0)
         {
@@ -141,7 +141,7 @@ calculateDeltaBalance(LedgerEntry const* current, LedgerEntry const* previous)
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
 static int64_t
 calculateDeltaBalance(
-    Hash const& lumenContractID, SCVal const& balanceSymbol,
+    Hash const& gramContractID, SCVal const& balanceSymbol,
     SCVal const& amountSymbol,
     std::shared_ptr<InternalLedgerEntry const> const& genCurrent,
     std::shared_ptr<InternalLedgerEntry const> const& genPrevious)
@@ -160,7 +160,7 @@ calculateDeltaBalance(
             genPrevious ? &genPrevious->ledgerEntry() : nullptr;
 
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
-        return calculateDeltaBalance(lumenContractID, balanceSymbol,
+        return calculateDeltaBalance(gramContractID, balanceSymbol,
                                      amountSymbol, current, previous);
 #else
         return calculateDeltaBalance(current, previous);
@@ -170,27 +170,27 @@ calculateDeltaBalance(
 }
 
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
-ConservationOfLumens::ConservationOfLumens(Hash const& lumenContractID,
+ConservationOfGrams::ConservationOfGrams(Hash const& gramContractID,
                                            SCVal const& balanceSymbol,
                                            SCVal const& amountSymbol)
     : Invariant(false)
-    , mLumenContractID(lumenContractID)
+    , mGramContractID(gramContractID)
     , mBalanceSymbol(balanceSymbol)
     , mAmountSymbol(amountSymbol)
 {
 }
 #else
-ConservationOfLumens::ConservationOfLumens() : Invariant(false)
+ConservationOfGrams::ConservationOfGrams() : Invariant(false)
 {
 }
 #endif
 
 std::shared_ptr<Invariant>
-ConservationOfLumens::registerInvariant(Application& app)
+ConservationOfGrams::registerInvariant(Application& app)
 {
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
-    // We need to keep track of lumens in the Stellar Asset Contract, so
-    // calculate the lumen contractID the key of the Balance entry, and the
+    // We need to keep track of grams in the Stellar Asset Contract, so
+    // calculate the gram contractID the key of the Balance entry, and the
     // amount field within that entry.
 
     // Calculate contractID
@@ -205,7 +205,7 @@ ConservationOfLumens::registerInvariant(Application& app)
         CONTRACT_ID_PREIMAGE_FROM_ASSET);
     preImage.contractID().contractIDPreimage.fromAsset() = native;
 
-    auto lumenContractID = xdrSha256(preImage);
+    auto gramContractID = xdrSha256(preImage);
 
     // Calculate SCVal for balance key
     SCVal balanceSymbol(SCV_SYMBOL);
@@ -215,21 +215,21 @@ ConservationOfLumens::registerInvariant(Application& app)
     SCVal amountSymbol(SCV_SYMBOL);
     amountSymbol.sym() = "amount";
 
-    return app.getInvariantManager().registerInvariant<ConservationOfLumens>(
-        lumenContractID, balanceSymbol, amountSymbol);
+    return app.getInvariantManager().registerInvariant<ConservationOfGrams>(
+        gramContractID, balanceSymbol, amountSymbol);
 #else
-    return app.getInvariantManager().registerInvariant<ConservationOfLumens>();
+    return app.getInvariantManager().registerInvariant<ConservationOfGrams>();
 #endif
 }
 
 std::string
-ConservationOfLumens::getName() const
+ConservationOfGrams::getName() const
 {
-    return "ConservationOfLumens";
+    return "ConservationOfGrams";
 }
 
 std::string
-ConservationOfLumens::checkOnOperationApply(Operation const& operation,
+ConservationOfGrams::checkOnOperationApply(Operation const& operation,
                                             OperationResult const& result,
                                             LedgerTxnDelta const& ltxDelta)
 {
@@ -243,7 +243,7 @@ ConservationOfLumens::checkOnOperationApply(Operation const& operation,
         [this](int64_t lhs, decltype(ltxDelta.entry)::value_type const& rhs) {
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
             return lhs + stellar::calculateDeltaBalance(
-                             mLumenContractID, mBalanceSymbol, mAmountSymbol,
+                             mGramContractID, mBalanceSymbol, mAmountSymbol,
                              rhs.second.current, rhs.second.previous);
 #else
             return lhs + stellar::calculateDeltaBalance(rhs.second.current,

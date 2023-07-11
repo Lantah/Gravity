@@ -441,7 +441,7 @@ VerifyLedgerChainWork::onRun()
         CLOG_ERROR(History, "Catchup material failed verification - "
                             "unsupported ledger version, propagating "
                             "failure");
-        CLOG_ERROR(History, "{}", UPGRADE_STELLAR_CORE);
+        CLOG_ERROR(History, "{}", UPGRADE_GRAMR);
         mApp.getCatchupManager().ledgerChainsVerificationFailed();
         return BasicWork::State::WORK_FAILURE;
     case HistoryManager::VERIFY_STATUS_ERR_BAD_HASH:

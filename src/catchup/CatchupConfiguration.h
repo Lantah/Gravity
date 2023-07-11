@@ -29,7 +29,7 @@ namespace stellar
 // Value of destination ledger can be also set to CatchupConfiguration::CURRENT
 // which means that CatchupWork will get latest checkpoint from history archive
 // and catchup to that instead of destination ledger. This is useful when
-// doing offline commandline catchups with stellar-core catchup command.
+// doing offline commandline catchups with gramr catchup command.
 //
 // Catchup can be done in two modes - ONLINE nad OFFLINE. In ONLINE mode node
 // is connected to the network. If receives ledgers during catchup and applies

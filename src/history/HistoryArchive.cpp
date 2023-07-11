@@ -14,7 +14,7 @@
 #include "crypto/SHA.h"
 #include "history/HistoryManager.h"
 #include "main/Application.h"
-#include "main/StellarCoreVersion.h"
+#include "main/GramrVersion.h"
 #include "process/ProcessManager.h"
 #include "util/Fs.h"
 #include "util/GlobalChecks.h"
@@ -416,7 +416,7 @@ HistoryArchiveState::prepareForPublish(Application& app)
     }
 }
 
-HistoryArchiveState::HistoryArchiveState() : server(STELLAR_CORE_VERSION)
+HistoryArchiveState::HistoryArchiveState() : server(GRAMR_VERSION)
 {
     uint256 u;
     std::string s = binToHex(u);
@@ -432,7 +432,7 @@ HistoryArchiveState::HistoryArchiveState() : server(STELLAR_CORE_VERSION)
 HistoryArchiveState::HistoryArchiveState(uint32_t ledgerSeq,
                                          BucketList const& buckets,
                                          std::string const& passphrase)
-    : server(STELLAR_CORE_VERSION)
+    : server(GRAMR_VERSION)
     , networkPassphrase(passphrase)
     , currentLedger(ledgerSeq)
 {
