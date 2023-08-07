@@ -88,10 +88,18 @@ makeI128(uint64_t u64)
 }
 
 static SCVal
-makeSymbol(std::string const& str)
+makeSymbolSCVal(std::string const& str)
 {
     SCVal val(SCV_SYMBOL);
     val.sym().assign(str.begin(), str.end());
+    return val;
+}
+
+static SCSymbol
+makeSymbol(std::string const& str)
+{
+    SCSymbol val;
+    val.assign(str.begin(), str.end());
     return val;
 }
 
@@ -100,13 +108,6 @@ makeU32(uint32_t u32)
 {
     SCVal val(SCV_U32);
     val.u32() = u32;
-    return val;
-}
-
-static SCVal
-makeVoid()
-{
-    SCVal val(SCV_VOID);
     return val;
 }
 
@@ -202,7 +203,7 @@ deployContractWithSourceAccount(Application& app, RustBuf const& contractWasm,
         auto ledgerSeq = ltx.loadHeader().current().ledgerSeq;
         auto expectedExpiration = networkConfig.stateExpirationSettings()
                                       .minPersistentEntryExpiration +
-                                  ledgerSeq;
+                                  ledgerSeq - 1;
 
         auto codeLtxe = ltx.load(contractCodeLedgerKey);
         REQUIRE(codeLtxe);
@@ -274,7 +275,7 @@ deployContractWithSourceAccount(Application& app, RustBuf const& contractWasm,
     auto ledgerSeq = ltx.loadHeader().current().ledgerSeq;
     auto expectedExpiration =
         networkConfig.stateExpirationSettings().minPersistentEntryExpiration +
-        ledgerSeq;
+        ledgerSeq - 1;
 
     auto instanceLtxe = ltx.load(contractSourceRefLedgerKey);
     REQUIRE(instanceLtxe);
@@ -297,13 +298,16 @@ TEST_CASE("basic contract invocation", "[tx][soroban]")
 
     auto contractKeys = deployContractWithSourceAccount(*app, addI32Wasm);
     auto const& contractID = contractKeys[0].contractData().contract;
-    auto call = [&](SorobanResources const& resources, SCVec const& parameters,
-                    bool success) {
+    auto call = [&](SorobanResources const& resources, SCAddress const& address,
+                    SCSymbol const& functionName,
+                    std::vector<SCVal> const& args, bool success) {
         Operation op;
         op.body.type(INVOKE_HOST_FUNCTION);
         auto& ihf = op.body.invokeHostFunctionOp().hostFunction;
         ihf.type(HOST_FUNCTION_TYPE_INVOKE_CONTRACT);
-        ihf.invokeContract() = parameters;
+        ihf.invokeContract().contractAddress = address;
+        ihf.invokeContract().functionName = functionName;
+        ihf.invokeContract().args.assign(args.begin(), args.end());
 
         auto tx = sorobanTransactionFrameFromOps(
             app->getNetworkID(), root, {op}, {}, resources, 100'000, 1200);
@@ -318,7 +322,7 @@ TEST_CASE("basic contract invocation", "[tx][soroban]")
         if (success)
         {
             REQUIRE(tx->getFullFee() == 100'000);
-            REQUIRE(tx->getFeeBid() == 62'784);
+            REQUIRE(tx->getFeeBid() == 65'117);
             // Initially we store in result the charge for resources plus
             // minimum inclusion  fee bid (currently equivalent to the network
             // `baseFee` of 100).
@@ -346,10 +350,10 @@ TEST_CASE("basic contract invocation", "[tx][soroban]")
                 REQUIRE(changesAfter.size() == 2);
                 REQUIRE(changesAfter[1].updated().data.account().balance -
                             changesAfter[0].state().data.account().balance ==
-                        568);
+                        1182);
             }
-            // The account should receive a refund for unspent metadata fee.
-            REQUIRE(root.getBalance() - balanceAfterFeeCharged == 568);
+            // The account should receive a refund for unspent refundable fee.
+            REQUIRE(root.getBalance() - balanceAfterFeeCharged == 1182);
         }
         else
         {
@@ -371,11 +375,11 @@ TEST_CASE("basic contract invocation", "[tx][soroban]")
                 REQUIRE(changesAfter.size() == 2);
                 REQUIRE(changesAfter[1].updated().data.account().balance -
                             changesAfter[0].state().data.account().balance ==
-                        586);
+                        1200);
             }
             // The account should receive a full refund for metadata
             // in case of tx failure.
-            REQUIRE(root.getBalance() - balanceAfterFeeCharged == 586);
+            REQUIRE(root.getBalance() - balanceAfterFeeCharged == 1200);
         }
         SCVal resultVal;
         if (tx->getResult().result.code() == txSUCCESS &&
@@ -399,8 +403,6 @@ TEST_CASE("basic contract invocation", "[tx][soroban]")
         return resultVal;
     };
 
-    SCVal scContractID(SCValType::SCV_ADDRESS);
-    scContractID.address() = contractID;
     auto scFunc = makeSymbol("add");
     auto sc7 = makeI32(7);
     auto sc16 = makeI32(16);
@@ -413,7 +415,7 @@ TEST_CASE("basic contract invocation", "[tx][soroban]")
 
     SECTION("correct invocation")
     {
-        call(resources, {scContractID, scFunc, sc7, sc16}, true);
+        call(resources, contractID, scFunc, {sc7, sc16}, true);
         REQUIRE(app->getMetrics()
                     .NewTimer({"soroban", "host-fn-op", "exec"})
                     .count() != 0);
@@ -424,24 +426,38 @@ TEST_CASE("basic contract invocation", "[tx][soroban]")
 
     SECTION("incorrect invocation parameters")
     {
-        // Too few parameters
-        call(resources, {}, false);
-        call(resources, {scContractID}, false);
-        call(resources, {scContractID, scFunc}, false);
-        call(resources, {scContractID, scFunc, sc7}, false);
-        // Too many parameters
-        call(resources, {scContractID, scFunc, sc7, sc16, makeI32(0)}, false);
+        SECTION("non-existent contract id")
+        {
+            SCAddress address(SC_ADDRESS_TYPE_CONTRACT);
+            address.contractId()[0] = 1;
+            call(resources, address, scFunc, {sc7, sc16}, false);
+        }
+        SECTION("account address")
+        {
+            SCAddress address(SC_ADDRESS_TYPE_ACCOUNT);
+            address.accountId() = root.getPublicKey();
+            call(resources, address, scFunc, {sc7, sc16}, false);
+        }
+        SECTION("too few parameters")
+        {
+            call(resources, contractID, scFunc, {sc7}, false);
+        }
+        SECTION("too many parameters")
+        {
+            // Too many parameters
+            call(resources, contractID, scFunc, {sc7, sc16, makeI32(0)}, false);
+        }
     }
 
     SECTION("insufficient instructions")
     {
         resources.instructions = 10000;
-        call(resources, {scContractID, scFunc, sc7, sc16}, false);
+        call(resources, contractID, scFunc, {sc7, sc16}, false);
     }
     SECTION("insufficient read bytes")
     {
         resources.readBytes = 100;
-        call(resources, {scContractID, scFunc, sc7, sc16}, false);
+        call(resources, contractID, scFunc, {sc7, sc16}, false);
     }
 }
 
@@ -484,28 +500,41 @@ TEST_CASE("contract storage", "[tx][soroban]")
         }
     };
 
-    auto checkContractDataExpiration = [&](std::string const& key,
-                                           ContractDataDurability type,
-                                           uint32_t expectedExpiration,
-                                           uint32_t flags = 0) {
-        auto keySymbol = makeSymbol(key);
+    auto getContractDataExpiration = [&](std::string const& key,
+                                         ContractDataDurability type,
+                                         uint32_t flags = 0) {
+        auto keySymbol = makeSymbolSCVal(key);
         LedgerTxn ltx(app->getLedgerTxnRoot());
         auto ltxe = loadContractData(ltx, contractID, keySymbol, type);
         REQUIRE(ltxe);
-        REQUIRE(getExpirationLedger(ltxe.current()) == expectedExpiration);
         REQUIRE(ltxe.current().data.contractData().body.data().flags == flags);
+        return getExpirationLedger(ltxe.current());
+    };
+
+    auto isEntryLive = [&](std::string const& key, ContractDataDurability type,
+                           uint32_t ledgerSeq) {
+        auto keySymbol = makeSymbolSCVal(key);
+        LedgerTxn ltx(app->getLedgerTxnRoot());
+        auto ltxe = loadContractData(ltx, contractID, keySymbol, type,
+                                     /*loadExpiredEntry*/ true);
+        REQUIRE(ltxe);
+        return isLive(ltxe.current(), ledgerSeq);
     };
 
     auto createTx = [&](xdr::xvector<LedgerKey> const& readOnly,
                         xdr::xvector<LedgerKey> const& readWrite,
-                        uint32_t writeBytes, SCVec const& invokeVector)
+                        uint32_t writeBytes, SCAddress const& contractAddress,
+                        SCSymbol const& functionName,
+                        std::vector<SCVal> const& args)
         -> std::tuple<TransactionFrameBasePtr, std::shared_ptr<LedgerTxn>,
                       std::shared_ptr<TransactionMetaFrame>> {
         Operation op;
         op.body.type(INVOKE_HOST_FUNCTION);
         auto& ihf = op.body.invokeHostFunctionOp().hostFunction;
         ihf.type(HOST_FUNCTION_TYPE_INVOKE_CONTRACT);
-        ihf.invokeContract() = invokeVector;
+        ihf.invokeContract().contractAddress = contractAddress;
+        ihf.invokeContract().functionName = functionName;
+        ihf.invokeContract().args.assign(args.begin(), args.end());
         SorobanResources resources;
         resources.footprint.readOnly = readOnly;
         resources.footprint.readWrite = readWrite;
@@ -515,7 +544,7 @@ TEST_CASE("contract storage", "[tx][soroban]")
         resources.extendedMetaDataSizeBytes = 3000;
 
         auto tx = sorobanTransactionFrameFromOps(
-            app->getNetworkID(), root, {op}, {}, resources, 200'000, 1200);
+            app->getNetworkID(), root, {op}, {}, resources, 200'000, 40'000);
         auto ltx = std::make_shared<LedgerTxn>(app->getLedgerTxnRoot());
         auto txm = std::make_shared<TransactionMetaFrame>(
             ltx->loadHeader().current().ledgerVersion);
@@ -527,11 +556,9 @@ TEST_CASE("contract storage", "[tx][soroban]")
                                 xdr::xvector<LedgerKey> const& readOnly,
                                 xdr::xvector<LedgerKey> const& readWrite,
                                 uint32_t writeBytes, bool expectSuccess,
-                                ContractDataDurability type,
-                                std::optional<uint32_t> flags) {
-        auto keySymbol = makeSymbol(key);
+                                ContractDataDurability type) {
+        auto keySymbol = makeSymbolSCVal(key);
         auto valU64 = makeU64(val);
-        auto scFlags = flags ? makeU32(*flags) : makeVoid();
 
         std::string funcStr;
         switch (type)
@@ -545,9 +572,8 @@ TEST_CASE("contract storage", "[tx][soroban]")
         }
 
         auto [tx, ltx, txm] =
-            createTx(readOnly, readWrite, writeBytes,
-                     {makeContractAddressSCVal(contractID), makeSymbol(funcStr),
-                      keySymbol, valU64, scFlags});
+            createTx(readOnly, readWrite, writeBytes, contractID,
+                     makeSymbol(funcStr), {keySymbol, valU64});
 
         if (expectSuccess)
         {
@@ -563,12 +589,11 @@ TEST_CASE("contract storage", "[tx][soroban]")
     };
 
     auto put = [&](std::string const& key, uint64_t val,
-                   ContractDataDurability type,
-                   std::optional<uint32_t> flags = std::nullopt) {
-        putWithFootprint(
-            key, val, contractKeys,
-            {contractDataKey(contractID, makeSymbol(key), type, DATA_ENTRY)},
-            1000, true, type, flags);
+                   ContractDataDurability type) {
+        putWithFootprint(key, val, contractKeys,
+                         {contractDataKey(contractID, makeSymbolSCVal(key),
+                                          type, DATA_ENTRY)},
+                         1000, true, type);
     };
 
     auto bumpWithFootprint = [&](std::string const& key, uint32_t bumpAmount,
@@ -576,7 +601,7 @@ TEST_CASE("contract storage", "[tx][soroban]")
                                  xdr::xvector<LedgerKey> const& readWrite,
                                  bool expectSuccess,
                                  ContractDataDurability type) {
-        auto keySymbol = makeSymbol(key);
+        auto keySymbol = makeSymbolSCVal(key);
         auto bumpAmountU32 = makeU32(bumpAmount);
 
         std::string funcStr;
@@ -592,9 +617,8 @@ TEST_CASE("contract storage", "[tx][soroban]")
 
         // TODO: Better bytes to write value
         auto [tx, ltx, txm] =
-            createTx(readOnly, readWrite, 1000,
-                     {makeContractAddressSCVal(contractID), makeSymbol(funcStr),
-                      keySymbol, bumpAmountU32});
+            createTx(readOnly, readWrite, 1000, contractID, makeSymbol(funcStr),
+                     {keySymbol, bumpAmountU32});
 
         if (expectSuccess)
         {
@@ -610,14 +634,60 @@ TEST_CASE("contract storage", "[tx][soroban]")
 
     auto bump = [&](std::string const& key, ContractDataDurability type,
                     uint32_t bumpAmount) {
-        bumpWithFootprint(
-            key, bumpAmount, contractKeys,
-            {contractDataKey(contractID, makeSymbol(key), type, DATA_ENTRY)},
-            true, type);
+        bumpWithFootprint(key, bumpAmount, contractKeys,
+                          {contractDataKey(contractID, makeSymbolSCVal(key),
+                                           type, DATA_ENTRY)},
+                          true, type);
     };
 
+    auto runExpirationOp = [&](TestAccount& root, TransactionFrameBasePtr tx,
+                               int64_t refundableFee,
+                               int64_t expectedRefundableFeeCharged) {
+        int64_t initBalance = root.getBalance();
+        // Apply the transaction and process the refund.
+        {
+            LedgerTxn ltx(app->getLedgerTxnRoot());
+            REQUIRE(tx->checkValid(*app, ltx, 0, 0, 0));
+        }
+        // Initially we store in result the charge for resources plus
+        // minimum inclusion  fee bid (currently equivalent to the network
+        // `baseFee` of 100).
+        int64_t baseCharged = (tx->getFullFee() - tx->getFeeBid()) + 100;
+        REQUIRE(tx->getResult().feeCharged == baseCharged);
+        // Charge the fee.
+        {
+            LedgerTxn ltx(app->getLedgerTxnRoot());
+            // Imitate surge pricing by charging at a higher rate than base
+            // fee.
+            tx->processFeeSeqNum(ltx, 300);
+            ltx.commit();
+        }
+        // The resource and the base fee are charged, with additional
+        // surge pricing fee.
+        int64_t balanceAfterFeeCharged = root.getBalance();
+        REQUIRE(initBalance - balanceAfterFeeCharged ==
+                baseCharged + /* surge pricing additional fee */ 200);
+        {
+            LedgerTxn ltx(app->getLedgerTxnRoot());
+            TransactionMetaFrame txm(ltx.loadHeader().current().ledgerVersion);
+            REQUIRE(tx->apply(*app, ltx, txm));
+            tx->processPostApply(*app, ltx, txm);
+            ltx.commit();
+
+            auto changesAfter = txm.getChangesAfter();
+            REQUIRE(changesAfter.size() == 2);
+            REQUIRE(changesAfter[1].updated().data.account().balance -
+                        changesAfter[0].state().data.account().balance ==
+                    refundableFee - expectedRefundableFeeCharged);
+        }
+
+        // The account should receive a refund for unspent refundable fee.
+        REQUIRE(root.getBalance() - balanceAfterFeeCharged ==
+                refundableFee - expectedRefundableFeeCharged);
+    };
     auto bumpOp = [&](uint32_t bumpAmount,
-                      xdr::xvector<LedgerKey> const& readOnly) {
+                      xdr::xvector<LedgerKey> const& readOnly,
+                      int64_t expectedRefundableFeeCharged) {
         Operation bumpOp;
         bumpOp.body.type(BUMP_FOOTPRINT_EXPIRATION);
         bumpOp.body.bumpFootprintExpirationOp().ledgersToExpire = bumpAmount;
@@ -626,22 +696,18 @@ TEST_CASE("contract storage", "[tx][soroban]")
         bumpResources.footprint.readOnly = readOnly;
         bumpResources.instructions = 0;
         bumpResources.readBytes = 1000;
-        bumpResources.writeBytes = 1000;
+        bumpResources.writeBytes = 0;
         bumpResources.extendedMetaDataSizeBytes = 1000;
 
-        // submit operation
-        auto root = TestAccount::createRoot(*app);
         auto tx =
             sorobanTransactionFrameFromOps(app->getNetworkID(), root, {bumpOp},
-                                           {}, bumpResources, 100'000, 1'200);
-        LedgerTxn ltx(app->getLedgerTxnRoot());
-        TransactionMetaFrame txm(ltx.loadHeader().current().ledgerVersion);
-        REQUIRE(tx->checkValid(*app, ltx, 0, 0, 0));
-        REQUIRE(tx->apply(*app, ltx, txm));
-        ltx.commit();
+                                           {}, bumpResources, 100'000, 1200);
+
+        runExpirationOp(root, tx, 1200, expectedRefundableFeeCharged);
     };
 
-    auto restoreOp = [&](xdr::xvector<LedgerKey> const& readWrite) {
+    auto restoreOp = [&](xdr::xvector<LedgerKey> const& readWrite,
+                         int64_t expectedRefundableFeeCharged) {
         Operation restoreOp;
         restoreOp.body.type(RESTORE_FOOTPRINT);
 
@@ -653,15 +719,10 @@ TEST_CASE("contract storage", "[tx][soroban]")
         bumpResources.extendedMetaDataSizeBytes = 1000;
 
         // submit operation
-        auto root = TestAccount::createRoot(*app);
         auto tx = sorobanTransactionFrameFromOps(app->getNetworkID(), root,
                                                  {restoreOp}, {}, bumpResources,
                                                  100'000, 1'200);
-        LedgerTxn ltx(app->getLedgerTxnRoot());
-        TransactionMetaFrame txm(ltx.loadHeader().current().ledgerVersion);
-        REQUIRE(tx->checkValid(*app, ltx, 0, 0, 0));
-        REQUIRE(tx->apply(*app, ltx, txm));
-        ltx.commit();
+        runExpirationOp(root, tx, 1200, expectedRefundableFeeCharged);
     };
 
     auto delWithFootprint = [&](std::string const& key,
@@ -669,7 +730,7 @@ TEST_CASE("contract storage", "[tx][soroban]")
                                 xdr::xvector<LedgerKey> const& readWrite,
                                 bool expectSuccess,
                                 ContractDataDurability type) {
-        auto keySymbol = makeSymbol(key);
+        auto keySymbol = makeSymbolSCVal(key);
 
         std::string funcStr;
         switch (type)
@@ -683,9 +744,8 @@ TEST_CASE("contract storage", "[tx][soroban]")
         }
 
         // TODO: Better bytes to write value
-        auto [tx, ltx, txm] = createTx(readOnly, readWrite, 1000,
-                                       {makeContractAddressSCVal(contractID),
-                                        makeSymbol(funcStr), keySymbol});
+        auto [tx, ltx, txm] = createTx(readOnly, readWrite, 1000, contractID,
+                                       makeSymbol(funcStr), {keySymbol});
 
         if (expectSuccess)
         {
@@ -701,40 +761,39 @@ TEST_CASE("contract storage", "[tx][soroban]")
     };
 
     auto del = [&](std::string const& key, ContractDataDurability type) {
-        delWithFootprint(
-            key, contractKeys,
-            {contractDataKey(contractID, makeSymbol(key), type, DATA_ENTRY)},
-            true, type);
+        delWithFootprint(key, contractKeys,
+                         {contractDataKey(contractID, makeSymbolSCVal(key),
+                                          type, DATA_ENTRY)},
+                         true, type);
     };
 
     SECTION("default limits")
     {
-
         put("key1", 0, ContractDataDurability::PERSISTENT);
         put("key2", 21, ContractDataDurability::PERSISTENT);
 
         // Failure: contract data isn't in footprint
         putWithFootprint("key1", 88, contractKeys, {}, 1000, false,
-                         ContractDataDurability::PERSISTENT, std::nullopt);
+                         ContractDataDurability::PERSISTENT);
         delWithFootprint("key1", contractKeys, {}, false,
                          ContractDataDurability::PERSISTENT);
 
         // Failure: contract data is read only
         auto readOnlyFootprint = contractKeys;
         readOnlyFootprint.push_back(
-            contractDataKey(contractID, makeSymbol("key2"),
+            contractDataKey(contractID, makeSymbolSCVal("key2"),
                             ContractDataDurability::PERSISTENT, DATA_ENTRY));
         putWithFootprint("key2", 888888, readOnlyFootprint, {}, 1000, false,
-                         ContractDataDurability::PERSISTENT, std::nullopt);
+                         ContractDataDurability::PERSISTENT);
         delWithFootprint("key2", readOnlyFootprint, {}, false,
                          ContractDataDurability::PERSISTENT);
 
         // Failure: insufficient write bytes
         putWithFootprint(
             "key2", 88888, contractKeys,
-            {contractDataKey(contractID, makeSymbol("key2"),
+            {contractDataKey(contractID, makeSymbolSCVal("key2"),
                              ContractDataDurability::PERSISTENT, DATA_ENTRY)},
-            1, false, ContractDataDurability::PERSISTENT, std::nullopt);
+            1, false, ContractDataDurability::PERSISTENT);
 
         put("key1", 9, ContractDataDurability::PERSISTENT);
         put("key2", UINT64_MAX, ContractDataDurability::PERSISTENT);
@@ -758,9 +817,9 @@ TEST_CASE("contract storage", "[tx][soroban]")
         // this fails due to the contract code itself exceeding the entry limit
         putWithFootprint(
             "key2", 2, contractKeys,
-            {contractDataKey(contractID, makeSymbol("key2"),
+            {contractDataKey(contractID, makeSymbolSCVal("key2"),
                              ContractDataDurability::PERSISTENT, DATA_ENTRY)},
-            1000, false, ContractDataDurability::PERSISTENT, std::nullopt);
+            1000, false, ContractDataDurability::PERSISTENT);
     }
 
     SECTION("Same ScVal key, different types")
@@ -774,13 +833,13 @@ TEST_CASE("contract storage", "[tx][soroban]")
         auto uniqueScVal = makeU64(uniqueVal);
         auto recreatableScVal = makeU64(recreatableVal);
         auto temporaryScVal = makeU64(temporaryVal);
-        auto keySymbol = makeSymbol("key");
+        auto keySymbol = makeSymbolSCVal("key");
         checkContractData(keySymbol, ContractDataDurability::PERSISTENT,
                           &uniqueScVal);
         checkContractData(keySymbol, TEMPORARY, &temporaryScVal);
 
         put("key2", 3, ContractDataDurability::PERSISTENT);
-        auto key2Symbol = makeSymbol("key2");
+        auto key2Symbol = makeSymbolSCVal("key2");
         auto uniqueScVal2 = makeU64(3);
         checkContractData(key2Symbol, ContractDataDurability::PERSISTENT,
                           &uniqueScVal2);
@@ -796,14 +855,16 @@ TEST_CASE("contract storage", "[tx][soroban]")
         put("temp", 0, TEMPORARY);
 
         auto expectedTempExpiration =
-            stateExpirationSettings.minTempEntryExpiration + ledgerSeq;
+            stateExpirationSettings.minTempEntryExpiration + ledgerSeq - 1;
         auto expectedRestorableExpiration =
-            stateExpirationSettings.minPersistentEntryExpiration + ledgerSeq;
+            stateExpirationSettings.minPersistentEntryExpiration + ledgerSeq -
+            1;
 
-        checkContractDataExpiration("unique",
-                                    ContractDataDurability::PERSISTENT,
-                                    expectedRestorableExpiration);
-        checkContractDataExpiration("temp", TEMPORARY, expectedTempExpiration);
+        REQUIRE(getContractDataExpiration("unique",
+                                          ContractDataDurability::PERSISTENT) ==
+                expectedRestorableExpiration);
+        REQUIRE(getContractDataExpiration("temp", TEMPORARY) ==
+                expectedTempExpiration);
     }
 
     SECTION("autobump")
@@ -811,41 +872,36 @@ TEST_CASE("contract storage", "[tx][soroban]")
         put("rw", 0, ContractDataDurability::PERSISTENT);
         put("ro", 0, ContractDataDurability::PERSISTENT);
 
-        uint32_t flags = NO_AUTOBUMP;
-        put("nobump", 0, ContractDataDurability::PERSISTENT, flags);
-
         auto readOnlySet = contractKeys;
         readOnlySet.emplace_back(
-            contractDataKey(contractID, makeSymbol("ro"),
+            contractDataKey(contractID, makeSymbolSCVal("ro"),
                             ContractDataDurability::PERSISTENT, DATA_ENTRY));
 
-        auto readWriteSet = {
-            contractDataKey(contractID, makeSymbol("nobump"),
-                            ContractDataDurability::PERSISTENT, DATA_ENTRY),
-            contractDataKey(contractID, makeSymbol("rw"),
-                            ContractDataDurability::PERSISTENT, DATA_ENTRY)};
+        auto readWriteSet = {contractDataKey(contractID, makeSymbolSCVal("rw"),
+                                             ContractDataDurability::PERSISTENT,
+                                             DATA_ENTRY)};
 
         // Invoke contract with all keys in footprint
         putWithFootprint("rw", 1, readOnlySet, readWriteSet, 1000, true,
-                         ContractDataDurability::PERSISTENT, std::nullopt);
+                         ContractDataDurability::PERSISTENT);
 
         auto expectedInitialExpiration =
-            stateExpirationSettings.minPersistentEntryExpiration + ledgerSeq;
+            stateExpirationSettings.minPersistentEntryExpiration + ledgerSeq -
+            1;
 
-        checkContractDataExpiration("rw", ContractDataDurability::PERSISTENT,
-                                    expectedInitialExpiration + autoBump);
-        checkContractDataExpiration("ro", ContractDataDurability::PERSISTENT,
-                                    expectedInitialExpiration + autoBump);
-        checkContractDataExpiration("nobump",
-                                    ContractDataDurability::PERSISTENT,
-                                    expectedInitialExpiration, flags);
+        REQUIRE(getContractDataExpiration("rw",
+                                          ContractDataDurability::PERSISTENT) ==
+                expectedInitialExpiration + autoBump);
+        REQUIRE(getContractDataExpiration("ro",
+                                          ContractDataDurability::PERSISTENT) ==
+                expectedInitialExpiration + autoBump);
 
-        // Contract instance and WASM should have minimum life and 4 invocations
+        // Contract instance and Wasm should have minimum life and 3 invocations
         // worth of autobumps
         LedgerTxn ltx(app->getLedgerTxnRoot());
         for (auto const& key : contractKeys)
         {
-            uint32_t mult = key.type() == CONTRACT_CODE ? 5 : 4;
+            uint32_t mult = key.type() == CONTRACT_CODE ? 4 : 3;
             auto ltxe = ltx.loadWithoutRecord(key, /*loadExpiredEntry=*/false);
             REQUIRE(ltxe);
             REQUIRE(getExpirationLedger(ltxe.current()) ==
@@ -857,63 +913,93 @@ TEST_CASE("contract storage", "[tx][soroban]")
     {
         put("key", 0, ContractDataDurability::PERSISTENT);
         bump("key", ContractDataDurability::PERSISTENT, 10'000);
-        checkContractDataExpiration("key", ContractDataDurability::PERSISTENT,
-                                    10'000 + ledgerSeq);
+        REQUIRE(getContractDataExpiration("key",
+                                          ContractDataDurability::PERSISTENT) ==
+                ledgerSeq + 10'000 - 1);
 
         // Expiration already above 5'000, should be a nop (other than autobump)
         bump("key", ContractDataDurability::PERSISTENT, 5'000);
-        checkContractDataExpiration("key", ContractDataDurability::PERSISTENT,
-                                    10'000 + autoBump + ledgerSeq);
+        REQUIRE(getContractDataExpiration("key",
+                                          ContractDataDurability::PERSISTENT) ==
+                ledgerSeq + 10'000 - 1 + autoBump);
 
         put("key2", 0, ContractDataDurability::PERSISTENT);
         bump("key2", ContractDataDurability::PERSISTENT, 5'000);
-        checkContractDataExpiration("key2", ContractDataDurability::PERSISTENT,
-                                    5'000 + ledgerSeq);
+        REQUIRE(getContractDataExpiration("key2",
+                                          ContractDataDurability::PERSISTENT) ==
+                ledgerSeq + 5'000 - 1);
 
         put("key3", 0, ContractDataDurability::PERSISTENT);
         bump("key3", ContractDataDurability::PERSISTENT, 50'000);
-        checkContractDataExpiration("key3", ContractDataDurability::PERSISTENT,
-                                    50'000 + ledgerSeq);
+        REQUIRE(getContractDataExpiration("key3",
+                                          ContractDataDurability::PERSISTENT) ==
+                ledgerSeq + 50'000 - 1);
 
         // Bump to live 10100 ledger from now
         bumpOp(
             10100,
-            {contractDataKey(contractID, makeSymbol("key"),
+            {contractDataKey(contractID, makeSymbolSCVal("key"),
                              ContractDataDurability::PERSISTENT, DATA_ENTRY),
-             contractDataKey(contractID, makeSymbol("key2"),
+             contractDataKey(contractID, makeSymbolSCVal("key2"),
                              ContractDataDurability::PERSISTENT, DATA_ENTRY),
-             contractDataKey(contractID, makeSymbol("key3"),
-                             ContractDataDurability::PERSISTENT, DATA_ENTRY)});
+             contractDataKey(contractID, makeSymbolSCVal("key3"),
+                             ContractDataDurability::PERSISTENT, DATA_ENTRY)},
+            178);
 
-        checkContractDataExpiration("key", ContractDataDurability::PERSISTENT,
-                                    10'000 + ledgerSeq + 100);
-        checkContractDataExpiration("key2", ContractDataDurability::PERSISTENT,
-                                    10'000 + ledgerSeq + 100);
+        REQUIRE(getContractDataExpiration("key",
+                                          ContractDataDurability::PERSISTENT) ==
+                ledgerSeq + 10'100);
+        REQUIRE(getContractDataExpiration("key2",
+                                          ContractDataDurability::PERSISTENT) ==
+                ledgerSeq + 10'100);
 
         // No change for key3 since expiration is already past 10100 ledgers
         // from now
-        checkContractDataExpiration("key3", ContractDataDurability::PERSISTENT,
-                                    50'000 + ledgerSeq);
+        REQUIRE(getContractDataExpiration("key3",
+                                          ContractDataDurability::PERSISTENT) ==
+                ledgerSeq + 50'000 - 1);
     }
     SECTION("restore expired entry")
     {
         auto minBump =
             InitialSorobanNetworkConfig::MINIMUM_PERSISTENT_ENTRY_LIFETIME;
         put("key", 0, ContractDataDurability::PERSISTENT);
-        checkContractDataExpiration("key", ContractDataDurability::PERSISTENT,
-                                    minBump + 1);
-        for (size_t i = app->getLedgerManager().getLastClosedLedgerNum();
-             i <= minBump + 1; ++i)
+        uint32_t initExpirationLedger = ledgerSeq + minBump - 1;
+        REQUIRE(getContractDataExpiration("key",
+                                          ContractDataDurability::PERSISTENT) ==
+                initExpirationLedger);
+        for (uint32 i = app->getLedgerManager().getLastClosedLedgerNum();
+             i <= initExpirationLedger + 1; ++i)
         {
             closeLedgerOn(*app, i, 2, 1, 2016);
         }
         REQUIRE(app->getLedgerManager().getLastClosedLedgerNum() ==
-                minBump + 1);
+                initExpirationLedger + 1);
+        REQUIRE(!isEntryLive("key", ContractDataDurability::PERSISTENT,
+                             app->getLedgerManager().getLastClosedLedgerNum()));
+
+        // Trying to use this expired entry should fail.
+        putWithFootprint(
+            "key", 0, contractKeys,
+            {contractDataKey(contractID, makeSymbolSCVal("key"),
+                             ContractDataDurability::PERSISTENT, DATA_ENTRY)},
+            1000, /*expectSuccess*/ false, ContractDataDurability::PERSISTENT);
+
+        // Restore the entry and then write to it.
         restoreOp(
-            {contractDataKey(contractID, makeSymbol("key"),
-                             ContractDataDurability::PERSISTENT, DATA_ENTRY)});
-        checkContractDataExpiration("key", ContractDataDurability::PERSISTENT,
-                                    (minBump * 2) + 1);
+            {contractDataKey(contractID, makeSymbolSCVal("key"),
+                             ContractDataDurability::PERSISTENT, DATA_ENTRY)},
+            61);
+        REQUIRE(
+            isEntryLive("key", ContractDataDurability::PERSISTENT,
+                        app->getLedgerManager().getLastClosedLedgerNum() + 1));
+        // Entry is considered to be restored on lclNum (as we didn't close an
+        // additional ledger).
+        REQUIRE(getContractDataExpiration("key",
+                                          ContractDataDurability::PERSISTENT) ==
+                app->getLedgerManager().getLastClosedLedgerNum() + minBump - 1);
+
+        put("key", 1, ContractDataDurability::PERSISTENT);
     }
     SECTION("max expiration")
     {
@@ -922,22 +1008,25 @@ TEST_CASE("contract storage", "[tx][soroban]")
         bump("key", ContractDataDurability::PERSISTENT, UINT32_MAX);
 
         auto maxExpiration =
-            stateExpirationSettings.maxEntryExpiration + ledgerSeq;
-        checkContractDataExpiration("key", ContractDataDurability::PERSISTENT,
-                                    maxExpiration);
+            ledgerSeq + stateExpirationSettings.maxEntryExpiration - 1;
+        REQUIRE(getContractDataExpiration("key",
+                                          ContractDataDurability::PERSISTENT) ==
+                maxExpiration);
 
         // Manual bump to almost max, then autobump to check that autobump
         // doesn't go over max
         put("key2", 0, ContractDataDurability::PERSISTENT);
         bump("key2", ContractDataDurability::PERSISTENT,
              stateExpirationSettings.maxEntryExpiration - 1);
-        checkContractDataExpiration("key2", ContractDataDurability::PERSISTENT,
-                                    maxExpiration - 1);
+        REQUIRE(getContractDataExpiration("key2",
+                                          ContractDataDurability::PERSISTENT) ==
+                maxExpiration - 1);
 
         // Autobump should only add a single ledger to bring expiration to max
         put("key2", 1, ContractDataDurability::PERSISTENT);
-        checkContractDataExpiration("key2", ContractDataDurability::PERSISTENT,
-                                    maxExpiration);
+        REQUIRE(getContractDataExpiration("key2",
+                                          ContractDataDurability::PERSISTENT) ==
+                maxExpiration);
     }
 }
 
@@ -960,14 +1049,14 @@ TEST_CASE("failed invocation with diagnostics", "[tx][soroban]")
 
     auto sc1 = makeI32(7);
     auto scMax = makeI32(INT32_MAX);
-    SCVec parameters = {makeContractAddressSCVal(contractID), makeSymbol("add"),
-                        sc1, scMax};
 
     Operation op;
     op.body.type(INVOKE_HOST_FUNCTION);
     auto& ihf = op.body.invokeHostFunctionOp().hostFunction;
     ihf.type(HOST_FUNCTION_TYPE_INVOKE_CONTRACT);
-    ihf.invokeContract() = parameters;
+    ihf.invokeContract().contractAddress = contractID;
+    ihf.invokeContract().functionName = makeSymbol("add");
+    ihf.invokeContract().args = {sc1, scMax};
     SorobanResources resources;
     resources.footprint.readOnly = contractKeys;
     resources.instructions = 2'000'000;
@@ -1011,18 +1100,17 @@ TEST_CASE("complex contract", "[tx][soroban]")
         auto contractKeys = deployContractWithSourceAccount(*app, complexWasm);
         auto const& contractID = contractKeys[0].contractData().contract;
 
-        auto scFunc = makeSymbol("go");
-
         Operation op;
         op.body.type(INVOKE_HOST_FUNCTION);
         auto& ihf = op.body.invokeHostFunctionOp().hostFunction;
         ihf.type(HOST_FUNCTION_TYPE_INVOKE_CONTRACT);
-        ihf.invokeContract() = {makeContractAddressSCVal(contractID), scFunc};
+        ihf.invokeContract().contractAddress = contractID;
+        ihf.invokeContract().functionName = makeSymbol("go");
 
         // Contract writes a single `data` CONTRACT_DATA entry.
         LedgerKey dataKey(LedgerEntryType::CONTRACT_DATA);
         dataKey.contractData().contract = contractID;
-        dataKey.contractData().key = makeSymbol("data");
+        dataKey.contractData().key = makeSymbolSCVal("data");
 
         SorobanResources resources;
         resources.footprint.readOnly = contractKeys;
@@ -1130,13 +1218,13 @@ TEST_CASE("Stellar asset contract GRAM transfer", "[tx][soroban]")
 
     auto metadataKey = LedgerKey(CONTRACT_DATA);
     metadataKey.contractData().contract = contractID;
-    metadataKey.contractData().key = makeSymbol("METADATA");
+    metadataKey.contractData().key = makeSymbolSCVal("METADATA");
     metadataKey.contractData().durability = ContractDataDurability::PERSISTENT;
     metadataKey.contractData().bodyType = DATA_ENTRY;
 
     LedgerKey assetInfoLedgerKey(CONTRACT_DATA);
     assetInfoLedgerKey.contractData().contract = contractID;
-    SCVec assetInfo = {makeSymbol("AssetInfo")};
+    SCVec assetInfo = {makeSymbolSCVal("AssetInfo")};
     SCVal assetInfoSCVal(SCValType::SCV_VEC);
     assetInfoSCVal.vec().activate() = assetInfo;
     assetInfoLedgerKey.contractData().key = assetInfoSCVal;
@@ -1182,15 +1270,14 @@ TEST_CASE("Stellar asset contract GRAM transfer", "[tx][soroban]")
     transfer.body.type(INVOKE_HOST_FUNCTION);
     auto& ihf = transfer.body.invokeHostFunctionOp().hostFunction;
     ihf.type(HOST_FUNCTION_TYPE_INVOKE_CONTRACT);
-    ihf.invokeContract() = {makeContractAddressSCVal(contractID), fn, from, to,
-                            makeI128(10)};
+    ihf.invokeContract().contractAddress = contractID;
+    ihf.invokeContract().functionName = fn;
+    ihf.invokeContract().args = {from, to, makeI128(10)};
 
     // build auth
     SorobanAuthorizedInvocation ai;
     ai.function.type(SOROBAN_AUTHORIZED_FUNCTION_TYPE_CONTRACT_FN);
-    ai.function.contractFn().contractAddress = contractID;
-    ai.function.contractFn().functionName = fn.sym();
-    ai.function.contractFn().args = {from, to, makeI128(10)};
+    ai.function.contractFn() = ihf.invokeContract();
 
     SorobanAuthorizationEntry a;
     a.credentials.type(SOROBAN_CREDENTIALS_SOURCE_ACCOUNT);
@@ -1208,7 +1295,7 @@ TEST_CASE("Stellar asset contract GRAM transfer", "[tx][soroban]")
 
     LedgerKey balanceLedgerKey(CONTRACT_DATA);
     balanceLedgerKey.contractData().contract = contractID;
-    SCVec balance = {makeSymbol("Balance"), to};
+    SCVec balance = {makeSymbolSCVal("Balance"), to};
     SCVal balanceKey(SCValType::SCV_VEC);
     balanceKey.vec().activate() = balance;
     balanceLedgerKey.contractData().key = balanceKey;

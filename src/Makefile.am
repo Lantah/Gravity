@@ -27,6 +27,9 @@ CARGO_FEATURES = --features soroban-env-host-prev
 else
 CARGO_FEATURES =
 endif
+if USE_TRACY
+CARGO_FEATURES += --features tracy
+endif
 
 gramr_LDADD = $(soci_LIBS) $(libmedida_LIBS)		\
 	$(top_builddir)/lib/lib3rdparty.a $(sqlite3_LIBS)	\
@@ -77,7 +80,7 @@ RUST_BIN_DIR=$(RUST_BUILD_DIR)/bin
 RUST_TARGET_DIR=$(RUST_BUILD_DIR)/target
 RUST_CXXBRIDGE=$(RUST_BIN_DIR)/cxxbridge
 RUST_PROFILE=release
-RUST_HOST_DEPFILES=rust/Cargo.toml $(top_srcdir)/Cargo.lock rust/src/host-dep-tree-curr.txt rust/src/host-dep-tree-prev.txt
+RUST_HOST_DEPFILES=rust/Cargo.toml $(top_srcdir)/Cargo.toml $(top_srcdir)/Cargo.lock rust/src/host-dep-tree-curr.txt rust/src/host-dep-tree-prev.txt
 LIBRUST_GRAMR=$(RUST_TARGET_DIR)/$(RUST_PROFILE)/librust_gramr.a
 gramr_LDADD += $(LIBRUST_GRAMR) -ldl
 

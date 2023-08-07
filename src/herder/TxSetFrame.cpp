@@ -496,6 +496,7 @@ TxSetFrame::previousLedgerHash() const
 TxSetFrame::Transactions const&
 TxSetFrame::getTxsForPhase(Phase phase) const
 {
+    releaseAssert(static_cast<size_t>(phase) < mTxPhases.size());
     return mTxPhases.at(static_cast<size_t>(phase));
 }
 
@@ -640,9 +641,6 @@ TxSetFrame::checkValid(Application& app, uint64_t lowerBoundCloseTimeOffset,
     {
         // First, ensure the tx set does not contain multiple txs per source
         // account
-        // FIXME: Our test suite relies on tx chains per source account, so
-        // introducing this invariant causes a fallout. When the test suite is
-        // updated to accommodate 1 tx/source account, remove this flag.
         if (app.getConfig().LIMIT_TX_QUEUE_SOURCE_ACCOUNT)
         {
             std::unordered_set<AccountID> seenAccounts;
@@ -705,12 +703,19 @@ TxSetFrame::size(LedgerHeader const& lh, std::optional<Phase> phase) const
 {
     size_t sz = 0;
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
-    if (!phase && phase == Phase::SOROBAN)
+    if (!phase)
+    {
+        if (numPhases() > static_cast<size_t>(Phase::SOROBAN))
+        {
+            sz += sizeOp(Phase::SOROBAN);
+        }
+    }
+    else if (phase.value() == Phase::SOROBAN)
     {
         sz += sizeOp(Phase::SOROBAN);
     }
 #endif
-    if (!phase || phase == Phase::CLASSIC)
+    if (!phase || phase.value() == Phase::CLASSIC)
     {
         sz += protocolVersionStartsFrom(lh.ledgerVersion, ProtocolVersion::V_11)
                   ? sizeOp(Phase::CLASSIC)
@@ -1030,7 +1035,6 @@ TxSetFrame::summary() const
                            sizeTxTotal(), sizeOpTotal(),
                            *mTxBaseFeeClassic.begin()->second);
     }
-    return "";
 }
 
 void

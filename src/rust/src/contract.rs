@@ -5,7 +5,8 @@
 use crate::{
     log::partition::TX,
     rust_bridge::{
-        Bump, CxxBuf, CxxFeeConfiguration, CxxLedgerInfo, CxxTransactionResources, FeePair,
+        Bump, CxxBuf, CxxFeeConfiguration, CxxLedgerEntryRentChange, CxxLedgerInfo,
+        CxxRentFeeConfiguration, CxxTransactionResources, CxxWriteFeeConfiguration, FeePair,
         InvokeHostFunctionOutput, RustBuf, XDRFileHash,
     },
 };
@@ -21,13 +22,15 @@ use super::soroban_env_host::{
     events::Events,
     expiration_ledger_bumps::ExpirationLedgerBumps,
     fees::{
+        compute_rent_fee as host_compute_rent_fee,
         compute_transaction_resource_fee as host_compute_transaction_resource_fee,
-        FeeConfiguration, TransactionResources,
+        compute_write_fee_per_1kb as host_compute_write_fee_per_1kb, FeeConfiguration,
+        LedgerEntryRentChange, RentFeeConfiguration, TransactionResources, WriteFeeConfiguration,
     },
     storage::{self, AccessType, Footprint, FootprintMap, Storage, StorageMap},
     xdr::{
         self, AccountId, ContractCodeEntryBody, ContractCostParams, ContractDataEntryBody,
-        ContractEvent, ContractEventType, ContractEntryBodyType, DiagnosticEvent, HostFunction,
+        ContractEntryBodyType, ContractEvent, ContractEventType, DiagnosticEvent, HostFunction,
         LedgerEntry, LedgerEntryData, LedgerKey, LedgerKeyAccount, LedgerKeyContractCode,
         LedgerKeyContractData, LedgerKeyTrustLine, ReadXdr, ScErrorCode, ScErrorType,
         SorobanAuthorizationEntry, SorobanResources, WriteXdr, XDR_FILES_SHA256,
@@ -46,7 +49,7 @@ impl From<CxxLedgerInfo> for LedgerInfo {
             base_reserve: c.base_reserve,
             min_temp_entry_expiration: c.min_temp_entry_expiration,
             min_persistent_entry_expiration: c.min_persistent_entry_expiration,
-            max_entry_expiration: c.max_entry_expiration
+            max_entry_expiration: c.max_entry_expiration,
         }
     }
 }
@@ -80,6 +83,43 @@ impl From<CxxFeeConfiguration> for FeeConfiguration {
     }
 }
 
+impl From<&CxxLedgerEntryRentChange> for LedgerEntryRentChange {
+    fn from(value: &CxxLedgerEntryRentChange) -> Self {
+        Self {
+            is_persistent: value.is_persistent,
+            old_size_bytes: value.old_size_bytes,
+            new_size_bytes: value.new_size_bytes,
+            old_expiration_ledger: value.old_expiration_ledger,
+            new_expiration_ledger: value.new_expiration_ledger,
+        }
+    }
+}
+
+impl From<CxxRentFeeConfiguration> for RentFeeConfiguration {
+    fn from(value: CxxRentFeeConfiguration) -> Self {
+        Self {
+            fee_per_write_1kb: value.fee_per_write_1kb,
+            persistent_rent_rate_denominator: value.persistent_rent_rate_denominator,
+            temporary_rent_rate_denominator: value.temporary_rent_rate_denominator,
+        }
+    }
+}
+
+impl From<CxxWriteFeeConfiguration> for WriteFeeConfiguration {
+    fn from(value: CxxWriteFeeConfiguration) -> Self {
+        Self {
+            bucket_list_target_size_bytes: value.bucket_list_target_size_bytes,
+            write_fee_1kb_bucket_list_low: value.write_fee_1kb_bucket_list_low,
+            write_fee_1kb_bucket_list_high: value.write_fee_1kb_bucket_list_high,
+            bucket_list_write_fee_growth_factor: value.bucket_list_write_fee_growth_factor,
+        }
+    }
+}
+
+// FIXME: plumb this through from the limit xdrpp uses.
+// Currently they are just two same-valued constants.
+const MARSHALLING_STACK_LIMIT: u32 = 1000;
+
 #[derive(Debug)]
 pub(crate) enum CoreHostError {
     Host(HostError),
@@ -107,14 +147,20 @@ impl From<xdr::Error> for CoreHostError {
 impl std::error::Error for CoreHostError {}
 
 fn xdr_from_slice<T: ReadXdr>(v: &[u8]) -> Result<T, HostError> {
-    Ok(T::read_xdr(&mut Cursor::new(v))
-        .map_err(|_| (ScErrorType::Value, ScErrorCode::InvalidInput))?)
+    Ok(T::read_xdr(&mut xdr::DepthLimitedRead::new(
+        Cursor::new(v),
+        MARSHALLING_STACK_LIMIT,
+    ))
+    .map_err(|_| (ScErrorType::Value, ScErrorCode::InvalidInput))?)
 }
 
 fn xdr_to_vec_u8<T: WriteXdr>(t: &T) -> Result<Vec<u8>, HostError> {
     let mut vec: Vec<u8> = Vec::new();
-    t.write_xdr(&mut Cursor::new(&mut vec))
-        .map_err(|_| (ScErrorType::Value, ScErrorCode::InvalidInput))?;
+    t.write_xdr(&mut xdr::DepthLimitedWrite::new(
+        Cursor::new(&mut vec),
+        MARSHALLING_STACK_LIMIT,
+    ))
+    .map_err(|_| (ScErrorType::Value, ScErrorCode::InvalidInput))?;
     Ok(vec)
 }
 
@@ -388,6 +434,10 @@ fn invoke_host_function_or_maybe_panic(
     ledger_entries: &Vec<CxxBuf>,
     base_prng_seed: &CxxBuf,
 ) -> Result<InvokeHostFunctionOutput, Box<dyn Error>> {
+    #[cfg(feature = "tracy")]
+    let client = tracy_client::Client::start();
+    let _span0 = tracy_span!("invoke_host_function_or_maybe_panic");
+
     let hf = xdr_from_cxx_buf::<HostFunction>(&hf_buf)?;
     let source_account = xdr_from_cxx_buf::<AccountId>(&source_account_buf)?;
     let resources = xdr_from_cxx_buf::<SorobanResources>(&resources_buf)?;
@@ -403,24 +453,41 @@ fn invoke_host_function_or_maybe_panic(
     let storage = Storage::with_enforcing_footprint_and_map(footprint, map);
     let auth_entries = build_auth_entries_from_xdr(auth_entries)?;
     let host = Host::with_storage_and_budget(storage, budget);
-    host.set_source_account(source_account);
-    host.set_ledger_info(ledger_info.into());
+    host.set_source_account(source_account)?;
+    host.set_ledger_info(ledger_info.into())?;
     host.set_authorization_entries(auth_entries)?;
     let seed32: [u8; 32] = base_prng_seed
         .data
         .as_slice()
         .try_into()
         .map_err(|_| CoreHostError::General("Wrong base PRNG seed size"))?;
-    host.set_base_prng_seed(seed32);
+    host.set_base_prng_seed(seed32)?;
     if enable_diagnostics {
-        host.set_diagnostic_level(DiagnosticLevel::Debug);
+        host.set_diagnostic_level(DiagnosticLevel::Debug)?;
     }
 
-    let res = host.invoke_function(hf);
+    let res = {
+        let _span1 = tracy_span!("Host::invoke_function");
+        host.invoke_function(hf)
+    };
+
     let (storage, budget, events, bumps) = host
         .try_finish()
         .map_err(|_h| CoreHostError::General("could not finalize host"))?;
     log_debug_events(&events);
+    let cpu_insns = budget.get_cpu_insns_consumed()?;
+    let mem_bytes = budget.get_mem_bytes_consumed()?;
+    #[cfg(feature = "tracy")]
+    {
+        client.plot(
+            tracy_client::plot_name!("soroban budget cpu"),
+            cpu_insns as f64,
+        );
+        client.plot(
+            tracy_client::plot_name!("soroban budget mem"),
+            mem_bytes as f64,
+        );
+    }
     let result_value = match res {
         Ok(rv) => xdr_to_rust_buf(&rv)?,
         Err(err) => {
@@ -431,8 +498,8 @@ fn invoke_host_function_or_maybe_panic(
                 contract_events: vec![],
                 diagnostic_events: extract_diagnostic_events(&events)?,
                 modified_ledger_entries: vec![],
-                cpu_insns: budget.get_cpu_insns_consumed(),
-                mem_bytes: budget.get_mem_bytes_consumed(),
+                cpu_insns,
+                mem_bytes,
                 expiration_bumps: vec![],
             });
         }
@@ -450,8 +517,8 @@ fn invoke_host_function_or_maybe_panic(
         contract_events,
         diagnostic_events,
         modified_ledger_entries,
-        cpu_insns: budget.get_cpu_insns_consumed(),
-        mem_bytes: budget.get_mem_bytes_consumed(),
+        cpu_insns: budget.get_cpu_insns_consumed()?,
+        mem_bytes: budget.get_mem_bytes_consumed()?,
         expiration_bumps,
     })
 }
@@ -460,10 +527,26 @@ pub(crate) fn compute_transaction_resource_fee(
     tx_resources: CxxTransactionResources,
     fee_config: CxxFeeConfiguration,
 ) -> FeePair {
-    let (fee, refundable_fee) =
+    let (non_refundable_fee, refundable_fee) =
         host_compute_transaction_resource_fee(&tx_resources.into(), &fee_config.into());
     FeePair {
-        fee,
+        non_refundable_fee,
         refundable_fee,
     }
+}
+
+pub(crate) fn compute_rent_fee(
+    changed_entries: &Vec<CxxLedgerEntryRentChange>,
+    fee_config: CxxRentFeeConfiguration,
+    current_ledger_seq: u32,
+) -> i64 {
+    let changed_entries = changed_entries.iter().map(|e| e.into()).collect();
+    host_compute_rent_fee(&changed_entries, &fee_config.into(), current_ledger_seq)
+}
+
+pub(crate) fn compute_write_fee_per_1kb(
+    bucket_list_size: i64,
+    fee_config: CxxWriteFeeConfiguration,
+) -> i64 {
+    host_compute_write_fee_per_1kb(bucket_list_size, &fee_config.into())
 }

@@ -62,6 +62,7 @@ class Upgrades
         std::string toDebugJson(stellar::AbstractLedgerTxn& ltx) const;
 
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
+        std::optional<uint32_t> mMaxSorobanTxSetSize;
         std::optional<ConfigUpgradeSetKey> mConfigUpgradeSetKey;
 #endif
     };
@@ -169,7 +170,7 @@ class ConfigUpgradeSetFrame
     bool upgradeNeeded(AbstractLedgerTxn& ltx,
                        LedgerHeader const& lclHeader) const;
 
-    void applyTo(AbstractLedgerTxn& ltx) const;
+    void applyTo(AbstractLedgerTxn& ltx, Application& app) const;
 
     bool isConsistentWith(
         ConfigUpgradeSetFrameConstPtr const& scheduledUpgrade) const;

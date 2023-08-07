@@ -115,23 +115,25 @@ isLive(LedgerEntry const& e, uint32_t expirationCutoff)
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
     return !isSorobanEntry(e.data) ||
            getExpirationLedger(e) >= expirationCutoff;
-#endif
+#else
     return true;
+#endif
 }
 
 bool
 autoBumpEnabled(LedgerEntry const& e)
 {
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
-    releaseAssert(isSorobanDataEntry(e.data));
+    releaseAssertOrThrow(isSorobanDataEntry(e.data));
 
     // CONTRACT_CODE always has autobump enabled. For CONTRACT_DATA, check if
     // the NO_AUTOBUMP flag set
     return e.data.type() == CONTRACT_CODE ||
            !(e.data.contractData().body.data().flags &
              ContractDataFlags::NO_AUTOBUMP);
-#endif
+#else
     return false;
+#endif
 }
 
 template <typename T>
@@ -140,8 +142,9 @@ isSorobanExtEntry(T const& e)
 {
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
     return isSorobanEntry(e) && getLeType(e) == EXPIRATION_EXTENSION;
-#endif
+#else
     return false;
+#endif
 }
 
 template bool
@@ -154,8 +157,9 @@ isSorobanDataEntry(T const& e)
 {
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
     return isSorobanEntry(e) && getLeType(e) == DATA_ENTRY;
-#endif
+#else
     return false;
+#endif
 }
 
 template bool
@@ -170,8 +174,9 @@ isRestorableEntry(T const& e)
     return e.type() == CONTRACT_CODE ||
            (e.type() == CONTRACT_DATA &&
             e.contractData().durability == PERSISTENT);
-#endif
+#else
     return false;
+#endif
 }
 
 template bool

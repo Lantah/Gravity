@@ -3,6 +3,9 @@
 // of this distribution or at http://www.apache.org/licenses/LICENSE-2.0
 
 #include "ledger/NetworkConfig.h"
+#include "bucket/BucketList.h"
+#include "bucket/BucketManager.h"
+#include "main/Application.h"
 #include "util/ProtocolVersion.h"
 
 namespace stellar
@@ -131,14 +134,14 @@ initialContractLedgerAccessSettingsEntry(Config const& cfg)
     e.feeReadLedgerEntry = InitialSorobanNetworkConfig::FEE_READ_LEDGER_ENTRY;
     e.feeWriteLedgerEntry = InitialSorobanNetworkConfig::FEE_WRITE_LEDGER_ENTRY;
     e.feeRead1KB = InitialSorobanNetworkConfig::FEE_READ_1KB;
-    e.feeWrite1KB = InitialSorobanNetworkConfig::FEE_WRITE_1KB;
-    e.bucketListSizeBytes = InitialSorobanNetworkConfig::BUCKET_LIST_SIZE_BYTES;
-    e.bucketListFeeRateLow =
-        InitialSorobanNetworkConfig::BUCKET_LIST_FEE_RATE_LOW;
-    e.bucketListFeeRateHigh =
-        InitialSorobanNetworkConfig::BUCKET_LIST_FEE_RATE_HIGH;
-    e.bucketListGrowthFactor =
-        InitialSorobanNetworkConfig::BUCKET_LIST_GROWTH_FACTOR;
+    e.bucketListTargetSizeBytes =
+        InitialSorobanNetworkConfig::BUCKET_LIST_TARGET_SIZE_BYTES;
+    e.writeFee1KBBucketListLow =
+        InitialSorobanNetworkConfig::BUCKET_LIST_FEE_1KB_BUCKET_LIST_LOW;
+    e.writeFee1KBBucketListHigh =
+        InitialSorobanNetworkConfig::BUCKET_LIST_FEE_1KB_BUCKET_LIST_HIGH;
+    e.bucketListWriteFeeGrowthFactor =
+        InitialSorobanNetworkConfig::BUCKET_LIST_WRITE_FEE_GROWTH_FACTOR;
 
     return entry;
 }
@@ -178,13 +181,15 @@ initialContractBandwidthSettingsEntry(Config const& cfg)
     {
         e.ledgerMaxPropagateSizeBytes =
             cfg.TESTING_LEDGER_MAX_PROPAGATE_SIZE_BYTES;
+        e.txMaxSizeBytes = cfg.TESTING_TX_MAX_SIZE_BYTES;
     }
     else
     {
         e.ledgerMaxPropagateSizeBytes =
             InitialSorobanNetworkConfig::LEDGER_MAX_PROPAGATE_SIZE_BYTES;
+        e.txMaxSizeBytes = InitialSorobanNetworkConfig::TX_MAX_SIZE_BYTES;
     }
-    e.txMaxSizeBytes = InitialSorobanNetworkConfig::TX_MAX_SIZE_BYTES;
+
     e.feePropagateData1KB = InitialSorobanNetworkConfig::FEE_PROPAGATE_DATA_1KB;
 
     return entry;
@@ -335,7 +340,20 @@ initialStateExpirationSettings()
         InitialSorobanNetworkConfig::MINIMUM_PERSISTENT_ENTRY_LIFETIME;
     entry.stateExpirationSettings().minTempEntryExpiration =
         InitialSorobanNetworkConfig::MINIMUM_TEMP_ENTRY_LIFETIME;
+    entry.stateExpirationSettings().bucketListSizeWindowSampleSize =
+        InitialSorobanNetworkConfig::BUCKET_LIST_SIZE_WINDOW_SAMPLE_SIZE;
 
+    entry.stateExpirationSettings().bucketListSizeWindowSampleSize =
+        InitialSorobanNetworkConfig::BUCKET_LIST_SIZE_WINDOW_SAMPLE_SIZE;
+    entry.stateExpirationSettings().evictionScanSize =
+        InitialSorobanNetworkConfig::EVICTION_SCAN_SIZE;
+    entry.stateExpirationSettings().maxEntriesToExpire =
+        InitialSorobanNetworkConfig::MAX_ENTRIES_TO_EXPIRE;
+
+    entry.stateExpirationSettings().persistentRentRateDenominator =
+        InitialSorobanNetworkConfig::PERSISTENT_RENT_RATE_DENOMINATOR;
+    entry.stateExpirationSettings().tempRentRateDenominator =
+        InitialSorobanNetworkConfig::TEMP_RENT_RATE_DENOMINATOR;
     return entry;
 }
 
@@ -450,14 +468,33 @@ initialMemCostParamsEntry(Config const& cfg)
     return entry;
 }
 
+ConfigSettingEntry
+initialbucketListSizeWindow(Application& app)
+{
+    ConfigSettingEntry entry(CONFIG_SETTING_BUCKETLIST_SIZE_WINDOW);
+
+    // Populate 30 day sliding window of BucketList size snapshots with 30
+    // copies of the current BL size
+    auto blSize = app.getBucketManager().getBucketList().getSize();
+    for (auto i = 0;
+         i < InitialSorobanNetworkConfig::BUCKET_LIST_SIZE_WINDOW_SAMPLE_SIZE;
+         ++i)
+    {
+        entry.bucketListSizeWindow().push_back(blSize);
+    }
+
+    return entry;
+}
+
 #endif
 }
 
 void
 SorobanNetworkConfig::createLedgerEntriesForV20(AbstractLedgerTxn& ltx,
-                                                Config const& cfg)
+                                                Application& app)
 {
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
+    auto const& cfg = app.getConfig();
     createConfigSettingEntry(initialMaxContractSizeEntry(cfg), ltx);
     createConfigSettingEntry(initialMaxContractDataKeySizeEntry(cfg), ltx);
     createConfigSettingEntry(initialMaxContractDataEntrySizeEntry(cfg), ltx);
@@ -473,21 +510,25 @@ SorobanNetworkConfig::createLedgerEntriesForV20(AbstractLedgerTxn& ltx,
     createConfigSettingEntry(initialCpuCostParamsEntry(cfg), ltx);
     createConfigSettingEntry(initialMemCostParamsEntry(cfg), ltx);
     createConfigSettingEntry(initialStateExpirationSettings(), ltx);
+
+    createConfigSettingEntry(initialbucketListSizeWindow(app), ltx);
 #endif
 }
 
 void
 SorobanNetworkConfig::initializeGenesisLedgerForTesting(
-    uint32_t genesisLedgerProtocol, AbstractLedgerTxn& ltx, Config const& cfg)
+    uint32_t genesisLedgerProtocol, AbstractLedgerTxn& ltx, Application& app)
 {
     if (protocolVersionStartsFrom(genesisLedgerProtocol, ProtocolVersion::V_20))
     {
-        SorobanNetworkConfig::createLedgerEntriesForV20(ltx, cfg);
+        SorobanNetworkConfig::createLedgerEntriesForV20(ltx, app);
     }
 }
 
 void
-SorobanNetworkConfig::loadFromLedger(AbstractLedgerTxn& ltxRoot)
+SorobanNetworkConfig::loadFromLedger(AbstractLedgerTxn& ltxRoot,
+                                     uint32_t configMaxProtocol,
+                                     uint32_t protocolVersion)
 {
     LedgerTxn ltx(ltxRoot, false, TransactionMode::READ_ONLY_WITHOUT_SQL_TXN);
     loadMaxContractSize(ltx);
@@ -502,6 +543,12 @@ SorobanNetworkConfig::loadFromLedger(AbstractLedgerTxn& ltxRoot)
     loadMemCostParams(ltx);
     loadStateExpirationSettings(ltx);
     loadExecutionLanesSettings(ltx);
+    loadBucketListSizeWindow(ltx);
+    // NB: this should follow loading state expiration settings
+    maybeUpdateBucketListWindowSize(ltx);
+    // NB: this should follow loading/updating bucket list window
+    // size and state expiration settings
+    computeWriteFee(configMaxProtocol, protocolVersion);
 }
 
 void
@@ -579,11 +626,11 @@ SorobanNetworkConfig::loadLedgerAccessSettings(AbstractLedgerTxn& ltx)
     mFeeReadLedgerEntry = configSetting.feeReadLedgerEntry;
     mFeeWriteLedgerEntry = configSetting.feeWriteLedgerEntry;
     mFeeRead1KB = configSetting.feeRead1KB;
-    mFeeWrite1KB = configSetting.feeWrite1KB;
-    mBucketListSizeBytes = configSetting.bucketListSizeBytes;
-    mBucketListFeeRateLow = configSetting.bucketListFeeRateLow;
-    mBucketListFeeRateHigh = configSetting.bucketListFeeRateHigh;
-    mBucketListGrowthFactor = configSetting.bucketListGrowthFactor;
+    mBucketListTargetSizeBytes = configSetting.bucketListTargetSizeBytes;
+    mWriteFee1KBBucketListLow = configSetting.writeFee1KBBucketListLow;
+    mWriteFee1KBBucketListHigh = configSetting.writeFee1KBBucketListHigh;
+    mBucketListWriteFeeGrowthFactor =
+        configSetting.bucketListWriteFeeGrowthFactor;
 #endif
 }
 
@@ -668,6 +715,68 @@ SorobanNetworkConfig::loadExecutionLanesSettings(AbstractLedgerTxn& ltx)
     mLedgerMaxTxCount = configSetting.ledgerMaxTxCount;
 #endif
 }
+
+void
+SorobanNetworkConfig::loadBucketListSizeWindow(AbstractLedgerTxn& ltx)
+{
+#ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
+    LedgerKey key(CONFIG_SETTING);
+    key.configSetting().configSettingID =
+        ConfigSettingID::CONFIG_SETTING_BUCKETLIST_SIZE_WINDOW;
+    auto txle = ltx.loadWithoutRecord(key, /*loadExpiredEntry=*/false);
+    releaseAssert(txle);
+    auto const& leVector =
+        txle.current().data.configSetting().bucketListSizeWindow();
+    mBucketListSizeSnapshots.clear();
+    for (auto e : leVector)
+    {
+        mBucketListSizeSnapshots.push_back(e);
+    }
+
+    updateBucketListSizeAverage();
+#endif
+}
+
+#ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
+void
+SorobanNetworkConfig::writeBucketListSizeWindow(
+    AbstractLedgerTxn& ltxRoot) const
+{
+    // Check that the window is loaded and the number of snapshots is correct
+    releaseAssert(mBucketListSizeSnapshots.size() ==
+                  mStateExpirationSettings.bucketListSizeWindowSampleSize);
+
+    // Load outdated snapshot entry from DB
+    LedgerTxn ltx(ltxRoot);
+    LedgerKey key(CONFIG_SETTING);
+    key.configSetting().configSettingID =
+        ConfigSettingID::CONFIG_SETTING_BUCKETLIST_SIZE_WINDOW;
+    auto txle = ltx.load(key);
+    releaseAssert(txle);
+
+    // Copy in-memory snapshots to ledger entry
+    auto& leVector = txle.current().data.configSetting().bucketListSizeWindow();
+    leVector.clear();
+    for (auto e : mBucketListSizeSnapshots)
+    {
+        leVector.push_back(e);
+    }
+
+    ltx.commit();
+}
+
+void
+SorobanNetworkConfig::updateBucketListSizeAverage()
+{
+    uint64_t sizeSum = 0;
+    for (auto const& size : mBucketListSizeSnapshots)
+    {
+        sizeSum += size;
+    }
+
+    mAverageBucketListSize = sizeSum / mBucketListSizeSnapshots.size();
+}
+#endif
 
 uint32_t
 SorobanNetworkConfig::maxContractSizeBytes() const
@@ -798,30 +907,6 @@ SorobanNetworkConfig::feeWrite1KB() const
     return mFeeWrite1KB;
 }
 
-int64_t
-SorobanNetworkConfig::bucketListSizeBytes() const
-{
-    return mBucketListSizeBytes;
-}
-
-int64_t
-SorobanNetworkConfig::bucketListFeeRateLow() const
-{
-    return mBucketListFeeRateLow;
-}
-
-int64_t
-SorobanNetworkConfig::bucketListFeeRateHigh() const
-{
-    return mBucketListFeeRateHigh;
-}
-
-uint32_t
-SorobanNetworkConfig::bucketListGrowthFactor() const
-{
-    return mBucketListGrowthFactor;
-}
-
 // Historical data (pushed to core archives) settings for contracts.
 int64_t
 SorobanNetworkConfig::feeHistorical1KB() const
@@ -868,6 +953,94 @@ SorobanNetworkConfig::ledgerMaxTxCount() const
     return mLedgerMaxTxCount;
 }
 
+uint32_t
+SorobanNetworkConfig::getBucketListSizeSnapshotPeriod() const
+{
+#ifdef BUILD_TESTS
+    if (mBucketListSnapshotPeriodForTesting)
+    {
+        return *mBucketListSnapshotPeriodForTesting;
+    }
+#endif
+
+    return BUCKETLIST_SIZE_SNAPSHOT_PERIOD;
+}
+
+void
+SorobanNetworkConfig::maybeUpdateBucketListWindowSize(AbstractLedgerTxn& ltx)
+{
+#ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
+    // // Check if BucketList size window should exist
+    if (protocolVersionIsBefore(ltx.loadHeader().current().ledgerVersion,
+                                ProtocolVersion::V_20))
+    {
+        return;
+    }
+    auto currSize = mBucketListSizeSnapshots.size();
+    auto newSize = stateExpirationSettings().bucketListSizeWindowSampleSize;
+    if (newSize == currSize)
+    {
+        // No size change, nothing to update
+        return;
+    }
+
+    if (newSize < currSize)
+    {
+        while (mBucketListSizeSnapshots.size() != newSize)
+        {
+            mBucketListSizeSnapshots.pop_front();
+        }
+    }
+    // If newSize > currSize, backfill new slots with oldest value in window
+    // such that they are the first to get replaced by new values
+    else
+    {
+        auto oldestSize = mBucketListSizeSnapshots.front();
+        while (mBucketListSizeSnapshots.size() != newSize)
+        {
+            mBucketListSizeSnapshots.push_front(oldestSize);
+        }
+    }
+
+    updateBucketListSizeAverage();
+    writeBucketListSizeWindow(ltx);
+#endif
+}
+
+void
+SorobanNetworkConfig::maybeSnapshotBucketListSize(uint32_t currLedger,
+                                                  AbstractLedgerTxn& ltx,
+                                                  Application& app)
+{
+    auto ledgerVersion = ltx.loadHeader().current().ledgerVersion;
+#ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
+    // // Check if BucketList size window should exist
+    if (protocolVersionIsBefore(ledgerVersion, ProtocolVersion::V_20))
+    {
+        return;
+    }
+
+    if (currLedger % getBucketListSizeSnapshotPeriod() == 0)
+    {
+        // Update in memory snapshots
+        mBucketListSizeSnapshots.pop_front();
+        mBucketListSizeSnapshots.push_back(
+            app.getBucketManager().getBucketList().getSize());
+
+        writeBucketListSizeWindow(ltx);
+        updateBucketListSizeAverage();
+        computeWriteFee(app.getConfig().CURRENT_LEDGER_PROTOCOL_VERSION,
+                        ledgerVersion);
+    }
+#endif
+}
+
+uint64_t
+SorobanNetworkConfig::getAverageBucketListSize() const
+{
+    return mAverageBucketListSize;
+}
+
 #ifdef BUILD_TESTS
 uint32_t&
 SorobanNetworkConfig::maxContractDataKeySizeBytes()
@@ -879,6 +1052,18 @@ uint32_t&
 SorobanNetworkConfig::maxContractDataEntrySizeBytes()
 {
     return mMaxContractDataEntrySizeBytes;
+}
+
+void
+SorobanNetworkConfig::setBucketListSnapshotPeriodForTesting(uint32_t period)
+{
+    mBucketListSnapshotPeriodForTesting = period;
+}
+
+std::deque<uint64_t> const&
+SorobanNetworkConfig::getBucketListSizeWindowForTesting() const
+{
+    return mBucketListSizeSnapshots;
 }
 #endif
 
@@ -951,5 +1136,33 @@ SorobanNetworkConfig::rustBridgeFeeConfiguration() const
 
     return res;
 }
+
+CxxRentFeeConfiguration
+SorobanNetworkConfig::rustBridgeRentFeeConfiguration() const
+{
+    CxxRentFeeConfiguration res{};
+    auto const& cfg = stateExpirationSettings();
+    res.fee_per_write_1kb = feeWrite1KB();
+    res.persistent_rent_rate_denominator = cfg.persistentRentRateDenominator;
+    res.temporary_rent_rate_denominator = cfg.tempRentRateDenominator;
+    return res;
+}
 #endif
+
+void
+SorobanNetworkConfig::computeWriteFee(uint32_t configMaxProtocol,
+                                      uint32_t protocolVersion)
+{
+#ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
+    CxxWriteFeeConfiguration feeConfig{};
+    feeConfig.bucket_list_target_size_bytes = mBucketListTargetSizeBytes;
+    feeConfig.bucket_list_write_fee_growth_factor =
+        mBucketListWriteFeeGrowthFactor;
+    feeConfig.write_fee_1kb_bucket_list_low = mWriteFee1KBBucketListLow;
+    feeConfig.write_fee_1kb_bucket_list_high = mWriteFee1KBBucketListHigh;
+    // This may throw, but only if core is mis-configured.
+    mFeeWrite1KB = rust_bridge::compute_write_fee_per_1kb(
+        configMaxProtocol, protocolVersion, mAverageBucketListSize, feeConfig);
+#endif
+}
 } // namespace stellar

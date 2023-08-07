@@ -37,6 +37,7 @@
 #include "util/XDRStream.h"
 #include "xdr/Stellar-internal.h"
 #include "xdrpp/marshal.h"
+#include "xdrpp/types.h"
 #include <Tracy.hpp>
 
 #include "util/GlobalChecks.h"
@@ -91,13 +92,13 @@ HerderImpl::HerderImpl(Application& app)
     , mTriggerTimer(app)
     , mOutOfSyncTimer(app)
     , mTxSetGarbageCollectTimer(app)
-    , mEarlyCatchupTimer(app)
     , mApp(app)
     , mLedgerManager(app.getLedgerManager())
     , mSCPMetrics(app)
     , mState(Herder::HERDER_BOOTING_STATE)
 {
     auto ln = getSCP().getLocalNode();
+
     mPendingEnvelopes.addSCPQuorumSet(ln->getQuorumSetHash(),
                                       ln->getQuorumSet());
 }
@@ -110,6 +111,18 @@ Herder::State
 HerderImpl::getState() const
 {
     return mState;
+}
+
+uint32_t
+HerderImpl::getMaxClassicTxSize() const
+{
+#ifdef BUILD_TESTS
+    if (mMaxClassicTxSize)
+    {
+        return *mMaxClassicTxSize;
+    }
+#endif
+    return MAX_CLASSIC_TX_SIZE_BYTES;
 }
 
 void
@@ -246,7 +259,6 @@ HerderImpl::shutdown()
     mTrackingTimer.cancel();
     mOutOfSyncTimer.cancel();
     mTriggerTimer.cancel();
-    mEarlyCatchupTimer.cancel();
     if (mLastQuorumMapIntersectionState.mRecalculating)
     {
         // We want to interrupt any calculation-in-progress at shutdown to
@@ -309,6 +321,10 @@ HerderImpl::processExternalized(uint64 slotIndex, StellarValue const& value)
     LedgerCloseData ledgerData(static_cast<uint32_t>(slotIndex),
                                externalizedSet, value);
     mLedgerManager.valueExternalized(ledgerData);
+#ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
+    // Ensure potential upgrades are handled in overlay
+    maybeHandleUpgrade();
+#endif
 }
 
 void
@@ -733,7 +749,7 @@ HerderImpl::recvSCPEnvelope(SCPEnvelope const& envelope)
             ZoneText(txt.c_str(), txt.size());
         }
         CLOG_TRACE(Herder, "recvSCPEnvelope ({}) from: {} s:{} i:{} a:{}",
-                   status,
+                   static_cast<int>(status),
                    mApp.getConfig().toShortString(envelope.statement.nodeID),
                    envelope.statement.pledges.type(),
                    envelope.statement.slotIndex, mApp.getStateHuman());
@@ -861,9 +877,8 @@ HerderImpl::sendSCPStateToPeer(uint32 ledgerSeq, Peer::pointer peer)
     // ledger to achieve this
     if (delayCheckpoint)
     {
-        mEarlyCatchupTimer.expires_from_now(
-            Herder::SEND_LATEST_CHECKPOINT_DELAY);
-        mEarlyCatchupTimer.async_wait(
+        peer->startExecutionDelayedTimer(
+            Herder::SEND_LATEST_CHECKPOINT_DELAY,
             [checkpoint, this, sendSlot]() {
                 getSCP().processCurrentState(
                     checkpoint,
@@ -1311,7 +1326,7 @@ HerderImpl::triggerNextLedger(uint32_t ledgerSeqToTrigger,
                 Herder,
                 "HerderImpl::triggerNextLedger exceeded size for upgrade "
                 "step (got {} ) for upgrade type {}",
-                v.size(), std::to_string(upgrade.type()));
+                v.size(), upgrade.type());
             CLOG_ERROR(Herder, "{}", REPORT_INTERNAL_BUG);
         }
         else
@@ -1936,9 +1951,74 @@ HerderImpl::restoreUpgrades()
     }
 }
 
+#ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
+void
+HerderImpl::maybeHandleUpgrade()
+{
+    uint32_t diff = 0;
+    {
+        LedgerTxn ltx(mApp.getLedgerTxnRoot(),
+                      /* shouldUpdateLastModified */ true,
+                      TransactionMode::READ_ONLY_WITHOUT_SQL_TXN);
+        if (protocolVersionIsBefore(ltx.loadHeader().current().ledgerVersion,
+                                    ProtocolVersion::V_20))
+        {
+            // no-op on any earlier protocol
+            return;
+        }
+        auto const& conf = mApp.getLedgerManager().getSorobanNetworkConfig(ltx);
+
+        if (conf.txMaxSizeBytes() > mMaxTxSize)
+        {
+            diff = conf.txMaxSizeBytes() - mMaxTxSize;
+        }
+        // mMaxTxSize may decrease post-upgrade, always choose the max between
+        // classic tx size (static) and Soroban max tx size
+        mMaxTxSize = std::max(getMaxClassicTxSize(), conf.txMaxSizeBytes());
+    }
+
+    // Maybe update capacity to reflect the upgrade
+    for (auto& peer : mApp.getOverlayManager().getAuthenticatedPeers())
+    {
+        peer.second->handleMaxTxSizeIncrease(diff);
+    }
+}
+#endif
+
 void
 HerderImpl::start()
 {
+    mMaxTxSize = mApp.getHerder().getMaxClassicTxSize();
+#ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
+    {
+        LedgerTxn ltx(mApp.getLedgerTxnRoot(),
+                      /* shouldUpdateLastModified */ true,
+                      TransactionMode::READ_ONLY_WITHOUT_SQL_TXN);
+        auto const& conf = mApp.getLedgerManager().getSorobanNetworkConfig(ltx);
+        mMaxTxSize = std::max(mMaxTxSize, conf.txMaxSizeBytes());
+    }
+#endif
+
+    auto const& cfg = mApp.getConfig();
+    // Core will calculate default values automatically
+    bool calculateDefaults = cfg.PEER_FLOOD_READING_CAPACITY_BYTES == 0 &&
+                             cfg.FLOW_CONTROL_SEND_MORE_BATCH_SIZE_BYTES == 0;
+
+    if (!calculateDefaults &&
+        !(cfg.PEER_FLOOD_READING_CAPACITY_BYTES -
+              cfg.FLOW_CONTROL_SEND_MORE_BATCH_SIZE_BYTES >=
+          mMaxTxSize))
+    {
+        std::string msg = fmt::format(
+            "Invalid configuration: the difference between "
+            "PEER_FLOOD_READING_CAPACITY_BYTES ({}) and "
+            "FLOW_CONTROL_SEND_MORE_BATCH_SIZE_BYTES ({}) must be at"
+            " least {} bytes",
+            cfg.PEER_FLOOD_READING_CAPACITY_BYTES,
+            cfg.FLOW_CONTROL_SEND_MORE_BATCH_SIZE_BYTES, mMaxTxSize);
+        throw std::runtime_error(msg);
+    }
+
     // setup a sufficient state that we can participate in consensus
     auto const& lcl = mLedgerManager.getLastClosedLedgerHeader();
 
@@ -2064,8 +2144,11 @@ HerderImpl::updateTransactionQueue(TxSetFrameConstPtr txSet)
     updateQueue(mTransactionQueue,
                 txSet->getTxsForPhase(TxSetFrame::Phase::CLASSIC));
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
-    updateQueue(mSorobanTransactionQueue,
-                txSet->getTxsForPhase(TxSetFrame::Phase::CLASSIC));
+    if (txSet->numPhases() > static_cast<size_t>(TxSetFrame::Phase::SOROBAN))
+    {
+        updateQueue(mSorobanTransactionQueue,
+                    txSet->getTxsForPhase(TxSetFrame::Phase::SOROBAN));
+    }
 #endif
 }
 

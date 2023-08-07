@@ -228,7 +228,7 @@ LedgerManagerImpl::startNewLedger(LedgerHeader const& genesisLedger)
     if (cfg.USE_CONFIG_FOR_GENESIS)
     {
         SorobanNetworkConfig::initializeGenesisLedgerForTesting(
-            cfg.TESTING_UPGRADE_LEDGER_PROTOCOL_VERSION, ltx, mApp.getConfig());
+            cfg.TESTING_UPGRADE_LEDGER_PROTOCOL_VERSION, ltx, mApp);
     }
 
     LedgerEntry rootEntry;
@@ -498,8 +498,8 @@ LedgerManagerImpl::getLastClosedLedgerNum() const
     return mLastClosedLedger.header.ledgerSeq;
 }
 
-SorobanNetworkConfig const&
-LedgerManagerImpl::getSorobanNetworkConfig(AbstractLedgerTxn& ltx)
+SorobanNetworkConfig&
+LedgerManagerImpl::getSorobanNetworkConfigInternal(AbstractLedgerTxn& ltx)
 {
     if (!mSorobanNetworkConfig)
     {
@@ -509,11 +509,23 @@ LedgerManagerImpl::getSorobanNetworkConfig(AbstractLedgerTxn& ltx)
     return *mSorobanNetworkConfig;
 }
 
+SorobanNetworkConfig const&
+LedgerManagerImpl::getSorobanNetworkConfig(AbstractLedgerTxn& ltx)
+{
+    return getSorobanNetworkConfigInternal(ltx);
+}
+
 #ifdef BUILD_TESTS
 void
 LedgerManagerImpl::setSorobanNetworkConfig(SorobanNetworkConfig const& config)
 {
     mSorobanNetworkConfig = config;
+}
+
+SorobanNetworkConfig&
+LedgerManagerImpl::getMutableSorobanNetworkConfig(AbstractLedgerTxn& ltx)
+{
+    return getSorobanNetworkConfigInternal(ltx);
 }
 #endif
 
@@ -675,6 +687,13 @@ LedgerManagerImpl::closeLedger(LedgerCloseData const& ledgerData)
                                      std::chrono::milliseconds::max()};
 
     LedgerTxn ltx(mApp.getLedgerTxnRoot());
+
+#ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
+    uint64_t blSize = mApp.getLedgerManager()
+                          .getSorobanNetworkConfig(ltx)
+                          .getAverageBucketListSize();
+#endif
+
     auto header = ltx.loadHeader();
     ++header.current().ledgerSeq;
     header.current().previousLedgerHash = mLastClosedLedger.hash;
@@ -721,7 +740,8 @@ LedgerManagerImpl::closeLedger(LedgerCloseData const& ledgerData)
         CLOG_ERROR(
             Ledger,
             "Corrupt transaction set: TxSet hash is {}, SCP value reports {}",
-            txSet->getContentsHash(), ledgerData.getValue().txSetHash);
+            binToHex(txSet->getContentsHash()),
+            binToHex(ledgerData.getValue().txSetHash));
         CLOG_ERROR(Ledger, "{}", POSSIBLY_CORRUPTED_QUORUM_SET);
 
         throw std::runtime_error("corrupt transaction set");
@@ -753,6 +773,13 @@ LedgerManagerImpl::closeLedger(LedgerCloseData const& ledgerData)
             header.current().ledgerVersion);
         ledgerCloseMeta->reserveTxProcessing(txSet->sizeTxTotal());
         ledgerCloseMeta->populateTxSet(*txSet);
+#ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
+        if (protocolVersionStartsFrom(header.current().ledgerVersion,
+                                      ProtocolVersion::V_20))
+        {
+            ledgerCloseMeta->setTotalByteSizeOfBucketList(blSize);
+        }
+#endif
     }
 
     // the transaction set that was agreed upon by consensus
@@ -1142,7 +1169,9 @@ LedgerManagerImpl::maybeUpdateNetworkConfig(bool upgradeHappened,
 
     if (protocolVersionStartsFrom(ledgerVersion, SOROBAN_PROTOCOL_VERSION))
     {
-        mSorobanNetworkConfig->loadFromLedger(rootLtx);
+        mSorobanNetworkConfig->loadFromLedger(
+            rootLtx, mApp.getConfig().CURRENT_LEDGER_PROTOCOL_VERSION,
+            ledgerVersion);
     }
 #endif
 }
@@ -1435,8 +1464,20 @@ LedgerManagerImpl::transferLedgerEntriesToBucketList(AbstractLedgerTxn& ltx,
     ZoneScoped;
     std::vector<LedgerEntry> initEntries, liveEntries;
     std::vector<LedgerKey> deadEntries;
+    auto blEnabled = mApp.getConfig().MODE_ENABLES_BUCKETLIST;
+
+    // Since snapshots are stored in a LedgerEntry, need to snapshot before
+    // sealing the ledger with ltx.getAllEntries
+#ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
+    if (blEnabled)
+    {
+        getSorobanNetworkConfigInternal(ltx).maybeSnapshotBucketListSize(
+            ledgerSeq, ltx, mApp);
+    }
+#endif
+
     ltx.getAllEntries(initEntries, liveEntries, deadEntries);
-    if (mApp.getConfig().MODE_ENABLES_BUCKETLIST)
+    if (blEnabled)
     {
         mApp.getBucketManager().addBatch(mApp, ledgerSeq, ledgerVers,
                                          initEntries, liveEntries, deadEntries);

@@ -45,6 +45,8 @@ using namespace std;
 constexpr std::chrono::seconds PEER_IP_RESOLVE_DELAY(600);
 constexpr std::chrono::seconds PEER_IP_RESOLVE_RETRY_DELAY(10);
 constexpr std::chrono::seconds OUT_OF_SYNC_RECONNECT_DELAY(60);
+constexpr uint32_t INITIAL_PEER_FLOOD_READING_CAPACITY_BYTES{300000};
+constexpr uint32_t INITIAL_FLOW_CONTROL_SEND_MORE_BATCH_SIZE_BYTES{100000};
 
 // Regardless of the number of failed attempts &
 // FLOOD_DEMAND_BACKOFF_DELAY_MS it doesn't make much sense to wait much
@@ -135,7 +137,7 @@ OverlayManagerImpl::PeersList::moveToAuthenticated(Peer::pointer peer)
 {
     ZoneScoped;
     CLOG_TRACE(Overlay, "Moving peer {} to authenticated  state: {}",
-               peer->toString(), peer->getState());
+               peer->toString(), Peer::format_as(peer->getState()));
     auto pendingIt = std::find(std::begin(mPending), std::end(mPending), peer);
     if (pendingIt == std::end(mPending))
     {
@@ -314,6 +316,36 @@ OverlayManagerImpl::start()
     }
     // Start demanding.
     demand();
+}
+
+OverlayManager::AdjustedFlowControlConfig
+OverlayManagerImpl::getFlowControlBytesConfig() const
+{
+    auto const maxTxSize = mApp.getHerder().getMaxTxSize();
+    releaseAssert(maxTxSize > 0);
+    auto const& cfg = mApp.getConfig();
+
+    // If flow control parameters weren't provided in the config file, calculate
+    // them automatically using initial values, but adjusting them according to
+    // maximum transactions byte size.
+    if (cfg.PEER_FLOOD_READING_CAPACITY_BYTES == 0 &&
+        cfg.FLOW_CONTROL_SEND_MORE_BATCH_SIZE_BYTES == 0)
+    {
+        if (!(INITIAL_PEER_FLOOD_READING_CAPACITY_BYTES -
+                  INITIAL_FLOW_CONTROL_SEND_MORE_BATCH_SIZE_BYTES >=
+              maxTxSize))
+        {
+            return {static_cast<uint32_t>(maxTxSize) +
+                        INITIAL_FLOW_CONTROL_SEND_MORE_BATCH_SIZE_BYTES,
+                    INITIAL_FLOW_CONTROL_SEND_MORE_BATCH_SIZE_BYTES};
+        }
+        return {INITIAL_PEER_FLOOD_READING_CAPACITY_BYTES,
+                INITIAL_FLOW_CONTROL_SEND_MORE_BATCH_SIZE_BYTES};
+    }
+
+    // If flow control parameters were provided, return them
+    return {cfg.PEER_FLOOD_READING_CAPACITY_BYTES,
+            cfg.FLOW_CONTROL_SEND_MORE_BATCH_SIZE_BYTES};
 }
 
 void
@@ -1233,8 +1265,7 @@ OverlayManagerImpl::getMaxDemandSize() const
             cfg.getExpectedLedgerCloseTime())
             .count();
     int64_t queueSizeInOps = getOpsFloodLedger(
-        static_cast<double>(mApp.getHerder().getMaxQueueSizeOps()),
-        cfg.FLOOD_OP_RATE_PER_LEDGER);
+        mApp.getHerder().getMaxQueueSizeOps(), cfg.FLOOD_OP_RATE_PER_LEDGER);
 
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
     queueSizeInOps +=
