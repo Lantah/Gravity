@@ -430,7 +430,7 @@ exit /b 0
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\lib\tracy\TracyClient.cpp" />
+    <ClCompile Include="..\..\lib\tracy\public\TracyClient.cpp" />
     <ClCompile Include="..\..\lib\spdlog.cpp" />
     <ClCompile Include="..\..\lib\util\siphash.cpp" />
     <ClCompile Include="..\..\src\bucket\Bucket.cpp" />
