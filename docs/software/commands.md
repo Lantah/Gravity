@@ -285,9 +285,9 @@ format.
         by less than 12 hours, the upgrade will occur immediately. If it's more
         than 12 hours, then the upgrade will be ignored<br>
     * `basefee` (uint32) This is what you would prefer the base fee to be. It is in
-        stroops<br>
+        µg<br>
     * `basereserve` (uint32) This is what you would prefer the base reserve to
-        be. It is in stroops.<br>
+        be. It is in µg.<br>
     * `maxtxsetsize` (uint32) This defines the maximum number of operations in 
         the transaction set to include in a ledger. When too many transactions 
         are pending, surge pricing is applied. The instance picks the 

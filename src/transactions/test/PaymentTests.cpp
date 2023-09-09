@@ -1758,7 +1758,7 @@ TEST_CASE_VERSIONS("payment", "[tx][payment]")
             });
         }
 
-        SECTION("account has only base reserve + amount + one stroop")
+        SECTION("account has only base reserve + amount + one µg")
         {
             auto payFrom = root.create(
                 "pay-from",
@@ -1770,7 +1770,7 @@ TEST_CASE_VERSIONS("payment", "[tx][payment]")
         }
 
         SECTION("account has only base reserve + amount + one operation fee - "
-                "one stroop")
+                "one µg")
         {
             auto payFrom = root.create(
                 "pay-from", app->getLedgerManager().getLastMinBalance(0) +
@@ -1798,7 +1798,7 @@ TEST_CASE_VERSIONS("payment", "[tx][payment]")
         }
 
         SECTION("account has only base reserve + amount + one operation fee + "
-                "one stroop")
+                "one µg")
         {
             auto payFrom = root.create(
                 "pay-from", app->getLedgerManager().getLastMinBalance(0) +
@@ -1812,7 +1812,7 @@ TEST_CASE_VERSIONS("payment", "[tx][payment]")
         }
 
         SECTION("account has only base reserve + amount + two operation fees - "
-                "two stroops")
+                "two µg")
         {
             auto payFrom = root.create(
                 "pay-from", app->getLedgerManager().getLastMinBalance(0) +
@@ -1826,7 +1826,7 @@ TEST_CASE_VERSIONS("payment", "[tx][payment]")
         }
 
         SECTION("account has only base reserve + amount + two operation fees - "
-                "one stroop")
+                "one µg")
         {
             auto payFrom = root.create(
                 "pay-from", app->getLedgerManager().getLastMinBalance(0) +
@@ -1934,7 +1934,7 @@ TEST_CASE_VERSIONS("payment fees", "[tx][payment]")
             });
         }
 
-        SECTION("account has only base reserve + amount + one stroop")
+        SECTION("account has only base reserve + amount + one µg")
         {
             auto payFrom = root.create(
                 "pay-from",
@@ -1946,7 +1946,7 @@ TEST_CASE_VERSIONS("payment fees", "[tx][payment]")
         }
 
         SECTION("account has only base reserve + amount + one operation fee - "
-                "one stroop")
+                "one µg")
         {
             auto payFrom = root.create(
                 "pay-from", app->getLedgerManager().getLastMinBalance(0) +
@@ -1974,7 +1974,7 @@ TEST_CASE_VERSIONS("payment fees", "[tx][payment]")
         }
 
         SECTION("account has only base reserve + amount + one operation fee + "
-                "one stroop")
+                "one µg")
         {
             auto payFrom = root.create(
                 "pay-from", app->getLedgerManager().getLastMinBalance(0) +
@@ -1988,7 +1988,7 @@ TEST_CASE_VERSIONS("payment fees", "[tx][payment]")
         }
 
         SECTION("account has only base reserve + amount + two operation fees - "
-                "two stroops")
+                "two µg")
         {
             auto payFrom = root.create(
                 "pay-from", app->getLedgerManager().getLastMinBalance(0) +
@@ -2002,7 +2002,7 @@ TEST_CASE_VERSIONS("payment fees", "[tx][payment]")
         }
 
         SECTION("account has only base reserve + amount + two operation fees - "
-                "one stroop")
+                "one µg")
         {
             auto payFrom = root.create(
                 "pay-from", app->getLedgerManager().getLastMinBalance(0) +
@@ -2044,7 +2044,7 @@ TEST_CASE_VERSIONS("payment fees", "[tx][payment]")
             });
         }
 
-        SECTION("account has only base reserve + amount + one stroop")
+        SECTION("account has only base reserve + amount + one µg")
         {
             auto payFrom = root.create(
                 "pay-from",
@@ -2056,7 +2056,7 @@ TEST_CASE_VERSIONS("payment fees", "[tx][payment]")
         }
 
         SECTION("account has only base reserve + amount + one operation fee - "
-                "one stroop")
+                "one µg")
         {
             auto payFrom = root.create(
                 "pay-from", app->getLedgerManager().getLastMinBalance(0) +
@@ -2084,7 +2084,7 @@ TEST_CASE_VERSIONS("payment fees", "[tx][payment]")
         }
 
         SECTION("account has only base reserve + amount + one operation fee + "
-                "one stroop")
+                "one µg")
         {
             auto payFrom = root.create(
                 "pay-from", app->getLedgerManager().getLastMinBalance(0) +
@@ -2098,7 +2098,7 @@ TEST_CASE_VERSIONS("payment fees", "[tx][payment]")
         }
 
         SECTION("account has only base reserve + amount + two operation fees - "
-                "two stroops")
+                "two µg")
         {
             auto payFrom = root.create(
                 "pay-from", app->getLedgerManager().getLastMinBalance(0) +
@@ -2112,7 +2112,7 @@ TEST_CASE_VERSIONS("payment fees", "[tx][payment]")
         }
 
         SECTION("account has only base reserve + amount + two operation fees - "
-                "one stroop")
+                "one µg")
         {
             auto payFrom = root.create(
                 "pay-from", app->getLedgerManager().getLastMinBalance(0) +

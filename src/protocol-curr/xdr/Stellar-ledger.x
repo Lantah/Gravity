@@ -81,16 +81,16 @@ struct LedgerHeader
 
     uint32 ledgerSeq; // sequence number of this ledger
 
-    int64 totalCoins; // total number of stroops in existence.
-                      // 10,000,000 stroops in 1 GRAM
+    int64 totalCoins; // total number of µg in existence.
+                      // 1,000,000 µg in 1 GRAM
 
     int64 feePool;       // fees burned since last inflation run
     uint32 inflationSeq; // inflation sequence number
 
     uint64 idPool; // last used global ID, used for generating objects
 
-    uint32 baseFee;     // base fee per operation in stroops
-    uint32 baseReserve; // account base reserve in stroops
+    uint32 baseFee;     // base fee per operation in µg
+    uint32 baseReserve; // account base reserve in µg
 
     uint32 maxTxSetSize; // maximum size a transaction set can be
 

@@ -518,7 +518,7 @@ TEST_CASE_VERSIONS("merge", "[tx][merge]")
         });
     }
 
-    SECTION("account has only base reserve + one stroop")
+    SECTION("account has only base reserve + one µg")
     {
         auto mergeFrom = root.create(
             "merge-from", app->getLedgerManager().getLastMinBalance(0) + 1);
@@ -527,7 +527,7 @@ TEST_CASE_VERSIONS("merge", "[tx][merge]")
         });
     }
 
-    SECTION("account has only base reserve + one operation fee - one stroop")
+    SECTION("account has only base reserve + one operation fee - one µg")
     {
         auto mergeFrom = root.create(
             "merge-from",
@@ -548,7 +548,7 @@ TEST_CASE_VERSIONS("merge", "[tx][merge]")
                           [&] { REQUIRE_NOTHROW(mergeFrom.merge(root)); });
     }
 
-    SECTION("account has only base reserve + one operation fee + one stroop")
+    SECTION("account has only base reserve + one operation fee + one µg")
     {
         auto mergeFrom = root.create(
             "merge-from",
@@ -560,7 +560,7 @@ TEST_CASE_VERSIONS("merge", "[tx][merge]")
                           [&] { REQUIRE_NOTHROW(mergeFrom.merge(root)); });
     }
 
-    SECTION("account has only base reserve + two operation fees - one stroop")
+    SECTION("account has only base reserve + two operation fees - one µg")
     {
         auto mergeFrom = root.create(
             "merge-from",
