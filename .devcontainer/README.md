@@ -2,7 +2,7 @@
 
 ## Who's interested in this and why?
 * For those developers who'd like to validate their changes on Ubuntu 20.04, we provide a sandboxed development environment using the 'Remote Development Container' features of Microsoft's Visual Studio Code.
-* This feature pre-configures a dev environment with all the tools you'll need to build gramr
+* This feature pre-configures a dev environment with all the tools you'll need to build gravity
 
 
 ## Pre-requisites: What do I need to use it?
@@ -21,8 +21,8 @@
     * As a matter of general security hygiene, we recommend against providing docker with pre-existing credentials to other existing users, especially admins.
 
 ## How do I use it?
-- Enlist: `git clone https://github.com/Lantah/GramR.git`
-- Go to the code: `cd gramr`
+- Enlist: `git clone https://github.com/Lantah/Gravity.git`
+- Go to the code: `cd gravity`
 - Open the directory in Visual Studio Code: `code .`
 - Install the extensions listed in the pre-requisites if you haven't already.
 - Invoke the container extension.
@@ -38,7 +38,7 @@ Only difference is that tests that rely on postgresql will not run under root, s
 So before building etc, just run `su vscode` if needed.
 
 ### Build straight from the shared workspace
-The shared folder is mounted in something like `/workspaces/gramr`.
+The shared folder is mounted in something like `/workspaces/gravity`.
 
 Advantage of building from the shared folder is that you get to use all vscode features directly:
 what you edit is what you build.
@@ -66,17 +66,17 @@ is to simply mirror your workspace into your home directory from within the cont
 ```
 mkdir ~/src
 (
-  cd /workspaces/gramr/
+  cd /workspaces/gravity/
   find .git -print
   echo .gitmodules
   git ls-files
   git submodule foreach --recursive --quiet 'git ls-files | xargs -I{} -n1 echo "$sm_path/{}"'
   git submodule foreach --recursive --quiet 'echo $sm_path/.git' | xargs -I{} -n1 find "{}" -print
 ) |
-  rsync -a -HAX --files-from=- /workspaces/gramr/ ~/src/gramr
+  rsync -a -HAX --files-from=- /workspaces/gravity/ ~/src/gravity
 ```
 
-You can then use the new folder for building and testing (just `cd ~/src/gramr` and build like normal).
+You can then use the new folder for building and testing (just `cd ~/src/gravity` and build like normal).
 
 Note: `-C` cannot be used here as git files (the `.git` folder) are needed for `autogen.sh` to work properly.
 
@@ -84,23 +84,23 @@ Note (Windows): the `.git` folder may be invisible in the workspace, which cause
 
 If you modify a few files in the host folder, a handful shortcut is to copy files as per git instead of syncing:
 ```
-  git ls-files -m | xargs -I'{}' -n1 -- cp '{}' ~/src/gramr/'{}'
+  git ls-files -m | xargs -I'{}' -n1 -- cp '{}' ~/src/gravity/'{}'
 ```
 
 To mirror any changes done back into the workspace (note `-C` to skip git related files in this direction):
 ```
 (
-  cd /workspaces/gramr/
+  cd /workspaces/gravity/
   git ls-files
   git submodule foreach --recursive --quiet 'git ls-files | xargs -I{} -n1 echo "$sm_path/{}"'
 ) |
-  rsync --progress -v -ru -C --files-from=- ~/src/gramr /workspaces/gramr
+  rsync --progress -v -ru -C --files-from=- ~/src/gravity /workspaces/gravity
 ```
 
 ## Known issues
 * Test failures on Windows when building on the shared workspace:
   * bucket/test/BucketManagerTests.cpp:1310 will fail 
-    * Failed to fsync directory gramr-test-52c416044e9cfd23/bucket :Invalid argument (FileSystemException.h:21)
+    * Failed to fsync directory gravity-test-52c416044e9cfd23/bucket :Invalid argument (FileSystemException.h:21)
     * Root cause - The host machine's git repository directory is shared with the docker container via CIFS, but CIFS does not implement directory fsync operations:
       * [CIFS operations without fsync](https://github.com/torvalds/linux/blob/69c902f597c4bec92013a526268620fb6255c24a/fs/cifs/cifsfs.c#L1168-L1176)
       * [NFS operations with fsync](https://github.com/torvalds/linux/blob/c971aa3693e1b68086e62645c54a087616217b6f/fs/nfs/dir.c#L63)

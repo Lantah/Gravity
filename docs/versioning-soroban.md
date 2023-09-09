@@ -14,7 +14,7 @@ include all _observable_ changes to soroban:
 
 The third category is new: we might receive updates to soroban (or its
 transitive dependencies) that we don't expect. These are harder to deal with
-than normal gramr changes:
+than normal gravity changes:
 
   - We don't know _when_ an unintentional but observable change is happening, so
     we have to over-approximate by doing more frequent "protocol upgrades",
@@ -30,7 +30,7 @@ and the network is no longer recording ledgers marked with `N`, we have a fixed
 set of ledgers labeled with `N` that we need to maintain accurate replay of; any
 differences in soroban versions not-observed by transactions in that range of
 ledgers can be ignored. So while we need to maintain two separate copies of
-soroban compiled-in to gramr _during_ an upgrade, we can expire one of
+soroban compiled-in to gravity _during_ an upgrade, we can expire one of
 them _after_ the upgrade by ensuring that the new code can replay the old (now
 complete) range of ledgers faithfully.
 
@@ -39,20 +39,20 @@ complete) range of ledgers faithfully.
 We follow this process for protocol upgrades:
 
   1. Before the upgrade, the network is on protocol `N`. To keep things simple,
-     we require that both gramr and soroban give their releases version
+     we require that both gravity and soroban give their releases version
      numbers like `N.x.y` when `N` is their maximum supported protocol. The
      release major version number is the max supported protocol version.
 
   2. To upgrade to `N+1` we'll be producing a new soroban version `(N+1).0.0`
-     and a new gramr `(N+1).0.0`, and the gramr will set its
+     and a new gravity `(N+1).0.0`, and the gravity will set its
      `Config::CURRENT_LEDGER_PROTOCOL_VERSION` to `N+1`.
 
-  3. We configure the build of gramr v(N+1).0.0 as a "transitionary
+  3. We configure the build of gravity v(N+1).0.0 as a "transitionary
      build" that has _both_ versions of soroban in it. In the `Cargo.toml` of
-     gramr, we copy the `N.x.y` version number and git hash from the
+     gravity, we copy the `N.x.y` version number and git hash from the
      existing dependency named `soroban-env-host-curr` to the optional
      dependency named `soroban-env-host-prev`, then set `soroban-env-host-curr`
-     to `(N+1).0.0` and the appropriate git hash, and configure gramr
+     to `(N+1).0.0` and the appropriate git hash, and configure gravity
      with `--enable-protocol-upgrade-via-soroban-env-host-prev`, which will
      cause the rust build phase to use `--feature=soroban-env-host-prev`.
      We will also have to update both pinned dependency tree files as
@@ -68,24 +68,24 @@ We follow this process for protocol upgrades:
 
   5. We do the consensus protocol upgrade on this "transitionary build"
      version. We define the validity condition for a protocol upgrade such that
-     gramr is only _willing_ to vote for a soroban-era protocol upgrade
+     gravity is only _willing_ to vote for a soroban-era protocol upgrade
      when configured with two versions of soroban built-in, and such a
      configuration will cut over instantaneously from old soroban `N.x.y` to new
      soroban `(N+1).0.0` on upgrade.
 
-  6. Once the upgrade is complete, we prepare the _next_ version of gramr
+  6. Once the upgrade is complete, we prepare the _next_ version of gravity
      _without_ the transitionary version. That is, we build without
      `--feature=soroban-env-host-prev`. In order to be sure that it is safe to
      expire that version, we first replay all ledgers from `N` and before on
      the current soroban `(N+1).0.0` and see if they replay correctly. If they
      do not, we add backward compatibility code to soroban and do a point
      release like `(N+1).0.1` that can replay correctly, and bump the version
-     in gramr's `Cargo.toml` to `(N+1).0.1`.
+     in gravity's `Cargo.toml` to `(N+1).0.1`.
 
 ## Pinned soroban dependency trees
 
 At any point we may have one _or two_ versions of soroban built into
-gramr (see below). This is confusing and error-prone. It is easy to
+gravity (see below). This is confusing and error-prone. It is easy to
 update one version and accidentally cause cargo to "re-resolve" version specs in
 dependencies or transitive dependencies to new versions, and accidentally cause
 changes.
@@ -98,7 +98,7 @@ soroban. These files are stored in git adjacent to `Cargo.toml` and are called
 version(s) specified in `Cargo.toml` we will likely need to update one or
 another of these files.
 
-The easiest way to update the files is just to run `gramr version`
+The easiest way to update the files is just to run `gravity version`
 without updating the files: it will exit with an error that shows the file
 content that was expected and the content that was found. Copy the "found"
 content into the expected file and rebuild, and it should work. The point of
@@ -107,7 +107,7 @@ dependency tree before we commit it, and ensure it contains exactly the changes
 we expect!
 
 If we want to manually regenerate the files, we can also use the cli tool
-`cargo-lock` by hand (this is the crate gramr uses), for example:
+`cargo-lock` by hand (this is the crate gravity uses), for example:
 
     $ cargo install --git https://github.com/rustsec/rustsec \
         --rev dcc72b697e10a2d1e3d1ce70d7d7b0d5cbc41dc4 \
@@ -117,13 +117,13 @@ If we want to manually regenerate the files, we can also use the cli tool
 
 ## Protocol version, release version and contract cross-checks
 
-We configure soroban, gramr and contracts built for soroban to check
+We configure soroban, gravity and contracts built for soroban to check
 certain consistency requirements around protocol and release versions:
 
-  1. Gramr's max protocol (`Config:::CURRENT_LEDGER_PROTOCOL_VERSION`)
+  1. Gravity's max protocol (`Config:::CURRENT_LEDGER_PROTOCOL_VERSION`)
      and its major version number must be the same.
 
-  2. Gramr's and soroban's major version numbers are the same.
+  2. Gravity's and soroban's major version numbers are the same.
 
   3. Every contract's WASM has an embedded minimum protocol version number,
      and only run contracts with current or older protocols than the max
@@ -131,7 +131,7 @@ certain consistency requirements around protocol and release versions:
 
 There are three caveats to the above:
 
-  1. When gramr is not on a _release_ version (that is when its version
+  1. When gravity is not on a _release_ version (that is when its version
      number does not look exactly like `vNN.x.y` or `vNN.x.y-rcN`) we assume
      it's a development build, and relax the first criterion, only warning.
 

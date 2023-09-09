@@ -10,9 +10,6 @@ You can run production Watchers and Validators.
 ### Debian packages
 On Linux, the easiest is to install core using a [pre-packaged debian release](https://github.com/stellar/packages).
 
-### Quick Start Docker image
-You can use the [quickstart](https://github.com/stellar/docker-stellar-core-horizon)
-image to run the latest stable and release candidate stellar-core with Docker.
 
 ### Dev container
 Using vscode and the [container support in Visual Studio Code](../.devcontainer/README.md)
@@ -61,7 +58,7 @@ You have some control over which peers you're connected to:
 
 ### Maintenance
 
-Core keeps old meta around for Horizon and other systems. As cursors get updated, automatic
+Core keeps old meta around for OrbitR and other systems. As cursors get updated, automatic
 maintenance normally deletes more than enough for the node to use a constant amount of disk space.
 
 Sometimes you need to clean up more than this (for example, if you have a large maintenance debt).

@@ -6,7 +6,7 @@
 #include "work/WorkWithCallback.h"
 #include "xdr/Stellar-ledger-entries.h"
 #include <limits>
-#define GRAMR_REAL_TIMER_FOR_CERTAIN_NOT_JUST_VIRTUAL_TIME
+#define GRAVITY_REAL_TIMER_FOR_CERTAIN_NOT_JUST_VIRTUAL_TIME
 #include "ApplicationImpl.h"
 
 // ASIO is somewhat particular about when it gets included -- it wants to be the
@@ -41,7 +41,7 @@
 #include "main/CommandHandler.h"
 #include "main/ExternalQueue.h"
 #include "main/Maintainer.h"
-#include "main/GramrVersion.h"
+#include "main/GravityVersion.h"
 #include "medida/counter.h"
 #include "medida/meter.h"
 #include "medida/metrics_registry.h"
@@ -107,7 +107,7 @@ ApplicationImpl::ApplicationImpl(VirtualClock& clock, Config const& cfg)
 
     mNetworkID = sha256(mConfig.NETWORK_PASSPHRASE);
 
-    TracyAppInfo(GRAMR_VERSION.c_str(), GRAMR_VERSION.size());
+    TracyAppInfo(GRAVITY_VERSION.c_str(), GRAVITY_VERSION.size());
     TracyAppInfo(mConfig.NETWORK_PASSPHRASE.c_str(),
                  mConfig.NETWORK_PASSPHRASE.size());
     std::string nodeStr("Node: ");
@@ -456,7 +456,7 @@ ApplicationImpl::getJsonInfo(bool verbose)
 
     auto& info = root["info"];
 
-    info["build"] = GRAMR_VERSION;
+    info["build"] = GRAVITY_VERSION;
     info["protocol_version"] = getConfig().LEDGER_PROTOCOL_VERSION;
     info["state"] = getStateHuman();
     info["startedOn"] = VirtualClock::systemPointToISOString(mStartedOn);
@@ -740,7 +740,7 @@ ApplicationImpl::validateAndLogConfig()
     {
         throw std::invalid_argument(
             "To downgrade from EXPERIMENTAL_BUCKETLIST_DB, run "
-            "gramr new-db.");
+            "gravity new-db.");
     }
 
     if (isNetworkedValidator && mConfig.isInMemoryMode())
@@ -960,8 +960,8 @@ ApplicationImpl::manualClose(std::optional<uint32_t> const& manualLedgerSeq,
     }
 
     throw std::invalid_argument(
-        "Set MANUAL_CLOSE=true in the gramr.cfg if you want to "
-        "close every ledger manually. Otherwise, run gramr "
+        "Set MANUAL_CLOSE=true in the gravity.cfg if you want to "
+        "close every ledger manually. Otherwise, run gravity "
         "with --wait-for-consensus flag to close ledger once and "
         "trigger consensus. Ensure NODE_IS_VALIDATOR is set to true.");
 }

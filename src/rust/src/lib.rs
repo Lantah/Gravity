@@ -308,7 +308,7 @@ mod log;
 use crate::log::init_logging;
 
 // We have at least one, but possibly two, copies of soroban compiled
-// in to gramr. If we have two, ledgers that are exactly one
+// in to gravity. If we have two, ledgers that are exactly one
 // protocol _before_ the current (max-supported) protocol will run on
 // the `prev` copy of soroban. All others will run on the `curr` copy.
 // See `invoke_host_function` below.
@@ -356,7 +356,7 @@ fn package_matches_hash(pkg: &cargo_lock::Package, hash: &str) -> bool {
     false
 }
 fn check_lockfile_has_expected_dep_tree(
-    gramr_proto_version: u32,
+    gravity_proto_version: u32,
     soroban_host_interface_version: u64,
     lockfile: &Lockfile,
     curr_or_prev: &str,
@@ -372,10 +372,10 @@ fn check_lockfile_has_expected_dep_tree(
     // FIXME: this is fairly harmless, but old versions of soroban didn't encode a
     // protocol version in their interface version at all, so will report zero here.
     // For now we ignore this, but should tighten the test up before final.
-    if soroban_host_proto_version != 0 && gramr_proto_version != soroban_host_proto_version {
+    if soroban_host_proto_version != 0 && gravity_proto_version != soroban_host_proto_version {
         panic!(
-            "gramr \"{}\" protocol is {}, does not match soroban host \"{}\" protocol {}",
-            curr_or_prev, gramr_proto_version, curr_or_prev, soroban_host_proto_version
+            "gravity \"{}\" protocol is {}, does not match soroban host \"{}\" protocol {}",
+            curr_or_prev, gravity_proto_version, curr_or_prev, soroban_host_proto_version
         );
     }
 
@@ -395,10 +395,10 @@ fn check_lockfile_has_expected_dep_tree(
             "Warning: soroban-env-host-{} is running a pre-release version {}",
             curr_or_prev, pkg.version
         );
-    } else if pkg.version.major != gramr_proto_version as u64 {
+    } else if pkg.version.major != gravity_proto_version as u64 {
         panic!(
             "soroban-env-host-{} version {} major version {} does not match expected protocol version {}",
-            curr_or_prev, pkg.version, pkg.version.major, gramr_proto_version
+            curr_or_prev, pkg.version, pkg.version.major, gravity_proto_version
         )
     }
 
@@ -445,7 +445,7 @@ fn check_lockfile_has_expected_dep_tree(
 //
 // The check additionally checks that the major version number of soroban that
 // is compiled-in matches its max supported protocol number and that that
-// is the same as gramr's max supported protocol number.
+// is the same as gravity's max supported protocol number.
 pub fn check_lockfile_has_expected_dep_trees(curr_max_protocol_version: u32) {
     static CARGO_LOCK_FILE_CONTENT: &'static str = include_str!("../../../Cargo.lock");
 

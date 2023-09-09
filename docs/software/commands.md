@@ -3,13 +3,13 @@ title: Commands
 replacement: https://developers.stellar.org/docs/run-core-node/commands/
 ---
 
-gramr can be controlled via the following commands.
+gravity can be controlled via the following commands.
 
 ## Common options
 Common options can be placed at any place in the command line.
 
 * **--conf <FILE-NAME>**: Specify a config file to use. You can use 'stdin' and
-  provide the config file via STDIN. *default 'gramr.cfg'*
+  provide the config file via STDIN. *default 'gravity.cfg'*
 * **--ll <LEVEL>**: Set the log level. It is redundant with `http-command ll`
   but we need this form if you want to change the log level during test runs.
 * **--metric <METRIC-NAME>**: Report metric METRIC on exit. Used for gathering
@@ -33,7 +33,7 @@ Command options can only by placed after command.
   exit. Useful for determining the public key that corresponds to a given
   private key. For example:
 
-`$ gramr convert-id SDQVDISRYN2JXBS7ICL7QJAEKB3HWBJFP2QECXG7GZICAHBK4UNJCWK2`
+`$ gravity convert-id SDQVDISRYN2JXBS7ICL7QJAEKB3HWBJFP2QECXG7GZICAHBK4UNJCWK2`
 * **dump-ledger**: Dumps the current ledger state from bucket files into
     JSON **--output-file** with optional filtering. **--last-ledgers** option
     allows to only dump the ledger entries that were last modified within that
@@ -82,18 +82,18 @@ Command options can only by placed after command.
 * **gen-seed**: Generate and print a random public/private key and then exit.
 * **help**: Print the available command line options and then exit..
 * **http-command <COMMAND>** Send an [HTTP command](#http-commands) to an
-  already running local instance of gramr and then exit. For example: 
+  already running local instance of gravity and then exit. For example: 
 
-`$ gramr http-command info`
+`$ gravity http-command info`
 
 * **load-xdr <FILE-NAME>**:  Load an XDR bucket file, for testing.
 * **new-db**: Clears the local database and resets it to the genesis ledger. If
   you connect to the network after that it will catch up from scratch.
 * **new-hist <HISTORY-LABEL> ...**:  Initialize the named history archives
   HISTORY-LABEL. HISTORY-LABEL should be one of the history archives you have
-  specified in the gramr.cfg. This will write a
+  specified in the gravity.cfg. This will write a
   `.well-known/stellar-history.json` file in the archive root.
-* **offline-close**: Forces gramr to close a specified number of empty
+* **offline-close**: Forces gravity to close a specified number of empty
   ledgers, strictly offline and starting from its current state, generating and
   publishing history as it goes. Should only be used for special scenarios like
   setting up test networks with artificial history.
@@ -110,7 +110,7 @@ Command options can only by placed after command.
   is on checkpoint boundary.
 * **report-last-history-checkpoint**: Download and report last history
   checkpoint from a history archive.
-* **run**: Runs gramr service.<br>
+* **run**: Runs gravity service.<br>
   Option **--wait-for-consensus** lets validators wait to hear from the network
   before participating in consensus.<br>
   Option **--in-memory** stores the current ledger in memory rather than a
@@ -130,7 +130,7 @@ Command options can only by placed after command.
   such as `base64`).  The private signing key is read from standard input,
   unless <FILE-NAME> is "stdin" in which case the transaction envelope is read from
   standard input and the signing key is read from `/dev/tty`.  In either event,
-  if the signing key appears to be coming from a terminal, gramr
+  if the signing key appears to be coming from a terminal, gravity
   disables echo. Note that if you do not have a STELLAR_NETWORK_ID environment
   variable, then before this argument you must specify the --netid option. For
   example, the production lantah network is "`Public Global Lantah Network ;
@@ -139,7 +139,7 @@ Command options can only by placed after command.
   Option --base64 alters the behavior to work on base64-encoded XDR rather than
   raw XDR.
 * **test**: Run all the unit tests.
-  * Suboptions specific to gramr:
+  * Suboptions specific to gravity:
       * `--all-versions` : run with all possible protocol versions
       * `--version <N>` : run tests for protocol version N, can be specified
       multiple times (default latest)
@@ -149,9 +149,9 @@ Command options can only by placed after command.
     on possible options for test.
   * For example this will run just the tests tagged with `[tx]` using protocol
     versions 9 and 10 and stop after the first failure:
-    `gramr test -a --version 9 --version 10 "[tx]"`
+    `gravity test -a --version 9 --version 10 "[tx]"`
 * **upgrade-db**: Upgrades local database to current schema version. This is
-  usually done automatically during gramr run or other command.
+  usually done automatically during gravity run or other command.
 * **verify-checkpoints**: Listens to the network until it observes a consensus
   hash for a checkpoint ledger, and then verifies the entire earlier history
   of an archive that ends in that ledger hash, writing the output to a reference
@@ -161,8 +161,8 @@ Command options can only by placed after command.
 * **version**: Print version info and then exit.
 
 ## HTTP Commands
-By default gramr listens for connections from localhost on port 11626. 
-You can send commands to gramr via a web browser, curl, or using the --c 
+By default gravity listens for connections from localhost on port 11626. 
+You can send commands to gravity via a web browser, curl, or using the --c 
 command line option (see above). Most commands return their results in JSON
 format.
 
@@ -245,7 +245,7 @@ format.
   Sets or creates a cursor identified by `ID` with value `N`. ID is an
   uppercase AlphaNum, N is an uint32 that represents the last ledger sequence
   number that the instance ID processed. Cursors are used by dependent services
-  to tell gramr which data can be safely deleted by the instance. The
+  to tell gravity which data can be safely deleted by the instance. The
   data is historical data stored in the SQL tables such as txhistory or
   ledgerheaders. When all consumers processed the data for ledger sequence N
   the data can be safely removed by the instance. The actual deletion is

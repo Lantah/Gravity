@@ -77,7 +77,7 @@ BucketManagerImpl::initialize()
     {
         throw std::runtime_error(fmt::format(
             FMT_STRING("{}. This can be caused by access rights issues or "
-                       "another gramr process already running"),
+                       "another gravity process already running"),
             e.what()));
     }
 
@@ -129,7 +129,7 @@ BucketManagerImpl::BucketManagerImpl(Application& app)
 {
 }
 
-const std::string BucketManagerImpl::kLockFilename = "gramr.lock";
+const std::string BucketManagerImpl::kLockFilename = "gravity.lock";
 
 namespace
 {
@@ -240,7 +240,7 @@ BucketManagerImpl::deleteTmpDirAndUnlockBucketDir()
     // (which also contains files from other subsystems, like history)
     mTmpDirManager.reset();
 
-    // Then delete the lockfile $BUCKET_DIR_PATH/gramr.lock
+    // Then delete the lockfile $BUCKET_DIR_PATH/gravity.lock
     if (mLockedBucketDir)
     {
         std::string d = mApp.getConfig().BUCKET_DIR_PATH;

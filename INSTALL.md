@@ -1,13 +1,8 @@
 Installation Instructions
 ==================
 
-These are instructions for building gramr from source.
+These are instructions for building gravity from source.
 
-For a potentially quicker set up, the following projects could be good alternatives:
-
-* gramr in a [docker container](https://github.com/stellar/docker-gramr)
-* gramr and [horizon](https://github.com/stellar/go/tree/master/services/horizon) in a [docker container](https://github.com/stellar/docker-gramr-horizon)
-* pre-compiled [packages](https://github.com/stellar/packages)
 
 ## Which version to run?
 
@@ -24,7 +19,7 @@ of course).
 
 ## Picking a version to run
 
-Best is to use the latest *stable* release that can be downloaded from https://github.com/stellar/gramr/releases
+Best is to use the latest *stable* release that can be downloaded from https://github.com/lantah/gravity/releases
 
 
 Alternatively, branches are organized in the following way:
@@ -48,7 +43,7 @@ See the [dev container's README](.devcontainer/README.md) for more detail.
 
 ## Runtime dependencies
 
-`gramr` does not have many dependencies.
+`gravity` does not have many dependencies.
 
 If core was configured (see below) to work with Postgresql, a local Postgresql server
  will need to be deployed to the same host.
@@ -71,7 +66,7 @@ To install Postgresql, follow instructions from the [Postgresql download page](h
 ### Ubuntu
 
 #### Ubuntu 20.04
-You can install the [test toolchain](#adding-the-test-toolchain) to build and run gramr with the latest version of the llvm toolchain.
+You can install the [test toolchain](#adding-the-test-toolchain) to build and run gravity with the latest version of the llvm toolchain.
 
 Alternatively, if you want to just depend on stock Ubuntu, you will have to build with clang *and* have use `libc++` instead of `libstdc++` when compiling.
 
@@ -125,8 +120,8 @@ See [INSTALL-Windows.md](INSTALL-Windows.md)
 
 ## Basic Installation
 
-- `git clone https://github.com/stellar/gramr.git`
-- `cd gramr`
+- `git clone https://github.com/lantah/gravity.git`
+- `cd gravity`
 - `git submodule init`
 - `git submodule update`
 - Type `./autogen.sh`.
@@ -152,15 +147,15 @@ Here are sample steps to achieve this:
     export CXX=clang++-12
     export CFLAGS="-O3 -g1 -fno-omit-frame-pointer"
     export CXXFLAGS="$CFLAGS -stdlib=libc++"
-    git clone https://github.com/stellar/gramr.git
-    cd gramr/
+    git clone https://github.com/lantah/gravity.git
+    cd gravity/
     ./autogen.sh && ./configure && make -j6
 
 ## Building with Tracing
 
-Configuring with `--enable-tracy` will build and embed the client component of the [Tracy](https://github.com/wolfpld/tracy) high-resolution tracing system in the `gramr` binary.
+Configuring with `--enable-tracy` will build and embed the client component of the [Tracy](https://github.com/wolfpld/tracy) high-resolution tracing system in the `gravity` binary.
 
-The tracing client will activate automatically when gramr is running, and will listen for connections from Tracy servers (a command-line capture utility, or a cross-platform GUI).
+The tracing client will activate automatically when gravity is running, and will listen for connections from Tracy servers (a command-line capture utility, or a cross-platform GUI).
 
 The Tracy server components can also be compiled by configuring with `--enable-tracy-gui` or `--enable-tracy-capture`.
 

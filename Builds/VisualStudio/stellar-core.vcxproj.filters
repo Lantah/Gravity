@@ -348,7 +348,7 @@
     <ClCompile Include="..\..\src\test\TestMarket.cpp">
       <Filter>test</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\main\GramrVersion.cpp">
+    <ClCompile Include="..\..\src\main\GravityVersion.cpp">
       <Filter>main\generated</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\util\numeric.cpp">
@@ -1554,7 +1554,7 @@
     <ClInclude Include="..\..\src\crypto\StrKey.h">
       <Filter>crypto</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\main\GramrVersion.h">
+    <ClInclude Include="..\..\src\main\GravityVersion.h">
       <Filter>main</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\main\Application.h">
@@ -2376,13 +2376,13 @@
     <None Include="..\..\docs\readme.md">
       <Filter>docs</Filter>
     </None>
-    <None Include="..\..\docs\gramr_example.cfg">
+    <None Include="..\..\docs\gravity_example.cfg">
       <Filter>docs</Filter>
     </None>
-    <None Include="..\..\docs\gramr_standalone.cfg">
+    <None Include="..\..\docs\gravity_standalone.cfg">
       <Filter>docs</Filter>
     </None>
-    <None Include="..\..\docs\gramr_testnet.cfg">
+    <None Include="..\..\docs\gravity_testnet.cfg">
       <Filter>docs</Filter>
     </None>
     <None Include="..\..\docs\transaction.md">
@@ -2425,10 +2425,10 @@
     <None Include="..\..\docs\software\security-protocol-release-notes.md">
       <Filter>docs\software</Filter>
     </None>
-    <None Include="..\..\docs\gramr_testnet_legacy.cfg">
+    <None Include="..\..\docs\gravity_testnet_legacy.cfg">
       <Filter>docs</Filter>
     </None>
-    <None Include="..\..\docs\gramr_example_validators.cfg">
+    <None Include="..\..\docs\gravity_example_validators.cfg">
       <Filter>docs</Filter>
     </None>
     <None Include="..\..\.github\ISSUE_TEMPLATE\bug-report.md">
@@ -2452,7 +2452,7 @@
     <None Include="..\..\src\util\LogPartitions.def">
       <Filter>util</Filter>
     </None>
-    <None Include="..\..\docs\gramr_testnet_validator.cfg">
+    <None Include="..\..\docs\gravity_testnet_validator.cfg">
       <Filter>docs</Filter>
     </None>
     <None Include="..\..\docs\software\ledger_query_examples.md">
@@ -2535,7 +2535,7 @@
     <CustomBuild Include="..\..\src\protocol-next\xdr\Stellar-internal.x">
       <Filter>xdr\next</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\src\main\GramrVersion.cpp.in">
+    <CustomBuild Include="..\..\src\main\GravityVersion.cpp.in">
       <Filter>main</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\src\rust\src\lib.rs">

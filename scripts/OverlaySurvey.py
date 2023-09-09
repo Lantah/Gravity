@@ -153,7 +153,7 @@ def send_requests(peer_list, params, request_url):
 
 def check_results(data, graph, merged_results):
     if "topology" not in data:
-        raise ValueError("gramr is missing survey nodes."
+        raise ValueError("gravity is missing survey nodes."
                          "Are the public keys surveyed valid?")
 
     topology = data["topology"]

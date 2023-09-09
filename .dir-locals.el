@@ -1,4 +1,4 @@
-; This file sets emacs variables that are helpful for editing gramr
+; This file sets emacs variables that are helpful for editing gravity
 
 ((c-mode . ((indent-tabs-mode .  nil)))
  (c++-mode . ((indent-tabs-mode .  nil)))

@@ -21,6 +21,6 @@ constexpr auto const POSSIBLY_CORRUPTED_LOCAL_DATA =
     "latest backup or reset this instance to fix this issue.";
 constexpr auto const POSSIBLY_CORRUPTED_QUORUM_SET =
     "Check your QUORUM_SET for corrupted nodes";
-constexpr auto const UPGRADE_GRAMR =
-    "Upgrade this gramr installation to newest version";
+constexpr auto const UPGRADE_GRAVITY =
+    "Upgrade this gravity installation to newest version";
 }

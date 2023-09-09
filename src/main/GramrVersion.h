@@ -2,4 +2,4 @@
 
 #include <string>
 
-extern const std::string GRAMR_VERSION;
+extern const std::string GRAVITY_VERSION;

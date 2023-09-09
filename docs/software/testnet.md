@@ -8,7 +8,7 @@ Review the [admin guide](./admin.md) for more detailed information.
 
 Make sure you have copied the example config to your current working directory.
 From the TLD of the repo, run
-`cp docs/gramr_standalone.cfg ./bin/gramr.cfg`
+`cp docs/gravity_standalone.cfg ./bin/gravity.cfg`
 
 ## Adding multiple nodes
 
@@ -23,11 +23,11 @@ Optionally: Create databases for each to use--e.g., by using PostgreSQL's `creat
 
 Run:
 
-1. `$ gramr new-hist <historyarchive>`
+1. `$ gravity new-hist <historyarchive>`
   - to initialize every history archive you are putting to (be sure to not push to the same archive from different nodes).
-2. `$ gramr new-db`
+2. `$ gravity new-db`
   - to initialize the database on each node. 
-3. `$ gramr run`
+3. `$ gravity run`
   - on each node to start it.
 
 ## Bringing a test network back up
@@ -36,12 +36,12 @@ If you need to restart the network after bringing it down.
 Stop all nodes, and do the following on nodes that all have the same last ledger (NB: this set must form a quorum in order to reach consensus):
 
 ```sh
-$ gramr run
+$ gravity run
 ```
 
 This will start from the last saved state of each server. After these servers sync you can start the other nodes in the cluster and they will catch up to the network.
 To allow the new nodes to listen for consensus and trigger catchup, use `--wait-for-consensus` option:
 
 ```sh
-$ gramr run --wait-for-consensus
+$ gravity run --wait-for-consensus
 ```

@@ -2,25 +2,25 @@
 title: History
 ---
 
-Stellar Core, or gramr, separates data into "current" and "historical."
+Gravity separates data into "current" and "historical."
 
 Current data is the subject of peer-to-peer messages--consensus is only concerned with the present,
-not the past. Current data _resides_ in a local SQL database paired with each gramr
+not the past. Current data _resides_ in a local SQL database paired with each gravity
 process (in captive-core's case, the SQL database is replaced by an in memory datastructure).
-This database is consulted and updated "live" in an ACID fashion as gramr applies
+This database is consulted and updated "live" in an ACID fashion as gravity applies
 each [transaction](transaction.md) set for which consensus was reached and forms each new [ledger](ledger.md).
 
-Unlike many similar systems, gramr does _not_ need to consult history in order to apply a
+Unlike many similar systems, gravity does _not_ need to consult history in order to apply a
 single transaction or set of transactions. Only "current" data--the state of the current ledger
 and the hash of the previous one--is required to apply transactions. "Historical" data exists for
 peers to catch up to one another, as well as for record auditing and interoperability with other
 programs.
 
-Historical data resides in _history archives_. A gramr process should almost always have
-access to a history archive. While it is possible to run a gramr process without any
+Historical data resides in _history archives_. A gravity process should almost always have
+access to a history archive. While it is possible to run a gravity process without any
 associated history archives, other peers will not be able to catch up with it, and it will not be
 able to catch up with other peers, so it will likely be a very incomplete configuration. For
-normal operations, a gramr process should always be configured with one or more history
+normal operations, a gravity process should always be configured with one or more history
 archives.
 
 For history archives to be effective, they should be configured in such a way that each validator
@@ -31,13 +31,13 @@ write to, while also knowing how to read from all archives in the group.
 
 ## History archives
 
-Many different facilities or services can be used as history archives; gramr only needs to be
+Many different facilities or services can be used as history archives; gravity only needs to be
 supplied with a way to "get" and "put" files to and from the archive. For example, history archives
-may be FTP or SFTP servers, filesystem directories shared between gramr processes, AWS S3,
+may be FTP or SFTP servers, filesystem directories shared between gravity processes, AWS S3,
 Google Cloud Storage, Azure Blob storage or similar commodity object storage services.
 
-History archives are defined in a very lightweight fashion, in gramr's configuration file, by
-providing a pair of `get` and `put` command templates. gramr will run the provided command
+History archives are defined in a very lightweight fashion, in gravity's configuration file, by
+providing a pair of `get` and `put` command templates. gravity will run the provided command
 template, with its own file names substituted for placeholders in the template, in order to get files
 from, and put files into, a given history archive. This interface is meant to support simple
 commands like `curl`, `wget`, `aws`, `gcutil`, `s3cmd`, `cp`, `scp`, `ftp` or similar. Several
@@ -46,7 +46,7 @@ examples are provided in the example configuration files.
 
 ## Serialization to XDR and gzip
 
-gramr leans heavily on the XDR data format. This is an old, stable, standardized
+gravity leans heavily on the XDR data format. This is an old, stable, standardized
 serialization format, defined in RFC 4506 and used for several standard unix and internet protocols
 and formats.
 
@@ -56,14 +56,14 @@ XDR is used for 3 related but different tasks, the first 2 of which are discusse
   * Cryptographically hashing ledger entries, buckets, transactions, and similar values.
   * Storing and retrieving history (discussed in this document).
 
-When storing XDR files to history archives, gramr first applies gzip (RFC 1952) compression
+When storing XDR files to history archives, gravity first applies gzip (RFC 1952) compression
 to the files. The resulting `.xdr.gz` files can be concatenated, accessed in streaming fashion, or
-decompressed to `.xdr` files and dumped as plain text by gramr.
+decompressed to `.xdr` files and dumped as plain text by gravity.
 
 
 ## Checkpointing
 
-During normal operation, a validating gramr server will save a "checkpoint" of its recent
+During normal operation, a validating gravity server will save a "checkpoint" of its recent
 operations to XDR files, compress them, and publish them to all of its configured writable history
 archives once every 64 ledgers (about once every 5 minutes).
 
@@ -83,7 +83,7 @@ safely copied to any other history archive that is missing them.
 
 ## Catching up
 
-When gramr finds that it is out of sync with its peers--either because it is joining
+When gravity finds that it is out of sync with its peers--either because it is joining
 a network for the first time, or because it crashed or was disconnected for some reason--it
 contacts a history archive and attempts to find published history records from which to "catch up."
 This is the first and most essential use of history archives: they are how peers catch up with
@@ -91,10 +91,10 @@ one another.
 
 This bears repeating: peers **never** send historical data to one another directly, and they
 **must** share access to a common history archive if they're ever to successfully catch up with one
-another when out of sync. If you run a gramr server without configuring history archives, it
+another when out of sync. If you run a gravity server without configuring history archives, it
 will never synchronize with its peers (unless they all start at the same time).
 
-The peer-to-peer protocol among gramr peers deals only with the current ledger's transactions
+The peer-to-peer protocol among gravity peers deals only with the current ledger's transactions
 and consensus rounds. History is sent one-way from active peers to history archives, and is
 retrieved one-way by new peers from history archives. Aside from establishing which value to
 catch up to, peers do _not_ provide one another with the data to catch up when out of sync.
@@ -109,28 +109,28 @@ enough history material to succeed.
 
 ## Auditing and interoperability
 
-One of the factors motivating the gramr history design was to permit other programs and 3rd
+One of the factors motivating the gravity history design was to permit other programs and 3rd
 parties transparent, easy, and unbiased access to the ledger and transaction history, without having
-to "go through" the gramr program or protocol. Any program that can fetch data from a history
+to "go through" the gravity program or protocol. Any program that can fetch data from a history
 archive and deserialize XDR can read the complete history; there is no need to speak the
-gramr peer-to-peer protocol or interact with any gramr peers.
+gravity peer-to-peer protocol or interact with any gravity peers.
 
 With the exception of a single "most recent checkpoint" metadata file, all files written to a
 history archive are written _once_ and never modified. Bucket files are named by hash, but
 transaction sets, ledger headers, and checkpoint metadata (including the hashes of buckets) are named
-sequentially. Anyone wishing to audit or reconstruct the activity of gramr by monitoring a
+sequentially. Anyone wishing to audit or reconstruct the activity of gravity by monitoring a
 history archive can simply poll the archive and consume new files as they arrive.
 
-All XDR encoding and decoding in gramr is done by code generated automatically from the
+All XDR encoding and decoding in gravity is done by code generated automatically from the
 associated [XDR schemas](/src/xdr); any other compliant XDR code generator should produce a
-deserializer that can read and write the same history. The XDR code generator used in gramr
+deserializer that can read and write the same history. The XDR code generator used in gravity
 is developed independently, but [included in the source tree as a submodule](../lib/xdrpp).
 
 
 ## Additional design considerations
 
 In addition to the considerations of interoperability and software flexibility presented above, a
-few additional, less obvious motives are at work in the design of the history system in gramr.
+few additional, less obvious motives are at work in the design of the history system in gravity.
 A few reasons that the extra effort of configuring independent history archives is, in our judgment, worth its slight awkwardness:
 
   - Configuring independent history archives helps ensure valid backups get made. It is very easy to build a backup system that is not run
@@ -139,10 +139,10 @@ A few reasons that the extra effort of configuring independent history archives 
     to use the _same code path_ that is making continuous, long-term flat-file backups, we help
     ensure the backup code _works_, and is being run on a regular schedule.
 
-  - This design reduces the risk of lost peers. gramr peers are comparatively ephemeral: new ones can
+  - This design reduces the risk of lost peers. gravity peers are comparatively ephemeral: new ones can
     be brought online relatively quickly (only downloading missing buckets) and the state stored on
     a given peer is likely only one checkpoint, or 5 minutes, worth of unique data (the rest has
-    been archived). While gramr is designed to run as a highly fault-tolerant replicated
+    been archived). While gravity is designed to run as a highly fault-tolerant replicated
     system in the first place, the less damage suffered by losing a single replica, the better.
 
   - It is fast, flexible and cheap. Copying bytes sequentially from flat files is the case that all
@@ -285,7 +285,7 @@ In total, each checkpoint number `0xwwxxyyzz` consists of the following files:
     ledger. The file is similar to the transactions file, in that there is one entry per transaction
     applied to a ledger in the checkpoint; but this file stores the _results_ of applying each
     transaction. These files allows to get a very close approximation of the history of changes
-    to the ledger without actually running the `gramr` transaction-apply logic.
+    to the ledger without actually running the `gravity` transaction-apply logic.
     If full fidelity of ledger entry history is needed, see the section on the subject in the [integration document](./integration.md#ledger-state-transition-information-transactions-etc).
 
   - (Optionally) one SCP file, named by ledger number as `scp/ww/xx/yy/scp-wwxxyyzz.xdr.gz`. The file

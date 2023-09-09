@@ -1,8 +1,8 @@
 ---
-title: List of metrics exposed by gramr
+title: List of metrics exposed by gravity
 ---
 
-gramr uses libmedida for computing metrics, a detailed description can
+gravity uses libmedida for computing metrics, a detailed description can
 be found at http://dln.github.io/medida/
 
 ### Counters (`NewCounter`)

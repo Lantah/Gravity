@@ -1,4 +1,4 @@
-#include "main/GramrVersion.h"
+#include "main/GravityVersion.h"
 
-const std::string GRAMR_VERSION = "%%VERSION%%";
+const std::string GRAVITY_VERSION = "%%VERSION%%";
 

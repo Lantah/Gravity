@@ -8,7 +8,7 @@
 #include "main/ApplicationUtils.h"
 #include "main/CommandLine.h"
 #include "main/Config.h"
-#include "main/GramrVersion.h"
+#include "main/GravityVersion.h"
 #include <regex>
 #include <stdexcept>
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
@@ -218,25 +218,25 @@ checkXDRFileIdentity()
 }
 
 void
-checkGramrMajorVersionProtocolIdentity()
+checkGravityMajorVersionProtocolIdentity()
 {
     auto vers =
-        stellar::getGramrMajorReleaseVersion(GRAMR_VERSION);
+        stellar::getGravityMajorReleaseVersion(GRAVITY_VERSION);
     if (vers)
     {
         if (*vers != stellar::Config::CURRENT_LEDGER_PROTOCOL_VERSION)
         {
             throw std::runtime_error(
-                fmt::format("gramr version {} has major version {} but "
+                fmt::format("gravity version {} has major version {} but "
                             "CURRENT_LEDGER_PROTOCOL_VERSION is {}",
-                            GRAMR_VERSION, *vers,
+                            GRAVITY_VERSION, *vers,
                             stellar::Config::CURRENT_LEDGER_PROTOCOL_VERSION));
         }
     }
     else
     {
         std::cerr << "Warning: running non-release version "
-                  << GRAMR_VERSION << " of gramr" << std::endl;
+                  << GRAVITY_VERSION << " of gravity" << std::endl;
     }
 }
 #endif
@@ -272,7 +272,7 @@ main(int argc, char* const* argv)
     xdr::marshaling_stack_limit = 1000;
 #ifdef ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
     // TODO: This should only be enabled after we tag a v20 version
-    // checkGramrMajorVersionProtocolIdentity();
+    // checkGravityMajorVersionProtocolIdentity();
     rust_bridge::check_lockfile_has_expected_dep_trees(
         Config::CURRENT_LEDGER_PROTOCOL_VERSION);
     checkXDRFileIdentity();

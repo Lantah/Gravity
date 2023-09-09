@@ -147,7 +147,7 @@ TEST_CASE("resolve node id", "[config]")
 TEST_CASE("load validators config", "[config]")
 {
     Config c;
-    c.load("testdata/gramr_example_validators.cfg");
+    c.load("testdata/gravity_example_validators.cfg");
     auto actualS = c.toString(c.QUORUM_SET);
     std::string expected = R"({
    "t" : 4,
@@ -390,9 +390,9 @@ TEST_CASE("load example configs", "[config]")
 {
     Config c;
     std::vector<std::string> testFiles = {
-        "gramr_example.cfg", "gramr_standalone.cfg",
-        "gramr_testnet_legacy.cfg", "gramr_testnet.cfg",
-        "gramr_testnet_validator.cfg"};
+        "gravity_example.cfg", "gravity_standalone.cfg",
+        "gravity_testnet_legacy.cfg", "gravity_testnet.cfg",
+        "gravity_testnet_validator.cfg"};
     for (auto const& fn : testFiles)
     {
         std::string fnPath = "testdata/";

@@ -10,11 +10,11 @@ It uses the official stellar-core deb package for two reasons:
 1. To ensure docker and non-docker environments run the same build
 2. To allow binaries to be cryptographically verified
 
-To build set `GRAMR_VERSION` to deb package version you want installed.
+To build set `GRAVITY_VERSION` to deb package version you want installed.
 For example:
 ```
-export GRAMR_VERSION=17.0.0-557.096f6a7.focal
-export TAG=${USER}/stellar-core:${GRAMR_VERSION}
+export GRAVITY_VERSION=17.0.0-557.096f6a7.focal
+export TAG=${USER}/gravity:${GRAVITY_VERSION}
 make docker-build
 ```
 

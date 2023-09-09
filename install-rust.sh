@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # This file should be run if you want to install the exact version of Rust that
-# gramr is building its packages and testing with.
+# gravity is building its packages and testing with.
 #
 # You are of course welcome to install your own version of Rust, but this file
 # is version-controlled and run in CI to make the dependency explicit (and to

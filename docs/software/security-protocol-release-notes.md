@@ -21,7 +21,7 @@ It is organized as a reverse chronological timeline of releases.
 
 ## Goals for this document
 
-* have a summary view of changes that affect the code base (gramr has to be able to replay all ledgers generated since genesis on the Stellar public network).
+* have a summary view of changes that affect the code base (gravity has to be able to replay all ledgers generated since genesis on the Lantah public network).
 * drive transparency on issues that affected the network in the past as well as their impact.
 
 ## Security issues disclosure policy

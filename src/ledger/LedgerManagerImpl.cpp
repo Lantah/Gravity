@@ -715,7 +715,7 @@ LedgerManagerImpl::closeLedger(LedgerCloseData const& ledgerData)
     {
         CLOG_ERROR(Ledger, "Unknown ledger version: {}",
                    header.current().ledgerVersion);
-        CLOG_ERROR(Ledger, "{}", UPGRADE_GRAMR);
+        CLOG_ERROR(Ledger, "{}", UPGRADE_GRAVITY);
         throw std::runtime_error(fmt::format(
             FMT_STRING("cannot apply ledger with not supported version: {:d}"),
             header.current().ledgerVersion));
@@ -755,7 +755,7 @@ LedgerManagerImpl::closeLedger(LedgerCloseData const& ledgerData)
     // In addition to the _canonical_ LedgerResultSet hashed into the
     // LedgerHeader, we optionally collect an even-more-fine-grained record of
     // the ledger entries modified by each tx during tx processing in a
-    // LedgerCloseMeta, for streaming to attached clients (typically: horizon).
+    // LedgerCloseMeta, for streaming to attached clients (typically: orbitr).
     std::unique_ptr<LedgerCloseMetaFrame> ledgerCloseMeta;
     if (mMetaStream || mMetaDebugStream)
     {

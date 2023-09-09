@@ -2,9 +2,9 @@
 
 👍🎉 First off, thanks for taking the time to contribute! 🎉👍
 
-Check out the [Stellar Contribution
-Guide](https://github.com/stellar/.github/blob/master/CONTRIBUTING.md) for details on contributing
-to gramr and Stellar's other repositories, especially with regard to our code of conduct and
+Check out the Lantah Contribution
+Guide for details on contributing
+to gravity and Lantah's other repositories, especially with regard to our code of conduct and
 contributor license agreement.
 
 ## Submitting Changes
@@ -23,7 +23,7 @@ At this point you're waiting on us. We like to at least comment on pull requests
 * Try to separate logically distinct changes into separate commits and thematically distinct
   commits into separate pull requests.
 * Please ensure that all tests pass before submitting changes. The local testsuite can be run as
-  `make check` or `src/gramr test`, see [Running Tests](#running-tests).
+  `make check` or `src/gravity test`, see [Running Tests](#running-tests).
 
 ### Keeping our commit history clean
 
@@ -40,7 +40,7 @@ master as you pull changes from upstream.
 ### Testing
 
 Please ensure that all tests pass before submitting changes. The local testsuite can be run as
-`make check` or `src/gramr --test`, see [Running Tests](#running-tests).
+`make check` or `src/gravity --test`, see [Running Tests](#running-tests).
 
 ### Code Style
 
@@ -90,10 +90,10 @@ Steps (tested on Mac OS):
 
 1. Run `./configure --enable-codecoverage` (include `--enable-next-protocol-version-unsafe-for-production` if testing a future protocol version)
 2. Compile stellar core
-3. Run the desired test, but with the LLVM_PROFILE_FILE environment variable set (ex. `LLVM_PROFILE_FILE="cov.profraw" src/gramr test '[liquiditypool]'`). This should generate a cov.profraw file in the current directory.
+3. Run the desired test, but with the LLVM_PROFILE_FILE environment variable set (ex. `LLVM_PROFILE_FILE="cov.profraw" src/gravity test '[liquiditypool]'`). This should generate a cov.profraw file in the current directory.
 4. Run `xcrun llvm-profdata merge -output=cov.profdata cov.profraw`
    * the llvm tools are only accessible on Mac OS through `xcrun`
-5. Run `xcrun llvm-cov show ./src/gramr -instr-profile=cov.profdata -format="html" > cov.html`
+5. Run `xcrun llvm-cov show ./src/gravity -instr-profile=cov.profdata -format="html" > cov.html`
    * The resulting html file can be around ~45MB, so it can be difficult to navigate with a
    browser. You can use the `-ignore-filename-regex` option to remove files/directories that you aren't
    interested in (ex. The following option excludes every directory specified `-ignore-filename-regex='.*lib[/\\].*|.*bucket[/\\].*|.*catchup[/\\].*|.*crypto[/\\].*|.*database[/\\].*|.*herder[/\\].*|.*history[/\\].*|.*historywork[/\\].*|.*overlay[/\\].*|.*xdr[/\\].*|.*sodium[/\\].*|.*work[/\\].*|.*test[/\\].*|.*scp[/\\].*|.*main[/\\].*|.*simulation[/\\].*|.*invariant[/\\].*|.*util[/\\].*'`)
@@ -151,20 +151,20 @@ to the configure script).
 
 There are two ways to run tests:
 
-- `src/gramr test`
+- `src/gravity test`
 - `make check`
 
 Always build before running tests, unless using `make check` which will build for you. See [INSTALL.md](./INSTALL.md) for instructions for how to build.
 
-## Running tests basics with `src/gramr test`
+## Running tests basics with `src/gravity test`
 run tests with:
-  `src/gramr test`
+  `src/gravity test`
 
 run one test with:
-  `src/gramr test  testName`
+  `src/gravity test  testName`
 
 run one test category with:
-  `src/gramr test '[categoryName]'`
+  `src/gravity test '[categoryName]'`
 
 Categories (or tags) can be combined: AND-ed (by juxtaposition) or OR-ed (by comma-listing).
 
@@ -173,13 +173,13 @@ Tests tagged as `[.]` or `[hide]` are not part of the default test.
 Tests tagged as `[acceptance]` are not part of `make check` test runs.
 
 supported test options can be seen with
-  `src/gramr test --help`
+  `src/gravity test --help`
 
 display tests timing information:
-  `src/gramr test -d yes '[categoryName]'`
+  `src/gravity test -d yes '[categoryName]'`
 
 xml test output (includes nested section information):
-  `src/gramr test -r xml '[categoryName]'`
+  `src/gravity test -r xml '[categoryName]'`
 
 Tests may also be run with `make check`, see [Running tests in parallel](#running tests-in-parallel-with-make-check).
 
@@ -229,15 +229,15 @@ We adopt the convention of tagging a stress-test for subsystem foo as [foo-stres
 
 Then, running:
 
-* `gramr test [stress]` will run all the stress tests,
-* `gramr test [foo-stress]` will run the stress tests for subsystem foo alone, and
-* neither `gramr test` nor `gramr test [foo]` will run stress tests.
+* `gravity test [stress]` will run all the stress tests,
+* `gravity test [foo-stress]` will run the stress tests for subsystem foo alone, and
+* neither `gravity test` nor `gravity test [foo]` will run stress tests.
 
 ## Running and updating TxMeta checks
 
-The `gramr test` unit tests can be run in two special modes that hash the
+The `gravity test` unit tests can be run in two special modes that hash the
 TxMeta of each transaction executed. These two modes can increase confidence
-that a change to gramr does not alter the semantics of any transactions.
+that a change to gravity does not alter the semantics of any transactions.
 The two modes are:
 
   * `--record-test-tx-meta <dirname>` which records TxMeta hashes into `<dirname>`
@@ -251,11 +251,11 @@ changes to the semantics of any transactions, or add any new transactions that
 need to have their hashes recorded, you can re-record the baseline using a
 command like:
 
-    gramr test [tx] --all-versions --rng-seed 12345 --record-test-tx-meta test-tx-meta-baseline-current
+    gravity test [tx] --all-versions --rng-seed 12345 --record-test-tx-meta test-tx-meta-baseline-current
 
 for a build with only the current protocol enabled, and:
 
-    gramr test [tx] --all-versions --rng-seed 12345 --record-test-tx-meta test-tx-meta-baseline-next
+    gravity test [tx] --all-versions --rng-seed 12345 --record-test-tx-meta test-tx-meta-baseline-next
 
 for a build configured with `--enable-next-protocol-version-unsafe-for-production`.
 

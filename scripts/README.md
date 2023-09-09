@@ -1,5 +1,5 @@
 ## Description
-This folder is for storing any scripts that may be helpful for using gramr.
+This folder is for storing any scripts that may be helpful for using gravity.
 
 ## List of scripts
 - [Overlay survey](#overlay-survey)
@@ -28,8 +28,8 @@ This folder is for storing any scripts that may be helpful for using gramr.
 
 ### Diff Tracy CSV
 - Name - `DiffTracyCSV.py`
-- Description - A Python script that compares two CSV files produced by `tracy-csvexport` (which in turn reads output from `tracy-capture`). The purpose of this script is to detect significant performance impacts of changes to gramr by capturing before-and-after traces.
-- Usage - Ex. `tracy-capture -o old.tracy -s 10 -a 127.0.0.1` to capture a 10 second trace of gramr running on the local machine. Then run `tracy-csvexport -u old.tracy >old.csv`. Then make a change to gramr and repeat the process to capture `new.tracy` and `new.csv`. Finally, run `DiffTracyCSV.py --old old.csv --new new.csv` and inspect the differences.
+- Description - A Python script that compares two CSV files produced by `tracy-csvexport` (which in turn reads output from `tracy-capture`). The purpose of this script is to detect significant performance impacts of changes to gravity by capturing before-and-after traces.
+- Usage - Ex. `tracy-capture -o old.tracy -s 10 -a 127.0.0.1` to capture a 10 second trace of gravity running on the local machine. Then run `tracy-csvexport -u old.tracy >old.csv`. Then make a change to gravity and repeat the process to capture `new.tracy` and `new.csv`. Finally, run `DiffTracyCSV.py --old old.csv --new new.csv` and inspect the differences.
 
 ## Style guide
 We follow [PEP-0008](https://www.python.org/dev/peps/pep-0008/).

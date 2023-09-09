@@ -6,7 +6,7 @@ title: Administration
 
 Stellar Core is the program nodes use to communicate with other nodes to create and maintain the Stellar peer-to-peer network.  It's an implementation of the Stellar Consensus Protocol configured to construct a chain of ledgers guaranteed to be in agreement across all participating nodes at all times.
 
-This document describes various aspects of installing, configuring, and maintaining a `gramr` node.  It will explain:
+This document describes various aspects of installing, configuring, and maintaining a `gravity` node.  It will explain:
 
 
   - [ ] [why you should run a node](#why-run-a-node)
@@ -25,16 +25,16 @@ This document describes various aspects of installing, configuring, and maintain
 
 ### Benefits of running a node
 
-You get to run your own Horizon instance:
+You get to run your own OrbitR instance:
 
   * Allows for customizations (triggers, etc) of the business logic or APIs
   * Full control of which data to retain (historical or online)
   * A trusted entry point to the network
     * Trusted end to end (can implement additional counter measures to secure services)
-    * Open Horizon increases customer trust by allowing to query at the source (ie: larger token issuers have an official endpoint that can be queried)
+    * Open OrbitR increases customer trust by allowing to query at the source (ie: larger token issuers have an official endpoint that can be queried)
   * Control of SLA
 
-note: in this document we use "Horizon" as the example implementation of a first tier service built on top of gramr, but any other system would get the same benefits.
+note: in this document we use "OrbitR" as the example implementation of a first tier service built on top of gravity, but any other system would get the same benefits.
 
 ### Level of participation to the network
 
@@ -44,7 +44,7 @@ As a node operator you can participate to the network in multiple ways.
 | -------------------------------------------------- | ------------- | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
 | description                                        | non-validator | all of watcher + publish to archive | all of watcher + active participation in consensus (submit proposals for the transaction set to include in the next ledger) | basic validator + publish to archive |
 | submits transactions                               | yes           | yes                                 | yes                                                                                                                         | yes                                  |
-| supports horizon                                   | yes           | yes                                 | yes                                                                                                                         | yes                                  |
+| supports orbitr                                   | yes           | yes                                 | yes                                                                                                                         | yes                                  |
 | participates in consensus                          | no            | no                                  | yes                                                                                                                         | yes                                  |
 | helps other nodes to catch up and join the network | no            | yes                                 | no                                                                                                                          | yes                                  |
 | Increase the resiliency of the network             | No            | Medium                              | Low                                                                                                                         | High                                 |
@@ -63,7 +63,7 @@ Use cases:
   * Ephemeral instances, where having other nodes depend on those nodes is not desired
   * Potentially reduced administration cost (no or reduced SLA)
   * Real time network monitoring (which validators are present, etc)
-  * Generate network meta-data for other systems (Horizon)
+  * Generate network meta-data for other systems (OrbitR)
 
 **Operational requirements**:
 
@@ -125,7 +125,7 @@ Use cases:
   * a [database](#database)
 
 ## Instance setup
-Regardless of how you install gramr (apt, source, docker, etc), you will need to configure the instance hosting it roughly the same way.
+Regardless of how you install gravity (apt, source, docker, etc), you will need to configure the instance hosting it roughly the same way.
 
 ### Compute requirements
 CPU, RAM, Disk and network depends on network activity. If you decide to collocate certain workloads, you will need to take this into account.
@@ -138,16 +138,16 @@ Storage wise, 20 GB seems to be an excellent working set as it leaves plenty of 
 
 #### Interaction with the peer to peer network
 
-  * **inbound**: gramr needs to allow all ips to connect to its `PEER_PORT` (default 11625) over TCP.
-  * **outbound**: gramr needs access to connect to other peers on the internet on `PEER_PORT` (most use the default as well) over TCP.
+  * **inbound**: gravity needs to allow all ips to connect to its `PEER_PORT` (default 11625) over TCP.
+  * **outbound**: gravity needs access to connect to other peers on the internet on `PEER_PORT` (most use the default as well) over TCP.
 
 #### Interaction with other internal systems
 
   * **outbound**:
-    * gramr needs access to a database (postgresql for example), which may reside on a different machine on the network
+    * gravity needs access to a database (postgresql for example), which may reside on a different machine on the network
     * other connections can safely be blocked
-  * **inbound**: gramr exposes an *unauthenticated* HTTP endpoint on port `HTTP_PORT` (default 11626)
-    * it is used by other systems (such as Horizon) to submit transactions (so may have to be exposed to the rest of your internal ips)
+  * **inbound**: gravity exposes an *unauthenticated* HTTP endpoint on port `HTTP_PORT` (default 11626)
+    * it is used by other systems (such as OrbitR) to submit transactions (so may have to be exposed to the rest of your internal ips)
     *  query information (info, metrics, ...) for humans and automation
     *  perform administrative commands (schedule upgrades, change log levels, ...)
 
@@ -170,25 +170,17 @@ The version number scheme that we follow is `protocol_version.release_number.pat
 See the [INSTALL](https://github.com/stellar/stellar-core/blob/master/INSTALL.md) for build instructions.
 
 ### Package based Installation
-If you are using a recent LTS version of Ubuntu we provide the latest stable releases of [gramr](https://github.com/stellar/stellar-core) and [stellar-horizon](https://github.com/stellar/go/tree/master/services/horizon) in Debian binary package format.
-
-See [detailed installation instructions](https://github.com/stellar/packages#sdf---packages)
-
-### Container based installation
-Docker images are maintained in a few places, good starting points are:
-
-   * the [quickstart image](https://github.com/stellar/docker-stellar-core-horizon)
-   * the [standalone image](https://github.com/stellar/docker-stellar-core). **Warning**: this only tracks the latest master, so you have to find the image based on the [release](https://github.com/stellar/stellar-core/releases) that you want to use.
+If you are using a recent LTS version of Ubuntu we provide the latest stable releases of [Gravity](https://github.com/lantah/gravity) and [OrbitR](https://github.com/lantah/go/tree/master/services/orbitr) in Debian binary package format.
 
 ## Configuring
 
-Before attempting to configure gramr, it is highly recommended to first try running a private network or joining the test network. 
+Before attempting to configure gravity, it is highly recommended to first try running a private network or joining the test network. 
 
 ### Configuration basics
-All configuration for gramr is done with a TOML file. By default 
-gramr loads `./gramr.cfg`, but you can specify a different file to load on the command line:
+All configuration for gravity is done with a TOML file. By default 
+gravity loads `./gravity.cfg`, but you can specify a different file to load on the command line:
 
-`$ gramr --conf betterfile.cfg <COMMAND>`
+`$ gravity --conf betterfile.cfg <COMMAND>`
 
 The [example config](https://github.com/stellar/stellar-core/blob/master/docs/stellar-core_example.cfg) is not a real configuration, but documents all possible configuration elements as well as their default values.
 
@@ -211,7 +203,7 @@ messages will look like they came from you.
 
 Generate a key pair like this:
 
-`$ gramr gen-seed`
+`$ gravity gen-seed`
 the output will look something like
 ```
 Secret seed: SBAAOHEU4WSWX6GBZ3VOXEGQGWRBJ72ZN3B3MFAJZWXRYGDIWHQO37SY
@@ -382,7 +374,7 @@ Recommended steps are for the entity that adds/removes nodes to do so first betw
 
 ## Environment preparation
 
-### gramr configuration
+### gravity configuration
 Cross reference your validator settings, in particular:
 
   * environment specific settings
@@ -390,37 +382,37 @@ Cross reference your validator settings, in particular:
     * known peers
   * home domains and validators arrays
   * seed defined if validating
-  * [Automatic maintenance](#cursors-and-automatic-maintenance) configured properly, especially when gramr is used in conjunction with a downstream system like Horizon.
+  * [Automatic maintenance](#cursors-and-automatic-maintenance) configured properly, especially when gravity is used in conjunction with a downstream system like OrbitR.
 
 ### Database and local state
 
-After configuring your [database](#database) and [buckets](#buckets) settings, when running gramr for the first time, you must initialize the database:
+After configuring your [database](#database) and [buckets](#buckets) settings, when running gravity for the first time, you must initialize the database:
 
-`$ gramr new-db`
+`$ gravity new-db`
 
 This command will initialize the database as well as the bucket directory and then exit. 
 
 You can also use this command if your DB gets corrupted and you want to restart it from scratch. 
 
 #### Database
-Gramr stores the state of the ledger in a SQL database.
+Gravity stores the state of the ledger in a SQL database.
 
 This DB should either be a SQLite database or, for larger production instances, a separate PostgreSQL server.
 
-*Note: Horizon currently depends on using PostgreSQL.*
+*Note: OrbitR currently depends on using PostgreSQL.*
 
 For how to specify the database, 
 see the [example config](https://github.com/stellar/stellar-core/blob/master/docs/stellar-core_example.cfg).
 
 ##### Cursors and automatic maintenance
 
-Some tables in the database act as a publishing queue for external systems such as Horizon and generate **meta data** for changes happening to the distributed ledger.
+Some tables in the database act as a publishing queue for external systems such as OrbitR and generate **meta data** for changes happening to the distributed ledger.
 
 If not managed properly those tables will grow without bounds. To avoid this, a built-in scheduler will delete data from old ledgers that are not used anymore by other parts of the system (external systems included).
 
 The settings that control the automatic maintenance behavior are: `AUTOMATIC_MAINTENANCE_PERIOD`,  `AUTOMATIC_MAINTENANCE_COUNT` and `KNOWN_CURSORS`.
 
-By default, gramr will perform this automatic maintenance, so be sure to disable it until you have done the appropriate data ingestion in downstream systems (Horizon for example sometimes needs to reingest data).
+By default, gravity will perform this automatic maintenance, so be sure to disable it until you have done the appropriate data ingestion in downstream systems (OrbitR for example sometimes needs to reingest data).
 
 If you need to regenerate the meta data, the simplest way is to replay ledgers for the range you're interested in after (optionally) clearing the database with `newdb`.
 
@@ -433,27 +425,27 @@ If this happens, database performance can be restored; the node will take some d
 
 ##### Meta data snapshots and restoration
 
-Some deployments of gramr and Horizon will want to retain meta data for the _entire history_ of the network. This meta data can be quite large and computationally expensive to regenerate anew by replaying ledgers in gramr from an empty initial database state, as described in the previous section.
+Some deployments of gravity and OrbitR will want to retain meta data for the _entire history_ of the network. This meta data can be quite large and computationally expensive to regenerate anew by replaying ledgers in gravity from an empty initial database state, as described in the previous section.
 
-This can be especially costly if run more than once. For instance, when bringing a new node online. Or even if running a single node with Horizon, having already ingested the meta data _once_: a subsequent version of Horizon may have a schema change that entails re-ingesting it _again_.
+This can be especially costly if run more than once. For instance, when bringing a new node online. Or even if running a single node with OrbitR, having already ingested the meta data _once_: a subsequent version of OrbitR may have a schema change that entails re-ingesting it _again_.
 
-Some operators therefore prefer to shut down their gramr (and/or Horizon) processes and _take filesystem-level snapshots_ or _database-level dumps_ of the contents of gramr's database and bucket directory, and/or Horizon's database, after meta data generation has occurred the first time. Such snapshots can then be restored, putting gramr and/or Horizon in a state containing meta data without performing full replay.
+Some operators therefore prefer to shut down their gravity (and/or OrbitR) processes and _take filesystem-level snapshots_ or _database-level dumps_ of the contents of gravity's database and bucket directory, and/or OrbitR's database, after meta data generation has occurred the first time. Such snapshots can then be restored, putting gravity and/or OrbitR in a state containing meta data without performing full replay.
 
-Any reasonably-recent state will do -- if such a snapshot is a little old, gramr will replay ledgers from whenever the snapshot was taken to the current network state anyways -- but this procedure can greatly accelerate restoring validator nodes, or cloning them to create new ones.
+Any reasonably-recent state will do -- if such a snapshot is a little old, gravity will replay ledgers from whenever the snapshot was taken to the current network state anyways -- but this procedure can greatly accelerate restoring validator nodes, or cloning them to create new ones.
 
 
 #### Buckets
-Gramr stores a duplicate copy of the ledger in the form of flat XDR files 
+Gravity stores a duplicate copy of the ledger in the form of flat XDR files 
 called "buckets." These files are placed in a directory specified in the config 
 file as `BUCKET_DIR_PATH`, which defaults to `buckets`. The bucket files are used
  for hashing and transmission of ledger differences to history archives. 
 
 Buckets should be stored on a fast local disk with sufficient space to store several times the size of the current ledger. 
  
- For the most part, the contents of both directories can be ignored as they are managed by gramr.
+ For the most part, the contents of both directories can be ignored as they are managed by gravity.
 
 ### History archives
-Gramr normally interacts with one or more "history archives," which are 
+Gravity normally interacts with one or more "history archives," which are 
 configurable facilities for storing and retrieving flat files containing history 
 checkpoints: bucket files and history logs. History archives are usually off-site 
 commodity storage services such as Amazon S3, Google Cloud Storage, 
@@ -461,10 +453,10 @@ Azure Blob Storage, or custom SCP/SFTP/HTTP servers.
 
 Use command templates in the config file to give the specifics of which 
 services you will use and how to access them. 
-The [example config](https://github.com/stellar/gramr/blob/master/docs/stellar-core_example.cfg) 
+The [example config](https://github.com/stellar/gravity/blob/master/docs/stellar-core_example.cfg) 
 shows how to configure a history archive through command templates. 
 
-While it is possible to run a gramr node with no configured history 
+While it is possible to run a gravity node with no configured history 
 archives, it will be _severely limited_, unable to participate fully in a 
 network, and likely unable to acquire synchronization at all. At the very 
 least, if you are joining an existing network in a read-only capacity, you 
@@ -473,7 +465,7 @@ archives.
 
 #### Configuring to get data from an archive
 
-You can configure any number of archives to download from: gramr will automatically round-robin between them.
+You can configure any number of archives to download from: gravity will automatically round-robin between them.
 
 At a minimum you should configure `get` archives for each full validator referenced from your quorum set (see the `HISTORY` field in [validators array](#validators-array) for more detail).
 
@@ -485,7 +477,7 @@ Archive sections can also be configured with `put` and `mkdir` commands to
  cause the instance to publish to that archive (for nodes configured as [archiver nodes](#archiver-nodes) or [full validators](#full-validators)).
 
 The very first time you want to use your archive *before starting your node* you need to initialize it with:
-`$ gramr new-hist <historyarchive>`
+`$ gravity new-hist <historyarchive>`
 
 **IMPORTANT:**
 
@@ -504,22 +496,22 @@ In no particular order:
 
 ## Starting your node
 
-After having configured your node and its environment, you're ready to start gramr.
+After having configured your node and its environment, you're ready to start gravity.
 
 This can be done with a command equivalent to
 
-`$ gramr run`
+`$ gravity run`
 
 At this point you're ready to observe core's activity as it joins the network.
 
-Review the [logging](#logging) section to get yourself familiar with the output of gramr.
+Review the [logging](#logging) section to get yourself familiar with the output of gravity.
 
 ### Interacting with your instance
-While running, interaction with gramr is done via an administrative 
+While running, interaction with gravity is done via an administrative 
 HTTP endpoint. Commands can be submitted using command-line HTTP tools such 
 as `curl`, or by running a command such as
 
-`$ gramr http-command <http-command>`
+`$ gravity http-command <http-command>`
 
 The endpoint is [not intended to be exposed to the public internet](#interaction-with-other-internal-systems). It's typically accessed by administrators, or by a mid-tier application to submit transactions to the Lantah Network. 
 
@@ -596,7 +588,7 @@ When the node is done catching up, its state will change to
 ```
 
 ## Logging
-Gramr sends logs to standard error and `gramr.log` by default,
+Gravity sends logs to standard error and `gravity.log` by default,
 configurable as `LOG_FILE_PATH`.
 
  Log messages are classified by progressive _priority levels_:
@@ -609,14 +601,14 @@ by setting `LOG_COLOR=true` in the config file. By default they are not color-co
 The log level can be controlled by configuration, the `-ll` command-line flag 
 or adjusted dynamically by administrative (HTTP) commands. Run:
 
-`$ gramr http-command "ll?level=debug"`
+`$ gravity http-command "ll?level=debug"`
 
 against a running system.
 Log levels can also be adjusted on a partition-by-partition basis through the 
 administrative interface.
  For example the history system can be set to DEBUG-level logging by running:
 
-`$ gramr http-command "ll?level=debug&partition=history"` 
+`$ gravity http-command "ll?level=debug&partition=history"` 
 
 against a running system.
  The default log level is `INFO`, which is moderately verbose and should emit 
@@ -628,7 +620,7 @@ against a running system.
 Information provided here can be used for both human operators and programmatic access.
 
 ### General node information
-Run `$ gramr http-command 'info'`
+Run `$ gravity http-command 'info'`
 The output will look something like
 
 ```json
@@ -679,7 +671,7 @@ The output will look something like
 
 Some notable fields in `info` are:
 
-  * `build` is the build number for this gramr instance
+  * `build` is the build number for this gravity instance
   * `ledger` represents the local state of your node, it may be different from the network state if your node was disconnected from the network for example. Some important sub-fields:
     * `age` : time elapsed since this ledger closed (during normal operation less than 10 seconds)
     * `num` : ledger number
@@ -699,7 +691,7 @@ The `peers` command returns information on the peers the instance is connected t
 This list is the result of both inbound connections from other peers and outbound connections from this node to other peers.
 If `compact=false`, then it also returns some extra metrics on each peer such as the number of dropped messages.
 
-`$ gramr http-command 'peers'`
+`$ gravity http-command 'peers'`
 
 ```json
 {
@@ -768,9 +760,9 @@ By default, a node will relay or respond to a survey message if the message orig
 
 In this example, we have three nodes `GBBN`, `GDEX`, and `GBUI` (we'll refer to them by the first four letters of their public keys). We will execute the commands below from `GBUI`, and note that `GBBN` has `SURVEYOR_KEYS=["$self"]` in it's config file, so `GBBN` will not relay or respond to any survey messages.
 
-  1. `$ gramr http-command 'surveytopology?duration=1000&node=GBBNXPPGDFDUQYH6RT5VGPDSOWLZEXXFD3ACUPG5YXRHLTATTUKY42CL'`
-  2. `$ gramr http-command 'surveytopology?duration=1000&node=GDEXJV6XKKLDUWKTSXOOYVOYWZGVNIKKQ7GVNR5FOV7VV5K4MGJT5US4'`
-  3. `$ gramr http-command 'getsurveyresult'`
+  1. `$ gravity http-command 'surveytopology?duration=1000&node=GBBNXPPGDFDUQYH6RT5VGPDSOWLZEXXFD3ACUPG5YXRHLTATTUKY42CL'`
+  2. `$ gravity http-command 'surveytopology?duration=1000&node=GDEXJV6XKKLDUWKTSXOOYVOYWZGVNIKKQ7GVNR5FOV7VV5K4MGJT5US4'`
+  3. `$ gravity http-command 'getsurveyresult'`
 
 Once the responses are received, the `getsurveyresult` command will return a result like this:
 ```json
@@ -842,7 +834,7 @@ The `quorum` command allows to diagnose problems with the quorum set of the loca
 
 Run
 
-`$ gramr http-command 'quorum'`
+`$ gravity http-command 'quorum'`
 
 The output looks something like:
 
@@ -922,7 +914,7 @@ as a whole will not be able to reach consensus (and the opposite is true, the ne
 may fail because of a different set of validators failing).
 
 You can get a sense of the quorum set health of a different node by doing
-`$ gramr http-command 'quorum?node=$sdf1` or `$ gramr http-command 'quorum?node=@GABCDE` 
+`$ gravity http-command 'quorum?node=$sdf1` or `$ gravity http-command 'quorum?node=@GABCDE` 
 
 Overall network health can be evaluated by walking through all nodes and looking at their health. Note that this is only an approximation as remote nodes may not have received the same messages (in particular: `missing` for 
 other nodes is not reliable).
@@ -946,7 +938,7 @@ The quorum endpoint can also retrieve detailed information for the transitive qu
 
 This is an easier to process format than what `scp` returns as it doesn't contain all SCP messages.
 
-`$ gramr http-command 'quorum?transitive=true'`
+`$ gravity http-command 'quorum?transitive=true'`
 
 The output looks something like:
 
@@ -1092,8 +1084,8 @@ For more information look at [`docs/versioning.md`](../versioning.md).
 
 Example here is to upgrade the protocol version to version 9 on January-31-2018.
 
-  1. `$ gramr http-command 'upgrades?mode=set&upgradetime=2018-01-31T20:00:00Z&protocolversion=9'`
-  2. `$ gramr http-command info`
+  1. `$ gravity http-command 'upgrades?mode=set&upgradetime=2018-01-31T20:00:00Z&protocolversion=9'`
+  2. `$ gravity http-command info`
 
 At this point `info` will tell you that the node is setup to vote for this upgrade:
 ```json
@@ -1113,22 +1105,22 @@ This section contains information that is useful to know but that should not sto
 
 ### Runtime information: start and stop
 
-Gramr can be started directly from the command line, or through a supervision 
+Gravity can be started directly from the command line, or through a supervision 
 system such as `init`, `upstart`, or `systemd`.
 
-Gramr can be gracefully exited at any time by delivering `SIGINT` or
+Gravity can be gracefully exited at any time by delivering `SIGINT` or
  pressing `CTRL-C`. It can be safely, forcibly terminated with `SIGTERM` or
   `SIGKILL`. The latter may leave a stale lock file in the `BUCKET_DIR_PATH`,
    and you may need to remove the file before it will restart. 
    Otherwise, all components are designed to recover from abrupt termination.
 
-Gramr can also be packaged in a container system such as Docker, so long 
+Gravity can also be packaged in a container system such as Docker, so long 
 as `BUCKET_DIR_PATH` and the database are stored on persistent volumes. For an
 example, see [docker-stellar-core](https://github.com/stellar/docker-stellar-core-horizon).
 
 ### In depth architecture
 
 [architecture.md](https://github.com/stellar/stellar-core/blob/master/docs/architecture.md) 
-  describes how gramr is structured internally, how it is intended to be 
+  describes how gravity is structured internally, how it is intended to be 
   deployed, and the collection of servers and services needed to get the full 
   functionality and performance.

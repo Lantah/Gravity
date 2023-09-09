@@ -9,23 +9,23 @@ DISTRO ?= focal
 
 # Deb package version to use. For example "17.0.0-557.096f6a7.focal"
 # Not needed for testing builds
-GRAMR_VERSION ?=
+GRAVITY_VERSION ?=
 
 # Set default tag
 ifndef TAG
-	TAG = ${USER}/gramr:$(shell git describe --always --tags --long)
+	TAG = ${USER}/gravity:$(shell git describe --always --tags --long)
 endif
 
 docker-build:
-ifndef GRAMR_VERSION
-	$(error GRAMR_VERSION environment variable must be set. For example GRAMR_VERSION=17.0.0-557.096f6a7.focal )
+ifndef GRAVITY_VERSION
+	$(error GRAVITY_VERSION environment variable must be set. For example GRAVITY_VERSION=17.0.0-557.096f6a7.focal )
 endif
 ifndef TAG
-	TAG = stellar/gramr:$(GRAMR_VERSION)
+	TAG = stellar/gravity:$(GRAVITY_VERSION)
 endif
 	$(SUDO)  docker build --pull \
 	--label org.opencontainers.image.created="$(BUILD_DATE)" \
-	--build-arg GRAMR_VERSION=${GRAMR_VERSION} \
+	--build-arg GRAVITY_VERSION=${GRAVITY_VERSION} \
 	--build-arg DISTRO=${DISTRO} \
 	-t ${TAG} .
 

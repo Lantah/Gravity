@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 
 AUTOMAKE_OPTIONS = serial-tests
-bin_PROGRAMS = gramr
+bin_PROGRAMS = gravity
 
 include $(top_srcdir)/common.mk
 include $(srcdir)/src.mk
@@ -9,9 +9,9 @@ include $(srcdir)/src.mk
 noinst_HEADERS = $(SRC_H_FILES)
 
 if BUILD_TESTS
-gramr_SOURCES = main/GramrVersion.cpp main/XDRFilesSha256.cpp $(SRC_CXX_FILES) $(SRC_TEST_CXX_FILES)
+gravity_SOURCES = main/GravityVersion.cpp main/XDRFilesSha256.cpp $(SRC_CXX_FILES) $(SRC_TEST_CXX_FILES)
 else # !BUILD_TESTS
-gramr_SOURCES = main/GramrVersion.cpp main/XDRFilesSha256.cpp $(SRC_CXX_FILES)
+gravity_SOURCES = main/GravityVersion.cpp main/XDRFilesSha256.cpp $(SRC_CXX_FILES)
 endif # !BUILD_TESTS
 
 if ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
@@ -31,18 +31,18 @@ if USE_TRACY
 CARGO_FEATURES += --features tracy
 endif
 
-gramr_LDADD = $(soci_LIBS) $(libmedida_LIBS)		\
+gravity_LDADD = $(soci_LIBS) $(libmedida_LIBS)		\
 	$(top_builddir)/lib/lib3rdparty.a $(sqlite3_LIBS)	\
 	$(libpq_LIBS) $(xdrpp_LIBS) $(libsodium_LIBS) $(libunwind_LIBS)
 
 TESTDATA_DIR = testdata
-TEST_FILES = $(TESTDATA_DIR)/gramr_example.cfg $(TESTDATA_DIR)/gramr_standalone.cfg \
-             $(TESTDATA_DIR)/gramr_testnet.cfg $(TESTDATA_DIR)/gramr_testnet_legacy.cfg \
+TEST_FILES = $(TESTDATA_DIR)/gravity_example.cfg $(TESTDATA_DIR)/gravity_standalone.cfg \
+             $(TESTDATA_DIR)/gravity_testnet.cfg $(TESTDATA_DIR)/gravity_testnet_legacy.cfg \
              $(TESTDATA_DIR)/stellar-history.testnet.6714239.json $(TESTDATA_DIR)/stellar-history.livenet.15686975.json \
-             $(TESTDATA_DIR)/gramr_testnet_validator.cfg $(TESTDATA_DIR)/gramr_example_validators.cfg \
+             $(TESTDATA_DIR)/gravity_testnet_validator.cfg $(TESTDATA_DIR)/gravity_example_validators.cfg \
              $(TESTDATA_DIR)/stellar-history.testnet.6714239.networkPassphrase.json
 
-BUILT_SOURCES = $(SRC_X_FILES:.x=.h) main/GramrVersion.cpp main/XDRFilesSha256.cpp $(TEST_FILES)
+BUILT_SOURCES = $(SRC_X_FILES:.x=.h) main/GravityVersion.cpp main/XDRFilesSha256.cpp $(TEST_FILES)
 
 $(SRC_X_FILES:.x=.h): $(XDRC)
 SUFFIXES = .x .h .rs
@@ -62,7 +62,7 @@ util/xdrquery/XDRQueryParser.h: util/xdrquery/XDRQueryParser.cpp
 	touch $@
 
 BUILT_SOURCES += util/xdrquery/XDRQueryScanner.cpp util/xdrquery/XDRQueryParser.h util/xdrquery/XDRQueryParser.cpp
-gramr_SOURCES += util/xdrquery/XDRQueryScanner.cpp util/xdrquery/XDRQueryParser.h util/xdrquery/XDRQueryParser.cpp
+gravity_SOURCES += util/xdrquery/XDRQueryScanner.cpp util/xdrquery/XDRQueryParser.h util/xdrquery/XDRQueryParser.cpp
 
 # Old automakes have buggy dependency tracking for conditional generated
 # sources. We work around this here by making rust/RustBridge.{cpp,h} generated
@@ -72,7 +72,7 @@ gramr_SOURCES += util/xdrquery/XDRQueryScanner.cpp util/xdrquery/XDRQueryParser.
 # SOURCES addition we're doing here, have to list unadorned paths.
 
 BUILT_SOURCES += rust/RustBridge.h rust/RustBridge.cpp
-gramr_SOURCES += rust/RustBridge.h rust/RustBridge.cpp
+gravity_SOURCES += rust/RustBridge.h rust/RustBridge.cpp
 
 if ENABLE_NEXT_PROTOCOL_VERSION_UNSAFE_FOR_PRODUCTION
 RUST_BUILD_DIR=$(top_builddir)/src/rust
@@ -81,8 +81,8 @@ RUST_TARGET_DIR=$(RUST_BUILD_DIR)/target
 RUST_CXXBRIDGE=$(RUST_BIN_DIR)/cxxbridge
 RUST_PROFILE=release
 RUST_HOST_DEPFILES=rust/Cargo.toml $(top_srcdir)/Cargo.toml $(top_srcdir)/Cargo.lock rust/src/host-dep-tree-curr.txt rust/src/host-dep-tree-prev.txt
-LIBRUST_GRAMR=$(RUST_TARGET_DIR)/$(RUST_PROFILE)/librust_gramr.a
-gramr_LDADD += $(LIBRUST_GRAMR) -ldl
+LIBRUST_GRAVITY=$(RUST_TARGET_DIR)/$(RUST_PROFILE)/librust_gravity.a
+gravity_LDADD += $(LIBRUST_GRAVITY) -ldl
 
 $(RUST_CXXBRIDGE):
 	mkdir -p $(RUST_BIN_DIR)
@@ -96,7 +96,7 @@ rust/RustBridge.cpp: rust/src/lib.rs $(SRC_RUST_FILES) Makefile $(RUST_CXXBRIDGE
 	$(RUST_CXXBRIDGE) $< --output $@.tmp
 	if cmp -s $@.tmp $@; then rm -v $@.tmp; else mv -v $@.tmp $@; fi
 
-$(LIBRUST_GRAMR): $(RUST_HOST_DEPFILES) $(SRC_RUST_FILES) Makefile
+$(LIBRUST_GRAVITY): $(RUST_HOST_DEPFILES) $(SRC_RUST_FILES) Makefile
 	cd $(RUST_BUILD_DIR) && cargo build --$(RUST_PROFILE) --target-dir $(abspath $(RUST_TARGET_DIR)) $(CARGO_FEATURES)
 	ranlib $@
 else
@@ -124,12 +124,12 @@ always:
 	@:
 
 # Always rebuild because .git/HEAD is a symbolic ref one can't depend on
-main/GramrVersion.cpp: always
+main/GravityVersion.cpp: always
 	@vers=$$(cd "$(srcdir)" \
 		&& git describe --always --dirty --tags 2>/dev/null \
 		|| echo "$(PACKAGE) $(VERSION)"); \
 		sed -e "s@%%VERSION%%@$$vers@" \
-			< "$(srcdir)/main/GramrVersion.cpp.in" > $@~
+			< "$(srcdir)/main/GravityVersion.cpp.in" > $@~
 	@if cmp -s $@~ $@; then rm -f $@~; else \
 	    mv -f $@~ $@ && printf "echo '%s' > $@\n" "$$(cat $@)"; fi
 
@@ -148,23 +148,23 @@ endif # USE_CLANG_FORMAT
 if USE_AFL_FUZZ
 FUZZER_MODE ?= overlay
 
-fuzz-testcases: gramr
+fuzz-testcases: gravity
 	mkdir -p fuzz-testcases
 	for i in `seq 1 10000`; do \
-	    ./gramr gen-fuzz --mode=${FUZZER_MODE} fuzz-testcases/fuzz$$i.xdr ; \
+	    ./gravity gen-fuzz --mode=${FUZZER_MODE} fuzz-testcases/fuzz$$i.xdr ; \
 	done
 	mkdir -p min-testcases
-	afl-cmin -i fuzz-testcases -o min-testcases -m 500 -t 250 ./gramr fuzz --ll ERROR --mode=${FUZZER_MODE} @@
+	afl-cmin -i fuzz-testcases -o min-testcases -m 500 -t 250 ./gravity fuzz --ll ERROR --mode=${FUZZER_MODE} @@
 	rm -Rf fuzz-testcases
 
 # when running in parallel,
 # run the same command than below replacing `-M main` with `-S worker_N`
 # and `--process-id 0` with `--process-id N`
 
-fuzz: fuzz-testcases gramr
+fuzz: fuzz-testcases gravity
 	mkdir -p fuzz-findings
 	afl-fuzz -m 500 -M main -t 250 -i min-testcases -o fuzz-findings \
-	    ./gramr fuzz --ll ERROR --process-id 0 --mode=${FUZZER_MODE} @@
+	    ./gravity fuzz --ll ERROR --process-id 0 --mode=${FUZZER_MODE} @@
 
 fuzz-clean: always
 	rm -Rf fuzz-testcases fuzz-findings

@@ -38,10 +38,10 @@
 
 INSTALL
 
-src/gramr
+src/gravity
 
 src/archtmp-*
-src/main/GramrVersion.cpp
+src/main/GravityVersion.cpp
 src/testdata
 src/xdr/*.h
 Makefile
@@ -49,7 +49,7 @@ Makefile.in
 aclocal.m4
 autom4te.cache
 build
-src/gramr
+src/gravity
 buckets
 compile
 config.h
@@ -83,7 +83,7 @@ scripts/*.json
 **/*.res
 **/*.trs
 **/*.exp
-gramr-test-*
+gravity-test-*
 test-partitions.*
 fuzz-findings
 min-testcases

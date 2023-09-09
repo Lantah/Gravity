@@ -15,12 +15,12 @@ VOLUME /postgresql-unix-sockets
 ADD setup /
 RUN /setup
 
-ARG GRAMR_VERSION
+ARG GRAVITY_VERSION
 
-#install gramr
+#install gravity
 RUN wget -qO - https://apt.stellar.org/SDF.asc | apt-key add -
 RUN echo "deb https://apt.stellar.org ${DISTRO} unstable" | tee -a /etc/apt/sources.list.d/SDF-unstable.list
-RUN apt-get update && apt-get install -y gramr=${GRAMR_VERSION}
+RUN apt-get update && apt-get install -y gravity=${GRAVITY_VERSION}
 
 WORKDIR "/etc/stellar"
-ENTRYPOINT ["/usr/bin/gramr"]
+ENTRYPOINT ["/usr/bin/gravity"]
