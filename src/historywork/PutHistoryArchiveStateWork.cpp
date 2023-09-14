@@ -82,7 +82,7 @@ PutHistoryArchiveStateWork::spawnPublishWork()
     mPutRemoteFileWork = addWork<WorkSequence>("put-history-file-sequence", seq,
                                                BasicWork::RETRY_NEVER);
 
-    // Also put it in the .well-known/stellar-history.json file
+    // Also put it in the .well-known/lantah-history.json file
     auto wkName = HistoryArchiveState::wellKnownRemoteName();
     auto wkDir = HistoryArchiveState::wellKnownRemoteDir();
 

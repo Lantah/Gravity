@@ -13,9 +13,9 @@ using namespace stellar;
 TEST_CASE("Serialization round trip", "[history]")
 {
     std::vector<std::string> testFiles = {
-        "stellar-history.testnet.6714239.json",
-        "stellar-history.livenet.15686975.json",
-        "stellar-history.testnet.6714239.networkPassphrase.json"};
+        "lantah-history.testnet.6714239.json",
+        "lantah-history.livenet.15686975.json",
+        "lantah-history.testnet.6714239.networkPassphrase.json"};
     for (size_t i = 0; i < testFiles.size(); i++)
     {
         std::string fnPath = "testdata/";

@@ -46,7 +46,7 @@
  * store is a history archive state file (class HistoryArchiveState) which
  * stores the most recent checkpoint (including version info, most recent ledger
  * number and most recent bucket hashes). As per RFC 5785, this checkpoint is
- * stored at .well-known/stellar-history.json as a JSON file.
+ * stored at .well-known/lantah-history.json as a JSON file.
  *
  * Checkpoints are made "every 64 ledgers", when LCL is one-less-than a multiple
  * of 64. In other words, at LCL=63, 127, 191, 255, etc. or in other other words
@@ -59,7 +59,7 @@
  * per hour, 270 per day, and 98,550 per year. Counting checkpoints within a
  * 32bit value gives 43,581 years of service for the system.
  *
- * While the _most recent_ checkpoint is in .well-known/stellar-history.json,
+ * While the _most recent_ checkpoint is in .well-known/lantah-history.json,
  * each checkpoint is also stored permanently at a path whose name includes the
  * last ledger number in the checkpoint (as a 32-bit hex string) and stored in a
  * 3-level deep directory tree of hex digit prefixes.

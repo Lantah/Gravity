@@ -92,7 +92,7 @@ Command options can only by placed after command.
 * **new-hist <HISTORY-LABEL> ...**:  Initialize the named history archives
   HISTORY-LABEL. HISTORY-LABEL should be one of the history archives you have
   specified in the gravity.cfg. This will write a
-  `.well-known/stellar-history.json` file in the archive root.
+  `.well-known/lantah-history.json` file in the archive root.
 * **offline-close**: Forces gravity to close a specified number of empty
   ledgers, strictly offline and starting from its current state, generating and
   publishing history as it goes. Should only be used for special scenarios like

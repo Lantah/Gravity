@@ -38,7 +38,7 @@ class HistoryArchiveManager
     getCheckLedgerHeaderWork(LedgerHeaderHistoryEntry const&) const;
 
     // Initialize a named history archive by writing
-    // .well-known/stellar-history.json to it.
+    // .well-known/lantah-history.json to it.
     bool initializeHistoryArchive(std::string const& arch) const;
 
     // Returns whether or not the HistoryManager has any writable history

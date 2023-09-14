@@ -38,9 +38,9 @@ gravity_LDADD = $(soci_LIBS) $(libmedida_LIBS)		\
 TESTDATA_DIR = testdata
 TEST_FILES = $(TESTDATA_DIR)/gravity_example.cfg $(TESTDATA_DIR)/gravity_standalone.cfg \
              $(TESTDATA_DIR)/gravity_testnet.cfg $(TESTDATA_DIR)/gravity_testnet_legacy.cfg \
-             $(TESTDATA_DIR)/stellar-history.testnet.6714239.json $(TESTDATA_DIR)/stellar-history.livenet.15686975.json \
+             $(TESTDATA_DIR)/lantah-history.testnet.6714239.json $(TESTDATA_DIR)/lantah-history.livenet.15686975.json \
              $(TESTDATA_DIR)/gravity_testnet_validator.cfg $(TESTDATA_DIR)/gravity_example_validators.cfg \
-             $(TESTDATA_DIR)/stellar-history.testnet.6714239.networkPassphrase.json
+             $(TESTDATA_DIR)/lantah-history.testnet.6714239.networkPassphrase.json
 
 BUILT_SOURCES = $(SRC_X_FILES:.x=.h) main/GravityVersion.cpp main/XDRFilesSha256.cpp $(TEST_FILES)
 
