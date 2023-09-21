@@ -1,9 +1,5 @@
 
 <h1>Gravity</h1>
-</div>
-<p align="center">
-<a href="https://github.com/lantah/gravity/actions"><img alt="Build Status" src="https://github.com/lantah/gravity/workflows/.github/workflows/build.yml/badge.svg?branch=auto" /></a>
-</p>
 
 Gravity is a replicated state machine that maintains a local copy of a cryptographic ledger and processes transactions against it, in consensus with a set of peers.
 It implements a modified version of the [Stellar Consensus Protocol](https://github.com/stellar/stellar-core/blob/master/src/scp/readme.md), a _federated_ consensus protocol.
